@@ -1,0 +1,87 @@
+.header {
+  position: relative;
+  text-align: center;
+}
+.form {
+  position: relative;
+  width: 60em;
+  top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.panel {
+  width: 60em;
+  border-style: solid;
+  border-radius: 1em;
+  border-width: thin;
+}
+.inputline {
+  position: relative;
+  height: 3em;
+  overflow: hidden;
+}
+.inputlinedisclosure {
+  position: relative;
+  height: 3em;
+  width: 57em;
+  overflow: hidden;
+}
+.label {
+  position: relative;
+  left: 3em;
+  width: 20em;
+  top: 0.5em;
+  float: left;
+}
+.disclosure {
+  left: 3em;
+  position: relative;
+}
+.labeldisclosure {
+  position: relative;
+  left: 2em;
+  width: 16em;
+  top: 0.5em;
+  float: left;
+  overflow: hidden;
+}
+.input {
+  position: absolute;
+  right: 0em;
+  width: 40em;
+  top: 0.5em;
+  float: left;
+  overflow: hidden;
+}
+.message {
+  position: relative;
+  left: 3em;
+  width: 60em;
+  color: red;
+}
+.button {
+  position: relative;
+  top: 3em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.output {
+  position: relative;
+  top: 4em;
+  text-align: center;
+}
+.centerPanel {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+input {
+  padding: 0.1em 0.2em;
+  border: 0.1em solid #ccc;
+  border-radius: 0.3em;
+  line-height: 1.1;
+  font-family: inherit;
+  font-size: 1.1em;
+}

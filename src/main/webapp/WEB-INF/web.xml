@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" metadata-complete="false"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemalocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>GWT Bean Valdiators - Example</display-name>
+	<description>
+		Little example how to use bean validators in a GWT application (client and server side validation).
+	</description>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>GwtBeanValidatorsExample.html</welcome-file>
+	</welcome-file-list>
+
+	<!--
+		Configure Tuckey which will be used for rewriting URLs.
+		See urlrewrite.xml for its configuration.
+	-->
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- xsrf tokens -->
+	<servlet>
+		<servlet-name>xsrf</servlet-name>
+		<servlet-class>com.google.gwt.user.server.rpc.XsrfTokenServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>xsrf</servlet-name>
+		<url-pattern>/gwtBeanValidatorsExample/xsrf</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>gwt.xsrf.session_cookie_name</param-name>
+		<param-value>JSESSIONID</param-value>
+	</context-param>
+	<!-- xsrf tokens -->
+
+	<!-- own servlets
+	<servlet>
+		<servlet-name>LoginLogout</servlet-name>
+		<servlet-class>de.knightsoftnet.validationexample.server.LoginLogoutServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>LoginLogout</servlet-name>
+		<url-pattern>/gwtBeanValidatorsExample/LoginLogout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Sepa</servlet-name>
+		<servlet-class>de.knightsoftnet.validationexample.server.SepaServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Sepa</servlet-name>
+		<url-pattern>/gwtBeanValidatorsExample/sepa</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PostalAddredd</servlet-name>
+		<servlet-class>de.knightsoftnet.validationexample.server.PostalAddressServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PostalAddredd</servlet-name>
+		<url-pattern>/gwtBeanValidatorsExample/postaladdress</url-pattern>
+	</servlet-mapping>
+	own servlets -->
+
+</web-app>
