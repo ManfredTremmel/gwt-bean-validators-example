@@ -1,0 +1,75 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+  ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+  ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+  ui:generateLocales="en,de"
+  xmlns:g="urn:import:com.google.gwt.user.client.ui"
+  xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators">
+
+  <ui:style src="LoginViewGwtImpl.css"/>
+  <ui:with field="localization" type="de.knightsoftnet.validationexample.client.ui.page.login.LoginConstants" />
+
+  <g:HTMLPanel styleName="{style.centerPanel}">
+   <div class="{style.header}">
+     <h1><ui:msg description="Header Login" meaning="header">Login</ui:msg></h1>
+   </div>
+   <div class="{style.form}">
+      <div class="{style.panel}">
+       <div>
+         <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label User">User:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="userName">
+             <d:widget>
+               <g:TextBox visibleLength="20" maxLength="50"/>
+             </d:widget>
+           </d:UniversalDecoratorWithIcons>
+         </div>
+         <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label Password">Password:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="password">
+             <d:widget>
+               <g:PasswordTextBox visibleLength="20" maxLength="50" />
+             </d:widget>
+           </d:UniversalDecoratorWithIcons>
+         </div>
+         <g:DisclosurePanel styleName="{style.disclosure}">
+           <g:header><ui:text from='{localization.changePassword}' /></g:header>
+           <!--  <g:header>
+             <ui:text from="">
+               <ui:attribute ui:name="from" ui:description="Disclosure Change Password">Change Password:</ui:attribute>
+             </ui:text>
+           </g:header>  -->
+           <g:HTMLPanel>
+             <div class="{style.inputlinedisclosure}">
+               <div class="{style.labeldisclosure}">
+                 <ui:msg description="Label New Password">New Password:</ui:msg>
+               </div>
+               <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="newPassword">
+                 <d:widget>
+                   <g:PasswordTextBox visibleLength="20" maxLength="50" />
+                 </d:widget>
+               </d:UniversalDecoratorWithIcons>
+             </div>
+             <div class="{style.inputlinedisclosure}">
+               <div class="{style.labeldisclosure}">
+                 <ui:msg description="Label New Password repeat">New Password repeat:</ui:msg>
+               </div>
+               <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="newPasswordRepeat">
+                 <d:widget>
+                   <g:PasswordTextBox visibleLength="20" maxLength="50" />
+                 </d:widget>
+               </d:UniversalDecoratorWithIcons>
+             </div>
+           </g:HTMLPanel>
+         </g:DisclosurePanel>
+         <div class="{style.message}">
+           <g:Label ui:field="logMessages"/>
+         </div>
+       </div>    
+     </div>
+   </div>
+   <div class="{style.button}">
+     <g:Button ui:field="loginButton"><ui:msg description="Login Button" meaning="button">Login</ui:msg></g:Button>
+   </div>
+  </g:HTMLPanel>
+</ui:UiBinder>

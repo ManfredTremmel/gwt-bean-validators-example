@@ -1,6 +1,6 @@
 package de.knightsoftnet.validationexample.server;
 
-import de.knightsoftnet.validationexample.client.ui.login.LoginLogoutRemoteService;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteService;
 import de.knightsoftnet.validationexample.shared.models.GenderEnum;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validationexample.shared.models.UserData;

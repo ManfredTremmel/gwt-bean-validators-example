@@ -37,14 +37,13 @@
   <!-- gwt bean validators -->
   <inherits name="de.knightsoftnet.validators.GwtBeanValidators" />
 
-  <!-- English language, independent of country uses default 
-  <extend-property name="locale" values="en" /> -->
-
-  <!-- German language, independent of country -->
+  <!-- German and English language with English as fallback       -->
+  <extend-property name="locale" values="en" />
   <extend-property name="locale" values="de" />
+  <set-property name="locale" value="en,de" />
+  <set-property-fallback name="locale" value="en" />
 
   <set-configuration-property name="locale.useragent" value="Y" />
-  <!-- <set-property-fallback name="locale" value="en" /> -->
   <set-configuration-property name="locale.cookie" value="LOCALE" />
   <set-configuration-property name="locale.searchorder" value="queryparam,cookie,useragent" />
 

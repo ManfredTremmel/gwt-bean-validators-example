@@ -1,21 +1,21 @@
 package de.knightsoftnet.validationexample.client;
 
-import de.knightsoftnet.validationexample.client.basepage.BasePageViewGwtImpl;
-import de.knightsoftnet.validationexample.client.basepage.BasePageViewInterface;
-import de.knightsoftnet.validationexample.client.navigation.NavigationViewGwtImpl;
-import de.knightsoftnet.validationexample.client.navigation.NavigationViewInterface;
-import de.knightsoftnet.validationexample.client.ui.about.AboutViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.about.AboutViewInterface;
-import de.knightsoftnet.validationexample.client.ui.address.AddressViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.address.AddressViewInterface;
-import de.knightsoftnet.validationexample.client.ui.login.LoginViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.login.LoginViewInterface;
-import de.knightsoftnet.validationexample.client.ui.secret.SecretViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.secret.SecretViewInterface;
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaViewInterface;
-import de.knightsoftnet.validationexample.client.ui.settings.SettingsViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.settings.SettingsViewInterface;
+import de.knightsoftnet.validationexample.client.ui.basepage.BasePageViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.basepage.BasePageViewInterface;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.secret.SecretViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.secret.SecretViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsViewInterface;
 
 /**
  * Client factory implementation.

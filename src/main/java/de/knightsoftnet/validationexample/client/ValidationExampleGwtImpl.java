@@ -1,9 +1,9 @@
 package de.knightsoftnet.validationexample.client;
 
-import de.knightsoftnet.validationexample.client.basepage.BasePagePresenterImpl;
-import de.knightsoftnet.validationexample.client.basepage.BasePagePresenterInterface;
-import de.knightsoftnet.validationexample.client.basepage.BasePageViewInterface;
-import de.knightsoftnet.validationexample.client.navigation.NavigationActivityMapper;
+import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenterImpl;
+import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenterInterface;
+import de.knightsoftnet.validationexample.client.ui.basepage.BasePageViewInterface;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationActivityMapper;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;

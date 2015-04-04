@@ -2,15 +2,15 @@ package de.knightsoftnet.validationexample.client;
 
 import de.knightsoftnet.validationexample.client.event.ChangeUserEvent;
 import de.knightsoftnet.validationexample.client.mvp.AbstractCustomPlaceHistoryMapper;
-import de.knightsoftnet.validationexample.client.navigation.AbstractNavigationPlace;
-import de.knightsoftnet.validationexample.client.navigation.AppPlaceHistoryMapper;
-import de.knightsoftnet.validationexample.client.navigation.NavigationPlace;
-import de.knightsoftnet.validationexample.client.ui.address.AddressRemoteService;
-import de.knightsoftnet.validationexample.client.ui.address.AddressRemoteServiceAsync;
-import de.knightsoftnet.validationexample.client.ui.login.LoginLogoutRemoteService;
-import de.knightsoftnet.validationexample.client.ui.login.LoginLogoutRemoteServiceAsync;
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaRemoteService;
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.ui.navigation.AbstractNavigationPlace;
+import de.knightsoftnet.validationexample.client.ui.navigation.AppPlaceHistoryMapper;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationPlace;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressRemoteService;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteService;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaRemoteService;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaRemoteServiceAsync;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.core.client.GWT;

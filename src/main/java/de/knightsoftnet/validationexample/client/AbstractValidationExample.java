@@ -1,6 +1,6 @@
 package de.knightsoftnet.validationexample.client;
 
-import de.knightsoftnet.validationexample.client.navigation.AppPlaceHistoryMapper;
+import de.knightsoftnet.validationexample.client.ui.navigation.AppPlaceHistoryMapper;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;

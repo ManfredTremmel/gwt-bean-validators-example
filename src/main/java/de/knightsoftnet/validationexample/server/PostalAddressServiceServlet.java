@@ -1,6 +1,6 @@
 package de.knightsoftnet.validationexample.server;
 
-import de.knightsoftnet.validationexample.client.ui.address.AddressRemoteService;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressRemoteService;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 

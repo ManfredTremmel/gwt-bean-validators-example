@@ -1,6 +1,6 @@
 package de.knightsoftnet.validationexample.server;
 
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaRemoteService;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaRemoteService;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 

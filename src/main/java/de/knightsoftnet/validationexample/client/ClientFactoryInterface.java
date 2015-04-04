@@ -1,18 +1,18 @@
 package de.knightsoftnet.validationexample.client;
 
-import de.knightsoftnet.validationexample.client.basepage.BasePageViewInterface;
-import de.knightsoftnet.validationexample.client.navigation.AbstractNavigationPlace;
-import de.knightsoftnet.validationexample.client.navigation.AppPlaceHistoryMapper;
-import de.knightsoftnet.validationexample.client.navigation.NavigationViewInterface;
-import de.knightsoftnet.validationexample.client.ui.about.AboutViewInterface;
-import de.knightsoftnet.validationexample.client.ui.address.AddressRemoteServiceAsync;
-import de.knightsoftnet.validationexample.client.ui.address.AddressViewInterface;
-import de.knightsoftnet.validationexample.client.ui.login.LoginLogoutRemoteServiceAsync;
-import de.knightsoftnet.validationexample.client.ui.login.LoginViewInterface;
-import de.knightsoftnet.validationexample.client.ui.secret.SecretViewInterface;
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaRemoteServiceAsync;
-import de.knightsoftnet.validationexample.client.ui.sepa.SepaViewInterface;
-import de.knightsoftnet.validationexample.client.ui.settings.SettingsViewInterface;
+import de.knightsoftnet.validationexample.client.ui.basepage.BasePageViewInterface;
+import de.knightsoftnet.validationexample.client.ui.navigation.AbstractNavigationPlace;
+import de.knightsoftnet.validationexample.client.ui.navigation.AppPlaceHistoryMapper;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.ui.page.address.AddressViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.secret.SecretViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaViewInterface;
+import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsViewInterface;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.place.shared.PlaceController;
