@@ -1,3 +1,18 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work for additional information regarding
+ * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the License. You may obtain a
+ * copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
 import de.knightsoftnet.validationexample.client.ClientFactoryInterface;
@@ -86,13 +101,13 @@ public class AddressPresenterImpl extends AbstractPresenter implements AddressPr
             } catch (final ValidationException e) {
               AddressPresenterImpl.this
                   .getClientFactory()
-                  .getSepaView()
+                  .getAddressView()
                   .getDriver()
                   .setConstraintViolations(
                       e.getValidationErrorSet(AddressPresenterImpl.this.addressData));
             } catch (final Throwable e) {
               final AddressConstants constants = GWT.create(AddressConstants.class);
-              AddressPresenterImpl.this.getClientFactory().getSepaView()
+              AddressPresenterImpl.this.getClientFactory().getAddressView()
                   .showMessage(constants.messageAddressDataError());
             }
           }
@@ -101,10 +116,10 @@ public class AddressPresenterImpl extends AbstractPresenter implements AddressPr
           public void onSuccess(final PostalAddressData presult) {
             final AddressConstants constants = GWT.create(AddressConstants.class);
             if (presult == null) {
-              AddressPresenterImpl.this.getClientFactory().getSepaView()
+              AddressPresenterImpl.this.getClientFactory().getAddressView()
                   .showMessage(constants.messageAddressDataError());
             } else {
-              AddressPresenterImpl.this.getClientFactory().getSepaView()
+              AddressPresenterImpl.this.getClientFactory().getAddressView()
                   .showMessage(constants.messageAddressDataOk());
             }
           }
