@@ -65,7 +65,7 @@
          <div class="{style.message}">
            <g:Label ui:field="logMessages"/>
          </div>
-       </div>    
+       </div>   
      </div>
    </div>
    <div class="{style.button}">

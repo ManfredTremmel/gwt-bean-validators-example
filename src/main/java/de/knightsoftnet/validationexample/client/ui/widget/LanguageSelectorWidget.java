@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -36,19 +36,12 @@ public class LanguageSelectorWidget extends ListBox implements HasValue<String> 
     super();
     this.setVisibleItemCount(1);
 
-    final String currentLang = LocaleInfo.getCurrentLocale().getLocaleName();
-    int currentLangPos = 0;
-    int langPos = 0;
     for (final String lang : LocaleInfo.getAvailableLocaleNames()) {
       if (!"default".equals(lang)) {
         this.addItem(LocaleInfo.getLocaleNativeDisplayName(lang), lang);
-        if (lang.equals(currentLang)) {
-          currentLangPos = langPos;
-        }
-        langPos++;
       }
     }
-    this.setItemSelected(currentLangPos, true);
+    this.setValue(LocaleInfo.getCurrentLocale().getLocaleName(), false);
   }
 
   @Override

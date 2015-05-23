@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -18,9 +18,9 @@ package de.knightsoftnet.validationexample.server.generator;
 import com.google.gwt.core.ext.Generator;
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.TreeLogger;
+import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.NotFoundException;
-import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.user.rebind.ClassSourceFileComposerFactory;
 import com.google.gwt.user.rebind.SourceWriter;
 
@@ -28,7 +28,7 @@ import java.io.PrintWriter;
 import java.util.ResourceBundle;
 
 /**
- * this class creates a implementation of the VersionInfoInterface.
+ * this class creates a implementation of the VersionInfoInterface with data from maven's pom.xml.
  *
  * @author Manfred Tremmel
  *
@@ -58,21 +58,18 @@ public class VersionInfoGenerator extends Generator {
         src.println("}");
 
         src.println("@Override");
-        src.println("public final SafeHtml getVersionNumber()");
-        src.println("{");
+        src.println("public final SafeHtml getVersionNumber() {");
         src.println("  return SafeHtmlUtils.fromString(\"" + version + "\");");
         src.println("}");
 
         src.println("@Override");
-        src.println("public final SafeHtml getVersionDate()");
-        src.println("{");
+        src.println("public final SafeHtml getVersionDate() {");
         src.println("  return SafeHtmlUtils.fromString(this.parseAndFormatDate(\""
             + buildTimeString + "\"));");
         src.println("}");
 
         src.println("@Override");
-        src.println("public final SafeHtml getAuthor()");
-        src.println("{");
+        src.println("public final SafeHtml getAuthor() {");
         src.println("  return SafeHtmlUtils.fromString(\"" + author + "\");");
         src.println("}");
 

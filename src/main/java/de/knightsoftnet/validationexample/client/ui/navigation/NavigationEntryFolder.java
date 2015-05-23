@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -61,10 +61,10 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   public NavigationEntryFolder(final SafeHtml pmenuValue, final boolean popenOnStartup) {
     super();
-    menuValue = pmenuValue;
-    subEntries = new ArrayList<NavigationEntryInterface>();
-    openOnStartup = popenOnStartup;
-    parentEntry = null;
+    this.menuValue = pmenuValue;
+    this.subEntries = new ArrayList<NavigationEntryInterface>();
+    this.openOnStartup = popenOnStartup;
+    this.parentEntry = null;
   }
 
   /**
@@ -77,12 +77,12 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
   public NavigationEntryFolder(final SafeHtml pmenuValue, final boolean popenOnStartup,
       final Collection<NavigationEntryInterface> psubEntries) {
     super();
-    menuValue = pmenuValue;
-    subEntries = new ArrayList<NavigationEntryInterface>(psubEntries);
-    openOnStartup = popenOnStartup;
-    parentEntry = null;
-    if (subEntries != null && !subEntries.isEmpty()) {
-      for (final NavigationEntryInterface subEntry : subEntries) {
+    this.menuValue = pmenuValue;
+    this.subEntries = new ArrayList<NavigationEntryInterface>(psubEntries);
+    this.openOnStartup = popenOnStartup;
+    this.parentEntry = null;
+    if (this.subEntries != null && !this.subEntries.isEmpty()) {
+      for (final NavigationEntryInterface subEntry : this.subEntries) {
         subEntry.setParentEntry(this);
       }
     }
@@ -96,7 +96,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   @Override
   public final SafeHtml getMenuValue() {
-    return menuValue;
+    return this.menuValue;
   }
 
   /*
@@ -149,7 +149,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    * @return the subEntries
    */
   public final List<NavigationEntryInterface> getSubEntries() {
-    return Collections.unmodifiableList(subEntries);
+    return Collections.unmodifiableList(this.subEntries);
   }
 
   /**
@@ -159,7 +159,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   public final void addSubEntry(final NavigationEntryInterface psubEntry) {
     psubEntry.setParentEntry(this);
-    subEntries.add(psubEntry);
+    this.subEntries.add(psubEntry);
   }
 
   /**
@@ -169,8 +169,8 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   public final void addSubEntries(final Collection<NavigationEntryInterface> psubEntries) {
     if (psubEntries != null && !psubEntries.isEmpty()) {
-      subEntries.addAll(psubEntries);
-      for (final NavigationEntryInterface subEntry : subEntries) {
+      this.subEntries.addAll(psubEntries);
+      for (final NavigationEntryInterface subEntry : this.subEntries) {
         subEntry.setParentEntry(this);
       }
     }
@@ -184,7 +184,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   @Override
   public final NavigationEntryInterface getParentEntry() {
-    return parentEntry;
+    return this.parentEntry;
   }
 
   /*
@@ -196,7 +196,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   @Override
   public final void setParentEntry(final NavigationEntryInterface pparentEntry) {
-    parentEntry = pparentEntry;
+    this.parentEntry = pparentEntry;
   }
 
   /*
@@ -207,7 +207,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
    */
   @Override
   public final boolean isOpenOnStartup() {
-    return openOnStartup;
+    return this.openOnStartup;
   }
 
   /*
@@ -221,7 +221,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
   public final boolean isDisplayable(final UserData puser) {
     boolean display = false;
     // one of the sub entries has to be displayable
-    for (final NavigationEntryInterface subEntry : subEntries) {
+    for (final NavigationEntryInterface subEntry : this.subEntries) {
       if (subEntry.isDisplayable(puser)) {
         display = true;
         break;
@@ -232,7 +232,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   @Override
   public final int hashCode() {
-    return ObjectUtils.hashCode(menuValue);
+    return ObjectUtils.hashCode(this.menuValue);
   }
 
   @Override
@@ -247,6 +247,6 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
       return false;
     }
     final NavigationEntryFolder other = (NavigationEntryFolder) obj;
-    return Objects.equals(menuValue, other.menuValue);
+    return Objects.equals(this.menuValue, other.menuValue);
   }
 }

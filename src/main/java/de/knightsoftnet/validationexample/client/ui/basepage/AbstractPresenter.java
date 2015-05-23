@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -40,20 +40,20 @@ public abstract class AbstractPresenter extends AbstractActivity implements Base
    */
   public AbstractPresenter(final ClientFactoryInterface pclientFactory) {
     super();
-    clientFactory = pclientFactory;
+    this.clientFactory = pclientFactory;
   }
 
   @Override
   public final SimpleEventBus getEventBus() {
-    return clientFactory.getEventBus();
+    return this.clientFactory.getEventBus();
   }
 
   @Override
   public final void viewAbout() {
     final AboutPlace aboutPlace =
-        new AboutPlace(clientFactory.getPlaceHistoryMapper().getToken(
-            clientFactory.getPlaceController().getWhere()));
-    clientFactory.getPlaceController().goTo(aboutPlace);
+        new AboutPlace(this.clientFactory.getPlaceHistoryMapper().getToken(
+            this.clientFactory.getPlaceController().getWhere()));
+    this.clientFactory.getPlaceController().goTo(aboutPlace);
   }
 
   /**
@@ -62,11 +62,11 @@ public abstract class AbstractPresenter extends AbstractActivity implements Base
    * @return the clientFactory
    */
   public final ClientFactoryInterface getClientFactory() {
-    return clientFactory;
+    return this.clientFactory;
   }
 
   @Override
   public final void showNavigation() {
-    clientFactory.getPlaceController().goTo(clientFactory.getNavigationPlace());
+    this.clientFactory.getPlaceController().goTo(this.clientFactory.getNavigationPlace());
   }
 }

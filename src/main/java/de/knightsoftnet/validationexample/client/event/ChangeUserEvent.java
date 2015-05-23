@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -49,8 +49,8 @@ public class ChangeUserEvent extends GwtEvent<ChangeUserEventHandler> {
    */
   public ChangeUserEvent(final UserData puser, final String pplaceToken) {
     super();
-    user = puser;
-    placeToken = pplaceToken;
+    this.user = puser;
+    this.placeToken = pplaceToken;
   }
 
   @Override
@@ -78,7 +78,7 @@ public class ChangeUserEvent extends GwtEvent<ChangeUserEventHandler> {
    * @return the user
    */
   public final UserData getUser() {
-    return user;
+    return this.user;
   }
 
   /**
@@ -87,7 +87,7 @@ public class ChangeUserEvent extends GwtEvent<ChangeUserEventHandler> {
    * @param puser the user to set
    */
   public final void setUser(final UserData puser) {
-    user = puser;
+    this.user = puser;
   }
 
   /**
@@ -96,7 +96,7 @@ public class ChangeUserEvent extends GwtEvent<ChangeUserEventHandler> {
    * @return the placeToken
    */
   public final String getPlaceToken() {
-    return placeToken;
+    return this.placeToken;
   }
 
   /**
@@ -105,6 +105,6 @@ public class ChangeUserEvent extends GwtEvent<ChangeUserEventHandler> {
    * @param pplaceToken the placeToken to set
    */
   public final void setPlaceToken(final String pplaceToken) {
-    placeToken = pplaceToken;
+    this.placeToken = pplaceToken;
   }
 }

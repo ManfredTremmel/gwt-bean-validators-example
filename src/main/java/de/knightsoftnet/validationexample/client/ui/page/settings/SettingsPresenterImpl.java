@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -24,8 +24,8 @@ import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 /**
  * Activity/Presenter of the validator test settings.
@@ -67,20 +67,5 @@ public class SettingsPresenterImpl extends AbstractPresenter implements Settings
   public final void changeLanguage(final String planguage) {
     Cookies.setCookie(LocaleInfo.getLocaleCookieName(), planguage);
     Window.Location.reload();
-  }
-
-  @Override
-  public final String mayStop() {
-    return null;
-  }
-
-  @Override
-  public final void onCancel() {
-    // Nothing to do!
-  }
-
-  @Override
-  public final void onStop() {
-    // Nothing to do!
   }
 }

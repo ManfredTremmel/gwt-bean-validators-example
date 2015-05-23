@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -15,8 +15,8 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import de.knightsoftnet.validationexample.shared.models.UserData;
 import de.knightsoftnet.validationexample.shared.UserRightsInterface;
+import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.safehtml.shared.SafeHtml;
@@ -28,7 +28,7 @@ import java.util.Objects;
 
 /**
  * The <code>NavigationEntry</code> defines one menu entry.
- * 
+ *
  * @author Manfred Tremmel
  */
 public class NavigationEntry implements NavigationEntryInterface {
@@ -72,130 +72,78 @@ public class NavigationEntry implements NavigationEntryInterface {
   public NavigationEntry(final SafeHtml pmenuValue, final String ptoken,
       final AppPlaceHistoryMapper pplaceHistoryMapper) {
     super();
-    menuValue = pmenuValue;
-    token = ptoken;
-    tokenDynamic = null;
-    placeHistoryMapper = pplaceHistoryMapper;
-    openOnStartup = true;
-    parentEntry = null;
+    this.menuValue = pmenuValue;
+    this.token = ptoken;
+    this.tokenDynamic = null;
+    this.placeHistoryMapper = pplaceHistoryMapper;
+    this.openOnStartup = true;
+    this.parentEntry = null;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getMenuValue()
-   */
   @Override
   public final SafeHtml getMenuValue() {
-    return menuValue;
+    return this.menuValue;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getToken()
-   */
   @Override
   public final String getToken() {
-    return token;
+    return this.token;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getFullToken()
-   */
   @Override
   public final String getFullToken() {
-    if (tokenDynamic == null) {
-      return token;
+    if (this.tokenDynamic == null) {
+      return this.token;
     } else {
-      return token + tokenDynamic;
+      return this.token + this.tokenDynamic;
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getTokenDynamic()
-   */
   @Override
   public final String getTokenDynamic() {
-    return tokenDynamic;
+    return this.tokenDynamic;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#setTokenDynamic
-   * (java .lang.String)
-   */
   @Override
   public final void setTokenDynamic(final String ptokenDynamic) {
-    if (token == null || ptokenDynamic == null) {
-      tokenDynamic = ptokenDynamic;
+    if (this.token == null || ptokenDynamic == null) {
+      this.tokenDynamic = ptokenDynamic;
     } else {
-      if (ptokenDynamic.equals(token)) {
-        tokenDynamic = null;
-      } else if (ptokenDynamic.startsWith(token)) {
-        tokenDynamic = ptokenDynamic.substring(token.length());
+      if (ptokenDynamic.equals(this.token)) {
+        this.tokenDynamic = null;
+      } else if (ptokenDynamic.startsWith(this.token)) {
+        this.tokenDynamic = ptokenDynamic.substring(this.token.length());
       } else {
-        tokenDynamic = ptokenDynamic;
+        this.tokenDynamic = ptokenDynamic;
       }
     }
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getParentEntry()
-   */
   @Override
   public final NavigationEntryInterface getParentEntry() {
-    return parentEntry;
+    return this.parentEntry;
   }
 
   @Override
   public final void setParentEntry(final NavigationEntryInterface pparentEntry) {
-    parentEntry = pparentEntry;
+    this.parentEntry = pparentEntry;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#isOpenOnStartup()
-   */
   @Override
   public final boolean isOpenOnStartup() {
-    return openOnStartup;
+    return this.openOnStartup;
   }
 
-  /*
-   * (non-Javadoc)
-   *
-   * @see
-   * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#isDisplayable(de.
-   * knightsoftnet.validationexample.shared .UserDataInterface)
-   */
   @Override
   public final boolean isDisplayable(final UserData puser) {
-    final Place place = placeHistoryMapper.getPlace(getFullToken());
-    if (place instanceof UserRightsInterface
-        && !((UserRightsInterface) place).isAllowedToSee(puser)) {
-      return false;
-    }
-    return true;
+    final Place place = this.placeHistoryMapper.getPlace(this.getFullToken());
+    return !(place instanceof UserRightsInterface && !((UserRightsInterface) place)
+        .isAllowedToSee(puser));
   }
 
   @Override
   public final int hashCode() {
-    return ObjectUtils.hashCodeMulti(menuValue, token);
+    return ObjectUtils.hashCodeMulti(this.menuValue, this.token);
   }
 
   @Override
@@ -210,6 +158,7 @@ public class NavigationEntry implements NavigationEntryInterface {
       return false;
     }
     final NavigationEntry other = (NavigationEntry) obj;
-    return Objects.equals(menuValue, other.menuValue) && StringUtils.equals(token, other.token);
+    return Objects.equals(this.menuValue, other.menuValue)
+        && StringUtils.equals(this.token, other.token);
   }
 }

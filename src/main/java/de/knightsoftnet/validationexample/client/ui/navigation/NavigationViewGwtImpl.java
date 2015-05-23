@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -88,26 +88,26 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
   public NavigationViewGwtImpl() {
     super();
 
-    initWidget(uiBinder.createAndBindUi(this));
-    navigationMap = new HashMap<TreeItem, NavigationEntryInterface>();
+    this.initWidget(uiBinder.createAndBindUi(this));
+    this.navigationMap = new HashMap<TreeItem, NavigationEntryInterface>();
   }
 
   @Override
   public final void setPresenter(final NavigationPresenterInterface pnavigationPresenterInterface) {
-    activity = pnavigationPresenterInterface;
+    this.activity = pnavigationPresenterInterface;
   }
 
   @Override
   public final void createNavigation(final NavigationPlace pplace) {
-    navigationMap.clear();
-    firstItem.removeItems();
-    selectedItem = null;
-    createRecursiveNavigation(firstItem, pplace.getFullNavigationList(),
+    this.navigationMap.clear();
+    this.firstItem.removeItems();
+    this.selectedItem = null;
+    this.createRecursiveNavigation(this.firstItem, pplace.getFullNavigationList(),
         pplace.getActiveNavigationEntryInterface());
-    firstItem.setState(true, false);
-    if (selectedItem != null) {
-      selectedItem.setSelected(true);
-      for (TreeItem openItem = selectedItem.getParentItem(); openItem != null; openItem =
+    this.firstItem.setState(true, false);
+    if (this.selectedItem != null) {
+      this.selectedItem.setSelected(true);
+      for (TreeItem openItem = this.selectedItem.getParentItem(); openItem != null; openItem =
           openItem.getParentItem()) {
         openItem.setState(true, false);
       }
@@ -127,19 +127,19 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
       final TreeItem newItem;
       if (navEntry instanceof NavigationEntryFolder) {
         newItem = new TreeItem(navEntry.getMenuValue());
-        createRecursiveNavigation(newItem, ((NavigationEntryFolder) navEntry).getSubEntries(),
+        this.createRecursiveNavigation(newItem, ((NavigationEntryFolder) navEntry).getSubEntries(),
             pactiveEntry);
         newItem.setState(navEntry.isOpenOnStartup());
       } else if (navEntry.getToken() == null) {
         newItem = null;
       } else {
         newItem = new TreeItem(navEntry.getMenuValue());
-        navigationMap.put(newItem, navEntry);
+        this.navigationMap.put(newItem, navEntry);
       }
       if (newItem != null) {
         pitem.addItem(newItem);
         if (pactiveEntry != null && pactiveEntry.equals(navEntry)) {
-          selectedItem = newItem;
+          this.selectedItem = newItem;
         }
       }
     }
@@ -152,11 +152,11 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
    */
   @UiHandler("navTree")
   final void menuItemSelected(final SelectionEvent<TreeItem> pselectionEvent) {
-    if (selectedItem != null && !selectedItem.equals(pselectionEvent.getSelectedItem())) {
+    if (this.selectedItem != null && !this.selectedItem.equals(pselectionEvent.getSelectedItem())) {
       // workaround, first selected entry isn't unselected when activating another
-      selectedItem.setSelected(false);
-      selectedItem = null;
+      this.selectedItem.setSelected(false);
+      this.selectedItem = null;
     }
-    activity.goToNavigationEntry(navigationMap.get(pselectionEvent.getSelectedItem()));
+    this.activity.goToNavigationEntry(this.navigationMap.get(pselectionEvent.getSelectedItem()));
   }
 }

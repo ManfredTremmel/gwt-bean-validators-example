@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -67,7 +67,7 @@ public class UserData implements Serializable {
    */
   public UserData(final String puserName) {
     super();
-    setUserName(puserName);
+    this.setUserName(puserName);
   }
 
   /**
@@ -82,50 +82,50 @@ public class UserData implements Serializable {
   public UserData(final String puserName, final String ppassword, final String pfirstName,
       final String plastName, final GenderEnum pgender) {
     super();
-    setUserName(puserName);
-    password = ppassword;
-    firstName = pfirstName;
-    lastName = plastName;
-    gender = pgender;
+    this.setUserName(puserName);
+    this.password = ppassword;
+    this.firstName = pfirstName;
+    this.lastName = plastName;
+    this.gender = pgender;
   }
 
   public final String getUserName() {
-    return userName;
+    return this.userName;
   }
 
   private void setUserName(final String puserName) {
-    userName = puserName;
+    this.userName = puserName;
   }
 
   public String getPassword() {
-    return password;
+    return this.password;
   }
 
   public void setPassword(final String ppassword) {
-    password = ppassword;
+    this.password = ppassword;
   }
 
   public final String getFirstName() {
-    return firstName;
+    return this.firstName;
   }
 
   public final void setFirstName(final String pfirstName) {
-    firstName = pfirstName;
+    this.firstName = pfirstName;
   }
 
   public final String getLastName() {
-    return lastName;
+    return this.lastName;
   }
 
   public final void setLastName(final String plastName) {
-    lastName = plastName;
+    this.lastName = plastName;
   }
 
   public final GenderEnum getGender() {
-    return gender;
+    return this.gender;
   }
 
   public final void setGender(final GenderEnum pgender) {
-    gender = pgender;
+    this.gender = pgender;
   }
 }

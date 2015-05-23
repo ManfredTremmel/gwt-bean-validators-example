@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -70,10 +70,10 @@ public abstract class AbstractNavigationPlace extends Place {
    */
   public AbstractNavigationPlace(final AppPlaceHistoryMapper pplaceHistoryMapper) {
     super();
-    placeMap = new HashMap<String, NavigationEntryInterface>();
-    placeHistoryMapper = pplaceHistoryMapper;
+    this.placeMap = new HashMap<String, NavigationEntryInterface>();
+    this.placeHistoryMapper = pplaceHistoryMapper;
 
-    buildVisibleNavigation(null);
+    this.buildVisibleNavigation(null);
   }
 
   /**
@@ -82,10 +82,10 @@ public abstract class AbstractNavigationPlace extends Place {
    * @param puser the user to build navigation for
    */
   public final void buildVisibleNavigation(final UserData puser) {
-    fullNavigationList = recursiveGetEntries(buildNavigation(), puser);
-    generateMapRecursive(fullNavigationList);
-    navigationList = fullNavigationList;
-    activeNavigationEntryInterface = getFirstEntry();
+    this.fullNavigationList = this.recursiveGetEntries(this.buildNavigation(), puser);
+    this.generateMapRecursive(this.fullNavigationList);
+    this.navigationList = this.fullNavigationList;
+    this.activeNavigationEntryInterface = this.getFirstEntry();
   }
 
   /**
@@ -103,15 +103,15 @@ public abstract class AbstractNavigationPlace extends Place {
   private void generateMapRecursive(final List<NavigationEntryInterface> pnavigationEntries) {
     for (final NavigationEntryInterface entryToAdd : pnavigationEntries) {
       if (entryToAdd.getMenuValue() != null && entryToAdd.getToken() != null) {
-        if (firstEntry == null && entryToAdd.isDisplayable(null)) {
-          firstEntry = entryToAdd;
+        if (this.firstEntry == null && entryToAdd.isDisplayable(null)) {
+          this.firstEntry = entryToAdd;
         }
-        if (!placeMap.containsKey(entryToAdd.getToken())) {
-          placeMap.put(entryToAdd.getToken(), entryToAdd);
+        if (!this.placeMap.containsKey(entryToAdd.getToken())) {
+          this.placeMap.put(entryToAdd.getToken(), entryToAdd);
         }
       }
       if (entryToAdd instanceof NavigationEntryFolder) {
-        generateMapRecursive(((NavigationEntryFolder) entryToAdd).getSubEntries());
+        this.generateMapRecursive(((NavigationEntryFolder) entryToAdd).getSubEntries());
       }
     }
   }
@@ -134,7 +134,7 @@ public abstract class AbstractNavigationPlace extends Place {
       if (entryToTest.isDisplayable(puser)) {
         if (entryToTest instanceof NavigationEntryFolder) {
           displayEntries.add(new NavigationEntryFolder(entryToTest.getMenuValue(), entryToTest
-              .isOpenOnStartup(), recursiveGetEntries(
+              .isOpenOnStartup(), this.recursiveGetEntries(
               ((NavigationEntryFolder) entryToTest).getSubEntries(), puser)));
         } else {
           displayEntries.add(entryToTest);
@@ -150,7 +150,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return the firstEntry
    */
   public final NavigationEntryInterface getFirstEntry() {
-    return firstEntry;
+    return this.firstEntry;
   }
 
   /**
@@ -159,7 +159,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return the firstPlace
    */
   public final String getFirstToken() {
-    return firstEntry.getToken();
+    return this.firstEntry.getToken();
   }
 
   /**
@@ -168,7 +168,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return the fullNavigationList
    */
   public final List<NavigationEntryInterface> getFullNavigationList() {
-    return fullNavigationList;
+    return this.fullNavigationList;
   }
 
   /**
@@ -177,7 +177,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return the navigationList
    */
   public final List<NavigationEntryInterface> getNavigationList() {
-    return navigationList;
+    return this.navigationList;
   }
 
   /**
@@ -186,7 +186,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @param pnavigationList the navigationList to set
    */
   public final void setNavigationList(final List<NavigationEntryInterface> pnavigationList) {
-    navigationList = pnavigationList;
+    this.navigationList = pnavigationList;
   }
 
   /**
@@ -195,7 +195,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return the activeNavigationEntryInterface
    */
   public final NavigationEntryInterface getActiveNavigationEntryInterface() {
-    return activeNavigationEntryInterface;
+    return this.activeNavigationEntryInterface;
   }
 
   /**
@@ -205,7 +205,7 @@ public abstract class AbstractNavigationPlace extends Place {
    */
   public final void setActiveNavigationEntryInterface(
       final NavigationEntryInterface pactiveNavigationEntryInterface) {
-    activeNavigationEntryInterface = pactiveNavigationEntryInterface;
+    this.activeNavigationEntryInterface = pactiveNavigationEntryInterface;
   }
 
   /**
@@ -215,7 +215,7 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return navigation entry for place or null if none found
    */
   public final NavigationEntryInterface getNavigationForToken(final String ptoken) {
-    NavigationEntryInterface entry = placeMap.get(ptoken);
+    NavigationEntryInterface entry = this.placeMap.get(ptoken);
     if (entry == null
         && ptoken != null
         && (!ptoken.endsWith(AbstractCustomPlaceHistoryMapper.DELIMITER) || ptoken
@@ -223,7 +223,7 @@ public abstract class AbstractNavigationPlace extends Place {
             .indexOf(AbstractCustomPlaceHistoryMapper.DELIMITER.charAt(0)))) {
       final int posSeparator = ptoken.indexOf(AbstractCustomPlaceHistoryMapper.DELIMITER.charAt(0));
       if (posSeparator > 0) {
-        entry = placeMap.get(ptoken.substring(0, posSeparator));
+        entry = this.placeMap.get(ptoken.substring(0, posSeparator));
       }
     }
     return entry;

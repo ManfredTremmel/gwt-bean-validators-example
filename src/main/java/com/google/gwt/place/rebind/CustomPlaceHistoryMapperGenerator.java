@@ -7,9 +7,9 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.ext.Generator;
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.TreeLogger;
+import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JMethod;
-import com.google.gwt.core.ext.UnableToCompleteException;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 import com.google.gwt.user.rebind.ClassSourceFileComposerFactory;
@@ -38,7 +38,7 @@ public class CustomPlaceHistoryMapperGenerator extends Generator {
         generatorContext.tryCreate(logger, context.packageName, context.implName);
 
     if (out != null) {
-      generateOnce(generatorContext, context, out);
+      this.generateOnce(generatorContext, context, out);
     }
 
     return context.packageName + "." + context.implName;
@@ -91,10 +91,10 @@ public class CustomPlaceHistoryMapperGenerator extends Generator {
     final SourceWriter sw = f.createSourceWriter(pgeneratorContext, pout);
     sw.println();
 
-    writeGetPrefixAndToken(pcontext, sw);
+    this.writeGetPrefixAndToken(pcontext, sw);
     sw.println();
 
-    writeGetTokenizer(pcontext, sw);
+    this.writeGetTokenizer(pcontext, sw);
     sw.println();
 
     sw.outdent();
