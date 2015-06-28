@@ -15,8 +15,8 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
+import de.knightsoftnet.validators.shared.LevenshteinDistance;
 import de.knightsoftnet.validators.shared.MustBeEqual;
-import de.knightsoftnet.validators.shared.MustNotBeEqual;
 import de.knightsoftnet.validators.shared.Password;
 
 import org.apache.commons.lang3.ObjectUtils;
@@ -32,7 +32,9 @@ import javax.validation.constraints.Size;
  *
  * @author Manfred Tremmel
  */
-@MustNotBeEqual(field1 = "password", field2 = "newPassword")
+@LevenshteinDistance.List({
+    @LevenshteinDistance(field1 = "userName", field2 = "newPassword", minDistance = 3),
+    @LevenshteinDistance(field1 = "password", field2 = "newPassword", minDistance = 3)})
 @MustBeEqual(field1 = "newPassword", field2 = "newPasswordRepeat")
 public class LoginData implements Serializable {
   /**

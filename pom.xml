@@ -7,7 +7,7 @@
 	<groupId>de.knightsoftnet</groupId>
 	<artifactId>gwt-bean-validators-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.8.3</version>
+	<version>0.8.4</version>
 	<name>GWT Bean Validators - Example</name>
 
 	<properties>
@@ -18,17 +18,17 @@
 		<junit.version>4.12</junit.version>
 		<gwtPushState.version>2.0.0</gwtPushState.version>
 		<log4j.version>1.2.17</log4j.version>
-		<slf4j.version>1.7.10</slf4j.version>
+		<slf4j.version>1.7.12</slf4j.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
-		<gwtBeanValidators.version>0.8.3</gwtBeanValidators.version>
+		<gwtBeanValidators.version>0.8.4</gwtBeanValidators.version>
 		<gwtCommonsLang.version>3.4-SNAPSHOT</gwtCommonsLang.version>
 		<gwtCommonsValidator.version>1.4.1-SNAPSHOT</gwtCommonsValidator.version>
 		<warPlugin.version>2.6</warPlugin.version>
 		<mavenCompiler.version>3.3</mavenCompiler.version>
 		<mavenReport.version>2.8</mavenReport.version>
 		<checkstyle.version>2.15</checkstyle.version>
-		<checkstyleTool.version>6.6</checkstyleTool.version>
-		<pmd.version>3.2</pmd.version>
+		<checkstyleTool.version>6.7</checkstyleTool.version>
+		<pmd.version>3.4</pmd.version>
 		<findbugs.version>3.0.1</findbugs.version>
 		<cobertura.version>2.7</cobertura.version>
 		<jxr.version>2.5</jxr.version>

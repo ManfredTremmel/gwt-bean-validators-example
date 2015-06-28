@@ -25,7 +25,7 @@ import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -37,10 +37,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
  *
  */
 public class SepaPresenterImpl extends AbstractPresenter implements SepaPresenterInterface {
-  /**
-   * three hundred milliseconds.
-   */
-  public static final int FOCUS_DELAY = 300;
 
   /**
    * sepa data to remember.
@@ -73,13 +69,12 @@ public class SepaPresenterImpl extends AbstractPresenter implements SepaPresente
         SepaPresenterImpl.this.view.setPresenter(SepaPresenterImpl.this);
         SepaPresenterImpl.this.view.fillForm(SepaPresenterImpl.this.sepaData);
         ppanel.setWidget(SepaPresenterImpl.this.view.asWidget());
-        Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
           @Override
-          public boolean execute() {
+          public void execute() {
             SepaPresenterImpl.this.view.setFocusOnFirstWidget();
-            return false;
           }
-        }, FOCUS_DELAY);
+        });
       }
 
       @Override

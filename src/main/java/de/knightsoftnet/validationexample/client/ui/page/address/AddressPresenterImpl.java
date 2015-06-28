@@ -25,7 +25,7 @@ import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -37,10 +37,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
  *
  */
 public class AddressPresenterImpl extends AbstractPresenter implements AddressPresenterInterface {
-  /**
-   * three hundred milliseconds.
-   */
-  public static final int FOCUS_DELAY = 300;
 
   /**
    * address data to remember.
@@ -74,13 +70,12 @@ public class AddressPresenterImpl extends AbstractPresenter implements AddressPr
         AddressPresenterImpl.this.view.setPresenter(AddressPresenterImpl.this);
         AddressPresenterImpl.this.view.fillForm(AddressPresenterImpl.this.addressData);
         ppanel.setWidget(AddressPresenterImpl.this.view.asWidget());
-        Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
           @Override
-          public boolean execute() {
+          public void execute() {
             AddressPresenterImpl.this.view.setFocusOnFirstWidget();
-            return false;
           }
-        }, FOCUS_DELAY);
+        });
       }
 
       @Override
@@ -92,17 +87,14 @@ public class AddressPresenterImpl extends AbstractPresenter implements AddressPr
 
   @Override
   public final void tryToSend() {
-    this.getClientFactory().getAddressService()
-        .sendPostalAddress(this.addressData, new AsyncCallback<PostalAddressData>() {
+    this.getClientFactory().getAddressService().sendPostalAddress(this.addressData,
+        new AsyncCallback<PostalAddressData>() {
           @Override
           public void onFailure(final Throwable pcaught) {
             try {
               throw pcaught;
             } catch (final ValidationException e) {
-              AddressPresenterImpl.this
-                  .getClientFactory()
-                  .getAddressView()
-                  .getDriver()
+              AddressPresenterImpl.this.getClientFactory().getAddressView().getDriver()
                   .setConstraintViolations(
                       e.getValidationErrorSet(AddressPresenterImpl.this.addressData));
             } catch (final Throwable e) {

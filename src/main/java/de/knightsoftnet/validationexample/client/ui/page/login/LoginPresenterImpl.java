@@ -25,7 +25,7 @@ import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -37,10 +37,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
  *
  */
 public class LoginPresenterImpl extends AbstractPresenter implements LoginPresenterInterface {
-  /**
-   * three hundred milliseconds.
-   */
-  public static final int FOCUS_DELAY = 300;
 
   /**
    * user data to remember.
@@ -79,13 +75,12 @@ public class LoginPresenterImpl extends AbstractPresenter implements LoginPresen
         LoginPresenterImpl.this.view.setPresenter(LoginPresenterImpl.this);
         LoginPresenterImpl.this.view.fillForm(LoginPresenterImpl.this.loginData);
         ppanel.setWidget(LoginPresenterImpl.this.view.asWidget());
-        Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
           @Override
-          public boolean execute() {
+          public void execute() {
             LoginPresenterImpl.this.view.setFocusOnFirstWidget();
-            return false;
           }
-        }, FOCUS_DELAY);
+        });
       }
 
       @Override
@@ -97,17 +92,14 @@ public class LoginPresenterImpl extends AbstractPresenter implements LoginPresen
 
   @Override
   public final void tryToLogin() {
-    this.getClientFactory().getLoginLogoutService()
-        .login(this.loginData, new AsyncCallback<UserData>() {
+    this.getClientFactory().getLoginLogoutService().login(this.loginData,
+        new AsyncCallback<UserData>() {
           @Override
           public void onFailure(final Throwable pcaught) {
             try {
               throw pcaught;
             } catch (final ValidationException e) {
-              LoginPresenterImpl.this
-                  .getClientFactory()
-                  .getLoginView()
-                  .getDriver()
+              LoginPresenterImpl.this.getClientFactory().getLoginView().getDriver()
                   .setConstraintViolations(
                       e.getValidationErrorSet(LoginPresenterImpl.this.loginData));
             } catch (final Throwable e) {
@@ -126,11 +118,8 @@ public class LoginPresenterImpl extends AbstractPresenter implements LoginPresen
             } else {
               // loginData is ok, set it to client factory and also give the place to go to
               if (LoginPresenterImpl.this.place.getRedirectToken() == null) {
-                LoginPresenterImpl.this.getClientFactory()
-                    .setUser(
-                        presult,
-                        LoginPresenterImpl.this.getClientFactory().getNavigationPlace()
-                            .getFirstToken());
+                LoginPresenterImpl.this.getClientFactory().setUser(presult, LoginPresenterImpl.this
+                    .getClientFactory().getNavigationPlace().getFirstToken());
               } else {
                 LoginPresenterImpl.this.getClientFactory().setUser(presult,
                     LoginPresenterImpl.this.place.getRedirectToken());

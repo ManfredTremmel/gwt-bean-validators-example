@@ -21,6 +21,7 @@ import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.handlers.HandlerFactory;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -123,6 +124,9 @@ public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
         SepaViewGwtImpl.this.activity.tryToSend();
       }
     });
+    this.iban.addKeyPressHandler(HandlerFactory.getIbanKeyPressHandler());
+    this.iban.addKeyUpHandler(HandlerFactory.getIbanKeyUpHandler());
+    this.bic.addKeyPressHandler(HandlerFactory.getNumericAndUpperAsciiKeyPressHandler());
   }
 
   @Override
