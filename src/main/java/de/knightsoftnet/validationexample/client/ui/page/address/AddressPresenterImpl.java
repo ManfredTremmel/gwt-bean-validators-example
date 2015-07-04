@@ -56,7 +56,8 @@ public class AddressPresenterImpl extends AbstractPresenter implements AddressPr
   public AddressPresenterImpl(final ClientFactoryInterface pclientFactory) {
     super(pclientFactory);
     this.addressData = new PostalAddressData();
-    this.addressData.setCountryCode(CountryEnum.DE);
+    final AddressConstants constants = GWT.create(AddressConstants.class);
+    this.addressData.setCountryCode(CountryEnum.valueOf(constants.defaultCountry()));
   }
 
   @Override

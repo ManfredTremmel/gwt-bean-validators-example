@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
+import de.knightsoftnet.validationexample.client.ui.widget.BicWidget;
 import de.knightsoftnet.validationexample.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
@@ -54,7 +55,7 @@ public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
    * bank name.
    */
   @UiField
-  UniversalDecoratorWithIcons<String> bankName;
+  Label bankName;
 
   /**
    * password.
@@ -126,7 +127,7 @@ public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
     });
     this.iban.addKeyPressHandler(HandlerFactory.getIbanKeyPressHandler());
     this.iban.addKeyUpHandler(HandlerFactory.getIbanKeyUpHandler());
-    this.bic.addKeyPressHandler(HandlerFactory.getNumericAndUpperAsciiKeyPressHandler());
+    ((BicWidget) this.bic.getWidget()).setBankNameWidget(this.bankName);
   }
 
   @Override
@@ -151,6 +152,6 @@ public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
 
   @Override
   public final void setFocusOnFirstWidget() {
-    this.bankName.setFocus(true);
+    this.bic.setFocus(true);
   }
 }

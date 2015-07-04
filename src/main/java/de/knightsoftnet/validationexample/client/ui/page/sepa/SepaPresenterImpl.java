@@ -56,7 +56,8 @@ public class SepaPresenterImpl extends AbstractPresenter implements SepaPresente
   public SepaPresenterImpl(final ClientFactoryInterface pclientFactory) {
     super(pclientFactory);
     this.sepaData = new SepaData();
-    this.sepaData.setCountryCode(CountryEnum.DE);
+    final SepaConstants constants = GWT.create(SepaConstants.class);
+    this.sepaData.setCountryCode(CountryEnum.valueOf(constants.defaultCountry()));
   }
 
   @Override

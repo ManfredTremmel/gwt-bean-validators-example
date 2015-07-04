@@ -16,7 +16,7 @@
 package de.knightsoftnet.validationexample.shared.models;
 
 import de.knightsoftnet.validators.shared.BankCountry;
-import de.knightsoftnet.validators.shared.Bic;
+import de.knightsoftnet.validators.shared.BicValue;
 import de.knightsoftnet.validators.shared.IbanFormated;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -50,7 +50,7 @@ public class SepaData implements Serializable {
   @NotEmpty
   private String iban;
 
-  @Bic
+  @BicValue
   @NotEmpty
   private String bic;
 

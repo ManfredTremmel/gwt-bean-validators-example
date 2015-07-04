@@ -17,22 +17,6 @@
       <div class="{style.panel}">
        <div>
          <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Bank Name">Bank Name:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="bankName">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="50"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Account Owner">Account Owner:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="accountOwner">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="50"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
            <div class="{style.label}"><ui:msg description="Label Country">Country:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="countryCode">
              <d:widget>
@@ -41,18 +25,35 @@
            </d:UniversalDecoratorWithIcons>
          </div>
          <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Iban">Iban:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="iban">
+           <div class="{style.label}"><ui:msg description="Label Bic">Bic:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="bic">
              <d:widget>
-               <g:TextBox visibleLength="25" maxLength="34"/>
+               <w:BicWidget />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
          <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Bic">Bic:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="bic">
+           <div class="{style.label}"><ui:msg description="Label Bank Name">Bank Name:</ui:msg></div>
+           <g:Label ui:field="bankName" stylePrimaryName="{style.input}" />
+           <!--  <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="bankName">
              <d:widget>
-               <g:TextBox visibleLength="15" maxLength="11"/>
+               <g:TextBox visibleLength="50" maxLength="256" enabled="false" />
+             </d:widget>
+           </d:UniversalDecoratorWithIcons> -->
+         </div>
+         <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label Iban">Iban:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="iban">
+             <d:widget>
+               <g:TextBox visibleLength="30" maxLength="42"/>
+             </d:widget>
+           </d:UniversalDecoratorWithIcons>
+         </div>
+         <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label Account Owner">Account Owner:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="accountOwner">
+             <d:widget>
+               <g:TextBox visibleLength="50" maxLength="50" />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>

@@ -37,4 +37,11 @@ public interface SepaConstants extends Constants {
    * @return messageSepaOk
    */
   String messageSepaOk();
+
+  /**
+   * default country.
+   *
+   * @return defaultCountry
+   */
+  String defaultCountry();
 }

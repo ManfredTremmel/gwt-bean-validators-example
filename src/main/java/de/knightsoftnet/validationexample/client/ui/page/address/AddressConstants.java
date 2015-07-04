@@ -37,4 +37,11 @@ public interface AddressConstants extends Constants {
    * @return messageSepaOk
    */
   String messageAddressDataOk();
+
+  /**
+   * default country.
+   *
+   * @return defaultCountry
+   */
+  String defaultCountry();
 }
