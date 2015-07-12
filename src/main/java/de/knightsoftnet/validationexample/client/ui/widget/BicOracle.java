@@ -90,14 +90,17 @@ public class BicOracle extends SuggestOracle {
         for (final Entry<String, String> entry : BIC_MAP.bics().entrySet()) {
           if (entry.getKey().contains(
               StringUtils.substring(prequest.getQuery(), 0, BicValueValidator.BIC_LENGTH_MIN))) {
-            suggestions
-                .add(new BicItemSuggest(entry.getKey(),
-                    entry.getKey().replace(
-                        StringUtils.substring(prequest.getQuery(), 0,
-                            BicValueValidator.BIC_LENGTH_MIN),
-                    "<strong>" + StringUtils.substring(prequest.getQuery(), 0,
-                        BicValueValidator.BIC_LENGTH_MIN) + "</strong>"),
-                    entry.getValue()));
+            if (prequest.getQuery().length() == BicValueValidator.BIC_LENGTH_MAX) {
+              suggestions.add(new BicItemSuggest(prequest.getQuery(),
+                  "<strong>" + prequest.getQuery() + "</strong>", entry.getValue()));
+            }
+            suggestions.add(new BicItemSuggest(entry.getKey(), //
+                entry.getKey().replace(
+                    StringUtils.substring(prequest.getQuery(), 0, //
+                        BicValueValidator.BIC_LENGTH_MIN), //
+                    "<strong>" + StringUtils.substring(prequest.getQuery(), 0, //
+                        BicValueValidator.BIC_LENGTH_MIN) + "</strong>"), //
+                entry.getValue()));
             if (suggestions.size() >= limit) {
               break;
             }
