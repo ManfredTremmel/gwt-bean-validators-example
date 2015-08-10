@@ -33,8 +33,10 @@ import javax.validation.constraints.Size;
  * @author Manfred Tremmel
  */
 @LevenshteinDistance.List({
-    @LevenshteinDistance(field1 = "userName", field2 = "newPassword", minDistance = 3),
-    @LevenshteinDistance(field1 = "password", field2 = "newPassword", minDistance = 3)})
+    @LevenshteinDistance(field1 = "userName", field2 = "newPassword", minDistance = 3,
+        addErrorToField1 = false),
+    @LevenshteinDistance(field1 = "password", field2 = "newPassword", minDistance = 3,
+        addErrorToField1 = false)})
 @MustBeEqual(field1 = "newPassword", field2 = "newPasswordRepeat")
 public class LoginData implements Serializable {
   /**
