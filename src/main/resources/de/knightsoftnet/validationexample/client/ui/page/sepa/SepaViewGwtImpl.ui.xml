@@ -45,7 +45,7 @@
            <div class="{style.label}"><ui:msg description="Label Iban">Iban:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="iban">
              <d:widget>
-               <g:TextBox visibleLength="30" maxLength="42"/>
+               <w:IbanWidget visibleLength="30" maxLength="42"/>
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
