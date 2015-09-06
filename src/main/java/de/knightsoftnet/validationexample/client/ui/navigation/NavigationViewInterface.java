@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import com.google.gwt.user.client.ui.IsWidget;
+import com.gwtplatform.mvp.client.View;
 
 /**
  * View of the validator Navigation, Interface.
@@ -23,13 +23,7 @@ import com.google.gwt.user.client.ui.IsWidget;
  * @author Manfred Tremmel
  *
  */
-public interface NavigationViewInterface extends IsWidget {
-  /**
-   * set a reference to the presenter/activity.
-   *
-   * @param pnavigationPresenterInterface reference to set
-   */
-  void setPresenter(NavigationPresenterInterface pnavigationPresenterInterface);
+public interface NavigationViewInterface extends View {
 
   /**
    * create navigation.

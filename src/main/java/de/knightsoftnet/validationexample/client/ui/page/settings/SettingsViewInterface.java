@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.settings;
 
-import com.google.gwt.user.client.ui.IsWidget;
+import com.gwtplatform.mvp.client.View;
 
 /**
  * View of the validator Test application interface.
@@ -23,11 +23,11 @@ import com.google.gwt.user.client.ui.IsWidget;
  * @author Manfred Tremmel
  *
  */
-public interface SettingsViewInterface extends IsWidget {
+public interface SettingsViewInterface extends View {
   /**
    * set a reference to the presenter/activity.
    *
-   * @param psettingsPresenter reference to set
+   * @param ppresenter reference to set
    */
-  void setPresenter(SettingsPresenterInterface psettingsPresenter);
+  void setPresenter(SettingsPresenter ppresenter);
 }

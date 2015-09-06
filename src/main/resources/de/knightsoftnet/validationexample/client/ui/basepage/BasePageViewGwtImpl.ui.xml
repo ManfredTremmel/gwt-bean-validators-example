@@ -3,7 +3,8 @@
   ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
   ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
   ui:generateLocales="en,de"
-  xmlns:g="urn:import:com.google.gwt.user.client.ui">
+  xmlns:g="urn:import:com.google.gwt.user.client.ui"
+  xmlns:nav="urn:import:de.knightsoftnet.validationexample.client.ui.navigation">
 
   <ui:style src="BasePageViewGwtImpl.css"/>
   <ui:with field="versionInfo" type="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
@@ -19,7 +20,9 @@
            <g:HTML styleName="{style.fullSize} {style.copyright}" ui:field="info"><ui:safehtml from='{versionInfo.getCopyrightText}' /></g:HTML>
          </g:south>
          <g:center>
-           <g:ScrollPanel styleName="{style.fullSize}" ui:field="navigation" />
+           <g:ScrollPanel styleName="{style.fullSize}">
+             <nav:NavigationViewInterface ui:field="navigation" />
+           </g:ScrollPanel>
          </g:center>
        </g:DockLayoutPanel>
      </g:west>

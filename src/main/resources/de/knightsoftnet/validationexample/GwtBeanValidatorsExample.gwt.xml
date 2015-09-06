@@ -31,6 +31,12 @@
   <!-- gwt bean validators -->
   <inherits name="de.knightsoftnet.validators.GwtBeanValidators" />
 
+  <!-- gwt injection support -->
+  <inherits name="com.google.gwt.inject.Inject"/>
+
+  <!-- gwtp mvp support -->
+  <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
+
   <!-- German and English language with English as fallback       -->
   <extend-property name="locale" values="en" />
   <extend-property name="locale" values="de" />
@@ -41,25 +47,24 @@
   <set-configuration-property name="locale.cookie" value="LOCALE" />
   <set-configuration-property name="locale.searchorder" value="queryparam,cookie,useragent" />
 
-  <!-- pushstate is not supported by ie9, needn't compile this permutations -->
+  <!-- pushstate is not supported by ie9, needn't compile this permutations
   <set-property name="history.pushStateSupported" value="no">
     <any>
       <when-property-is name="user.agent" value="ie9" />
     </any>
-  </set-property>
-  <!-- <set-property name="history.pushStateSupported" value="no" /> -->
+  </set-property> -->
+  <set-property name="history.pushStateSupported" value="no" />
 
   <!-- Reduce compiled size by using striped code -->
   <set-property name="compiler.stackMode" value="strip" />
 
   <set-property name="gwt.logging.enabled" value="FALSE" />
 
-  <generate-with class="com.google.gwt.place.rebind.CustomPlaceHistoryMapperGenerator">
+  <!-- <generate-with class="com.google.gwt.place.rebind.CustomPlaceHistoryMapperGenerator">
     <when-type-assignable class="com.google.gwt.place.shared.PlaceHistoryMapper" />
-  </generate-with>
+  </generate-with> -->
 
   <!-- Specify the app entry point class. -->
-  <entry-point class="de.knightsoftnet.validationexample.client.ValidationExampleGwtImpl" />
 
   <!-- our own validation factory implementation with @GwtValidation entries for each bean we
     want to validate -->
@@ -80,5 +85,8 @@
   <!-- Specify the paths for translatable code -->
   <source path="client" />
   <source path="shared" />
+
+  <set-configuration-property name="gin.ginjector.modules"
+                              value="de.knightsoftnet.validationexample.client.injection.ClientModule"/>
 
 </module>

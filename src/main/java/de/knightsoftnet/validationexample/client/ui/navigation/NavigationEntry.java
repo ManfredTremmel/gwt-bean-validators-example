@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -18,7 +18,6 @@ package de.knightsoftnet.validationexample.client.ui.navigation;
 import de.knightsoftnet.validationexample.shared.UserRightsInterface;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.safehtml.shared.SafeHtml;
 
 import org.apache.commons.lang3.ObjectUtils;
@@ -58,24 +57,24 @@ public class NavigationEntry implements NavigationEntryInterface {
   private final boolean openOnStartup;
 
   /**
-   * place history mapper.
+   * gate keeper to check if user is allowed to see entry.
    */
-  private final AppPlaceHistoryMapper placeHistoryMapper;
+  private final UserRightsInterface gatekeeper;
 
   /**
    * constructor for menu entries.
    *
    * @param pmenuValue menu value
    * @param ptoken token to set
-   * @param pplaceHistoryMapper place history mapper to set
+   * @param pgatekeeper gate keeper to set
    */
   public NavigationEntry(final SafeHtml pmenuValue, final String ptoken,
-      final AppPlaceHistoryMapper pplaceHistoryMapper) {
+      final UserRightsInterface pgatekeeper) {
     super();
     this.menuValue = pmenuValue;
     this.token = ptoken;
     this.tokenDynamic = null;
-    this.placeHistoryMapper = pplaceHistoryMapper;
+    this.gatekeeper = pgatekeeper;
     this.openOnStartup = true;
     this.parentEntry = null;
   }
@@ -136,9 +135,7 @@ public class NavigationEntry implements NavigationEntryInterface {
 
   @Override
   public final boolean isDisplayable(final UserData puser) {
-    final Place place = this.placeHistoryMapper.getPlace(this.getFullToken());
-    return !(place instanceof UserRightsInterface && !((UserRightsInterface) place)
-        .isAllowedToSee(puser));
+    return this.gatekeeper == null || this.gatekeeper.canReveal(puser);
   }
 
   @Override

@@ -15,20 +15,26 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import com.google.gwt.core.client.GWT;
+import de.knightsoftnet.validationexample.client.event.ChangeUserEvent;
+import de.knightsoftnet.validationexample.client.event.ChangeUserEventHandler;
+
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.ViewImpl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * View of the validator Navigation.
@@ -36,12 +42,7 @@ import java.util.Map;
  * @author Manfred Tremmel
  *
  */
-public class NavigationViewGwtImpl extends Composite implements NavigationViewInterface {
-
-  /**
-   * bind ui.
-   */
-  private static NavigationViewUiBinder uiBinder = GWT.create(NavigationViewUiBinder.class);
+public class NavigationViewGwtImpl extends ViewImpl implements NavigationViewInterface {
 
   /**
    * view interface.
@@ -68,11 +69,6 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
   TreeItem firstItem;
 
   /**
-   * reference to the activity.
-   */
-  private NavigationPresenterInterface activity;
-
-  /**
    * map between menu entries and navigation.
    */
   private final Map<TreeItem, NavigationEntryInterface> navigationMap;
@@ -83,18 +79,30 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
   private TreeItem selectedItem;
 
   /**
-   * default constructor.
+   * constructor with injected parameters.
+   *
+   * @param peventBus event bus
+   * @param puiBinder ui binder
+   * @param pplace place
    */
-  public NavigationViewGwtImpl() {
+  @Inject
+  public NavigationViewGwtImpl(final NavigationViewUiBinder puiBinder, //
+      final NavigationPlace pplace, final EventBus peventBus) {
     super();
 
-    this.initWidget(uiBinder.createAndBindUi(this));
+    this.initWidget(puiBinder.createAndBindUi(this));
     this.navigationMap = new HashMap<TreeItem, NavigationEntryInterface>();
-  }
-
-  @Override
-  public final void setPresenter(final NavigationPresenterInterface pnavigationPresenterInterface) {
-    this.activity = pnavigationPresenterInterface;
+    pplace.buildVisibleNavigation(null);
+    this.createNavigation(pplace);
+    peventBus.addHandler(ChangeUserEvent.getType(), new ChangeUserEventHandler() {
+      @Override
+      public void onChangeUser(final ChangeUserEvent pevent) {
+        pplace.buildVisibleNavigation(pevent.getUser());
+        pplace.setActiveNavigationEntryInterface(pplace.getNavigationForToken(pevent
+            .getPlaceToken()));
+        NavigationViewGwtImpl.this.createNavigation(pplace);
+      }
+    });
   }
 
   @Override
@@ -133,7 +141,9 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
       } else if (navEntry.getToken() == null) {
         newItem = null;
       } else {
-        newItem = new TreeItem(navEntry.getMenuValue());
+        final InlineHyperlink entryPoint =
+            new InlineHyperlink(navEntry.getMenuValue(), navEntry.getFullToken());
+        newItem = new TreeItem(entryPoint);
         this.navigationMap.put(newItem, navEntry);
       }
       if (newItem != null) {
@@ -157,6 +167,5 @@ public class NavigationViewGwtImpl extends Composite implements NavigationViewIn
       this.selectedItem.setSelected(false);
       this.selectedItem = null;
     }
-    this.activity.goToNavigationEntry(this.navigationMap.get(pselectionEvent.getSelectedItem()));
   }
 }

@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -23,13 +23,14 @@ import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
+
+import javax.inject.Inject;
 
 /**
  * View of the validator test Sepa.
@@ -37,12 +38,8 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Manfred Tremmel
  *
  */
-public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
-
-  /**
-   * bind ui.
-   */
-  private static SepaViewUiBinder uiBinder = GWT.create(SepaViewUiBinder.class);
+public class SepaViewGwtImpl extends ViewImpl implements SepaViewInterface,
+    FormSubmitHandler<SepaData> {
 
   /**
    * view interface.
@@ -51,85 +48,64 @@ public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
   }
 
   /**
-   * bank name.
-   */
-  @UiField
-  Label bankName;
-
-  /**
-   * password.
-   */
-  @UiField
-  UniversalDecoratorWithIcons<String> accountOwner;
-
-  /**
-   * country code.
-   */
-  @UiField
-  UniversalDecoratorWithIcons<CountryEnum> countryCode;
-
-  /**
-   * iban.
-   */
-  @UiField
-  UniversalDecoratorWithIcons<String> iban;
-
-  /**
-   * bic.
-   */
-  @UiField
-  UniversalDecoratorWithIcons<String> bic;
-
-  /**
-   * label to display messages.
-   */
-  @Ignore
-  @UiField
-  Label logMessages;
-
-  /**
-   * Sepa button.
-   */
-  @Ignore
-  @UiField
-  Button sepaButton;
-
-  /**
    * interface of the driver to combine ui and bean.
    */
   interface Driver extends BeanValidationEditorDriver<SepaData, SepaViewGwtImpl> {
   }
 
+  @UiField
+  Label bankName;
+
+  @UiField
+  UniversalDecoratorWithIcons<String> accountOwner;
+
+  @UiField
+  UniversalDecoratorWithIcons<CountryEnum> countryCode;
+
+  @UiField
+  UniversalDecoratorWithIcons<String> iban;
+
+  @UiField
+  UniversalDecoratorWithIcons<String> bic;
+
+  @Ignore
+  @UiField
+  Label logMessages;
+
+  @Ignore
+  @UiField
+  Button sepaButton;
+
   /**
    * create driver out of the interface.
    */
-  private final Driver driver = GWT.create(Driver.class);
+  private final Driver driver;
 
   /**
    * reference to the activity.
    */
-  private SepaPresenterInterface activity;
+  private SepaPresenter presenter;
 
   /**
-   * default constructor.
+   * constructor with injected parameters.
+   *
+   * @param pdriver editor driver
+   * @param puiBinder ui binder
    */
-  public SepaViewGwtImpl() {
+  @Inject
+  public SepaViewGwtImpl(final Driver pdriver, final SepaViewUiBinder puiBinder) {
     super();
-    this.initWidget(uiBinder.createAndBindUi(this));
+    this.initWidget(puiBinder.createAndBindUi(this));
+    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.sepaButton);
-    this.driver.addFormSubmitHandler(new FormSubmitHandler<SepaData>() {
-      @Override
-      public void onFormSubmit(final FormSubmitEvent<SepaData> pevent) {
-        SepaViewGwtImpl.this.activity.tryToSend();
-      }
-    });
+    this.driver.addFormSubmitHandler(this);
     ((BicWidget) this.bic.getWidget()).setBankNameWidget(this.bankName);
   }
 
   @Override
-  public final void setPresenter(final SepaPresenterInterface psepaPresenter) {
-    this.activity = psepaPresenter;
+  public final void setPresenter(final SepaPresenter ppresenter) {
+    this.presenter = ppresenter;
   }
 
   @Override
@@ -150,5 +126,10 @@ public class SepaViewGwtImpl extends Composite implements SepaViewInterface {
   @Override
   public final void setFocusOnFirstWidget() {
     this.bic.setFocus(true);
+  }
+
+  @Override
+  public void onFormSubmit(final FormSubmitEvent<SepaData> pevent) {
+    this.presenter.tryToSend();
   }
 }

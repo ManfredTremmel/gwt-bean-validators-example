@@ -22,13 +22,14 @@ import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
+
+import javax.inject.Inject;
 
 /**
  * View of the validator test Sepa.
@@ -36,17 +37,19 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Manfred Tremmel
  *
  */
-public class AddressViewGwtImpl extends Composite implements AddressViewInterface {
-
-  /**
-   * bind ui.
-   */
-  private static AddressViewUiBinder uiBinder = GWT.create(AddressViewUiBinder.class);
+public class AddressViewGwtImpl extends ViewImpl implements AddressViewInterface,
+    FormSubmitHandler<PostalAddressData> {
 
   /**
    * view interface.
    */
   interface AddressViewUiBinder extends UiBinder<Widget, AddressViewGwtImpl> {
+  }
+
+  /**
+   * interface of the driver to combine ui and bean.
+   */
+  interface Driver extends BeanValidationEditorDriver<PostalAddressData, AddressViewGwtImpl> {
   }
 
   /**
@@ -118,40 +121,34 @@ public class AddressViewGwtImpl extends Composite implements AddressViewInterfac
   Button addressButton;
 
   /**
-   * interface of the driver to combine ui and bean.
-   */
-  interface Driver extends BeanValidationEditorDriver<PostalAddressData, AddressViewGwtImpl> {
-  }
-
-  /**
    * create driver out of the interface.
    */
-  private final Driver driver = GWT.create(Driver.class);
+  private final Driver driver;
 
   /**
-   * reference to the activity.
+   * reference to the presenter.
    */
-  private AddressPresenterInterface activity;
+  private AddressPresenter presenter;
 
   /**
-   * default constructor.
+   * constructor with injected parameters.
+   *
+   * @param pdriver editor driver
+   * @param puiBinder ui binder
    */
-  public AddressViewGwtImpl() {
+  @Inject
+  public AddressViewGwtImpl(final Driver pdriver, final AddressViewUiBinder puiBinder) {
     super();
-    this.initWidget(uiBinder.createAndBindUi(this));
+    this.initWidget(puiBinder.createAndBindUi(this));
+    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.addressButton);
-    this.driver.addFormSubmitHandler(new FormSubmitHandler<PostalAddressData>() {
-      @Override
-      public void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
-        AddressViewGwtImpl.this.activity.tryToSend();
-      }
-    });
+    this.driver.addFormSubmitHandler(this);
   }
 
   @Override
-  public final void setPresenter(final AddressPresenterInterface psepaPresenter) {
-    this.activity = psepaPresenter;
+  public final void setPresenter(final AddressPresenter ppresenter) {
+    this.presenter = ppresenter;
   }
 
   @Override
@@ -173,5 +170,10 @@ public class AddressViewGwtImpl extends Composite implements AddressViewInterfac
   @Override
   public final void setFocusOnFirstWidget() {
     this.street.setFocus(true);
+  }
+
+  @Override
+  public void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
+    this.presenter.tryToSend();
   }
 }

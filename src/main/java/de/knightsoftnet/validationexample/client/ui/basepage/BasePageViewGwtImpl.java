@@ -15,17 +15,18 @@
 
 package de.knightsoftnet.validationexample.client.ui.basepage;
 
-import com.google.gwt.core.client.GWT;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewInterface;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HasOneWidget;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
+
+import javax.inject.Inject;
 
 /**
  * View of the BasePage.
@@ -33,12 +34,7 @@ import com.google.gwt.user.client.ui.Widget;
  * @author Manfred Tremmel
  *
  */
-public class BasePageViewGwtImpl extends Composite implements BasePageViewInterface {
-
-  /**
-   * bind ui.
-   */
-  private static BasePageViewUiBinder uiBinder = GWT.create(BasePageViewUiBinder.class);
+public class BasePageViewGwtImpl extends ViewImpl implements BasePageViewInterface {
 
   /**
    * view interface.
@@ -53,10 +49,10 @@ public class BasePageViewGwtImpl extends Composite implements BasePageViewInterf
   SimplePanel container;
 
   /**
-   * navigation container.
+   * navigation.
    */
-  @UiField
-  ScrollPanel navigation;
+  @UiField(provided = true)
+  NavigationViewInterface navigation;
 
   /**
    * copyright text should be uses as link to info page.
@@ -67,25 +63,23 @@ public class BasePageViewGwtImpl extends Composite implements BasePageViewInterf
   /**
    * remember the presenter.
    */
-  private BasePagePresenterInterface presenter;
+  private BasePagePresenter presenter;
 
   /**
-   * default constructor.
+   * constructor getting parameters injected.
+   *
+   * @param puiBinder ui binder
+   * @param pnavigation navigation
    */
-  public BasePageViewGwtImpl() {
+  @Inject
+  public BasePageViewGwtImpl(final BasePageViewUiBinder puiBinder,
+      final NavigationViewInterface pnavigation) {
     super();
 
-    this.initWidget(uiBinder.createAndBindUi(this));
-  }
+    this.navigation = pnavigation;
+    this.initWidget(puiBinder.createAndBindUi(this));
 
-  @Override
-  public final HasOneWidget getContentContainer() {
-    return this.container;
-  }
-
-  @Override
-  public final HasOneWidget getNavigationContainer() {
-    return this.navigation;
+    this.bindSlot(BasePagePresenter.SLOT_MAIN_CONTENT, this.container);
   }
 
   /**
@@ -99,7 +93,7 @@ public class BasePageViewGwtImpl extends Composite implements BasePageViewInterf
   }
 
   @Override
-  public final void setPresenter(final BasePagePresenterInterface pbasePagePresenterInterface) {
-    this.presenter = pbasePagePresenterInterface;
+  public final void setPresenter(final BasePagePresenter ppresenter) {
+    this.presenter = ppresenter;
   }
 }

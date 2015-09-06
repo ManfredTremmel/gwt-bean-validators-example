@@ -19,6 +19,8 @@ import de.knightsoftnet.validationexample.client.mvp.AbstractCustomPlaceHistoryM
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.place.shared.Place;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,10 +35,6 @@ import java.util.Map;
  * @author Manfred Tremmel
  */
 public abstract class AbstractNavigationPlace extends Place {
-  /**
-   * place history mapper.
-   */
-  protected final AppPlaceHistoryMapper placeHistoryMapper;
 
   /**
    * first place in navigation.
@@ -64,14 +62,17 @@ public abstract class AbstractNavigationPlace extends Place {
   private NavigationEntryInterface activeNavigationEntryInterface;
 
   /**
-   * constructor initializing app place history mapper.
-   *
-   * @param pplaceHistoryMapper the app place history mapper to set
+   * place manager.
    */
-  public AbstractNavigationPlace(final AppPlaceHistoryMapper pplaceHistoryMapper) {
+  private final PlaceManager placeManager;
+
+  /**
+   * default constructor.
+   */
+  public AbstractNavigationPlace(final PlaceManager pplaceManager) {
     super();
     this.placeMap = new HashMap<String, NavigationEntryInterface>();
-    this.placeHistoryMapper = pplaceHistoryMapper;
+    this.placeManager = pplaceManager;
 
     this.buildVisibleNavigation(null);
   }
@@ -206,6 +207,9 @@ public abstract class AbstractNavigationPlace extends Place {
   public final void setActiveNavigationEntryInterface(
       final NavigationEntryInterface pactiveNavigationEntryInterface) {
     this.activeNavigationEntryInterface = pactiveNavigationEntryInterface;
+    final PlaceRequest placeRequest =
+        new PlaceRequest.Builder().nameToken(pactiveNavigationEntryInterface.getToken()).build();
+    this.placeManager.revealPlace(placeRequest);
   }
 
   /**

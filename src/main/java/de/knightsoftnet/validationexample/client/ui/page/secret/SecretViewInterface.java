@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.secret;
 
-import com.google.gwt.user.client.ui.IsWidget;
+import com.gwtplatform.mvp.client.View;
 
 /**
  * View of the secret page, interface.
@@ -23,11 +23,5 @@ import com.google.gwt.user.client.ui.IsWidget;
  * @author Manfred Tremmel
  *
  */
-public interface SecretViewInterface extends IsWidget {
-  /**
-   * set a reference to the presenter/activity.
-   *
-   * @param psecretPresenter reference to set
-   */
-  void setPresenter(SecretPresenterInterface psecretPresenter);
+public interface SecretViewInterface extends View {
 }

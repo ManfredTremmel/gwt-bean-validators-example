@@ -15,13 +15,19 @@
 
 package de.knightsoftnet.validationexample.client.ui.basepage;
 
-import de.knightsoftnet.validationexample.client.ClientFactoryInterface;
+import de.knightsoftnet.validationexample.client.ui.page.about.AboutPresenterInterface;
 import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewInterface;
 
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
+import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
+import com.gwtplatform.mvp.client.proxy.Proxy;
+
+import javax.inject.Inject;
 
 /**
  * Activity/Presenter of the base page, implementation.
@@ -29,47 +35,64 @@ import com.google.gwt.user.client.ui.DialogBox;
  * @author Manfred Tremmel
  *
  */
-public class BasePagePresenterImpl extends AbstractPresenter implements BasePagePresenterInterface {
+public class BasePagePresenter extends Presenter<BasePageViewInterface, BasePagePresenter.MyProxy>
+    implements AboutPresenterInterface {
+
+  @ProxyStandard
+  @NoGatekeeper
+  public interface MyProxy extends Proxy<BasePagePresenter> {
+  }
+
   /**
    * dialog copyright box.
    */
-  private DialogBox dialogCopyrightBox;
+  private final DialogBox dialogCopyrightBox;
 
   /**
-   * the constructor of the activity/presenter.
-   *
-   * @param pclientFactory client factory
+   * Use this in leaf presenters, inside their {@link #revealInParent} method.
    */
-  public BasePagePresenterImpl(final ClientFactoryInterface pclientFactory) {
-    super(pclientFactory);
-  }
+  public static final NestedSlot SLOT_MAIN_CONTENT = new NestedSlot();
 
-  @Override
-  public final void start(final AcceptsOneWidget ppanel, final EventBus peventBus) {
-    final BasePageViewInterface basePageView = this.getClientFactory().getBasePageView();
-    basePageView.setPresenter(this);
-    final AboutViewInterface aboutPageView = this.getClientFactory().getAboutView();
-    aboutPageView.setPresenter(this);
-    ppanel.setWidget(basePageView.asWidget());
+  /**
+   * constructor getting parameters injected.
+   *
+   * @param peventBus event bus
+   * @param pview view of this page
+   * @param paboutView view of the about page
+   * @param pproxy proxy to handle page
+   */
+  @Inject
+  public BasePagePresenter(final EventBus peventBus, final BasePageViewInterface pview,
+      final AboutViewInterface paboutView, final MyProxy pproxy) {
+    super(peventBus, pview, pproxy, RevealType.Root);
+    pview.setPresenter(this);
+    paboutView.setPresenter(this);
 
     this.dialogCopyrightBox = new DialogBox();
     this.dialogCopyrightBox.hide();
-    this.dialogCopyrightBox.setWidget(aboutPageView.asWidget());
+    this.dialogCopyrightBox.setWidget(paboutView.asWidget());
   }
 
+  /**
+   * hide about info.
+   */
   @Override
   public final void goBackToPreviousPage() {
     this.hideInfo();
   }
 
-  @Override
+  /**
+   * show info dialog.
+   */
   public final void showInfo() {
     this.dialogCopyrightBox.setWidth(Integer.toString(Window.getClientWidth() * 7 / 10) + "px");
     this.dialogCopyrightBox.center();
     this.dialogCopyrightBox.show();
   }
 
-  @Override
+  /**
+   * hide info dialog.
+   */
   public final void hideInfo() {
     this.dialogCopyrightBox.hide();
   }
