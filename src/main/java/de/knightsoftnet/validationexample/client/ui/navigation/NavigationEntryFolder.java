@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -14,8 +14,6 @@
  */
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
-
-import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.safehtml.shared.SafeHtml;
 
@@ -90,7 +88,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getMenuValue()
    */
@@ -101,7 +99,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getToken()
    */
   @Override
@@ -111,7 +109,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getFullToken()
    */
@@ -122,7 +120,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getTokenDynamic()
    */
@@ -133,7 +131,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#setTokenDynamic
    * (java .lang.String)
@@ -178,7 +176,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#getParentEntry()
    */
@@ -189,7 +187,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#setParentEntry
    * (de. knightsoftnet.validationexample.client .navigation.NavigationEntryInterface)
@@ -201,7 +199,7 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#isOpenOnStartup()
    */
@@ -212,17 +210,17 @@ public class NavigationEntryFolder implements NavigationEntryInterface {
 
   /*
    * (non-Javadoc)
-   *
+   * 
    * @see
    * de.knightsoftnet.validationexample.client.navigation.NavigationEntryInterface#isDisplayable(de.
    * knightsoftnet.validationexample.shared .UserDataInterface)
    */
   @Override
-  public final boolean isDisplayable(final UserData puser) {
+  public final boolean isDisplayable() {
     boolean display = false;
     // one of the sub entries has to be displayable
     for (final NavigationEntryInterface subEntry : this.subEntries) {
-      if (subEntry.isDisplayable(puser)) {
+      if (subEntry.isDisplayable()) {
         display = true;
         break;
       }

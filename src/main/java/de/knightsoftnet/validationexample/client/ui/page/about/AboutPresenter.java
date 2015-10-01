@@ -15,15 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.about;
 
-import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
-import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.Presenter;
-import com.gwtplatform.mvp.client.annotations.NameToken;
-import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
-import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
-import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.client.PopupView;
+import com.gwtplatform.mvp.client.PresenterWidget;
 
 import javax.inject.Inject;
 
@@ -33,13 +27,10 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class AboutPresenter extends Presenter<AboutViewInterface, AboutPresenter.MyProxy> implements
-    AboutPresenterInterface {
+public class AboutPresenter extends PresenterWidget<AboutPresenter.MyView> {
 
-  @ProxyCodeSplit
-  @NameToken(NameTokens.ABOUT)
-  @NoGatekeeper
-  public interface MyProxy extends ProxyPlace<AboutPresenter> {
+  public interface MyView extends PopupView {
+    void setPresenter(AboutPresenter ppresenter);
   }
 
   /**
@@ -47,16 +38,10 @@ public class AboutPresenter extends Presenter<AboutViewInterface, AboutPresenter
    *
    * @param peventBus event bus
    * @param pview view of the page
-   * @param pproxy proxy to handle page
    */
   @Inject
-  public AboutPresenter(final EventBus peventBus, final AboutViewInterface pview,
-      final MyProxy pproxy) {
-    super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-  }
-
-  @Override
-  public final void goBackToPreviousPage() {
-    // TODO navigate
+  public AboutPresenter(final EventBus peventBus, final AboutPresenter.MyView pview) {
+    super(peventBus, pview);
+    this.getView().setPresenter(this);
   }
 }

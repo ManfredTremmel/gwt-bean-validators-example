@@ -29,7 +29,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test Sepa.
@@ -37,7 +40,7 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class AddressViewGwtImpl extends ViewImpl implements AddressViewInterface,
+public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyView,
     FormSubmitHandler<PostalAddressData> {
 
   /**
@@ -52,70 +55,28 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressViewInterface
   interface Driver extends BeanValidationEditorDriver<PostalAddressData, AddressViewGwtImpl> {
   }
 
-  /**
-   * post office box.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> postOfficeBox;
-
-  /**
-   * street.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> street;
-
-  /**
-   * street number.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> streetNumber;
-
-  /**
-   * street number additional.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> streetNumberAdditional;
-
-  /**
-   * extended.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> extended;
-
-  /**
-   * postal code.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> postalCode;
-
-  /**
-   * locality/city/town..
-   */
   @UiField
   UniversalDecoratorWithIcons<String> locality;
-
-  /**
-   * region.
-   */
   @UiField
   UniversalDecoratorWithIcons<String> region;
-
-  /**
-   * country code.
-   */
   @UiField
   UniversalDecoratorWithIcons<CountryEnum> countryCode;
 
-  /**
-   * label to display messages.
-   */
   @Ignore
   @UiField
   Label logMessages;
-
-  /**
-   * Address button.
-   */
   @Ignore
   @UiField
   Button addressButton;
@@ -162,18 +123,17 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressViewInterface
   }
 
   @Override
-  public final BeanValidationEditorDriver<PostalAddressData,
-      ? extends AddressViewInterface> getDriver() {
-    return this.driver;
-  }
-
-  @Override
   public final void setFocusOnFirstWidget() {
     this.street.setFocus(true);
   }
 
   @Override
-  public void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
+  public final void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
     this.presenter.tryToSend();
+  }
+
+  @Override
+  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
+    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 }

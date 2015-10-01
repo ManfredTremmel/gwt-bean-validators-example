@@ -23,8 +23,8 @@ import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemote
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
-import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
@@ -36,13 +36,18 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class LogoutPresenter extends Presenter<LogoutViewInterface, LogoutPresenter.MyProxy> {
+public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPresenter.MyProxy> {
+
+  public interface MyView extends View {
+  }
 
   @ProxyCodeSplit
   @NameToken(NameTokens.LOGOUT)
-  @NoGatekeeper
   public interface MyProxy extends ProxyPlace<LogoutPresenter> {
   }
+
+  private final LoginLogoutRemoteServiceAsync service;
+  private final CurrentSession currentSession;
 
   /**
    * constructor injecting parameters.
@@ -54,11 +59,18 @@ public class LogoutPresenter extends Presenter<LogoutViewInterface, LogoutPresen
    * @param pcurrentSession current session data
    */
   @Inject
-  public LogoutPresenter(final EventBus peventBus, final LogoutViewInterface pview,
+  public LogoutPresenter(final EventBus peventBus, final LogoutPresenter.MyView pview,
       final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice,
       final CurrentSession pcurrentSession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-    pservice.logout(new AsyncCallback<Void>() {
+    this.service = pservice;
+    this.currentSession = pcurrentSession;
+  }
+
+  @Override
+  protected void onReveal() {
+    super.onReveal();
+    this.service.logout(new AsyncCallback<Void>() {
 
       @Override
       public void onFailure(final Throwable pcaught) {
@@ -70,6 +82,6 @@ public class LogoutPresenter extends Presenter<LogoutViewInterface, LogoutPresen
         // we've logged out, it doesn't matter!
       }
     });
-    pcurrentSession.setUser(null);
+    this.currentSession.setUser(null);
   }
 }

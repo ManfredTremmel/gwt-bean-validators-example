@@ -2,49 +2,62 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
   ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
   ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
-  ui:generateLocales="en,de"
-  xmlns:g="urn:import:com.google.gwt.user.client.ui">
+  ui:generateLocales="en,de" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
-  <ui:style src="AboutViewGwtImpl.css"/>
-  <ui:with field="versionInfo" type="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
+  <ui:style src="AboutViewGwtImpl.css" />
+  
+  <ui:with field="versionInfo"
+    type="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
 
-  <g:HTMLPanel styleName="{style.centerPanel}">
-   <g:HTML styleName="{style.header}">
-     <h1><ui:msg description="header">Validation Example</ui:msg></h1>
-   </g:HTML>
-   <g:HTML styleName="{style.output}">
-     <p>
-       <ui:safehtml from='{versionInfo.getCopyrightText}' />
-       <br />
-       <ui:msg description="version">Version</ui:msg>
-       <ui:safehtml from='{versionInfo.getVersionNumber}' />
-       ,
-       <ui:safehtml from='{versionInfo.getVersionDate}' />
-       <br />
-       <ui:msg description="author">Author:</ui:msg>
-       <ui:safehtml from='{versionInfo.getAuthor}' />
-     </p>
-     <p>
-       <ui:msg description="copyrightp1">
-         This Software is provided under the Apache 2.0 license.
-       </ui:msg>
-     </p>
-     <p>
-       <ui:msg description="usedsoftware">The following external Software is used:</ui:msg>
-     </p>
-     <ul>
-       <li>
-         <a href="http://openjdk.java.net">Java</a>
-         <ui:msg description="useropenjdk">Programinglanguage</ui:msg>
-       </li>
-       <li>
-         <a href="http://www.gwtproject.org">Google Web Toolkit</a>
-         <ui:msg description="usedgwt">AJAX-GUI</ui:msg>
-       </li>
-     </ul>
-   </g:HTML>
-   <g:FlowPanel styleName="{style.button}">
-     <g:Button ui:field="closeButton">Close</g:Button>
-   </g:FlowPanel>
-  </g:HTMLPanel>
+  <g:PopupPanel autoHideOnHistoryEventsEnabled="true">
+    <g:HTMLPanel styleName="{style.centerPanel}">
+      <g:HTML styleName="{style.header}">
+        <h1>
+          <ui:msg description="header">Validation Example</ui:msg>
+        </h1>
+      </g:HTML>
+      <g:HTML styleName="{style.output}">
+        <p>
+          <ui:safehtml from='{versionInfo.getCopyrightText}' />
+          <br />
+          <ui:msg description="version">Version</ui:msg>
+          <ui:safehtml from='{versionInfo.getVersionNumber}' />
+          ,
+          <ui:safehtml from='{versionInfo.getVersionDate}' />
+          <br />
+          <ui:msg description="author">Author:</ui:msg>
+          <ui:safehtml from='{versionInfo.getAuthor}' />
+        </p>
+        <p>
+          <ui:msg description="copyrightp1">
+            This Software is provided under the Apache 2.0 license.
+          </ui:msg>
+        </p>
+        <p>
+          <ui:msg description="usedsoftware">The following external Software is used:</ui:msg>
+        </p>
+        <ul>
+          <li>
+            <a href="http://openjdk.java.net">Java</a>
+            <ui:msg description="useropenjdk">Programinglanguage</ui:msg>
+          </li>
+          <li>
+            <a href="http://www.gwtproject.org">Google Web Toolkit</a>
+            <ui:msg description="usedgwt">AJAX-GUI</ui:msg>
+          </li>
+          <li>
+            <a href="http://dev.arcbees.com/gwtp/index.html">GWTP</a>
+            <ui:msg description="usedgwtp">MVP-Framework</ui:msg>
+          </li>
+          <li>
+            <a href="https://github.com/ManfredTremmel/gwt-bean-validators">gwt-bean-validators</a>
+            <ui:msg description="usedgwtbeanvalidators">Input validation classes</ui:msg>
+          </li>
+        </ul>
+      </g:HTML>
+      <g:FlowPanel styleName="{style.button}">
+        <g:Button ui:field="closeButton">Close</g:Button>
+      </g:FlowPanel>
+    </g:HTMLPanel>
+  </g:PopupPanel>
 </ui:UiBinder>

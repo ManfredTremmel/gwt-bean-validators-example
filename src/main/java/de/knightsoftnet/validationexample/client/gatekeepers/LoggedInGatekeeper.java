@@ -4,30 +4,39 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.settings;
+package de.knightsoftnet.validationexample.client.gatekeepers;
 
-import com.gwtplatform.mvp.client.View;
+import de.knightsoftnet.validationexample.client.CurrentSession;
 
-/**
- * View of the validator Test application interface.
- *
- * @author Manfred Tremmel
- *
- */
-public interface SettingsViewInterface extends View {
-  /**
-   * set a reference to the presenter/activity.
-   *
-   * @param ppresenter reference to set
-   */
-  void setPresenter(SettingsPresenter ppresenter);
+import com.gwtplatform.mvp.client.annotations.DefaultGatekeeper;
+import com.gwtplatform.mvp.client.proxy.Gatekeeper;
+
+import org.apache.commons.lang3.StringUtils;
+
+import javax.inject.Inject;
+
+@DefaultGatekeeper
+public class LoggedInGatekeeper implements Gatekeeper {
+  private final CurrentSession currentSession;
+
+  @Inject
+  public LoggedInGatekeeper(final CurrentSession pcurrentSession) {
+    this.currentSession = pcurrentSession;
+  }
+
+  @Override
+  public boolean canReveal() {
+    return this.currentSession.getUser() != null
+        && StringUtils.isNotEmpty(this.currentSession.getUser().getUserName());
+  }
+
 }

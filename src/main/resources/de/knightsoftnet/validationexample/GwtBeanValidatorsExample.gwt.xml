@@ -19,9 +19,6 @@
   <!-- localization support -->
   <inherits name="com.google.gwt.i18n.I18N" />
 
-  <!-- html 5 push state support -->
-  <inherits name="com.wallissoftware.pushstate.PushState" />
-
   <!-- apache commons lang3 -->
   <inherits name="org.apache.commons.GWTCommonsLang3" />
 
@@ -47,24 +44,10 @@
   <set-configuration-property name="locale.cookie" value="LOCALE" />
   <set-configuration-property name="locale.searchorder" value="queryparam,cookie,useragent" />
 
-  <!-- pushstate is not supported by ie9, needn't compile this permutations
-  <set-property name="history.pushStateSupported" value="no">
-    <any>
-      <when-property-is name="user.agent" value="ie9" />
-    </any>
-  </set-property> -->
-  <set-property name="history.pushStateSupported" value="no" />
-
   <!-- Reduce compiled size by using striped code -->
   <set-property name="compiler.stackMode" value="strip" />
 
   <set-property name="gwt.logging.enabled" value="FALSE" />
-
-  <!-- <generate-with class="com.google.gwt.place.rebind.CustomPlaceHistoryMapperGenerator">
-    <when-type-assignable class="com.google.gwt.place.shared.PlaceHistoryMapper" />
-  </generate-with> -->
-
-  <!-- Specify the app entry point class. -->
 
   <!-- our own validation factory implementation with @GwtValidation entries for each bean we
     want to validate -->
@@ -78,7 +61,7 @@
     <when-type-is class="de.knightsoftnet.validators.client.GwtReflectGetterFactoryInterface" />
   </replace-with>
 
-  <generate-with class="de.knightsoftnet.validationexample.server.generator.VersionInfoGenerator">
+  <generate-with class="de.knightsoftnet.validationexample.rebind.VersionInfoGenerator">
     <when-type-assignable class="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
   </generate-with>
 

@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -30,7 +30,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test Sepa.
@@ -38,7 +41,7 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class SepaViewGwtImpl extends ViewImpl implements SepaViewInterface,
+public class SepaViewGwtImpl extends ViewImpl implements SepaPresenter.MyView,
     FormSubmitHandler<SepaData> {
 
   /**
@@ -119,11 +122,6 @@ public class SepaViewGwtImpl extends ViewImpl implements SepaViewInterface,
   }
 
   @Override
-  public final BeanValidationEditorDriver<SepaData, ? extends SepaViewInterface> getDriver() {
-    return this.driver;
-  }
-
-  @Override
   public final void setFocusOnFirstWidget() {
     this.bic.setFocus(true);
   }
@@ -131,5 +129,10 @@ public class SepaViewGwtImpl extends ViewImpl implements SepaViewInterface,
   @Override
   public void onFormSubmit(final FormSubmitEvent<SepaData> pevent) {
     this.presenter.tryToSend();
+  }
+
+  @Override
+  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
+    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 }

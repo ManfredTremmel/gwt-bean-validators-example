@@ -15,18 +15,18 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import de.knightsoftnet.validationexample.shared.LoggedInAllowedRights;
-import de.knightsoftnet.validationexample.shared.LoggedOutAllowedRights;
-import de.knightsoftnet.validationexample.shared.UserRightsInterface;
+import de.knightsoftnet.validationexample.client.gatekeepers.LoggedInGatekeeper;
+import de.knightsoftnet.validationexample.client.gatekeepers.LoggedOutGatekeeper;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.google.web.bindery.event.shared.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * place for displaying validationexample.
@@ -34,25 +34,26 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
+@Singleton
 public class NavigationPlace extends AbstractNavigationPlace {
 
   /**
    * gate keeper for pages which are only visible when user is logged in.
    */
-  private final UserRightsInterface loggedInGatekeeper;
+  @Inject
+  private LoggedInGatekeeper loggedInGatekeeper;
   /**
    * gate keeper for pages which are only visible when user is logged out.
    */
-  private final UserRightsInterface loggedOutGatekeeper;
+  @Inject
+  private LoggedOutGatekeeper loggedOutGatekeeper;
 
   /**
    * default constructor.
    */
   @Inject
-  public NavigationPlace(final PlaceManager pplaceManager) {
-    super(pplaceManager);
-    this.loggedInGatekeeper = new LoggedInAllowedRights();
-    this.loggedOutGatekeeper = new LoggedOutAllowedRights();
+  public NavigationPlace(final EventBus peventBus) {
+    super(peventBus);
   }
 
   @Override

@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -16,7 +16,6 @@
 package de.knightsoftnet.validationexample.client;
 
 import de.knightsoftnet.validationexample.client.event.ChangeUserEvent;
-import de.knightsoftnet.validationexample.client.ui.navigation.NavigationPlace;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
@@ -28,11 +27,14 @@ import com.google.gwt.user.client.rpc.XsrfToken;
 import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.web.bindery.event.shared.EventBus;
 
-import javax.inject.Inject;
+import org.apache.commons.lang3.ObjectUtils;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class CurrentSession {
   private final EventBus eventBus;
-  private final NavigationPlace navigationPlace;
   private final XsrfTokenServiceAsync xsrf;
   private final LoginLogoutRemoteServiceAsync service;
 
@@ -44,22 +46,21 @@ public class CurrentSession {
    * @param peventBus event bus
    * @param pxsrf cross site reforgery token service
    * @param pservice login logout service
-   * @param pnavigationPlace navigation place
    */
   @Inject
   public CurrentSession(final EventBus peventBus, final XsrfTokenServiceAsync pxsrf,
-      final LoginLogoutRemoteServiceAsync pservice, final NavigationPlace pnavigationPlace) {
+      final LoginLogoutRemoteServiceAsync pservice) {
     super();
     this.eventBus = peventBus;
-    this.navigationPlace = pnavigationPlace;
     this.xsrf = pxsrf;
     this.service = pservice;
     ((ServiceDefTarget) this.xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
-
-    this.readSessionData();
   }
 
-  private void readSessionData() {
+  /**
+   * read session data.
+   */
+  public void readSessionData() {
     // first create a session (if not already exists)
     this.service.createSession(new AsyncCallback<Void>() {
       @Override
@@ -111,8 +112,10 @@ public class CurrentSession {
    * @param puser user data
    */
   public void setUser(final UserData puser) {
+    final boolean changed = !ObjectUtils.equals(puser, this.user);
     this.user = puser;
-    this.eventBus.fireEvent(new ChangeUserEvent(this.user, this.navigationPlace.getFirstEntry()
-        .getFullToken()));
+    if (changed) {
+      this.eventBus.fireEvent(new ChangeUserEvent(this.user));
+    }
   }
 }

@@ -15,16 +15,16 @@
 
 package de.knightsoftnet.validationexample.client.ui.basepage;
 
-import de.knightsoftnet.validationexample.client.ui.page.about.AboutPresenterInterface;
-import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewInterface;
+import de.knightsoftnet.validationexample.client.ui.navigation.NavigationPresenter;
+import de.knightsoftnet.validationexample.client.ui.page.about.AboutPresenter;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.DialogBox;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
+import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
 import javax.inject.Inject;
@@ -35,8 +35,12 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class BasePagePresenter extends Presenter<BasePageViewInterface, BasePagePresenter.MyProxy>
-    implements AboutPresenterInterface {
+public class BasePagePresenter extends
+    Presenter<BasePagePresenter.MyView, BasePagePresenter.MyProxy> {
+
+  public interface MyView extends View {
+    void setPresenter(BasePagePresenter ppresenter);
+  }
 
   @ProxyStandard
   @NoGatekeeper
@@ -44,56 +48,44 @@ public class BasePagePresenter extends Presenter<BasePageViewInterface, BasePage
   }
 
   /**
-   * dialog copyright box.
-   */
-  private final DialogBox dialogCopyrightBox;
-
-  /**
    * Use this in leaf presenters, inside their {@link #revealInParent} method.
    */
   public static final NestedSlot SLOT_MAIN_CONTENT = new NestedSlot();
+  public static final PermanentSlot<NavigationPresenter> SLOT_NAVIGATION = new PermanentSlot<>();
+
+  private final NavigationPresenter navigationPresenter;
+
+  private final AboutPresenter aboutPresenter;
 
   /**
    * constructor getting parameters injected.
    *
    * @param peventBus event bus
    * @param pview view of this page
-   * @param paboutView view of the about page
+   * @param paboutPresenter presenter of the about popup
    * @param pproxy proxy to handle page
+   * @param pnavigationPresenter navigation presenter
    */
   @Inject
-  public BasePagePresenter(final EventBus peventBus, final BasePageViewInterface pview,
-      final AboutViewInterface paboutView, final MyProxy pproxy) {
+  public BasePagePresenter(final EventBus peventBus, final BasePagePresenter.MyView pview,
+      final AboutPresenter paboutPresenter, final MyProxy pproxy,
+      final NavigationPresenter pnavigationPresenter) {
     super(peventBus, pview, pproxy, RevealType.Root);
+    this.aboutPresenter = paboutPresenter;
+    this.navigationPresenter = pnavigationPresenter;
     pview.setPresenter(this);
-    paboutView.setPresenter(this);
-
-    this.dialogCopyrightBox = new DialogBox();
-    this.dialogCopyrightBox.hide();
-    this.dialogCopyrightBox.setWidget(paboutView.asWidget());
   }
 
-  /**
-   * hide about info.
-   */
   @Override
-  public final void goBackToPreviousPage() {
-    this.hideInfo();
+  protected void onBind() {
+    super.onBind();
+    this.setInSlot(BasePagePresenter.SLOT_NAVIGATION, this.navigationPresenter);
   }
 
   /**
    * show info dialog.
    */
   public final void showInfo() {
-    this.dialogCopyrightBox.setWidth(Integer.toString(Window.getClientWidth() * 7 / 10) + "px");
-    this.dialogCopyrightBox.center();
-    this.dialogCopyrightBox.show();
-  }
-
-  /**
-   * hide info dialog.
-   */
-  public final void hideInfo() {
-    this.dialogCopyrightBox.hide();
+    this.addToPopupSlot(this.aboutPresenter);
   }
 }

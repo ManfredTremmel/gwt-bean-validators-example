@@ -25,15 +25,20 @@ import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
 
 /**
  * Activity/Presenter of the login, implementation.
@@ -41,7 +46,42 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class LoginPresenter extends Presenter<LoginViewInterface, LoginPresenter.MyProxy> {
+public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresenter.MyProxy> {
+
+  public interface MyView extends View, Editor<LoginData> {
+    /**
+     * set a reference to the presenter/activity.
+     *
+     * @param ppresenter reference to set
+     */
+    void setPresenter(LoginPresenter ppresenter);
+
+    /**
+     * fill the form with data.
+     *
+     * @param puser data to fill into the form
+     */
+    void fillForm(LoginData puser);
+
+    /**
+     * display a message on the screen.
+     *
+     * @param pmessage the message to display
+     */
+    void showMessage(String pmessage);
+
+    /**
+     * set focus on first widget.
+     */
+    void setFocusOnFirstWidget();
+
+    /**
+     * display validation errors.
+     *
+     * @param pvalidationErrorSet list of violations
+     */
+    void setConstraintViolations(ArrayList<ConstraintViolation<?>> pvalidationErrorSet);
+  }
 
   @ProxyCodeSplit
   @NameToken(NameTokens.LOGIN)
@@ -68,7 +108,7 @@ public class LoginPresenter extends Presenter<LoginViewInterface, LoginPresenter
    * @param pcurrentSession user container
    */
   @Inject
-  public LoginPresenter(final EventBus peventBus, final LoginViewInterface pview,
+  public LoginPresenter(final EventBus peventBus, final LoginPresenter.MyView pview,
       final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice,
       final CurrentSession pcurrentSession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
@@ -77,6 +117,11 @@ public class LoginPresenter extends Presenter<LoginViewInterface, LoginPresenter
     this.loginData = new LoginData();
     this.getView().setPresenter(this);
     this.getView().fillForm(this.loginData);
+  }
+
+  @Override
+  protected void onReveal() {
+    super.onReveal();
     Scheduler.get().scheduleDeferred(new ScheduledCommand() {
       @Override
       public void execute() {
@@ -95,8 +140,8 @@ public class LoginPresenter extends Presenter<LoginViewInterface, LoginPresenter
         try {
           throw pcaught;
         } catch (final ValidationException e) {
-          LoginPresenter.this.getView().getDriver()
-              .setConstraintViolations(e.getValidationErrorSet(LoginPresenter.this.loginData));
+          LoginPresenter.this.getView().setConstraintViolations(
+              e.getValidationErrorSet(LoginPresenter.this.loginData));
         } catch (final Throwable e) {
           final LoginConstants constants = GWT.create(LoginConstants.class);
           LoginPresenter.this.getView().showMessage(constants.messageLoginError());

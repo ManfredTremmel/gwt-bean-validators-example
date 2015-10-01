@@ -13,33 +13,28 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.basepage;
+package de.knightsoftnet.validationexample.client.gatekeepers;
 
-import com.google.gwt.activity.shared.Activity;
-import com.google.web.bindery.event.shared.SimpleEventBus;
+import de.knightsoftnet.validationexample.client.CurrentSession;
 
-/**
- * Activity/Presenter basic functions interface.
- *
- * @author Manfred Tremmel
- *
- */
-public interface BasePresenterInterface extends Activity {
+import com.gwtplatform.mvp.client.proxy.Gatekeeper;
 
-  /**
-   * get event bus.
-   *
-   * @return event bus
-   */
-  SimpleEventBus getEventBus();
+import org.apache.commons.lang3.StringUtils;
 
-  /**
-   * view the about info.
-   */
-  void viewAbout();
+import javax.inject.Inject;
 
-  /**
-   * display navigation instead.
-   */
-  void showNavigation();
+public class LoggedOutGatekeeper implements Gatekeeper {
+  private final CurrentSession currentSession;
+
+  @Inject
+  public LoggedOutGatekeeper(final CurrentSession pcurrentSession) {
+    this.currentSession = pcurrentSession;
+  }
+
+  @Override
+  public boolean canReveal() {
+    return this.currentSession.getUser() == null
+        || StringUtils.isEmpty(this.currentSession.getUser().getUserName());
+  }
+
 }

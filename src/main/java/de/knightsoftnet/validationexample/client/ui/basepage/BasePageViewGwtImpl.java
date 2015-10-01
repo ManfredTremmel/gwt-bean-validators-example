@@ -15,8 +15,6 @@
 
 package de.knightsoftnet.validationexample.client.ui.basepage;
 
-import de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewInterface;
-
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -34,7 +32,7 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class BasePageViewGwtImpl extends ViewImpl implements BasePageViewInterface {
+public class BasePageViewGwtImpl extends ViewImpl implements BasePagePresenter.MyView {
 
   /**
    * view interface.
@@ -51,8 +49,8 @@ public class BasePageViewGwtImpl extends ViewImpl implements BasePageViewInterfa
   /**
    * navigation.
    */
-  @UiField(provided = true)
-  NavigationViewInterface navigation;
+  @UiField
+  SimplePanel navigation;
 
   /**
    * copyright text should be uses as link to info page.
@@ -69,17 +67,15 @@ public class BasePageViewGwtImpl extends ViewImpl implements BasePageViewInterfa
    * constructor getting parameters injected.
    *
    * @param puiBinder ui binder
-   * @param pnavigation navigation
    */
   @Inject
-  public BasePageViewGwtImpl(final BasePageViewUiBinder puiBinder,
-      final NavigationViewInterface pnavigation) {
+  public BasePageViewGwtImpl(final BasePageViewUiBinder puiBinder) {
     super();
 
-    this.navigation = pnavigation;
     this.initWidget(puiBinder.createAndBindUi(this));
 
     this.bindSlot(BasePagePresenter.SLOT_MAIN_CONTENT, this.container);
+    this.bindSlot(BasePagePresenter.SLOT_NAVIGATION, this.navigation);
   }
 
   /**

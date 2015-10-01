@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -15,53 +15,50 @@
 
 package de.knightsoftnet.validationexample.client.event;
 
-import de.knightsoftnet.validationexample.shared.models.UserData;
-
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
- * event used for user changes (e.g. login or logout).
+ * event used for place changes (navigate from one page to another).
  *
  * @author Manfred Tremmel
  *
  */
-public class ChangeUserEvent extends GwtEvent<ChangeUserEvent.ChangeUserHandler> {
-  private static final Type<ChangeUserHandler> TYPE = new Type<ChangeUserHandler>();
+public class ChangePlaceEvent extends GwtEvent<ChangePlaceEvent.ChangePlaceHandler> {
+  private static final Type<ChangePlaceHandler> TYPE = new Type<ChangePlaceHandler>();
 
-  public interface ChangeUserHandler extends EventHandler {
-    void onChangeUser(ChangeUserEvent event);
+  public interface ChangePlaceHandler extends EventHandler {
+    void onChangePlace(ChangePlaceEvent pevent);
   }
 
-  public interface ChangeUserHandlers extends HasHandlers {
-    HandlerRegistration addHasChangeUserEventHandler(ChangeUserHandler phandler);
+  public interface ChangePlaceHandlers extends HasHandlers {
+    HandlerRegistration addChangePlaceHandler(ChangePlaceHandler phandler);
   }
 
+  private final String token;
 
-  private final UserData user;
-
-  public ChangeUserEvent(final UserData puser) {
+  public ChangePlaceEvent(final String ptoken) {
     super();
-    this.user = puser;
+    this.token = ptoken;
   }
 
-  public static Type<ChangeUserHandler> getType() {
+  public static Type<ChangePlaceHandler> getType() {
     return TYPE;
   }
 
   @Override
-  protected void dispatch(final ChangeUserHandler phandler) {
-    phandler.onChangeUser(this);
+  protected void dispatch(final ChangePlaceHandler phandler) {
+    phandler.onChangePlace(this);
   }
 
   @Override
-  public Type<ChangeUserHandler> getAssociatedType() {
+  public Type<ChangePlaceHandler> getAssociatedType() {
     return TYPE;
   }
 
-  public UserData getUser() {
-    return this.user;
+  public String getToken() {
+    return this.token;
   }
 }

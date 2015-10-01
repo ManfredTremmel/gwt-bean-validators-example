@@ -4,5 +4,5 @@
  * @author Manfred Tremmel
  *
  */
-package de.knightsoftnet.validationexample.server.generator;
+package de.knightsoftnet.validationexample.rebind;
 

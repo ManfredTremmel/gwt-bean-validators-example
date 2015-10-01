@@ -15,12 +15,11 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import de.knightsoftnet.validationexample.client.mvp.AbstractCustomPlaceHistoryMapper;
+import de.knightsoftnet.validationexample.client.event.ChangePlaceEvent;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.place.shared.Place;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
-import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import com.google.web.bindery.event.shared.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,12 +33,8 @@ import java.util.Map;
  *
  * @author Manfred Tremmel
  */
-public abstract class AbstractNavigationPlace extends Place {
-
-  /**
-   * first place in navigation.
-   */
-  private NavigationEntryInterface firstEntry;
+public abstract class AbstractNavigationPlace extends Place implements
+    ChangePlaceEvent.ChangePlaceHandler {
 
   /**
    * map to find navigation entries for places.
@@ -62,19 +57,13 @@ public abstract class AbstractNavigationPlace extends Place {
   private NavigationEntryInterface activeNavigationEntryInterface;
 
   /**
-   * place manager.
-   */
-  private final PlaceManager placeManager;
-
-  /**
    * default constructor.
    */
-  public AbstractNavigationPlace(final PlaceManager pplaceManager) {
+  public AbstractNavigationPlace(final EventBus peventBus) {
     super();
     this.placeMap = new HashMap<String, NavigationEntryInterface>();
-    this.placeManager = pplaceManager;
-
     this.buildVisibleNavigation(null);
+    peventBus.addHandler(ChangePlaceEvent.getType(), this);
   }
 
   /**
@@ -83,10 +72,9 @@ public abstract class AbstractNavigationPlace extends Place {
    * @param puser the user to build navigation for
    */
   public final void buildVisibleNavigation(final UserData puser) {
-    this.fullNavigationList = this.recursiveGetEntries(this.buildNavigation(), puser);
+    this.fullNavigationList = this.recursiveGetEntries(this.buildNavigation());
     this.generateMapRecursive(this.fullNavigationList);
     this.navigationList = this.fullNavigationList;
-    this.activeNavigationEntryInterface = this.getFirstEntry();
   }
 
   /**
@@ -104,9 +92,6 @@ public abstract class AbstractNavigationPlace extends Place {
   private void generateMapRecursive(final List<NavigationEntryInterface> pnavigationEntries) {
     for (final NavigationEntryInterface entryToAdd : pnavigationEntries) {
       if (entryToAdd.getMenuValue() != null && entryToAdd.getToken() != null) {
-        if (this.firstEntry == null && entryToAdd.isDisplayable(null)) {
-          this.firstEntry = entryToAdd;
-        }
         if (!this.placeMap.containsKey(entryToAdd.getToken())) {
           this.placeMap.put(entryToAdd.getToken(), entryToAdd);
         }
@@ -125,42 +110,24 @@ public abstract class AbstractNavigationPlace extends Place {
    * @return the navigationEntries
    */
   private List<NavigationEntryInterface> recursiveGetEntries(
-      final List<NavigationEntryInterface> pnavigationEntries, final UserData puser) {
+      final List<NavigationEntryInterface> pnavigationEntries) {
     if (pnavigationEntries == null) {
       return Collections.emptyList();
     }
     final List<NavigationEntryInterface> displayEntries =
         new ArrayList<NavigationEntryInterface>(pnavigationEntries.size());
     for (final NavigationEntryInterface entryToTest : pnavigationEntries) {
-      if (entryToTest.isDisplayable(puser)) {
+      if (entryToTest.isDisplayable()) {
         if (entryToTest instanceof NavigationEntryFolder) {
           displayEntries.add(new NavigationEntryFolder(entryToTest.getMenuValue(), entryToTest
-              .isOpenOnStartup(), this.recursiveGetEntries(
-              ((NavigationEntryFolder) entryToTest).getSubEntries(), puser)));
+              .isOpenOnStartup(), this.recursiveGetEntries(((NavigationEntryFolder) entryToTest)
+              .getSubEntries())));
         } else {
           displayEntries.add(entryToTest);
         }
       }
     }
     return displayEntries;
-  }
-
-  /**
-   * get first entry.
-   *
-   * @return the firstEntry
-   */
-  public final NavigationEntryInterface getFirstEntry() {
-    return this.firstEntry;
-  }
-
-  /**
-   * get first token.
-   *
-   * @return the firstPlace
-   */
-  public final String getFirstToken() {
-    return this.firstEntry.getToken();
   }
 
   /**
@@ -207,9 +174,18 @@ public abstract class AbstractNavigationPlace extends Place {
   public final void setActiveNavigationEntryInterface(
       final NavigationEntryInterface pactiveNavigationEntryInterface) {
     this.activeNavigationEntryInterface = pactiveNavigationEntryInterface;
-    final PlaceRequest placeRequest =
-        new PlaceRequest.Builder().nameToken(pactiveNavigationEntryInterface.getToken()).build();
-    this.placeManager.revealPlace(placeRequest);
+    // final PlaceRequest placeRequest =
+    // new PlaceRequest.Builder().nameToken(pactiveNavigationEntryInterface.getToken()).build();
+    // this.placeManager.revealPlace(placeRequest);
+  }
+
+  /**
+   * set active navigation entry interface.
+   *
+   * @param ptoken the token to set
+   */
+  public final void setActiveNavigationEntryInterface(final String ptoken) {
+    this.setActiveNavigationEntryInterface(this.getNavigationForToken(ptoken));
   }
 
   /**
@@ -220,16 +196,18 @@ public abstract class AbstractNavigationPlace extends Place {
    */
   public final NavigationEntryInterface getNavigationForToken(final String ptoken) {
     NavigationEntryInterface entry = this.placeMap.get(ptoken);
-    if (entry == null
-        && ptoken != null
-        && (!ptoken.endsWith(AbstractCustomPlaceHistoryMapper.DELIMITER) || ptoken
-            .lastIndexOf(AbstractCustomPlaceHistoryMapper.DELIMITER.charAt(0)) != ptoken
-            .indexOf(AbstractCustomPlaceHistoryMapper.DELIMITER.charAt(0)))) {
-      final int posSeparator = ptoken.indexOf(AbstractCustomPlaceHistoryMapper.DELIMITER.charAt(0));
+    if (entry == null && ptoken != null
+        && (!ptoken.endsWith("/") || ptoken.lastIndexOf('/') != ptoken.indexOf('/'))) {
+      final int posSeparator = ptoken.indexOf('/');
       if (posSeparator > 0) {
         entry = this.placeMap.get(ptoken.substring(0, posSeparator));
       }
     }
     return entry;
+  }
+
+  @Override
+  public void onChangePlace(final ChangePlaceEvent pevent) {
+    this.setActiveNavigationEntryInterface(this.getNavigationForToken(pevent.getToken()));
   }
 }

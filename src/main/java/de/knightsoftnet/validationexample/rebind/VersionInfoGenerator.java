@@ -13,7 +13,7 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.server.generator;
+package de.knightsoftnet.validationexample.rebind;
 
 import com.google.gwt.core.ext.Generator;
 import com.google.gwt.core.ext.GeneratorContext;

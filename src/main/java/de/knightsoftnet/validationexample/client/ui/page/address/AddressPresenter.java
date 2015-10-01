@@ -25,15 +25,20 @@ import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
 
 /**
  * Activity/Presenter of the Sepa, implementation.
@@ -41,7 +46,42 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class AddressPresenter extends Presenter<AddressViewInterface, AddressPresenter.MyProxy> {
+public class AddressPresenter extends Presenter<AddressPresenter.MyView, AddressPresenter.MyProxy> {
+
+  public interface MyView extends View, Editor<PostalAddressData> {
+    /**
+     * set a reference to the presenter/activity.
+     *
+     * @param ppresenter reference to set
+     */
+    void setPresenter(AddressPresenter ppresenter);
+
+    /**
+     * fill the form with data.
+     *
+     * @param psepData data to fill into the form
+     */
+    void fillForm(PostalAddressData psepData);
+
+    /**
+     * display a message on the screen.
+     *
+     * @param pmessage the message to display
+     */
+    void showMessage(String pmessage);
+
+    /**
+     * set focus on first widget.
+     */
+    void setFocusOnFirstWidget();
+
+    /**
+     * display validation errors.
+     *
+     * @param pvalidationErrorSet list of violations
+     */
+    void setConstraintViolations(ArrayList<ConstraintViolation<?>> pvalidationErrorSet);
+  }
 
   @ProxyCodeSplit
   @NameToken(NameTokens.ADDRESS)
@@ -69,7 +109,7 @@ public class AddressPresenter extends Presenter<AddressViewInterface, AddressPre
    * @param pconstants localization constants
    */
   @Inject
-  public AddressPresenter(final EventBus peventBus, final AddressViewInterface pview,
+  public AddressPresenter(final EventBus peventBus, final AddressPresenter.MyView pview,
       final MyProxy pproxy, final AddressRemoteServiceAsync pservice, //
       final SepaConstants pconstants) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
@@ -78,6 +118,11 @@ public class AddressPresenter extends Presenter<AddressViewInterface, AddressPre
     this.addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
     this.getView().fillForm(this.addressData);
+  }
+
+  @Override
+  protected void onReveal() {
+    super.onReveal();
     Scheduler.get().scheduleDeferred(new ScheduledCommand() {
       @Override
       public void execute() {
@@ -96,8 +141,8 @@ public class AddressPresenter extends Presenter<AddressViewInterface, AddressPre
         try {
           throw pcaught;
         } catch (final ValidationException e) {
-          AddressPresenter.this.getView().getDriver()
-              .setConstraintViolations(e.getValidationErrorSet(AddressPresenter.this.addressData));
+          AddressPresenter.this.getView().setConstraintViolations(
+              e.getValidationErrorSet(AddressPresenter.this.addressData));
         } catch (final Throwable e) {
           final AddressConstants constants = GWT.create(AddressConstants.class);
           AddressPresenter.this.getView().showMessage(constants.messageAddressDataError());

@@ -21,7 +21,7 @@
          </g:south>
          <g:center>
            <g:ScrollPanel styleName="{style.fullSize}">
-             <nav:NavigationViewInterface ui:field="navigation" />
+             <g:SimplePanel styleName="{style.fullSize}" ui:field="navigation" />
            </g:ScrollPanel>
          </g:center>
        </g:DockLayoutPanel>

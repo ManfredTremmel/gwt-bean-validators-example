@@ -15,10 +15,8 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import de.knightsoftnet.validationexample.shared.UserRightsInterface;
-import de.knightsoftnet.validationexample.shared.models.UserData;
-
 import com.google.gwt.safehtml.shared.SafeHtml;
+import com.gwtplatform.mvp.client.proxy.Gatekeeper;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -59,7 +57,7 @@ public class NavigationEntry implements NavigationEntryInterface {
   /**
    * gate keeper to check if user is allowed to see entry.
    */
-  private final UserRightsInterface gatekeeper;
+  private final Gatekeeper gatekeeper;
 
   /**
    * constructor for menu entries.
@@ -69,7 +67,7 @@ public class NavigationEntry implements NavigationEntryInterface {
    * @param pgatekeeper gate keeper to set
    */
   public NavigationEntry(final SafeHtml pmenuValue, final String ptoken,
-      final UserRightsInterface pgatekeeper) {
+      final Gatekeeper pgatekeeper) {
     super();
     this.menuValue = pmenuValue;
     this.token = ptoken;
@@ -134,8 +132,8 @@ public class NavigationEntry implements NavigationEntryInterface {
   }
 
   @Override
-  public final boolean isDisplayable(final UserData puser) {
-    return this.gatekeeper == null || this.gatekeeper.canReveal(puser);
+  public final boolean isDisplayable() {
+    return this.gatekeeper == null || this.gatekeeper.canReveal();
   }
 
   @Override
