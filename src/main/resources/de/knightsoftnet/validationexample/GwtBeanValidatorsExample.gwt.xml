@@ -34,6 +34,9 @@
   <!-- gwtp mvp support -->
   <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
 
+  <!-- html 5 push state support -->
+  <inherits name="com.wallissoftware.pushstate.PushState" />
+
   <!-- German and English language with English as fallback       -->
   <extend-property name="locale" values="en" />
   <extend-property name="locale" values="de" />
@@ -43,6 +46,17 @@
   <set-configuration-property name="locale.useragent" value="Y" />
   <set-configuration-property name="locale.cookie" value="LOCALE" />
   <set-configuration-property name="locale.searchorder" value="queryparam,cookie,useragent" />
+
+  <!-- pushstate is not supported by ie9, needn't compile this permutations -->
+  <set-property name="history.pushStateSupported" value="no">
+    <any>
+      <when-property-is name="user.agent" value="ie9" />
+    </any>
+  </set-property>
+  <!-- <set-property name="history.pushStateSupported" value="no" /> -->
+
+  <set-configuration-property name="gwtp.prebootstrapper"
+        value="de.knightsoftnet.validationexample.client.MyPreBootstrapper"/>
 
   <!-- Reduce compiled size by using striped code -->
   <set-property name="compiler.stackMode" value="strip" />

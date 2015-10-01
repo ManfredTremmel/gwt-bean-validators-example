@@ -6,6 +6,7 @@ import de.knightsoftnet.validationexample.client.event.ChangePlaceEvent.ChangePl
 import de.knightsoftnet.validationexample.client.event.ChangeUserEvent;
 import de.knightsoftnet.validationexample.client.event.ChangeUserEvent.ChangeUserHandler;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.ui.InlineHyperlink;
 import com.google.gwt.user.client.ui.TreeItem;
 import com.google.inject.Inject;
@@ -157,8 +158,9 @@ public class NavigationPresenter extends
       } else if (navEntry.getToken() == null) {
         newItem = null;
       } else {
-        final InlineHyperlink entryPoint =
-            new InlineHyperlink(navEntry.getMenuValue(), navEntry.getFullToken());
+        final InlineHyperlink entryPoint = GWT.create(InlineHyperlink.class);
+        entryPoint.setHTML(navEntry.getMenuValue());
+        entryPoint.setTargetHistoryToken(navEntry.getFullToken());
         newItem = new TreeItem(entryPoint);
         this.navigationMap.put(newItem, navEntry);
       }

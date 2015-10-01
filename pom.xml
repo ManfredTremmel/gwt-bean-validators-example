@@ -16,7 +16,7 @@
 		<gwt.version>2.7.0</gwt.version>
 		<hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
 		<junit.version>4.12</junit.version>
-		<!-- <gwt-pushstate.version>2.0.1-SNAPSHOT</gwt-pushstate.version> -->
+		<gwt-pushstate.version>2.0.1-SNAPSHOT</gwt-pushstate.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
@@ -107,11 +107,11 @@
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.wallissoftware</groupId>
 			<artifactId>gwt-pushstate</artifactId>
 			<version>${gwt-pushstate.version}</version>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>gwt-bean-validators</groupId>
 			<artifactId>gwt-bean-validators</artifactId>
