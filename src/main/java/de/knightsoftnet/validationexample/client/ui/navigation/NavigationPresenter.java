@@ -1,3 +1,18 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work for additional information regarding
+ * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the License. You may obtain a
+ * copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
 import de.knightsoftnet.validationexample.client.CurrentSession;
@@ -6,9 +21,6 @@ import de.knightsoftnet.validationexample.client.event.ChangePlaceEvent.ChangePl
 import de.knightsoftnet.validationexample.client.event.ChangeUserEvent;
 import de.knightsoftnet.validationexample.client.event.ChangeUserEvent.ChangeUserHandler;
 
-import com.google.gwt.core.shared.GWT;
-import com.google.gwt.user.client.ui.InlineHyperlink;
-import com.google.gwt.user.client.ui.TreeItem;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -20,11 +32,6 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Activity/Presenter of the navigation page.
@@ -52,19 +59,18 @@ public class NavigationPresenter extends
      */
     void createNavigation(final NavigationPlace pplace);
 
-    void setSelectedItem(TreeItem pnewItem);
-
+    /**
+     * set new active entry.
+     * 
+     * @param pnewEntry new active entry
+     */
+    void setSelectedItem(final NavigationEntryInterface pnewEntry);
   }
 
   @ProxyStandard
   @NoGatekeeper
   public interface MyProxy extends Proxy<NavigationPresenter> {
   }
-
-  /**
-   * map between menu entries and navigation.
-   */
-  private final Map<TreeItem, NavigationEntryInterface> navigationMap;
 
   private final PlaceManager placeManager;
   private final NavigationPlace navigationPlace;
@@ -87,14 +93,10 @@ public class NavigationPresenter extends
     pview.setPresenter(this);
     this.placeManager = pplaceManager;
     this.navigationPlace = pnavigationPlace;
-    this.navigationMap = new HashMap<TreeItem, NavigationEntryInterface>();
 
     peventBus.addHandler(ChangeUserEvent.getType(), this);
     pnavigationPlace.buildVisibleNavigation(null);
 
-    // this.navigationPlace.setActiveNavigationEntryInterface(this.navigationPlace
-    // .getNavigationForToken(this.placeManager.getCurrentPlaceRequest().getNameToken()));
-    this.navigationMap.clear();
     this.getView().createNavigation(this.navigationPlace);
 
     peventBus.addHandler(ChangePlaceEvent.getType(), this);
@@ -121,7 +123,6 @@ public class NavigationPresenter extends
       }
     }
     this.navigationPlace.buildVisibleNavigation(pevent.getUser());
-    this.navigationMap.clear();
     this.getView().createNavigation(this.navigationPlace);
   }
 
@@ -133,43 +134,7 @@ public class NavigationPresenter extends
       if (newEntry == null) {
         return;
       }
-      for (final Entry<TreeItem, NavigationEntryInterface> entry : this.navigationMap.entrySet()) {
-        entry.getKey().setSelected(newEntry.equals(entry.getValue()));
-      }
-    }
-  }
-
-  /**
-   * create navigation in a recursive way.
-   *
-   * @param pitem the item to add new items
-   * @param plist the list of the navigation entries
-   * @param pactiveEntry the active entry
-   */
-  public void createRecursiveNavigation(final TreeItem pitem,
-      final List<NavigationEntryInterface> plist, final NavigationEntryInterface pactiveEntry) {
-    for (final NavigationEntryInterface navEntry : plist) {
-      final TreeItem newItem;
-      if (navEntry instanceof NavigationEntryFolder) {
-        newItem = new TreeItem(navEntry.getMenuValue());
-        this.createRecursiveNavigation(newItem, ((NavigationEntryFolder) navEntry).getSubEntries(),
-            pactiveEntry);
-        newItem.setState(navEntry.isOpenOnStartup());
-      } else if (navEntry.getToken() == null) {
-        newItem = null;
-      } else {
-        final InlineHyperlink entryPoint = GWT.create(InlineHyperlink.class);
-        entryPoint.setHTML(navEntry.getMenuValue());
-        entryPoint.setTargetHistoryToken(navEntry.getFullToken());
-        newItem = new TreeItem(entryPoint);
-        this.navigationMap.put(newItem, navEntry);
-      }
-      if (newItem != null) {
-        pitem.addItem(newItem);
-        if (pactiveEntry != null && pactiveEntry.equals(navEntry)) {
-          this.getView().setSelectedItem(newItem);
-        }
-      }
+      this.getView().setSelectedItem(newEntry);
     }
   }
 }

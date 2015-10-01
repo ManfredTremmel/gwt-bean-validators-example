@@ -5,8 +5,10 @@
   ui:generateLocales="default,de"
   xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
+  <ui:with field='res' type='de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewGwtImpl.Resources'/>
+
   <g:Tree ui:field="navTree">
-    <g:HTMLPanel ui:field="navigationMainPoint"><ui:msg description="navigationMainPoint">Navigation</ui:msg></g:HTMLPanel>
+    <g:HTMLPanel ui:field="navigationMainPoint" styleName="{res.navigationStyle.link}"><ui:msg description="navigationMainPoint">Navigation</ui:msg></g:HTMLPanel>
     <g:TreeItem widget="{navigationMainPoint}" state="true" ui:field="firstItem" />
   </g:Tree>
 </ui:UiBinder>
