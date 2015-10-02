@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.logout;
 
-import de.knightsoftnet.validationexample.client.CurrentSession;
+import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
@@ -47,7 +47,7 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
   }
 
   private final LoginLogoutRemoteServiceAsync service;
-  private final CurrentSession currentSession;
+  private final Session session;
 
   /**
    * constructor injecting parameters.
@@ -56,15 +56,14 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
    * @param pview view of the page
    * @param pproxy proxy to handle page
    * @param pservice login logout service
-   * @param pcurrentSession current session data
+   * @param psession current session data
    */
   @Inject
   public LogoutPresenter(final EventBus peventBus, final LogoutPresenter.MyView pview,
-      final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice,
-      final CurrentSession pcurrentSession) {
+      final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.service = pservice;
-    this.currentSession = pcurrentSession;
+    this.session = psession;
   }
 
   @Override
@@ -82,6 +81,6 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
         // we've logged out, it doesn't matter!
       }
     });
-    this.currentSession.setUser(null);
+    this.session.setUser(null);
   }
 }

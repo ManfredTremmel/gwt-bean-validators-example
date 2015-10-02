@@ -56,7 +56,7 @@
         </ul>
       </g:HTML>
       <g:FlowPanel styleName="{style.button}">
-        <g:Button ui:field="closeButton">Close</g:Button>
+        <g:Button ui:field="closeButton"><ui:msg description="closeButton">Close</ui:msg></g:Button>
       </g:FlowPanel>
     </g:HTMLPanel>
   </g:PopupPanel>

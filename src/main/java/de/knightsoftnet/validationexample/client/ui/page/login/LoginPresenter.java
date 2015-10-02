@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.login;
 
-import de.knightsoftnet.validationexample.client.CurrentSession;
+import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
@@ -89,7 +89,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
   public interface MyProxy extends ProxyPlace<LoginPresenter> {
   }
 
-  private final CurrentSession currentSession;
+  private final Session session;
 
   private final LoginLogoutRemoteServiceAsync service;
 
@@ -105,15 +105,14 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
    * @param pview view of the page
    * @param pproxy proxy of the page
    * @param pservice login/logout remote service
-   * @param pcurrentSession user container
+   * @param psession user container
    */
   @Inject
   public LoginPresenter(final EventBus peventBus, final LoginPresenter.MyView pview,
-      final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice,
-      final CurrentSession pcurrentSession) {
+      final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.service = pservice;
-    this.currentSession = pcurrentSession;
+    this.session = psession;
     this.loginData = new LoginData();
     this.getView().setPresenter(this);
     this.getView().fillForm(this.loginData);
@@ -155,7 +154,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
           LoginPresenter.this.getView().showMessage(constants.messageLoginError());
         } else {
           // loginData is ok, set it to client factory and also give the place to go to
-          LoginPresenter.this.currentSession.setUser(presult);
+          LoginPresenter.this.session.setUser(presult);
         }
       }
     });

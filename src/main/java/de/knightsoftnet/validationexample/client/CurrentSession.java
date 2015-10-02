@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client;
 
-import de.knightsoftnet.validationexample.client.event.ChangeUserEvent;
+import de.knightsoftnet.navigation.client.session.AbstractSession;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
@@ -27,18 +27,11 @@ import com.google.gwt.user.client.rpc.XsrfToken;
 import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.web.bindery.event.shared.EventBus;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-@Singleton
-public class CurrentSession {
-  private final EventBus eventBus;
+public class CurrentSession extends AbstractSession {
   private final XsrfTokenServiceAsync xsrf;
   private final LoginLogoutRemoteServiceAsync service;
-
-  private UserData user;
 
   /**
    * constructor with injected parameters.
@@ -50,8 +43,7 @@ public class CurrentSession {
   @Inject
   public CurrentSession(final EventBus peventBus, final XsrfTokenServiceAsync pxsrf,
       final LoginLogoutRemoteServiceAsync pservice) {
-    super();
-    this.eventBus = peventBus;
+    super(peventBus);
     this.xsrf = pxsrf;
     this.service = pservice;
     ((ServiceDefTarget) this.xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
@@ -60,6 +52,7 @@ public class CurrentSession {
   /**
    * read session data.
    */
+  @Override
   public void readSessionData() {
     // first create a session (if not already exists)
     this.service.createSession(new AsyncCallback<Void>() {
@@ -100,22 +93,5 @@ public class CurrentSession {
         });
       }
     });
-  }
-
-  public UserData getUser() {
-    return this.user;
-  }
-
-  /**
-   * set user and fire change user event when user changes.
-   *
-   * @param puser user data
-   */
-  public void setUser(final UserData puser) {
-    final boolean changed = !ObjectUtils.equals(puser, this.user);
-    this.user = puser;
-    if (changed) {
-      this.eventBus.fireEvent(new ChangeUserEvent(this.user));
-    }
   }
 }

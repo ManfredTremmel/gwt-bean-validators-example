@@ -28,6 +28,9 @@
   <!-- gwt bean validators -->
   <inherits name="de.knightsoftnet.validators.GwtBeanValidators" />
 
+  <!-- gwtp dynamic navigation -->
+  <inherits name="de.knightsoftnet.navigation.GwtpDynamicNavigation" />
+
   <!-- gwt injection support -->
   <inherits name="com.google.gwt.inject.Inject"/>
 

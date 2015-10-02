@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
-import org.apache.commons.lang3.StringUtils;
+import de.knightsoftnet.navigation.shared.models.MinimumUser;
 
 import java.io.Serializable;
 
@@ -24,16 +24,11 @@ import java.io.Serializable;
  *
  * @author Manfred Tremmel
  */
-public class UserData implements Serializable {
+public class UserData extends MinimumUser implements Serializable {
   /**
    * serial version uid.
    */
   private static final long serialVersionUID = 5156545253407272917L;
-
-  /**
-   * login name of the user.
-   */
-  private String userName;
 
   /**
    * password of the user.
@@ -68,8 +63,7 @@ public class UserData implements Serializable {
    * @param puserName user to set
    */
   public UserData(final String puserName) {
-    super();
-    this.setUserName(puserName);
+    super(puserName);
   }
 
   /**
@@ -83,20 +77,11 @@ public class UserData implements Serializable {
    */
   public UserData(final String puserName, final String ppassword, final String pfirstName,
       final String plastName, final GenderEnum pgender) {
-    super();
-    this.setUserName(puserName);
+    super(puserName);
     this.password = ppassword;
     this.firstName = pfirstName;
     this.lastName = plastName;
     this.gender = pgender;
-  }
-
-  public final String getUserName() {
-    return this.userName;
-  }
-
-  private void setUserName(final String puserName) {
-    this.userName = puserName;
   }
 
   public String getPassword() {
@@ -129,28 +114,5 @@ public class UserData implements Serializable {
 
   public final void setGender(final GenderEnum pgender) {
     this.gender = pgender;
-  }
-
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + (this.userName == null ? 0 : this.userName.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (this.getClass() != obj.getClass()) {
-      return false;
-    }
-    final UserData other = (UserData) obj;
-    return StringUtils.equals(this.userName, other.userName);
   }
 }

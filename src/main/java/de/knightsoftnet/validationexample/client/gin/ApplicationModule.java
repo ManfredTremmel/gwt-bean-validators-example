@@ -13,13 +13,18 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.injection;
+package de.knightsoftnet.validationexample.client.gin;
 
 
+import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.navigation.client.ui.navigation.NavigationPresenter;
+import de.knightsoftnet.navigation.client.ui.navigation.NavigationStructure;
+import de.knightsoftnet.navigation.client.ui.navigation.TreeNavigationView;
+import de.knightsoftnet.navigation.shared.models.User;
+import de.knightsoftnet.validationexample.client.CurrentSession;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePageViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.navigation.NavigationPresenter;
-import de.knightsoftnet.validationexample.client.ui.navigation.NavigationViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.navigation.MyNavigationStructure;
 import de.knightsoftnet.validationexample.client.ui.page.about.AboutPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.address.AddressPresenter;
@@ -37,6 +42,7 @@ import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaRemoteServiceA
 import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsViewGwtImpl;
+import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.inject.Singleton;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
@@ -49,7 +55,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         BasePageViewGwtImpl.class, BasePagePresenter.MyProxy.class);
 
     this.bindPresenter(NavigationPresenter.class, NavigationPresenter.MyView.class,
-        NavigationViewGwtImpl.class, NavigationPresenter.MyProxy.class);
+        TreeNavigationView.class, NavigationPresenter.MyProxy.class);
 
     this.bindPresenterWidget(AboutPresenter.class, AboutPresenter.MyView.class,
         AboutViewGwtImpl.class);
@@ -65,6 +71,10 @@ public class ApplicationModule extends AbstractPresenterModule {
         SepaPresenter.MyProxy.class);
     this.bindPresenter(SettingsPresenter.class, SettingsPresenter.MyView.class,
         SettingsViewGwtImpl.class, SettingsPresenter.MyProxy.class);
+
+    this.bind(User.class).to(UserData.class).in(Singleton.class);
+    this.bind(Session.class).to(CurrentSession.class).in(Singleton.class);
+    this.bind(NavigationStructure.class).to(MyNavigationStructure.class).in(Singleton.class);
 
     this.bind(AddressRemoteServiceAsync.class).in(Singleton.class);
     this.bind(LoginLogoutRemoteServiceAsync.class).in(Singleton.class);

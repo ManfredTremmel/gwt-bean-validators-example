@@ -15,8 +15,12 @@
 
 package de.knightsoftnet.validationexample.client.ui.navigation;
 
-import de.knightsoftnet.validationexample.client.gatekeepers.LoggedInGatekeeper;
-import de.knightsoftnet.validationexample.client.gatekeepers.LoggedOutGatekeeper;
+import de.knightsoftnet.navigation.client.gatekeepers.LoggedInGatekeeper;
+import de.knightsoftnet.navigation.client.gatekeepers.LoggedOutGatekeeper;
+import de.knightsoftnet.navigation.client.ui.navigation.AbstractNavigationStructure;
+import de.knightsoftnet.navigation.client.ui.navigation.NavigationEntry;
+import de.knightsoftnet.navigation.client.ui.navigation.NavigationEntryFolder;
+import de.knightsoftnet.navigation.client.ui.navigation.NavigationEntryInterface;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
@@ -35,7 +39,7 @@ import javax.inject.Singleton;
  *
  */
 @Singleton
-public class NavigationPlace extends AbstractNavigationPlace {
+public class MyNavigationStructure extends AbstractNavigationStructure {
 
   /**
    * gate keeper for pages which are only visible when user is logged in.
@@ -52,7 +56,7 @@ public class NavigationPlace extends AbstractNavigationPlace {
    * default constructor.
    */
   @Inject
-  public NavigationPlace(final EventBus peventBus) {
+  public MyNavigationStructure(final EventBus peventBus) {
     super(peventBus);
   }
 
