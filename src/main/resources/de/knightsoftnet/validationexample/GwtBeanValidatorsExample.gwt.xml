@@ -87,6 +87,6 @@
   <source path="shared" />
 
   <set-configuration-property name="gin.ginjector.modules"
-                              value="de.knightsoftnet.validationexample.client.injection.ClientModule"/>
+                              value="de.knightsoftnet.validationexample.client.gin.ClientModule"/>
 
 </module>
