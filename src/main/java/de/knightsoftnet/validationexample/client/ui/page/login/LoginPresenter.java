@@ -41,7 +41,7 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 
 /**
- * Activity/Presenter of the login, implementation.
+ * Presenter of the login, implementation.
  *
  * @author Manfred Tremmel
  *

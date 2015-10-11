@@ -30,7 +30,7 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 import javax.inject.Inject;
 
 /**
- * Activity/Presenter of the base page, implementation.
+ * Presenter of the base page, implementation.
  *
  * @author Manfred Tremmel
  *

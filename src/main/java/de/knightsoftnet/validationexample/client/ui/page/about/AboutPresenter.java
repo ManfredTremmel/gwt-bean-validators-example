@@ -22,7 +22,7 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import javax.inject.Inject;
 
 /**
- * Activity/Presenter of the about page, implementation.
+ * Presenter of the about page, implementation.
  *
  * @author Manfred Tremmel
  *

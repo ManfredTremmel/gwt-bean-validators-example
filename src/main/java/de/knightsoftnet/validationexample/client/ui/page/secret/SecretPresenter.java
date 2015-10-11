@@ -28,7 +28,7 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import javax.inject.Inject;
 
 /**
- * Activity/Presenter of the secret page, implementation.
+ * Presenter of the secret page, implementation.
  *
  * @author Manfred Tremmel
  *

@@ -40,7 +40,7 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 
 /**
- * Activity/Presenter of the Sepa, implementation.
+ * Presenter of the Sepa, implementation.
  *
  * @author Manfred Tremmel
  *

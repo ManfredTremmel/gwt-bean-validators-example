@@ -31,7 +31,7 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import javax.inject.Inject;
 
 /**
- * Activity/Presenter of the logout, implementation.
+ * Presenter of the logout, implementation.
  *
  * @author Manfred Tremmel
  *

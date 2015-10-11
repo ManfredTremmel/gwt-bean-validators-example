@@ -32,7 +32,7 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import javax.inject.Inject;
 
 /**
- * Activity/Presenter of the validator test settings.
+ * Presenter of the validator test settings.
  *
  * @author Manfred Tremmel
  *

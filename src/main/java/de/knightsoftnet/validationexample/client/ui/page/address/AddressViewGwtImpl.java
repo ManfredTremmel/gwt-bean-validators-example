@@ -35,7 +35,7 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 
 /**
- * View of the validator test Sepa.
+ * View of the validator test address.
  *
  * @author Manfred Tremmel
  *
@@ -46,7 +46,7 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyV
   /**
    * view interface.
    */
-  interface AddressViewUiBinder extends UiBinder<Widget, AddressViewGwtImpl> {
+  interface Binder extends UiBinder<Widget, AddressViewGwtImpl> {
   }
 
   /**
@@ -98,7 +98,7 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyV
    * @param puiBinder ui binder
    */
   @Inject
-  public AddressViewGwtImpl(final Driver pdriver, final AddressViewUiBinder puiBinder) {
+  public AddressViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
     super();
     this.initWidget(puiBinder.createAndBindUi(this));
     this.driver = pdriver;
