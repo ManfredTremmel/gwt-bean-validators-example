@@ -66,7 +66,7 @@ public class LoginData implements Serializable {
   /**
    * new password, if password should be changed.
    */
-  @Password(minRules = 2)
+  @Password(minRules = 3)
   @Size(min = 8, max = LENGTH_LIMIT)
   private String newPassword;
 

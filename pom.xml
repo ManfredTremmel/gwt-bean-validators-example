@@ -7,7 +7,7 @@
 	<groupId>de.knightsoftnet</groupId>
 	<artifactId>gwt-bean-validators-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.8.9</version>
+	<version>0.8.10</version>
 	<name>GWT Bean Validators - Example</name>
 
 	<properties>
@@ -20,7 +20,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
-		<gwt-bean-validators.version>0.8.9</gwt-bean-validators.version>
+		<gwt-bean-validators.version>0.8.10</gwt-bean-validators.version>
 		<gwt-commons-lang3.version>3.4-SNAPSHOT</gwt-commons-lang3.version>
 		<gwt-commons-validator.version>1.4.1-SNAPSHOT</gwt-commons-validator.version>
 		<gwtp.version>1.5</gwtp.version>
