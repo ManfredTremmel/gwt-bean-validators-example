@@ -23,7 +23,7 @@
 		<gwt-bean-validators.version>0.8.11-SNAPSHOT</gwt-bean-validators.version>
 		<gwt-commons-lang3.version>3.4-SNAPSHOT</gwt-commons-lang3.version>
 		<gwt-commons-validator.version>1.4.1-SNAPSHOT</gwt-commons-validator.version>
-		<gwtp.version>1.5</gwtp.version>
+		<gwtp.version>1.5.1</gwtp.version>
 		<gin.version>2.1.2</gin.version>
 		<gwtp-dynamic-navigation.version>0.1.2</gwtp-dynamic-navigation.version>
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
@@ -213,7 +213,7 @@
 					<enableClosureCompiler>true</enableClosureCompiler>
 					<fragmentCount>2</fragmentCount>
 					<localWorkers>-1</localWorkers>
-					<extraJvmArgs>-Xms512m -Xmx1g -XX:MaxPermSize=256m</extraJvmArgs>
+					<extraJvmArgs>-Xms512m -Xmx1g</extraJvmArgs>
 				</configuration>
 			</plugin>
 
