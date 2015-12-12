@@ -64,7 +64,7 @@ public class LanguageSelectorWidget extends ListBox implements HasValue<String> 
   }
 
   @Override
-  public String getValue() {
+  public final String getValue() {
     final int currentSelection = this.getSelectedIndex();
     if (currentSelection < 0) {
       return null;
@@ -73,12 +73,12 @@ public class LanguageSelectorWidget extends ListBox implements HasValue<String> 
   }
 
   @Override
-  public void setValue(final String pvalue) {
+  public final void setValue(final String pvalue) {
     this.setValue(pvalue, true);
   }
 
   @Override
-  public void setValue(final String pvalue, final boolean pfireEvents) {
+  public final void setValue(final String pvalue, final boolean pfireEvents) {
     if (!StringUtils.equals(this.getValue(), pvalue)) {
       int newIndex = 0;
       for (int i = 0; i < this.getItemCount(); i++) {

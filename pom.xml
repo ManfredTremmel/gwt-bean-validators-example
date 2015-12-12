@@ -20,11 +20,24 @@
 
 	<!-- POM file generated with GWT webAppCreator -->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.knightsoftnet</groupId>
+	<groupId>de.knightsoft-net</groupId>
 	<artifactId>gwt-bean-validators-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.8.11</version>
+	<version>0.8.12</version>
 	<name>GWT Bean Validators - Example</name>
+	<inceptionYear>2015</inceptionYear>
+	<description>
+     Little example how to use bean validators in a GWT application (client and server side validation).
+    </description>
+	<url>https://github.com/ManfredTremmel/gwt-bean-validators-example</url>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<properties>
 		<jdk.version>1.7</jdk.version>
@@ -32,16 +45,16 @@
 		<gwt.version>2.7.0</gwt.version>
 		<hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
 		<junit.version>4.12</junit.version>
-		<gwt-pushstate.version>2.0.1-SNAPSHOT</gwt-pushstate.version>
+		<gwt-pushstate.version>2.0.0.2</gwt-pushstate.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.13</slf4j.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
-		<gwt-bean-validators.version>0.8.11</gwt-bean-validators.version>
-		<gwt-commons-lang3.version>3.4-gwt27-0</gwt-commons-lang3.version>
-		<gwt-commons-validator.version>1.5.0-gwt27-0</gwt-commons-validator.version>
+		<gwt-bean-validators.version>0.8.12</gwt-bean-validators.version>
+		<gwt-commons-lang3.version>3.4-1</gwt-commons-lang3.version>
+		<gwt-commons-validator.version>1.5.0-1</gwt-commons-validator.version>
 		<gwtp.version>1.5.1</gwtp.version>
 		<gin.version>2.1.2</gin.version>
-		<gwtp-dynamic-navigation.version>0.1.3</gwtp-dynamic-navigation.version>
+		<gwtp-dynamic-navigation.version>0.1.4</gwtp-dynamic-navigation.version>
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 		<maven-project-info-reports-plugin.version>2.8.1</maven-project-info-reports-plugin.version>
@@ -60,19 +73,6 @@
 		<copyright>2015 by Manfred Tremmel</copyright>
 		<author>Manfred Tremmel</author>
 	</properties>
-
-	<repositories>
-		<repository>
-			<id>de.knightsoft-net</id>
-			<url>http://www.knightsoft-net.de/maven/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-		</repository>
-	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -125,28 +125,33 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.wallissoftware</groupId>
+			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-pushstate</artifactId>
 			<version>${gwt-pushstate.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>gwt-bean-validators</groupId>
+			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-bean-validators</artifactId>
 			<version>${gwt-bean-validators.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>gwt-commons-lang3</groupId>
+			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-commons-lang3</artifactId>
 			<version>${gwt-commons-lang3.version}</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>gwt-commons-validator</groupId>
+			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-commons-validator</artifactId>
 			<version>${gwt-commons-validator.version}</version>
 			<classifier>sources</classifier>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.knightsoft-net</groupId>
+			<artifactId>gwtp-dynamic-navigation</artifactId>
+			<version>${gwtp-dynamic-navigation.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -184,11 +189,6 @@
 			<groupId>com.google.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
 			<version>${gin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>de.knightsoftnet</groupId>
-			<artifactId>gwtp-dynamic-navigation</artifactId>
-			<version>${gwtp-dynamic-navigation.version}</version>
 		</dependency>
 	</dependencies>
 
