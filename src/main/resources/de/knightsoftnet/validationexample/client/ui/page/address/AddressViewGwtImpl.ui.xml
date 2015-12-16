@@ -17,6 +17,14 @@
       <div class="{style.panel}">
        <div>
          <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label Country">Country:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="countryCode">
+             <d:widget>
+               <w:CountryWidget />
+             </d:widget>
+           </d:UniversalDecoratorWithIcons>
+         </div>
+         <div class="{style.inputline}">
            <div class="{style.label}"><ui:msg description="Label Post Office Box">Post Office Box:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="postOfficeBox">
              <d:widget>
@@ -77,14 +85,6 @@
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="region">
              <d:widget>
                <g:TextBox visibleLength="30" maxLength="255"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Country">Country:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="countryCode">
-             <d:widget>
-               <w:CountryWidget />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>

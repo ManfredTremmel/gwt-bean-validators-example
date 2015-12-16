@@ -21,6 +21,7 @@ import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.handlers.HandlerFactory;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -40,8 +41,8 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyView,
-    FormSubmitHandler<PostalAddressData> {
+public class AddressViewGwtImpl extends ViewImpl
+    implements AddressPresenter.MyView, FormSubmitHandler<PostalAddressData> {
 
   /**
    * view interface.
@@ -105,6 +106,8 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyV
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.addressButton);
     this.driver.addFormSubmitHandler(this);
+    this.postalCode
+        .addKeyPressHandler(HandlerFactory.getPostalCodeKeyPressHandler(this.countryCode));
   }
 
   @Override
@@ -114,7 +117,9 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyV
 
   @Override
   public final void fillForm(final PostalAddressData puser) {
-    this.driver.edit(puser);
+    if (this.driver != null) {
+      this.driver.edit(puser);
+    }
   }
 
   @Override
@@ -134,6 +139,8 @@ public class AddressViewGwtImpl extends ViewImpl implements AddressPresenter.MyV
 
   @Override
   public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    this.driver.setConstraintViolations(pvalidationErrorSet);
+    if (this.driver != null) {
+      this.driver.setConstraintViolations(pvalidationErrorSet);
+    }
   }
 }
