@@ -100,4 +100,11 @@ public interface NavigationConstants extends Constants {
    * @return postalAddress
    */
   String menuPostalAddress();
+
+  /**
+   * text of the phone number menu entry.
+   *
+   * @return phoneNumber
+   */
+  String menuPhoneNumber();
 }

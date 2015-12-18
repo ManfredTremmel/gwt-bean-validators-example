@@ -77,6 +77,16 @@
 		<servlet-name>PostalAddredd</servlet-name>
 		<url-pattern>/gwtBeanValidatorsExample/postaladdress</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>PhoneNumber</servlet-name>
+		<servlet-class>de.knightsoftnet.validationexample.server.PhoneNumberServiceServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PhoneNumber</servlet-name>
+		<url-pattern>/gwtBeanValidatorsExample/phonenumber</url-pattern>
+	</servlet-mapping>
 	own servlets -->
 
 </web-app>

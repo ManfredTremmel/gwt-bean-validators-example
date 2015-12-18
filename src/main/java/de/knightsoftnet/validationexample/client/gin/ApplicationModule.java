@@ -35,6 +35,8 @@ import de.knightsoftnet.validationexample.client.ui.page.login.LoginPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.logout.LogoutPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.logout.LogoutViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.phonenumber.PhoneNumberPresenter;
+import de.knightsoftnet.validationexample.client.ui.page.phonenumber.PhoneNumberViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.secret.SecretPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.secret.SecretViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaPresenter;
@@ -63,12 +65,14 @@ public class ApplicationModule extends AbstractPresenterModule {
         AddressViewGwtImpl.class, AddressPresenter.MyProxy.class);
     this.bindPresenter(LoginPresenter.class, LoginPresenter.MyView.class, LoginViewGwtImpl.class,
         LoginPresenter.MyProxy.class);
-    this.bindPresenter(LogoutPresenter.class, LogoutPresenter.MyView.class,
-        LogoutViewGwtImpl.class, LogoutPresenter.MyProxy.class);
-    this.bindPresenter(SecretPresenter.class, SecretPresenter.MyView.class,
-        SecretViewGwtImpl.class, SecretPresenter.MyProxy.class);
+    this.bindPresenter(LogoutPresenter.class, LogoutPresenter.MyView.class, LogoutViewGwtImpl.class,
+        LogoutPresenter.MyProxy.class);
+    this.bindPresenter(SecretPresenter.class, SecretPresenter.MyView.class, SecretViewGwtImpl.class,
+        SecretPresenter.MyProxy.class);
     this.bindPresenter(SepaPresenter.class, SepaPresenter.MyView.class, SepaViewGwtImpl.class,
         SepaPresenter.MyProxy.class);
+    this.bindPresenter(PhoneNumberPresenter.class, PhoneNumberPresenter.MyView.class,
+        PhoneNumberViewGwtImpl.class, PhoneNumberPresenter.MyProxy.class);
     this.bindPresenter(SettingsPresenter.class, SettingsPresenter.MyView.class,
         SettingsViewGwtImpl.class, SettingsPresenter.MyProxy.class);
 
