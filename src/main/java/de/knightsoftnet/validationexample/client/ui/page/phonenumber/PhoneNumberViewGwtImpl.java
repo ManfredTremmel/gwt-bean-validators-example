@@ -15,13 +15,13 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
+import de.knightsoftnet.validationexample.client.ui.widget.PhoneNumberMsWidget;
 import de.knightsoftnet.validationexample.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.client.handlers.HandlerFactory;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -94,9 +94,8 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.phoneNumberButton);
     this.driver.addFormSubmitHandler(this);
-    this.phoneNumber
-        .addKeyPressHandler(HandlerFactory.getPhoneNumberMsKeyPressHandler(this.countryCode));
-    this.phoneNumber.addKeyUpHandler(HandlerFactory.getPhoneNumberMsKeyUpHandler(this.countryCode));
+    ((PhoneNumberMsWidget) this.phoneNumber.getWidget())
+        .setCountryCodeReferenceField(this.countryCode);
   }
 
   @Override

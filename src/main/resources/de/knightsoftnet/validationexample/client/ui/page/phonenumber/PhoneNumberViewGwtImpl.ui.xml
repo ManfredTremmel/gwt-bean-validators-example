@@ -28,7 +28,7 @@
            <div class="{style.label}"><ui:msg description="Label Phone Number">Phone Number:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="phoneNumber">
              <d:widget>
-               <g:TextBox visibleLength="50" maxLength="50" />
+               <w:PhoneNumberMsWidget />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
