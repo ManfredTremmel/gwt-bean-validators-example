@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
+import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 
@@ -140,8 +140,8 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
         try {
           throw pcaught;
         } catch (final ValidationException e) {
-          SepaPresenter.this.getView().setConstraintViolations(
-              e.getValidationErrorSet(SepaPresenter.this.sepaData));
+          SepaPresenter.this.getView()
+              .setConstraintViolations(e.getValidationErrorSet(SepaPresenter.this.sepaData));
         } catch (final Throwable e) {
           final SepaConstants constants = GWT.create(SepaConstants.class);
           SepaPresenter.this.getView().showMessage(constants.messageSepaError());

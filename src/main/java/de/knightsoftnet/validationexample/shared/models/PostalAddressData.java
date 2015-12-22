@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
+import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validators.shared.EmptyIfOtherIsNotEmpty;
 import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsEmpty;
 import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsNotEmpty;
@@ -36,7 +37,7 @@ import javax.validation.constraints.Size;
     @NotEmptyIfOtherIsEmpty(field = "street", fieldCompare = "postOfficeBox"),
     @NotEmptyIfOtherIsEmpty(field = "postOfficeBox", fieldCompare = "street"),})
 @NotEmptyIfOtherIsNotEmpty.List({
-// street must be filled if street number is filled
+    // street must be filled if street number is filled
     @NotEmptyIfOtherIsNotEmpty(field = "street", fieldCompare = "streetNumber"),
     // street number must be filled if street number additional is filled
     @NotEmptyIfOtherIsNotEmpty(field = "streetNumber", fieldCompare = "streetNumberAdditional"),})

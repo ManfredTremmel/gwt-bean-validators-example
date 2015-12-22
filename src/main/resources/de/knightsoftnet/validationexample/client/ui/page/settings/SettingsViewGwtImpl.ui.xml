@@ -4,7 +4,7 @@
   ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
   ui:generateLocales="en,de"
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
-  xmlns:w="urn:import:de.knightsoftnet.validationexample.client.ui.widget">
+  xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
   <ui:style src="SettingsViewGwtImpl.css"/>
 

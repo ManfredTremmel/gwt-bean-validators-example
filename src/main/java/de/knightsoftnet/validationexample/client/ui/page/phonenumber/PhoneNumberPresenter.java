@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
+import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 

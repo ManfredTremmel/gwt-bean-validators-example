@@ -31,6 +31,9 @@
   <!-- gwtp dynamic navigation -->
   <inherits name="de.knightsoftnet.navigation.GwtpDynamicNavigation" />
 
+  <!-- gwt mt widgets -->
+  <inherits name="de.knightsoftnet.mtwidgets.GwtMtWidgets" />
+
   <!-- gwt injection support -->
   <inherits name="com.google.gwt.inject.Inject"/>
 

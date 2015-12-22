@@ -15,8 +15,8 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
-import de.knightsoftnet.validationexample.client.ui.widget.BicWidget;
-import de.knightsoftnet.validationexample.shared.models.CountryEnum;
+import de.knightsoftnet.mtwidgets.client.ui.widget.BicWidget;
+import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
@@ -41,8 +41,8 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class SepaViewGwtImpl extends ViewImpl implements SepaPresenter.MyView,
-    FormSubmitHandler<SepaData> {
+public class SepaViewGwtImpl extends ViewImpl
+    implements SepaPresenter.MyView, FormSubmitHandler<SepaData> {
 
   /**
    * view interface.

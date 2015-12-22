@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
+import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validators.shared.PhoneNumberValue;
 
 import org.hibernate.validator.constraints.NotEmpty;

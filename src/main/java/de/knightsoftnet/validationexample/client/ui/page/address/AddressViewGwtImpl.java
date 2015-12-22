@@ -15,13 +15,13 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
-import de.knightsoftnet.validationexample.shared.models.CountryEnum;
+import de.knightsoftnet.mtwidgets.client.ui.handler.HandlerFactory;
+import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.client.handlers.HandlerFactory;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

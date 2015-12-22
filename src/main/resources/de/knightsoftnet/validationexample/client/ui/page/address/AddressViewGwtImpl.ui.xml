@@ -5,7 +5,7 @@
   ui:generateLocales="en,de"
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators"
-  xmlns:w="urn:import:de.knightsoftnet.validationexample.client.ui.widget">
+  xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
   <ui:style src="AddressViewGwtImpl.css"/>
 
