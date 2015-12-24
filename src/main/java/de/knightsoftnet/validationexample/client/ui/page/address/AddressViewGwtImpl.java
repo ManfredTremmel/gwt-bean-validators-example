@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
-import de.knightsoftnet.mtwidgets.client.ui.handler.HandlerFactory;
+import de.knightsoftnet.mtwidgets.client.ui.widget.PostalCodeTextBox;
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
@@ -106,8 +106,7 @@ public class AddressViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.addressButton);
     this.driver.addFormSubmitHandler(this);
-    this.postalCode
-        .addKeyPressHandler(HandlerFactory.getPostalCodeKeyPressHandler(this.countryCode));
+    ((PostalCodeTextBox) this.postalCode.getWidget()).addCountryCodeReference(this.countryCode);
   }
 
   @Override

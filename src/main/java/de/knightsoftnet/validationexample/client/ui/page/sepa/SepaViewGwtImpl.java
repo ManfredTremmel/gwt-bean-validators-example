@@ -15,13 +15,16 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
-import de.knightsoftnet.mtwidgets.client.ui.widget.BicWidget;
+import de.knightsoftnet.mtwidgets.client.ui.widget.BicSuggestBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.CountryListBox;
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.server.data.CreateClass;
+import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -103,7 +106,16 @@ public class SepaViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
-    ((BicWidget) this.bic.getWidget()).setBankNameWidget(this.bankName);
+    ((BicSuggestBox) this.bic.getWidget()).setBankNameWidget(this.bankName);
+    // limit countries to sepa countries
+    final IbanLengthMapSharedConstants ibanMap =
+        CreateClass.create(IbanLengthMapSharedConstants.class);
+    final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
+    int pos = 0;
+    for (final String entry : ibanMap.ibanLengths().keySet()) {
+      countryList[pos++] = CountryEnum.valueOf(entry);
+    }
+    ((CountryListBox) this.countryCode.getWidget()).fillCountryEntries(countryList);
   }
 
   @Override

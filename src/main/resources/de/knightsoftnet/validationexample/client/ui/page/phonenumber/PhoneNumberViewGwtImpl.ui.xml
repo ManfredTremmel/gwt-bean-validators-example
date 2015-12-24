@@ -20,7 +20,7 @@
            <div class="{style.label}"><ui:msg description="Label Country">Country:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="countryCode">
              <d:widget>
-               <w:CountryWidget sort="NAME_ASC" />
+               <w:CountryListBox sort="NAME_ASC" />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
@@ -28,7 +28,7 @@
            <div class="{style.label}"><ui:msg description="Label Phone Number">Phone Number:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="phoneNumber">
              <d:widget>
-               <w:PhoneNumberMsWidget />
+               <w:PhoneNumberMsSuggestBox />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>

@@ -20,7 +20,7 @@
            <div class="{style.label}"><ui:msg description="Label Country">Country:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="countryCode">
              <d:widget>
-               <w:CountryWidget sort="NAME_ASC" />
+               <w:CountryListBox sort="NAME_ASC" />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
@@ -28,7 +28,7 @@
            <div class="{style.label}"><ui:msg description="Label Bic">Bic:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="bic">
              <d:widget>
-               <w:BicWidget />
+               <w:BicSuggestBox />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
@@ -45,7 +45,7 @@
            <div class="{style.label}"><ui:msg description="Label Iban">Iban:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="iban">
              <d:widget>
-               <w:IbanWidget visibleLength="30" maxLength="42"/>
+               <w:IbanTextBox visibleLength="30" maxLength="42"/>
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>
