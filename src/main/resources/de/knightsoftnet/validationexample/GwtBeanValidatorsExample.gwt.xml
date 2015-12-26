@@ -53,12 +53,6 @@
   <set-configuration-property name="locale.cookie" value="LOCALE" />
   <set-configuration-property name="locale.searchorder" value="queryparam,cookie,useragent" />
 
-  <!-- pushstate is not supported by ie9, needn't compile this permutations -->
-  <set-property name="history.pushStateSupported" value="no">
-    <any>
-      <when-property-is name="user.agent" value="ie9" />
-    </any>
-  </set-property>
   <!-- <set-property name="history.pushStateSupported" value="no" /> -->
 
   <set-configuration-property name="gwtp.prebootstrapper"
@@ -80,10 +74,6 @@
   <replace-with class="de.knightsoftnet.validationexample.client.validation.ReflectGetterFactory">
     <when-type-is class="de.knightsoftnet.validators.client.GwtReflectGetterFactoryInterface" />
   </replace-with>
-
-  <generate-with class="de.knightsoftnet.navigation.rebind.VersionInfoGenerator">
-    <when-type-assignable class="de.knightsoftnet.navigation.client.version.AbstractVersionInfo" />
-  </generate-with>
 
   <!-- Specify the paths for translatable code -->
   <source path="client" />
