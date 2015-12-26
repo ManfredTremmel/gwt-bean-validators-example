@@ -89,14 +89,7 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
   public interface MyProxy extends ProxyPlace<AddressPresenter> {
   }
 
-  /**
-   * address data to remember.
-   */
   private final PostalAddressData addressData;
-
-  /**
-   * address remote service.
-   */
   private final AddressRemoteServiceAsync service;
 
   /**

@@ -44,40 +44,26 @@ import javax.validation.ConstraintViolation;
 public class PhoneNumberViewGwtImpl extends ViewImpl
     implements PhoneNumberPresenter.MyView, FormSubmitHandler<PhoneNumberData> {
 
-  /**
-   * view interface.
-   */
   interface Binder extends UiBinder<Widget, PhoneNumberViewGwtImpl> {
   }
 
-  /**
-   * interface of the driver to combine ui and bean.
-   */
   interface Driver extends BeanValidationEditorDriver<PhoneNumberData, PhoneNumberViewGwtImpl> {
   }
 
   @UiField
   UniversalDecoratorWithIcons<CountryEnum> countryCode;
-
   @UiField
   UniversalDecoratorWithIcons<String> phoneNumber;
 
   @Ignore
   @UiField
   Label logMessages;
-
   @Ignore
   @UiField
   Button phoneNumberButton;
 
-  /**
-   * create driver out of the interface.
-   */
   private final Driver driver;
 
-  /**
-   * reference to the activity.
-   */
   private PhoneNumberPresenter presenter;
 
   /**

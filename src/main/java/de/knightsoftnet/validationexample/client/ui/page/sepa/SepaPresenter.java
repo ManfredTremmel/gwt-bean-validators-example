@@ -88,14 +88,8 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
   public interface MyProxy extends ProxyPlace<SepaPresenter> {
   }
 
-  /**
-   * sepa data to remember.
-   */
   private final SepaData sepaData;
 
-  /**
-   * sepa remote service.
-   */
   private final SepaRemoteServiceAsync service;
 
   /**

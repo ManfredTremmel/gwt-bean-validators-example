@@ -7,7 +7,7 @@
   <ui:style src="AboutViewGwtImpl.css" />
   
   <ui:with field="versionInfo"
-    type="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
+    type="de.knightsoftnet.navigation.client.version.AbstractVersionInfo" />
 
   <g:PopupPanel autoHideOnHistoryEventsEnabled="true">
     <g:HTMLPanel styleName="{style.centerPanel}">

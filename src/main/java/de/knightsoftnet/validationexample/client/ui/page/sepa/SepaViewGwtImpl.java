@@ -47,49 +47,32 @@ import javax.validation.ConstraintViolation;
 public class SepaViewGwtImpl extends ViewImpl
     implements SepaPresenter.MyView, FormSubmitHandler<SepaData> {
 
-  /**
-   * view interface.
-   */
   interface Binder extends UiBinder<Widget, SepaViewGwtImpl> {
   }
 
-  /**
-   * interface of the driver to combine ui and bean.
-   */
   interface Driver extends BeanValidationEditorDriver<SepaData, SepaViewGwtImpl> {
   }
 
   @UiField
   Label bankName;
-
   @UiField
   UniversalDecoratorWithIcons<String> accountOwner;
-
   @UiField
   UniversalDecoratorWithIcons<CountryEnum> countryCode;
-
   @UiField
   UniversalDecoratorWithIcons<String> iban;
-
   @UiField
   UniversalDecoratorWithIcons<String> bic;
 
   @Ignore
   @UiField
   Label logMessages;
-
   @Ignore
   @UiField
   Button sepaButton;
 
-  /**
-   * create driver out of the interface.
-   */
   private final Driver driver;
 
-  /**
-   * reference to the activity.
-   */
   private SepaPresenter presenter;
 
   /**
@@ -107,15 +90,8 @@ public class SepaViewGwtImpl extends ViewImpl
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
     ((BicSuggestBox) this.bic.getWidget()).setBankNameWidget(this.bankName);
-    // limit countries to sepa countries
-    final IbanLengthMapSharedConstants ibanMap =
-        CreateClass.create(IbanLengthMapSharedConstants.class);
-    final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
-    int pos = 0;
-    for (final String entry : ibanMap.ibanLengths().keySet()) {
-      countryList[pos++] = CountryEnum.valueOf(entry);
-    }
-    ((CountryListBox) this.countryCode.getWidget()).fillCountryEntries(countryList);
+    // limit possible countries to sepa countries
+    ((CountryListBox) this.countryCode.getWidget()).fillCountryEntries(this.getSepaCountries());
   }
 
   @Override
@@ -146,5 +122,16 @@ public class SepaViewGwtImpl extends ViewImpl
   @Override
   public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
     this.driver.setConstraintViolations(pvalidationErrorSet);
+  }
+
+  private CountryEnum[] getSepaCountries() {
+    final IbanLengthMapSharedConstants ibanMap =
+        CreateClass.create(IbanLengthMapSharedConstants.class);
+    final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
+    int pos = 0;
+    for (final String entry : ibanMap.ibanLengths().keySet()) {
+      countryList[pos++] = CountryEnum.valueOf(entry);
+    }
+    return countryList;
   }
 }

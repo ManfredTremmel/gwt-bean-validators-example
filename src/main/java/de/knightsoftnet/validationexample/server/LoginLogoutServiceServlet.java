@@ -41,8 +41,8 @@ import javax.validation.Validator;
  * @author Manfred Tremmel
  */
 @WebServlet(urlPatterns = {"/gwtBeanValidatorsExample/LoginLogout"})
-public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet implements
-    LoginLogoutRemoteService {
+public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet
+    implements LoginLogoutRemoteService {
   /**
    * name of the user data store in the session.
    */
@@ -72,12 +72,7 @@ public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet imple
    */
   @Override
   public final UserData login(final LoginData ploginData) throws ValidationException {
-    final HttpSession session;
-    if (this.getThreadLocalRequest() == null) {
-      session = null;
-    } else {
-      session = this.getThreadLocalRequest().getSession(true);
-    }
+    final HttpSession session = this.getSession(true);
 
     UserData thisUser = null;
 
@@ -113,7 +108,7 @@ public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet imple
 
   @Override
   public final void logout() {
-    final HttpSession session = this.getThreadLocalRequest().getSession(false);
+    final HttpSession session = this.getSession(false);
 
     if (session != null) {
       session.removeAttribute(LoginLogoutServiceServlet.LOGGED_IN_USER);
@@ -122,7 +117,7 @@ public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet imple
 
   @Override
   public final UserData getSessionUser() {
-    final HttpSession session = this.getThreadLocalRequest().getSession(false);
+    final HttpSession session = this.getSession(false);
     if (session == null) {
       return null;
     } else {
@@ -132,6 +127,16 @@ public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet imple
 
   @Override
   public final void createSession() {
-    this.getThreadLocalRequest().getSession(true);
+    this.getSession(true);
+  }
+
+  private HttpSession getSession(final boolean pcreateNew) {
+    final HttpSession session;
+    if (this.getThreadLocalRequest() == null) {
+      session = null;
+    } else {
+      session = this.getThreadLocalRequest().getSession(pcreateNew);
+    }
+    return session;
   }
 }

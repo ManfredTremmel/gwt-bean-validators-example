@@ -7,7 +7,7 @@
   xmlns:nav="urn:import:de.knightsoftnet.validationexample.client.ui.navigation">
 
   <ui:style src="BasePageViewGwtImpl.css"/>
-  <ui:with field="versionInfo" type="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
+  <ui:with field="versionInfo" type="de.knightsoftnet.navigation.client.version.AbstractVersionInfo" />
 
   <g:HTMLPanel styleName="{style.fullSize} {style.parentPanel}">
     <g:SplitLayoutPanel styleName="{style.fullSize}">

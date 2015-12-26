@@ -35,8 +35,8 @@ import javax.validation.Validator;
 public class ValidatorFactory extends AbstractGwtValidatorFactory {
 
   /**
-   * Validator marker for the Validation Sample project. Only the classes and groups listed in the
-   * {@link GwtValidation} annotation can be validated.
+   * Validator marker for the bean validator example project. Only the classes and groups listed in
+   * the {@link GwtValidation} annotation can be validated.
    */
   @GwtValidation(
       value = {LoginData.class, SepaData.class, PostalAddressData.class, PhoneNumberData.class})

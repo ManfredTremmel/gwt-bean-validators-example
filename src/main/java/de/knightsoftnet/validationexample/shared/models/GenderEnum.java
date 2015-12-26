@@ -16,7 +16,7 @@
 package de.knightsoftnet.validationexample.shared.models;
 
 /**
- * Gender enumeration.
+ * Gender enumeration, with same values which are used in vcards.
  *
  * @author Manfred Tremmel
  *
@@ -25,6 +25,6 @@ public enum GenderEnum {
   M, // male
   F, // female
   O, // other
-  N, // none or not applicable.
-  U // unknown
+  N, // none or not applicable
+  U; // unknown
 }

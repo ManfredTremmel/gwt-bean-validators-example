@@ -27,9 +27,8 @@ import com.google.gwt.validation.client.GwtValidation;
 
 /**
  * The <code>ReflectGetterFactory</code> class is used for client side reflector replacement of the
- * getters. All beans which should need reflection like access to the getters, have to be added to
- *
- * @GwtValidation annotation.
+ * getters. All beans which need reflection like access to the getters, have to be added to
+ * {@link GwtValidation} annotation.
  *
  * @author Manfred Tremmel
  *
@@ -37,8 +36,8 @@ import com.google.gwt.validation.client.GwtValidation;
 public class ReflectGetterFactory extends AbstractGwtReflectGetterFactory {
 
   /**
-   * Validator marker for the Reflector Sample project. Only the classes and groups listed in the
-   * {@link GwtValidation} annotation can be reflected.
+   * Validator marker for the bean validator example project. Only the classes and groups listed in
+   * the {@link GwtValidation} annotation can be reflected.
    */
   @GwtValidation(
       value = {LoginData.class, SepaData.class, PostalAddressData.class, PhoneNumberData.class})

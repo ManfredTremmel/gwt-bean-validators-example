@@ -81,8 +81,8 @@
     <when-type-is class="de.knightsoftnet.validators.client.GwtReflectGetterFactoryInterface" />
   </replace-with>
 
-  <generate-with class="de.knightsoftnet.validationexample.rebind.VersionInfoGenerator">
-    <when-type-assignable class="de.knightsoftnet.validationexample.client.AbstractVersionInfo" />
+  <generate-with class="de.knightsoftnet.navigation.rebind.VersionInfoGenerator">
+    <when-type-assignable class="de.knightsoftnet.navigation.client.version.AbstractVersionInfo" />
   </generate-with>
 
   <!-- Specify the paths for translatable code -->

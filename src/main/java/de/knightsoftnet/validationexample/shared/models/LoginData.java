@@ -76,29 +76,14 @@ public class LoginData implements Serializable {
   @Size(max = LENGTH_LIMIT)
   private String newPasswordRepeat;
 
-  /**
-   * get the login name of the user.
-   *
-   * @return user name
-   */
   public final String getUserName() {
     return this.userName;
   }
 
-  /**
-   * set the login name of the user.
-   *
-   * @param puserName user name
-   */
   public final void setUserName(final String puserName) {
     this.userName = puserName;
   }
 
-  /**
-   * set the password of the user.
-   *
-   * @param ppassword password of the user
-   */
   public final void setPassword(final String ppassword) {
     this.password = ppassword;
   }
@@ -123,21 +108,11 @@ public class LoginData implements Serializable {
     this.newPasswordRepeat = pnewPasswordRepeat;
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public final int hashCode() {
     return ObjectUtils.hashCode(this.userName);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public final boolean equals(final Object obj) {
     if (this == obj) {
@@ -153,11 +128,6 @@ public class LoginData implements Serializable {
     return StringUtils.equals(this.userName, other.userName);
   }
 
-  /**
-   * {@inheritDoc}
-   *
-   * @see java.lang.Object#toString()
-   */
   @Override
   public final String toString() {
     return this.userName;

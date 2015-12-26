@@ -58,5 +58,4 @@ public class PhoneNumberData implements Serializable {
   public final void setPhoneNumber(final String pphoneNumber) {
     this.phoneNumber = pphoneNumber;
   }
-
 }

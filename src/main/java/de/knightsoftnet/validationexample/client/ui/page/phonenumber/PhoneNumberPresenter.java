@@ -89,14 +89,8 @@ public class PhoneNumberPresenter
   public interface MyProxy extends ProxyPlace<PhoneNumberPresenter> {
   }
 
-  /**
-   * phone number data to remember.
-   */
   private final PhoneNumberData phoneNumberData;
 
-  /**
-   * phone number remote service.
-   */
   private final PhoneNumberRemoteServiceAsync service;
 
   /**

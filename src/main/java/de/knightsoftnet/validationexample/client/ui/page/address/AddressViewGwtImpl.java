@@ -36,7 +36,7 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 
 /**
- * View of the validator test address.
+ * View of the validator test - postal address.
  *
  * @author Manfred Tremmel
  *
@@ -44,15 +44,9 @@ import javax.validation.ConstraintViolation;
 public class AddressViewGwtImpl extends ViewImpl
     implements AddressPresenter.MyView, FormSubmitHandler<PostalAddressData> {
 
-  /**
-   * view interface.
-   */
   interface Binder extends UiBinder<Widget, AddressViewGwtImpl> {
   }
 
-  /**
-   * interface of the driver to combine ui and bean.
-   */
   interface Driver extends BeanValidationEditorDriver<PostalAddressData, AddressViewGwtImpl> {
   }
 
@@ -82,14 +76,8 @@ public class AddressViewGwtImpl extends ViewImpl
   @UiField
   Button addressButton;
 
-  /**
-   * create driver out of the interface.
-   */
   private final Driver driver;
 
-  /**
-   * reference to the presenter.
-   */
   private AddressPresenter presenter;
 
   /**
@@ -116,9 +104,7 @@ public class AddressViewGwtImpl extends ViewImpl
 
   @Override
   public final void fillForm(final PostalAddressData puser) {
-    if (this.driver != null) {
-      this.driver.edit(puser);
-    }
+    this.driver.edit(puser);
   }
 
   @Override
@@ -138,8 +124,6 @@ public class AddressViewGwtImpl extends ViewImpl
 
   @Override
   public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    if (this.driver != null) {
-      this.driver.setConstraintViolations(pvalidationErrorSet);
-    }
+    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 }
