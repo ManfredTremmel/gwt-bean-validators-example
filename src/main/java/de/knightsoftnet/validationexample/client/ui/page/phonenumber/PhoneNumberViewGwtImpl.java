@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
-import de.knightsoftnet.mtwidgets.client.ui.widget.PhoneNumberMsSuggestBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.PhoneNumberMsRestSuggestBox;
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
@@ -80,7 +80,7 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.phoneNumberButton);
     this.driver.addFormSubmitHandler(this);
-    ((PhoneNumberMsSuggestBox) this.phoneNumber.getWidget())
+    ((PhoneNumberMsRestSuggestBox) this.phoneNumber.getWidget())
         .setCountryCodeReferenceField(this.countryCode);
   }
 

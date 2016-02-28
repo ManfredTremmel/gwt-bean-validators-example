@@ -16,7 +16,7 @@
 package de.knightsoftnet.validationexample.shared.models;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
-import de.knightsoftnet.validators.shared.PhoneNumberValue;
+import de.knightsoftnet.validators.shared.PhoneNumberValueRest;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -29,7 +29,7 @@ import javax.validation.constraints.NotNull;
  *
  * @author Manfred Tremmel
  */
-@PhoneNumberValue(fieldCountryCode = "countryCode", fieldPhoneNumber = "phoneNumber",
+@PhoneNumberValueRest(fieldCountryCode = "countryCode", fieldPhoneNumber = "phoneNumber",
     allowDin5008 = false, allowE123 = false, allowUri = false, allowMs = true, allowCommon = false)
 public class PhoneNumberData implements Serializable {
   /**

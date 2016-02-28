@@ -17,7 +17,6 @@
 	<!--
 		Configure Tuckey which will be used for rewriting URLs.
 		See urlrewrite.xml for its configuration.
-	-->
 	<filter>
 		<filter-name>UrlRewriteFilter</filter-name>
 		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
@@ -29,6 +28,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
+	-->
 
 	<!-- xsrf tokens -->
 	<servlet>
@@ -46,6 +46,23 @@
 		<param-value>JSESSIONID</param-value>
 	</context-param>
 	<!-- xsrf tokens -->
+
+	<!-- rest -->
+	<servlet>
+		<servlet-name>JerseyRest</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>de.knightsoftnet.validators.server.rest.api</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>JerseyRest</servlet-name>
+		<url-pattern>/gwtBeanValidatorsExample/api/*</url-pattern>
+	</servlet-mapping>
+	<!-- rest -->
 
 	<!-- own servlets
 	<servlet>
