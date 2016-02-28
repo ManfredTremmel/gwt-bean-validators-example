@@ -23,7 +23,7 @@ import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.server.data.CreateClass;
+import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
 import com.google.gwt.uibinder.client.UiBinder;
@@ -125,8 +125,7 @@ public class SepaViewGwtImpl extends ViewImpl
   }
 
   private CountryEnum[] getSepaCountries() {
-    final IbanLengthMapSharedConstants ibanMap =
-        CreateClass.create(IbanLengthMapSharedConstants.class);
+    final IbanLengthMapSharedConstants ibanMap = CreateIbanLengthMapConstantsClass.create();
     final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
     int pos = 0;
     for (final String entry : ibanMap.ibanLengths().keySet()) {
