@@ -53,6 +53,14 @@
             <a href="https://github.com/ManfredTremmel/gwt-bean-validators">gwt-bean-validators</a>
             <ui:msg description="usedgwtbeanvalidators">Input validation classes</ui:msg>
           </li>
+          <li>
+            <a href="https://github.com/ManfredTremmel/gwt-mt-widgets">gwt-mt-widgets</a>
+            <ui:msg description="usedgwtmtwidgets">Widget collection</ui:msg>
+          </li>
+          <li>
+            <a href="https://github.com/ManfredTremmel/gwtp-dynamic-navigation">gwtp-dynamic-navigation</a>
+            <ui:msg description="usedgwtpdynamicnavigation">Dynamic navigation for gwtp projects</ui:msg>
+          </li>
         </ul>
       </g:HTML>
       <g:FlowPanel styleName="{style.button}">

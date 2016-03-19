@@ -34,8 +34,8 @@ import javax.validation.Validator;
  * @author Manfred Tremmel
  */
 @WebServlet(urlPatterns = {"/gwtBeanValidatorsExample/postaladdress"})
-public class PostalAddressServiceServlet extends XsrfProtectedServiceServlet implements
-    AddressRemoteService {
+public class PostalAddressServiceServlet extends XsrfProtectedServiceServlet
+    implements AddressRemoteService {
 
   /**
    * serial version unique id.
