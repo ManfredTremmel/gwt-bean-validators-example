@@ -23,7 +23,6 @@ import com.google.gwt.user.server.rpc.XsrfProtectedServiceServlet;
 
 import java.util.Set;
 
-import javax.servlet.annotation.WebServlet;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -33,9 +32,9 @@ import javax.validation.Validator;
  *
  * @author Manfred Tremmel
  */
-@WebServlet(urlPatterns = {"/gwtBeanValidatorsExample/postaladdress"})
-public class PostalAddressServiceServlet extends XsrfProtectedServiceServlet implements
-    AddressRemoteService {
+// @WebServlet(urlPatterns = {"/gwtBeanValidatorsExample/postaladdress"})
+public class PostalAddressServiceServlet extends XsrfProtectedServiceServlet
+    implements AddressRemoteService {
 
   /**
    * serial version unique id.

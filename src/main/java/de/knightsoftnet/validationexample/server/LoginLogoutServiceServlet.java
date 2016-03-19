@@ -29,7 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -40,7 +39,7 @@ import javax.validation.Validator;
  *
  * @author Manfred Tremmel
  */
-@WebServlet(urlPatterns = {"/gwtBeanValidatorsExample/LoginLogout"})
+// @WebServlet(urlPatterns = {"/gwtBeanValidatorsExample/LoginLogout"})
 public class LoginLogoutServiceServlet extends XsrfProtectedServiceServlet
     implements LoginLogoutRemoteService {
   /**

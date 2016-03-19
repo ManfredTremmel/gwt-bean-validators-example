@@ -64,7 +64,7 @@
 	</servlet-mapping>
 	<!-- rest -->
 
-	<!-- own servlets
+	<!-- own servlets -->
 	<servlet>
 		<servlet-name>LoginLogout</servlet-name>
 		<servlet-class>de.knightsoftnet.validationexample.server.LoginLogoutServiceServlet</servlet-class>
@@ -104,6 +104,6 @@
 		<servlet-name>PhoneNumber</servlet-name>
 		<url-pattern>/gwtBeanValidatorsExample/phonenumber</url-pattern>
 	</servlet-mapping>
-	own servlets -->
+	<!-- own servlets -->
 
 </web-app>
