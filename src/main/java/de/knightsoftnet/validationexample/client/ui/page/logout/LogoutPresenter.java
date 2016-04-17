@@ -16,12 +16,13 @@
 package de.knightsoftnet.validationexample.client.ui.page.logout;
 
 import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -46,30 +47,28 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
   public interface MyProxy extends ProxyPlace<LogoutPresenter> {
   }
 
-  private final LoginLogoutRemoteServiceAsync service;
+  private final RestDispatch dispatcher;
+  private final UserRestService userService;
+
   private final Session session;
 
   /**
    * constructor injecting parameters.
-   *
-   * @param peventBus event bus
-   * @param pview view of the page
-   * @param pproxy proxy to handle page
-   * @param pservice login logout service
-   * @param psession current session data
    */
   @Inject
   public LogoutPresenter(final EventBus peventBus, final LogoutPresenter.MyView pview,
-      final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice, final Session psession) {
+      final MyProxy pproxy, final RestDispatch pdispatcher, final UserRestService puserService,
+      final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-    this.service = pservice;
+    this.dispatcher = pdispatcher;
+    this.userService = puserService;
     this.session = psession;
   }
 
   @Override
   protected void onReveal() {
     super.onReveal();
-    this.service.logout(new AsyncCallback<Void>() {
+    this.dispatcher.execute(this.userService.logout(), new AsyncCallback<Void>() {
 
       @Override
       public void onFailure(final Throwable pcaught) {

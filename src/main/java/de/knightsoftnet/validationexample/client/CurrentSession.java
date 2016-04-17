@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -16,37 +16,33 @@
 package de.knightsoftnet.validationexample.client;
 
 import de.knightsoftnet.navigation.client.session.AbstractSession;
-import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
+import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.HasRpcToken;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
-import com.google.gwt.user.client.rpc.XsrfToken;
-import com.google.gwt.user.client.rpc.XsrfTokenServiceAsync;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.client.RestDispatch;
+
+import org.apache.commons.lang3.BooleanUtils;
 
 import javax.inject.Inject;
 
 public class CurrentSession extends AbstractSession {
-  private final XsrfTokenServiceAsync xsrf;
-  private final LoginLogoutRemoteServiceAsync service;
+  private final RestDispatch dispatcher;
+  private final UserRestService userService;
 
   /**
    * constructor with injected parameters.
    *
    * @param peventBus event bus
-   * @param pxsrf cross site reforgery token service
-   * @param pservice login logout service
    */
   @Inject
-  public CurrentSession(final EventBus peventBus, final XsrfTokenServiceAsync pxsrf,
-      final LoginLogoutRemoteServiceAsync pservice) {
+  public CurrentSession(final EventBus peventBus, final RestDispatch pdispatcher,
+      final UserRestService puserService) {
     super(peventBus);
-    this.xsrf = pxsrf;
-    this.service = pservice;
-    ((ServiceDefTarget) this.xsrf).setServiceEntryPoint(GWT.getModuleBaseURL() + "xsrf");
+    this.dispatcher = pdispatcher;
+    this.userService = puserService;
   }
 
   /**
@@ -54,44 +50,32 @@ public class CurrentSession extends AbstractSession {
    */
   @Override
   public void readSessionData() {
-    // first create a session (if not already exists)
-    this.service.createSession(new AsyncCallback<Void>() {
+    this.dispatcher.execute(this.userService.isCurrentUserLoggedIn(), new AsyncCallback<Boolean>() {
+
       @Override
       public void onFailure(final Throwable pcaught) {
-        throw new RuntimeException(pcaught);
+        GWT.log("Error checking if user is logged in", pcaught);
       }
 
       @Override
-      public void onSuccess(final Void presult) {
-        // now we need a xsrf token to protect our connection
-        CurrentSession.this.xsrf.getNewXsrfToken(new AsyncCallback<XsrfToken>() {
-          @Override
-          public void onSuccess(final XsrfToken ptoken) {
-            ((HasRpcToken) CurrentSession.this.service).setRpcToken(ptoken);
+      public void onSuccess(final Boolean presult) {
+        if (BooleanUtils.isTrue(presult)) {
+          // we do have a logged in user, read it
+          CurrentSession.this.dispatcher.execute(CurrentSession.this.userService.getCurrentUser(),
+              new AsyncCallback<UserData>() {
+                @Override
+                public void onFailure(final Throwable pcaught) {
+                  GWT.log("Error reading session user", pcaught);
+                }
 
-            // look if we do already have a valid user in the session
-            CurrentSession.this.service.getSessionUser(new AsyncCallback<UserData>() {
-
-              @Override
-              public void onFailure(final Throwable pcaught) {
-                throw new RuntimeException(pcaught);
-              }
-
-              @Override
-              public void onSuccess(final UserData presult) {
-                if (presult != null) {
+                @Override
+                public void onSuccess(final UserData presult) {
                   CurrentSession.this.setUser(presult);
                 }
-              }
-            });
-          }
-
-          @Override
-          public void onFailure(final Throwable pcaught) {
-            throw new RuntimeException(pcaught);
-          }
-        });
+              });
+        }
       }
+
     });
   }
 }

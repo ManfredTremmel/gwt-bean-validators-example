@@ -16,6 +16,7 @@
 package de.knightsoftnet.validationexample.client.gin;
 
 import de.knightsoftnet.navigation.client.OwnPlaceManagerImpl;
+import de.knightsoftnet.validationexample.client.services.ServiceModule;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
@@ -30,5 +31,6 @@ public class ClientModule extends AbstractPresenterModule {
         .unauthorizedPlace(NameTokens.LOGIN).build());
 
     this.install(new ApplicationModule());
+    this.install(new ServiceModule());
   }
 }

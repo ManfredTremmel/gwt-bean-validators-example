@@ -47,5 +47,4 @@ public class ValidatorFactory extends AbstractGwtValidatorFactory {
   public final AbstractGwtValidator createValidator() {
     return GWT.create(GwtValidator.class);
   }
-
 }

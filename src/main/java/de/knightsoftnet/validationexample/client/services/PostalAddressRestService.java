@@ -13,30 +13,20 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.address;
+package de.knightsoftnet.validationexample.client.services;
 
+import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.google.gwt.user.client.rpc.XsrfProtectedService;
-import com.google.gwt.user.server.rpc.NoXsrfProtect;
+import com.gwtplatform.dispatch.rest.shared.RestAction;
 
-/**
- * Definition of the address remote services.
- *
- * @author Manfred Tremmel
- */
-@RemoteServiceRelativePath("postaladdress")
-public interface AddressRemoteService extends XsrfProtectedService {
-  /**
-   * send postal address data.
-   *
-   * @param postalAddressData postal address data
-   * @return PostalAddressData
-   * @throws ValidationException if login data are not valid
-   */
-  @NoXsrfProtect
-  PostalAddressData sendPostalAddress(PostalAddressData postalAddressData)
-      throws ValidationException;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
+@Path(ResourcePaths.POSTAL_ADDRESS)
+public interface PostalAddressRestService {
+
+  @POST
+  RestAction<ValidationResultData> checkPostalAddress(final PostalAddressData ppostalAddressData);
 }

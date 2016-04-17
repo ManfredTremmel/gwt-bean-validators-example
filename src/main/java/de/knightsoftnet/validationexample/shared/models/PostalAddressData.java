@@ -23,8 +23,6 @@ import de.knightsoftnet.validators.shared.PostalCode;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -42,7 +40,7 @@ import javax.validation.constraints.Size;
     // street number must be filled if street number additional is filled
     @NotEmptyIfOtherIsNotEmpty(field = "streetNumber", fieldCompare = "streetNumberAdditional"),})
 @PostalCode(fieldCountryCode = "countryCode", fieldPostalCode = "postalCode")
-public class PostalAddressData implements Serializable {
+public class PostalAddressData {
 
   /**
    * default length limit.
@@ -58,11 +56,6 @@ public class PostalAddressData implements Serializable {
    * length limit postal code.
    */
   public static final int LENGTH_POSTAL_CODE = 10;
-
-  /**
-   * serial version unique id.
-   */
-  private static final long serialVersionUID = 4884761505957640749L;
 
   /**
    * post office box.

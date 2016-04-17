@@ -16,23 +16,28 @@
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.validationexample.client.services.SepaRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
+import de.knightsoftnet.validationexample.shared.models.ValidationDto;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+
+import org.hibernate.validator.engine.ConstraintViolationImpl;
+import org.hibernate.validator.engine.PathImpl;
 
 import java.util.ArrayList;
 
@@ -90,23 +95,21 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
 
   private final SepaData sepaData;
 
-  private final SepaRemoteServiceAsync service;
+  private final SepaConstants constants;
+  private final RestDispatch dispatcher;
+  private final SepaRestService sepaService;
 
   /**
    * constructor injecting parameters.
-   *
-   * @param peventBus event bus
-   * @param pview view of the page
-   * @param pproxy proxy to handle page
-   * @param pservice remote service to contact the server
-   * @param pconstants localization constants
    */
   @Inject
   public SepaPresenter(final EventBus peventBus, final SepaPresenter.MyView pview,
-      final MyProxy pproxy, final SepaRemoteServiceAsync pservice, //
-      final SepaConstants pconstants) {
+      final MyProxy pproxy, final SepaConstants pconstants, final RestDispatch pdispatcher,
+      final SepaRestService psepaService) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-    this.service = pservice;
+    this.constants = pconstants;
+    this.dispatcher = pdispatcher;
+    this.sepaService = psepaService;
     this.sepaData = new SepaData();
     this.sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -128,29 +131,32 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
    * try to send data.
    */
   public final void tryToSend() {
-    this.service.sendSepa(this.sepaData, new AsyncCallback<SepaData>() {
-      @Override
-      public void onFailure(final Throwable pcaught) {
-        try {
-          throw pcaught;
-        } catch (final ValidationException e) {
-          SepaPresenter.this.getView()
-              .setConstraintViolations(e.getValidationErrorSet(SepaPresenter.this.sepaData));
-        } catch (final Throwable e) {
-          final SepaConstants constants = GWT.create(SepaConstants.class);
-          SepaPresenter.this.getView().showMessage(constants.messageSepaError());
-        }
-      }
+    this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
+        new AsyncCallback<ValidationResultData>() {
 
-      @Override
-      public void onSuccess(final SepaData presult) {
-        final SepaConstants constants = GWT.create(SepaConstants.class);
-        if (presult == null) {
-          SepaPresenter.this.getView().showMessage(constants.messageSepaError());
-        } else {
-          SepaPresenter.this.getView().showMessage(constants.messageSepaOk());
-        }
-      }
-    });
+          @Override
+          public void onFailure(final Throwable pcaught) {
+            SepaPresenter.this.getView()
+                .showMessage(SepaPresenter.this.constants.messageSepaError());
+          }
+
+          @Override
+          public void onSuccess(final ValidationResultData presult) {
+            if (presult == null || presult.getValidationErrorSet() == null
+                || presult.getValidationErrorSet().isEmpty()) {
+              SepaPresenter.this.getView()
+                  .showMessage(SepaPresenter.this.constants.messageSepaOk());
+            } else {
+              final ArrayList<ConstraintViolation<?>> violations =
+                  new ArrayList<ConstraintViolation<?>>(presult.getValidationErrorSet().size());
+              for (final ValidationDto violation : presult.getValidationErrorSet()) {
+                violations.add(new ConstraintViolationImpl<SepaData>(null, violation.getMessage(),
+                    null, SepaPresenter.this.sepaData, null, null,
+                    PathImpl.createPathFromString(violation.getPropertyPath()), null, null));
+              }
+              SepaPresenter.this.getView().setConstraintViolations(violations);
+            }
+          }
+        });
   }
 }

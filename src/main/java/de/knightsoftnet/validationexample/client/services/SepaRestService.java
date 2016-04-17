@@ -13,29 +13,20 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.sepa;
+package de.knightsoftnet.validationexample.client.services;
 
+import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.google.gwt.user.client.rpc.XsrfProtectedService;
-import com.google.gwt.user.server.rpc.NoXsrfProtect;
+import com.gwtplatform.dispatch.rest.shared.RestAction;
 
-/**
- * Definition of the sepa remote services.
- *
- * @author Manfred Tremmel
- */
-@RemoteServiceRelativePath("sepa")
-public interface SepaRemoteService extends XsrfProtectedService {
-  /**
-   * send sepa data.
-   *
-   * @param sepaData sepa data
-   * @return SepaData
-   * @throws ValidationException if login data are not valid
-   */
-  @NoXsrfProtect
-  SepaData sendSepa(SepaData sepaData) throws ValidationException;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
+@Path(ResourcePaths.SEPA)
+public interface SepaRestService {
+
+  @POST
+  RestAction<ValidationResultData> checkSepa(final SepaData psepaData);
 }

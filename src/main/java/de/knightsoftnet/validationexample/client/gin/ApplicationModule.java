@@ -28,9 +28,7 @@ import de.knightsoftnet.validationexample.client.ui.navigation.MyNavigationStruc
 import de.knightsoftnet.validationexample.client.ui.page.about.AboutPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.about.AboutViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.address.AddressPresenter;
-import de.knightsoftnet.validationexample.client.ui.page.address.AddressRemoteServiceAsync;
 import de.knightsoftnet.validationexample.client.ui.page.address.AddressViewGwtImpl;
-import de.knightsoftnet.validationexample.client.ui.page.login.LoginLogoutRemoteServiceAsync;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.logout.LogoutPresenter;
@@ -40,7 +38,6 @@ import de.knightsoftnet.validationexample.client.ui.page.phonenumber.PhoneNumber
 import de.knightsoftnet.validationexample.client.ui.page.secret.SecretPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.secret.SecretViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaPresenter;
-import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaRemoteServiceAsync;
 import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.settings.SettingsViewGwtImpl;
@@ -79,9 +76,5 @@ public class ApplicationModule extends AbstractPresenterModule {
     this.bind(User.class).to(UserData.class).in(Singleton.class);
     this.bind(Session.class).to(CurrentSession.class).in(Singleton.class);
     this.bind(NavigationStructure.class).to(MyNavigationStructure.class).in(Singleton.class);
-
-    this.bind(AddressRemoteServiceAsync.class).in(Singleton.class);
-    this.bind(LoginLogoutRemoteServiceAsync.class).in(Singleton.class);
-    this.bind(SepaRemoteServiceAsync.class).in(Singleton.class);
   }
 }

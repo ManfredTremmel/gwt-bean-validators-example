@@ -4,9 +4,9 @@
  * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License. You may obtain a
  * copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -16,18 +16,18 @@
 package de.knightsoftnet.validationexample.client.ui.page.login;
 
 import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validationexample.shared.models.UserData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -91,7 +91,10 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
   private final Session session;
 
-  private final LoginLogoutRemoteServiceAsync service;
+  private final LoginConstants constants;
+
+  private final RestDispatch dispatcher;
+  private final UserRestService userService;
 
   /**
    * user data to remember.
@@ -100,19 +103,16 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
   /**
    * presenter with injected parameters.
-   *
-   * @param peventBus event bus
-   * @param pview view of the page
-   * @param pproxy proxy of the page
-   * @param pservice login/logout remote service
-   * @param psession user container
    */
   @Inject
   public LoginPresenter(final EventBus peventBus, final LoginPresenter.MyView pview,
-      final MyProxy pproxy, final LoginLogoutRemoteServiceAsync pservice, final Session psession) {
+      final MyProxy pproxy, final RestDispatch pdispatcher, final UserRestService puserService,
+      final Session psession, final LoginConstants pconstants) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-    this.service = pservice;
+    this.dispatcher = pdispatcher;
+    this.userService = puserService;
     this.session = psession;
+    this.constants = pconstants;
     this.loginData = new LoginData();
     this.getView().setPresenter(this);
     this.getView().fillForm(this.loginData);
@@ -133,30 +133,19 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
    * try to login.
    */
   public final void tryToLogin() {
-    this.service.login(this.loginData, new AsyncCallback<UserData>() {
-      @Override
-      public void onFailure(final Throwable pcaught) {
-        try {
-          throw pcaught;
-        } catch (final ValidationException e) {
-          LoginPresenter.this.getView().setConstraintViolations(
-              e.getValidationErrorSet(LoginPresenter.this.loginData));
-        } catch (final Throwable e) {
-          final LoginConstants constants = GWT.create(LoginConstants.class);
-          LoginPresenter.this.getView().showMessage(constants.messageLoginError());
-        }
-      }
+    this.dispatcher.execute(
+        this.userService.login(this.loginData.getUserName(), this.loginData.getPassword()),
+        new AsyncCallback<UserData>() {
+          @Override
+          public void onSuccess(final UserData presult) {
+            LoginPresenter.this.session.setUser(presult);
+          }
 
-      @Override
-      public void onSuccess(final UserData presult) {
-        if (presult == null) {
-          final LoginConstants constants = GWT.create(LoginConstants.class);
-          LoginPresenter.this.getView().showMessage(constants.messageLoginError());
-        } else {
-          // loginData is ok, set it to client factory and also give the place to go to
-          LoginPresenter.this.session.setUser(presult);
-        }
-      }
-    });
+          @Override
+          public void onFailure(final Throwable caught) {
+            LoginPresenter.this.getView()
+                .showMessage(LoginPresenter.this.constants.messageLoginError());
+          }
+        });
   }
 }

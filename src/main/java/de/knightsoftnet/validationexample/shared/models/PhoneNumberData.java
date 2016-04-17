@@ -20,8 +20,6 @@ import de.knightsoftnet.validators.shared.PhoneNumberValueRest;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,11 +29,7 @@ import javax.validation.constraints.NotNull;
  */
 @PhoneNumberValueRest(fieldCountryCode = "countryCode", fieldPhoneNumber = "phoneNumber",
     allowDin5008 = false, allowE123 = false, allowUri = false, allowMs = true, allowCommon = false)
-public class PhoneNumberData implements Serializable {
-  /**
-   * serial version uid.
-   */
-  private static final long serialVersionUID = 6891495728722028897L;
+public class PhoneNumberData {
 
   @NotNull
   private CountryEnum countryCode;

@@ -16,23 +16,28 @@
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.validationexample.client.services.PhoneNumberRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
+import de.knightsoftnet.validationexample.shared.models.ValidationDto;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+
+import org.hibernate.validator.engine.ConstraintViolationImpl;
+import org.hibernate.validator.engine.PathImpl;
 
 import java.util.ArrayList;
 
@@ -91,23 +96,21 @@ public class PhoneNumberPresenter
 
   private final PhoneNumberData phoneNumberData;
 
-  private final PhoneNumberRemoteServiceAsync service;
+  private final PhoneNumberConstants constants;
+  private final RestDispatch dispatcher;
+  private final PhoneNumberRestService phoneNumberService;
 
   /**
    * constructor injecting parameters.
-   *
-   * @param peventBus event bus
-   * @param pview view of the page
-   * @param pproxy proxy to handle page
-   * @param pservice remote service to contact the server
-   * @param pconstants localization constants
    */
   @Inject
   public PhoneNumberPresenter(final EventBus peventBus, final PhoneNumberPresenter.MyView pview,
-      final MyProxy pproxy, final PhoneNumberRemoteServiceAsync pservice, //
-      final PhoneNumberConstants pconstants) {
+      final MyProxy pproxy, final PhoneNumberConstants pconstants, final RestDispatch pdispatcher,
+      final PhoneNumberRestService pphoneNumberService) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-    this.service = pservice;
+    this.constants = pconstants;
+    this.dispatcher = pdispatcher;
+    this.phoneNumberService = pphoneNumberService;
     this.phoneNumberData = new PhoneNumberData();
     this.phoneNumberData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -129,29 +132,32 @@ public class PhoneNumberPresenter
    * try to send data.
    */
   public final void tryToSend() {
-    this.service.sendPhoneNumber(this.phoneNumberData, new AsyncCallback<PhoneNumberData>() {
-      @Override
-      public void onFailure(final Throwable pcaught) {
-        try {
-          throw pcaught;
-        } catch (final ValidationException e) {
-          PhoneNumberPresenter.this.getView().setConstraintViolations(
-              e.getValidationErrorSet(PhoneNumberPresenter.this.phoneNumberData));
-        } catch (final Throwable e) {
-          final PhoneNumberConstants constants = GWT.create(PhoneNumberConstants.class);
-          PhoneNumberPresenter.this.getView().showMessage(constants.messagePhoneNumberError());
-        }
-      }
+    this.dispatcher.execute(this.phoneNumberService.checkPhoneNumber(this.phoneNumberData),
+        new AsyncCallback<ValidationResultData>() {
 
-      @Override
-      public void onSuccess(final PhoneNumberData presult) {
-        final PhoneNumberConstants constants = GWT.create(PhoneNumberConstants.class);
-        if (presult == null) {
-          PhoneNumberPresenter.this.getView().showMessage(constants.messagePhoneNumberError());
-        } else {
-          PhoneNumberPresenter.this.getView().showMessage(constants.messagePhoneNumberOk());
-        }
-      }
-    });
+          @Override
+          public void onFailure(final Throwable pcaught) {
+            PhoneNumberPresenter.this.getView()
+                .showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberError());
+          }
+
+          @Override
+          public void onSuccess(final ValidationResultData presult) {
+            if (presult == null || presult.getValidationErrorSet() == null
+                || presult.getValidationErrorSet().isEmpty()) {
+              PhoneNumberPresenter.this.getView()
+                  .showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberOk());
+            } else {
+              final ArrayList<ConstraintViolation<?>> violations =
+                  new ArrayList<ConstraintViolation<?>>(presult.getValidationErrorSet().size());
+              for (final ValidationDto violation : presult.getValidationErrorSet()) {
+                violations.add(new ConstraintViolationImpl<PhoneNumberData>(null,
+                    violation.getMessage(), null, PhoneNumberPresenter.this.phoneNumberData, null,
+                    null, PathImpl.createPathFromString(violation.getPropertyPath()), null, null));
+              }
+              PhoneNumberPresenter.this.getView().setConstraintViolations(violations);
+            }
+          }
+        });
   }
 }

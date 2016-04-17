@@ -13,29 +13,20 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
+package de.knightsoftnet.validationexample.client.services;
 
+import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.google.gwt.user.client.rpc.XsrfProtectedService;
-import com.google.gwt.user.server.rpc.NoXsrfProtect;
+import com.gwtplatform.dispatch.rest.shared.RestAction;
 
-/**
- * Definition of the sepa remote services.
- *
- * @author Manfred Tremmel
- */
-@RemoteServiceRelativePath("phonenumber")
-public interface PhoneNumberRemoteService extends XsrfProtectedService {
-  /**
-   * send phone number data.
-   *
-   * @param pphoneNumberData phone number data
-   * @return PhoneNumberData
-   * @throws ValidationException if login data are not valid
-   */
-  @NoXsrfProtect
-  PhoneNumberData sendPhoneNumber(PhoneNumberData pphoneNumberData) throws ValidationException;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
+@Path(ResourcePaths.PHONE_NUMBER)
+public interface PhoneNumberRestService {
+
+  @POST
+  RestAction<ValidationResultData> checkPhoneNumber(final PhoneNumberData pphoneNumberData);
 }

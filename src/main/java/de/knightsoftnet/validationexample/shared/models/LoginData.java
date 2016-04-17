@@ -23,8 +23,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.Size;
 
 /**
@@ -38,11 +36,7 @@ import javax.validation.constraints.Size;
     @LevenshteinDistance(field1 = "password", field2 = "newPassword", minDistance = 3,
         addErrorToField1 = false)})
 @MustBeEqual(field1 = "newPassword", field2 = "newPasswordRepeat")
-public class LoginData implements Serializable {
-  /**
-   * serial version uid.
-   */
-  private static final long serialVersionUID = 2236467502763473417L;
+public class LoginData {
 
   /**
    * maximum length of the user and password field.

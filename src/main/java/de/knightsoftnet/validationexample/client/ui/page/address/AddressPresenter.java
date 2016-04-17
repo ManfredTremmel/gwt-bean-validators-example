@@ -16,24 +16,28 @@
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.sepa.SepaConstants;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
-import de.knightsoftnet.validators.shared.exceptions.ValidationException;
+import de.knightsoftnet.validationexample.shared.models.ValidationDto;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+
+import org.hibernate.validator.engine.ConstraintViolationImpl;
+import org.hibernate.validator.engine.PathImpl;
 
 import java.util.ArrayList;
 
@@ -89,24 +93,23 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
   public interface MyProxy extends ProxyPlace<AddressPresenter> {
   }
 
+  private final AddressConstants constants;
   private final PostalAddressData addressData;
-  private final AddressRemoteServiceAsync service;
+
+  private final RestDispatch dispatcher;
+  private final PostalAddressRestService postalAddressService;
 
   /**
    * constructor injecting parameters.
-   *
-   * @param peventBus event bus
-   * @param pview view of the page
-   * @param pproxy proxy to handle page
-   * @param pservice remote service to contact the server
-   * @param pconstants localization constants
    */
   @Inject
   public AddressPresenter(final EventBus peventBus, final AddressPresenter.MyView pview,
-      final MyProxy pproxy, final AddressRemoteServiceAsync pservice, //
-      final SepaConstants pconstants) {
+      final MyProxy pproxy, final AddressConstants pconstants, final RestDispatch pdispatcher,
+      final PostalAddressRestService ppostalAddressService) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
-    this.service = pservice;
+    this.dispatcher = pdispatcher;
+    this.postalAddressService = ppostalAddressService;
+    this.constants = pconstants;
     this.addressData = new PostalAddressData();
     this.addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -128,29 +131,32 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
    * try to send data.
    */
   public final void tryToSend() {
-    this.service.sendPostalAddress(this.addressData, new AsyncCallback<PostalAddressData>() {
-      @Override
-      public void onFailure(final Throwable pcaught) {
-        try {
-          throw pcaught;
-        } catch (final ValidationException e) {
-          AddressPresenter.this.getView()
-              .setConstraintViolations(e.getValidationErrorSet(AddressPresenter.this.addressData));
-        } catch (final Throwable e) {
-          final AddressConstants constants = GWT.create(AddressConstants.class);
-          AddressPresenter.this.getView().showMessage(constants.messageAddressDataError());
-        }
-      }
+    this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
+        new AsyncCallback<ValidationResultData>() {
 
-      @Override
-      public void onSuccess(final PostalAddressData presult) {
-        final AddressConstants constants = GWT.create(AddressConstants.class);
-        if (presult == null) {
-          AddressPresenter.this.getView().showMessage(constants.messageAddressDataError());
-        } else {
-          AddressPresenter.this.getView().showMessage(constants.messageAddressDataOk());
-        }
-      }
-    });
+          @Override
+          public void onFailure(final Throwable pcaught) {
+            AddressPresenter.this.getView()
+                .showMessage(AddressPresenter.this.constants.messageAddressDataError());
+          }
+
+          @Override
+          public void onSuccess(final ValidationResultData presult) {
+            if (presult == null || presult.getValidationErrorSet() == null
+                || presult.getValidationErrorSet().isEmpty()) {
+              AddressPresenter.this.getView()
+                  .showMessage(AddressPresenter.this.constants.messageAddressDataOk());
+            } else {
+              final ArrayList<ConstraintViolation<?>> violations =
+                  new ArrayList<ConstraintViolation<?>>(presult.getValidationErrorSet().size());
+              for (final ValidationDto violation : presult.getValidationErrorSet()) {
+                violations.add(new ConstraintViolationImpl<PostalAddressData>(null,
+                    violation.getMessage(), null, AddressPresenter.this.addressData, null, null,
+                    PathImpl.createPathFromString(violation.getPropertyPath()), null, null));
+              }
+              AddressPresenter.this.getView().setConstraintViolations(violations);
+            }
+          }
+        });
   }
 }

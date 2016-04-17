@@ -15,20 +15,21 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.navigation.shared.models.MinimumUser;
+import de.knightsoftnet.navigation.shared.models.User;
 
-import java.io.Serializable;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * The <code>UserData</code> class implements contains the data of a user.
  *
  * @author Manfred Tremmel
  */
-public class UserData extends MinimumUser implements Serializable {
+public class UserData implements User {
+
   /**
-   * serial version uid.
+   * login name of the user.
    */
-  private static final long serialVersionUID = 5156545253407272917L;
+  private String userName;
 
   /**
    * password of the user.
@@ -63,7 +64,7 @@ public class UserData extends MinimumUser implements Serializable {
    * @param puserName user to set
    */
   public UserData(final String puserName) {
-    super(puserName);
+    this(puserName, null, null, null, null);
   }
 
   /**
@@ -77,11 +78,27 @@ public class UserData extends MinimumUser implements Serializable {
    */
   public UserData(final String puserName, final String ppassword, final String pfirstName,
       final String plastName, final GenderEnum pgender) {
-    super(puserName);
+    super();
+    this.userName = puserName;
     this.password = ppassword;
     this.firstName = pfirstName;
     this.lastName = plastName;
     this.gender = pgender;
+  }
+
+  @Override
+  public final String getUserName() {
+    return this.userName;
+  }
+
+  @Override
+  public final void setUserName(final String puserName) {
+    this.userName = puserName;
+  }
+
+  @Override
+  public boolean isLoggedIn() {
+    return StringUtils.isNotEmpty(this.userName);
   }
 
   public String getPassword() {
@@ -114,5 +131,28 @@ public class UserData extends MinimumUser implements Serializable {
 
   public final void setGender(final GenderEnum pgender) {
     this.gender = pgender;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + (this.userName == null ? 0 : this.userName.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (this.getClass() != obj.getClass()) {
+      return false;
+    }
+    final UserData other = (UserData) obj;
+    return StringUtils.equals(this.userName, other.getUserName());
   }
 }
