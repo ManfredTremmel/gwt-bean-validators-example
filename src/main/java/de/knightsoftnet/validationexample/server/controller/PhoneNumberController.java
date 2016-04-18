@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,8 @@ public class PhoneNumberController {
 
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  ResponseEntity<ValidationResultData> checkPhoneNumber(final PhoneNumberData pphoneNumberData) {
+  ResponseEntity<ValidationResultData> checkPhoneNumber(
+      @RequestBody final PhoneNumberData pphoneNumberData) {
     final ValidationResultData validationResult = new ValidationResultData();
     final Set<ConstraintViolation<PhoneNumberData>> cv1 = this.validator.validate(pphoneNumberData);
 

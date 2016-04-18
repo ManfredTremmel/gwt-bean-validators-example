@@ -5,10 +5,12 @@ import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validationexample.shared.models.ValidationDto;
 import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +26,18 @@ import javax.validation.Validator;
 @RequestMapping(value = ResourcePaths.POSTAL_ADDRESS, produces = MediaType.APPLICATION_JSON_VALUE)
 public class PostalAddressController {
 
+  private static final Logger LOG = Logger.getLogger(PostalAddressController.class);
+
   @Autowired
   private Validator validator;
 
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
   ResponseEntity<ValidationResultData> checkPostalAddress(
-      final PostalAddressData ppostalAddressData) {
+      @RequestBody final PostalAddressData ppostalAddressData) {
+
+    LOG.info(ppostalAddressData);
+
     final ValidationResultData validationResult = new ValidationResultData();
     final Set<ConstraintViolation<PostalAddressData>> cv1 =
         this.validator.validate(ppostalAddressData);

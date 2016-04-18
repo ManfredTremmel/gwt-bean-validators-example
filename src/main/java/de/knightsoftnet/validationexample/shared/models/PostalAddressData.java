@@ -184,4 +184,13 @@ public class PostalAddressData {
   public void setCountryCode(final CountryEnum pcountryCode) {
     this.countryCode = pcountryCode;
   }
+
+  @Override
+  public String toString() {
+    return "PostalAddressData [postOfficeBox=" + this.postOfficeBox + ", street=" + this.street
+        + ", streetNumber=" + this.streetNumber + ", streetNumberAdditional="
+        + this.streetNumberAdditional + ", extended=" + this.extended + ", postalCode="
+        + this.postalCode + ", locality=" + this.locality + ", region=" + this.region
+        + ", countryCode=" + this.countryCode + "]";
+  }
 }
