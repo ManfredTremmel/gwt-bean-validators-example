@@ -46,9 +46,9 @@
 		<gwt.version>2.7.0</gwt.version>
 		<gwtp.version>1.5.3</gwtp.version>
 		<validation-api.version>1.0.0.GA</validation-api.version>
-		<hibernate-validator-source.version>4.1.0.Final</hibernate-validator-source.version>
+		<hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
 <!-- 		<validation-api.version>1.1.0.Final</validation-api.version> -->
-<!-- 		<hibernate-validator-source.version>5.2.4.Final</hibernate-validator-source.version> -->
+<!-- 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version> -->
 		<gwt-pushstate.version>2.0.0.3</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
 		<gwt-mt-widgets.version>0.9.12</gwt-mt-widgets.version>
@@ -65,7 +65,7 @@
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 		<maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
 
-		<webappDirectory>${project.build.directory}/gwtBeanValidatorsExample</webappDirectory>
+		<!-- <webappDirectory>${project.build.directory}/gwtBeanValidatorsExample</webappDirectory> -->
 		<staticResourcesDirectory>${project.build.outputDirectory}/static</staticResourcesDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
@@ -93,12 +93,12 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate-validator-source.version}</version>
+			<version>${hibernate-validator.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate-validator-source.version}</version>
+			<version>${hibernate-validator.version}</version>
 			<classifier>sources</classifier>
 			<scope>compile</scope>
 		</dependency>
@@ -214,29 +214,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
 	<build>
-		<!-- Generate compiled stuff in the folder used for developing mode -->
-		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+		<!-- Generate compiled stuff in the folder used for developing mode
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory> -->
 
 		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
 
 			<!-- GWT Maven Plugin -->
 			<plugin>
@@ -249,7 +239,6 @@
 							<goal>resources</goal>
 							<goal>compile</goal>
 							<goal>test</goal>
-							<goal>generateAsync</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -275,17 +264,27 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>compile</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>exploded</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>exploded</goal>
+						</goals>
+					</execution>
+				</executions>
 				<configuration>
-					<webappDirectory>${webappDirectory}</webappDirectory>
+					<!-- <webappDirectory>${project.build.outputDirectory}</webappDirectory> -->
 					<warSourceExcludes>**/Version.properties</warSourceExcludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 
