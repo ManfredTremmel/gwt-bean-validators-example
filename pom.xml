@@ -260,7 +260,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- Copy static web files before executing gwt:run -->
+			<!-- Copy static web files before executing gwt:run
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -273,10 +273,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<!-- <webappDirectory>${project.build.outputDirectory}</webappDirectory> -->
+					<webappDirectory>${project.build.outputDirectory}</webappDirectory>
 					<warSourceExcludes>**/Version.properties</warSourceExcludes>
 				</configuration>
-			</plugin>
+			</plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -292,6 +292,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<addResources>false</addResources>
+				</configuration>
 			</plugin>
 
 			<plugin>
@@ -326,6 +329,16 @@
 				<version>${findbugs-maven-plugin.version}</version>
 				<configuration>
 					<excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<delimiters>
+						<delimiter>@</delimiter>
+					</delimiters>
+					<useDefaultDelimiters>false</useDefaultDelimiters>
 				</configuration>
 			</plugin>
 			<!-- must be disabled, dosn't work with try-with-resource at the moment 
