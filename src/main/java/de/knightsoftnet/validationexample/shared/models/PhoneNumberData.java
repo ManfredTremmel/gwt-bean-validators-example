@@ -52,4 +52,10 @@ public class PhoneNumberData {
   public final void setPhoneNumber(final String pphoneNumber) {
     this.phoneNumber = pphoneNumber;
   }
+
+  @Override
+  public String toString() {
+    return "PhoneNumberData [countryCode=" + this.countryCode + ", phoneNumber=" + this.phoneNumber
+        + "]";
+  }
 }

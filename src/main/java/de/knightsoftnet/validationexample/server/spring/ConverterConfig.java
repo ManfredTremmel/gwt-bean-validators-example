@@ -13,29 +13,23 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.server.security;
+package de.knightsoftnet.validationexample.server.spring;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.stereotype.Component;
+import de.knightsoftnet.validationexample.converter.custom.BindingResult2ValidationResultDataConverter;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * http logout success handler for gwt applications. based on the work of
- * https://github.com/imrabti/gwtp-spring-security
+ * configuration for converter.
  *
  * @author Manfred Tremmel
  */
-@Component
-public class HttpLogoutSuccessHandler implements LogoutSuccessHandler {
-  @Override
-  public void onLogoutSuccess(final HttpServletRequest prequest,
-      final HttpServletResponse presponse, final Authentication pauthentication)
-      throws IOException {
-    presponse.setStatus(HttpServletResponse.SC_OK);
+@Configuration
+public class ConverterConfig {
+
+  @Bean
+  public BindingResult2ValidationResultDataConverter bindingResult2ValidationResultDataConverter() {
+    return new BindingResult2ValidationResultDataConverter();
   }
 }

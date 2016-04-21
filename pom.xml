@@ -51,8 +51,8 @@
 <!-- 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version> -->
 		<gwt-pushstate.version>2.0.0.3</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
-		<gwt-mt-widgets.version>0.9.12</gwt-mt-widgets.version>
-		<gwtp-dynamic-navigation.version>0.9.6</gwtp-dynamic-navigation.version>
+		<gwt-mt-widgets.version>0.9.13</gwt-mt-widgets.version>
+		<gwtp-dynamic-navigation.version>0.9.7</gwtp-dynamic-navigation.version>
 		<gwt-commons-lang3.version>3.4-1</gwt-commons-lang3.version>
 		<gwt-commons-validator.version>1.5.0-1</gwt-commons-validator.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>

@@ -94,4 +94,10 @@ public class SepaData implements Serializable {
   public void setBic(final String pbic) {
     this.bic = pbic;
   }
+
+  @Override
+  public String toString() {
+    return "SepaData [bankName=" + this.bankName + ", accountOwner=" + this.accountOwner
+        + ", countryCode=" + this.countryCode + ", iban=" + this.iban + ", bic=" + this.bic + "]";
+  }
 }

@@ -1,10 +1,25 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more contributor license
+ * agreements. See the NOTICE file distributed with this work for additional information regarding
+ * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the License. You may obtain a
+ * copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package de.knightsoftnet.validationexample.server.spring;
 
 import de.knightsoftnet.validationexample.server.security.AuthFailureHandler;
 import de.knightsoftnet.validationexample.server.security.AuthSuccessHandler;
 import de.knightsoftnet.validationexample.server.security.HttpAuthenticationEntryPoint;
 import de.knightsoftnet.validationexample.server.security.HttpLogoutSuccessHandler;
-import de.knightsoftnet.validationexample.server.security.NuvolaUserDetailsService;
+import de.knightsoftnet.validationexample.server.security.UserDetailsServiceImpl;
 import de.knightsoftnet.validationexample.shared.Parameters;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
 
@@ -24,6 +39,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * configuration for spring security.
+ *
+ * @author Manfred Tremmel
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -32,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private static final String LOGIN_PATH = ResourcePaths.User.ROOT + ResourcePaths.User.LOGIN;
 
   @Autowired
-  private NuvolaUserDetailsService userDetailsService;
+  private UserDetailsServiceImpl userDetailsService;
   @Autowired
   private HttpAuthenticationEntryPoint authenticationEntryPoint;
   @Autowired
@@ -97,7 +117,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(ResourcePaths.PHONE_NUMBER).permitAll() //
         .antMatchers(ResourcePaths.POSTAL_ADDRESS).permitAll() //
         .antMatchers(ResourcePaths.SEPA).permitAll() //
-        .antMatchers(ResourcePaths.User.ROOT).permitAll() //
         .anyRequest().authenticated() //
         .and().authenticationProvider(this.authenticationProvider()) //
         .exceptionHandling() //
