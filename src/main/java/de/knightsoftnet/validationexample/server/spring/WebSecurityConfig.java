@@ -22,6 +22,7 @@ import de.knightsoftnet.validationexample.server.security.HttpLogoutSuccessHandl
 import de.knightsoftnet.validationexample.server.security.UserDetailsServiceImpl;
 import de.knightsoftnet.validationexample.shared.Parameters;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.ResourcePaths.PhoneNumber;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -114,6 +115,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/validationexample/gwtBeanValidatorsExample/**").permitAll() //
         .antMatchers("/validationexample/favicon.ico").permitAll() //
         .antMatchers("/validationexample/index.html").permitAll() //
+        .antMatchers(PhoneNumber.ROOT + "/**").permitAll() //
         .antMatchers(ResourcePaths.PHONE_NUMBER).permitAll() //
         .antMatchers(ResourcePaths.POSTAL_ADDRESS).permitAll() //
         .antMatchers(ResourcePaths.SEPA).permitAll() //

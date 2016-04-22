@@ -16,11 +16,11 @@
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.validationexample.client.converter.ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.client.services.PhoneNumberRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validationexample.shared.models.ValidationDto;
 import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import com.google.gwt.core.client.Scheduler;
@@ -35,9 +35,6 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
-
-import org.hibernate.validator.engine.ConstraintViolationImpl;
-import org.hibernate.validator.engine.PathImpl;
 
 import java.util.ArrayList;
 
@@ -100,6 +97,8 @@ public class PhoneNumberPresenter
   private final RestDispatch dispatcher;
   private final PhoneNumberRestService phoneNumberService;
 
+  private final ValidationResultDataConverter<PhoneNumberData> validationConverter;
+
   /**
    * constructor injecting parameters.
    */
@@ -111,6 +110,7 @@ public class PhoneNumberPresenter
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.phoneNumberService = pphoneNumberService;
+    this.validationConverter = new ValidationResultDataConverter<>();
     this.phoneNumberData = new PhoneNumberData();
     this.phoneNumberData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -148,14 +148,9 @@ public class PhoneNumberPresenter
               PhoneNumberPresenter.this.getView()
                   .showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberOk());
             } else {
-              final ArrayList<ConstraintViolation<?>> violations =
-                  new ArrayList<ConstraintViolation<?>>(presult.getValidationErrorSet().size());
-              for (final ValidationDto violation : presult.getValidationErrorSet()) {
-                violations.add(new ConstraintViolationImpl<PhoneNumberData>(null,
-                    violation.getMessage(), null, PhoneNumberPresenter.this.phoneNumberData, null,
-                    null, PathImpl.createPathFromString(violation.getPropertyPath()), null, null));
-              }
-              PhoneNumberPresenter.this.getView().setConstraintViolations(violations);
+              PhoneNumberPresenter.this.getView()
+                  .setConstraintViolations(PhoneNumberPresenter.this.validationConverter
+                      .convert(presult, PhoneNumberPresenter.this.phoneNumberData));
             }
           }
         });

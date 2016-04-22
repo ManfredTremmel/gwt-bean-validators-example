@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
-import de.knightsoftnet.validationexample.converter.custom.BindingResult2ValidationResultDataConverter;
+import de.knightsoftnet.validationexample.server.converter.custom.BindingResult2ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validationexample.shared.models.ValidationResultData;

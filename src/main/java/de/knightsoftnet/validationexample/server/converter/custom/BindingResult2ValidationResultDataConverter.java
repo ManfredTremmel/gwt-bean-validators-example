@@ -13,7 +13,7 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.converter.custom;
+package de.knightsoftnet.validationexample.server.converter.custom;
 
 import de.knightsoftnet.validationexample.shared.models.ValidationDto;
 import de.knightsoftnet.validationexample.shared.models.ValidationResultData;

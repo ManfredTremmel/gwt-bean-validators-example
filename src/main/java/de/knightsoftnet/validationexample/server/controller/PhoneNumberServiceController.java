@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
+import de.knightsoftnet.validationexample.shared.ResourcePaths.PhoneNumber;
 import de.knightsoftnet.validators.shared.data.PhoneNumberData;
 import de.knightsoftnet.validators.shared.data.PhoneNumberDataWithFormats;
 import de.knightsoftnet.validators.shared.data.ValueWithPos;
@@ -43,7 +44,7 @@ import javax.annotation.security.PermitAll;
  * @author Manfred Tremmel
  */
 @RestController
-@RequestMapping("gwtBeanValidatorsExample/api/phonenumber")
+@RequestMapping(PhoneNumber.ROOT)
 public class PhoneNumberServiceController {
 
   /**
@@ -51,7 +52,7 @@ public class PhoneNumberServiceController {
    */
   private final PhoneNumberUtil phoneNumberUtil = new PhoneNumberUtil();
 
-  @RequestMapping(value = "/parsePhoneNumber", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.PARSE_PHONE_NUMBER, method = RequestMethod.GET)
   @PermitAll
   public PhoneNumberData parsePhoneNumber(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -61,7 +62,7 @@ public class PhoneNumberServiceController {
         LocaleUtil.convertLanguageToLocale(planguage));
   }
 
-  @RequestMapping(value = "/parsewithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.PARSE_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -78,7 +79,7 @@ public class PhoneNumberServiceController {
    * @param pphoneNumber phone number to format
    * @return PhoneNumberDataWithFormats
    */
-  @RequestMapping(value = "/parseandformat", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.PARSE_AND_FORMAT, method = RequestMethod.GET)
   @PermitAll
   public PhoneNumberDataWithFormats parseAndFormatPhoneNumber(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -98,7 +99,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formate123", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_E123, method = RequestMethod.GET)
   @PermitAll
   public String formatE123(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -107,7 +108,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatE123(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formate123withpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_E123_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -117,7 +118,7 @@ public class PhoneNumberServiceController {
         pphoneNumber, pphoneNumber.getCountry()), pphoneNumber);
   }
 
-  @RequestMapping(value = "/formate123international", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_E123_INTERNATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatE123International(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -126,7 +127,8 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatE123International(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formate123internationalwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_E123_INTERNATIONAL_WITH_POS,
+      method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -136,7 +138,7 @@ public class PhoneNumberServiceController {
         pphoneNumber, pphoneNumber.getCountry()), pphoneNumber);
   }
 
-  @RequestMapping(value = "/formate123national", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_E123_NATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatE123National(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -145,7 +147,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatE123National(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formate123nationalwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_E123_NATIONAL_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -156,7 +158,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formatdin5008", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_DIN5008, method = RequestMethod.GET)
   @PermitAll
   public String formatDin5008(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -165,7 +167,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatDin5008(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatdin5008withpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -175,7 +177,7 @@ public class PhoneNumberServiceController {
         pphoneNumber, pphoneNumber.getCountry()), pphoneNumber);
   }
 
-  @RequestMapping(value = "/formatdin5008international", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_INTERNATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatDin5008International(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -184,7 +186,8 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatDin5008International(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatdin5008internationalwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_INTERNATIONAL_WITH_POS,
+      method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -194,7 +197,7 @@ public class PhoneNumberServiceController {
         pphoneNumber, pphoneNumber.getCountry()), pphoneNumber);
   }
 
-  @RequestMapping(value = "/formatdin5008national", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_NATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatDin5008National(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -203,7 +206,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatDin5008National(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatdin5008nationalwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_NATIONAL_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -214,7 +217,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formatrfc3966", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_RFC3966, method = RequestMethod.GET)
   @PermitAll
   public String formatRfc3966(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -223,7 +226,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatRfc3966(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatrfc3966withpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_RFC3966_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -234,7 +237,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formatms", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_MS, method = RequestMethod.GET)
   @PermitAll
   public String formatMs(@RequestParam(value = "language", required = true) final String planguage,
       @RequestParam(value = "country", required = true) final String pcountry,
@@ -242,7 +245,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatMs(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatmswithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_MS_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -253,7 +256,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formaturl", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_URL, method = RequestMethod.GET)
   @PermitAll
   public String formatUrl(@RequestParam(value = "language", required = true) final String planguage,
       @RequestParam(value = "country", required = true) final String pcountry,
@@ -261,7 +264,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatUrl(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formaturlwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_URL_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -272,7 +275,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formatcommon", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_COMMON, method = RequestMethod.GET)
   @PermitAll
   public String formatCommon(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -281,7 +284,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatCommon(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatcommonwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_COMMON_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -292,7 +295,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/formatcommoninternational", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_COMMON_INTERNATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatCommonInternational(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -301,7 +304,8 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatCommonInternational(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatcommoninternationalwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_COMMON_INTERNATIONAL_WITH_POS,
+      method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -311,7 +315,7 @@ public class PhoneNumberServiceController {
         pphoneNumber, pphoneNumber.getCountry()), pphoneNumber);
   }
 
-  @RequestMapping(value = "/formatcommonnational", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.FORMAT_COMMON_NATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatCommonNational(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -320,7 +324,7 @@ public class PhoneNumberServiceController {
     return this.phoneNumberUtil.formatCommonNational(pphoneNumber, pcountry);
   }
 
-  @RequestMapping(value = "/formatcommonnationalwithpos", method = RequestMethod.PUT)
+  @RequestMapping(value = PhoneNumber.FORMAT_COMMON_NATIONAL_WITH_POS, method = RequestMethod.PUT)
   @ResponseStatus(HttpStatus.OK)
   @PermitAll
   @ResponseBody
@@ -343,7 +347,7 @@ public class PhoneNumberServiceController {
   }
 
 
-  @RequestMapping(value = "/getsuggestions", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.GET_SUGGESTIONS, method = RequestMethod.GET)
   @PermitAll
   public List<PhoneNumberData> getSuggestions(
       @RequestParam(value = "language", required = true) final String planguage,
@@ -366,7 +370,7 @@ public class PhoneNumberServiceController {
    * @param pcommon set to true if common format is allowed
    * @return true if number is valid
    */
-  @RequestMapping(value = "/validate", method = RequestMethod.GET)
+  @RequestMapping(value = PhoneNumber.VALIDATE, method = RequestMethod.GET)
   @PermitAll
   public Boolean validate(@RequestParam(value = "country", required = true) final String pcountry,
       @RequestParam(value = "phonenumber", required = true) final String pphoneNumber,

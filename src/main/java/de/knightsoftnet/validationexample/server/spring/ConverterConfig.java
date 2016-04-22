@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.spring;
 
-import de.knightsoftnet.validationexample.converter.custom.BindingResult2ValidationResultDataConverter;
+import de.knightsoftnet.validationexample.server.converter.custom.BindingResult2ValidationResultDataConverter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

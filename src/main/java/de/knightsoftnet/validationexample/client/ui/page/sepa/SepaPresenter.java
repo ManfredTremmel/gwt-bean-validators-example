@@ -16,11 +16,11 @@
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.validationexample.client.converter.ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.client.services.SepaRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
-import de.knightsoftnet.validationexample.shared.models.ValidationDto;
 import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import com.google.gwt.core.client.Scheduler;
@@ -35,9 +35,6 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
-
-import org.hibernate.validator.engine.ConstraintViolationImpl;
-import org.hibernate.validator.engine.PathImpl;
 
 import java.util.ArrayList;
 
@@ -99,6 +96,8 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
   private final RestDispatch dispatcher;
   private final SepaRestService sepaService;
 
+  private final ValidationResultDataConverter<SepaData> validationConverter;
+
   /**
    * constructor injecting parameters.
    */
@@ -110,6 +109,7 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.sepaService = psepaService;
+    this.validationConverter = new ValidationResultDataConverter<>();
     this.sepaData = new SepaData();
     this.sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -147,14 +147,9 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
               SepaPresenter.this.getView()
                   .showMessage(SepaPresenter.this.constants.messageSepaOk());
             } else {
-              final ArrayList<ConstraintViolation<?>> violations =
-                  new ArrayList<ConstraintViolation<?>>(presult.getValidationErrorSet().size());
-              for (final ValidationDto violation : presult.getValidationErrorSet()) {
-                violations.add(new ConstraintViolationImpl<SepaData>(null, violation.getMessage(),
-                    null, SepaPresenter.this.sepaData, null, null,
-                    PathImpl.createPathFromString(violation.getPropertyPath()), null, null));
-              }
-              SepaPresenter.this.getView().setConstraintViolations(violations);
+              SepaPresenter.this.getView()
+                  .setConstraintViolations(SepaPresenter.this.validationConverter.convert(presult,
+                      SepaPresenter.this.sepaData));
             }
           }
         });
