@@ -16,9 +16,11 @@
 package de.knightsoftnet.validationexample.shared;
 
 public class ResourcePaths {
+  public static final String BASE_DIR = "/validationexample";
+
   public static final String API_BASE_DIR = "/api/rest";
 
-  public static final String PHONE_NUMBER = API_BASE_DIR + "/phonen";
+  public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
   public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
   public static final String SEPA = API_BASE_DIR + "/sepa";
 

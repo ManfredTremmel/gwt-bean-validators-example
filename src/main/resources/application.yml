@@ -2,3 +2,5 @@ application:
   name: gwt-bean-validators-example
   name-formated: GWT Bean Validators - Example
   version: @project.version@
+server:
+  contextPath: /validationexample

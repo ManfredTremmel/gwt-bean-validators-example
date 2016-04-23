@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
+import de.knightsoftnet.validationexample.shared.Parameters;
 import de.knightsoftnet.validationexample.shared.ResourcePaths.PhoneNumber;
 import de.knightsoftnet.validators.shared.data.PhoneNumberData;
 import de.knightsoftnet.validators.shared.data.PhoneNumberDataWithFormats;
@@ -55,9 +56,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.PARSE_PHONE_NUMBER, method = RequestMethod.GET)
   @PermitAll
   public PhoneNumberData parsePhoneNumber(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.parsePhoneNumber(pphoneNumber, pcountry,
         LocaleUtil.convertLanguageToLocale(planguage));
   }
@@ -82,9 +83,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.PARSE_AND_FORMAT, method = RequestMethod.GET)
   @PermitAll
   public PhoneNumberDataWithFormats parseAndFormatPhoneNumber(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     final PhoneNumberDataWithFormats result = new PhoneNumberDataWithFormats(this.phoneNumberUtil
         .parsePhoneNumber(pphoneNumber, pcountry, LocaleUtil.convertLanguageToLocale(planguage)));
     result.setCommonInternational(this.phoneNumberUtil.formatCommonInternational(result));
@@ -102,9 +103,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_E123, method = RequestMethod.GET)
   @PermitAll
   public String formatE123(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatE123(pphoneNumber, pcountry);
   }
 
@@ -121,9 +122,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_E123_INTERNATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatE123International(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatE123International(pphoneNumber, pcountry);
   }
 
@@ -141,9 +142,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_E123_NATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatE123National(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatE123National(pphoneNumber, pcountry);
   }
 
@@ -161,9 +162,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_DIN5008, method = RequestMethod.GET)
   @PermitAll
   public String formatDin5008(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatDin5008(pphoneNumber, pcountry);
   }
 
@@ -180,9 +181,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_INTERNATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatDin5008International(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatDin5008International(pphoneNumber, pcountry);
   }
 
@@ -200,9 +201,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_DIN5008_NATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatDin5008National(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatDin5008National(pphoneNumber, pcountry);
   }
 
@@ -220,9 +221,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_RFC3966, method = RequestMethod.GET)
   @PermitAll
   public String formatRfc3966(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatRfc3966(pphoneNumber, pcountry);
   }
 
@@ -239,9 +240,10 @@ public class PhoneNumberServiceController {
 
   @RequestMapping(value = PhoneNumber.FORMAT_MS, method = RequestMethod.GET)
   @PermitAll
-  public String formatMs(@RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+  public String formatMs(
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatMs(pphoneNumber, pcountry);
   }
 
@@ -258,9 +260,10 @@ public class PhoneNumberServiceController {
 
   @RequestMapping(value = PhoneNumber.FORMAT_URL, method = RequestMethod.GET)
   @PermitAll
-  public String formatUrl(@RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+  public String formatUrl(
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatUrl(pphoneNumber, pcountry);
   }
 
@@ -278,9 +281,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_COMMON, method = RequestMethod.GET)
   @PermitAll
   public String formatCommon(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatCommon(pphoneNumber, pcountry);
   }
 
@@ -298,9 +301,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_COMMON_INTERNATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatCommonInternational(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatCommonInternational(pphoneNumber, pcountry);
   }
 
@@ -318,9 +321,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.FORMAT_COMMON_NATIONAL, method = RequestMethod.GET)
   @PermitAll
   public String formatCommonNational(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber) {
     return this.phoneNumberUtil.formatCommonNational(pphoneNumber, pcountry);
   }
 
@@ -350,9 +353,9 @@ public class PhoneNumberServiceController {
   @RequestMapping(value = PhoneNumber.GET_SUGGESTIONS, method = RequestMethod.GET)
   @PermitAll
   public List<PhoneNumberData> getSuggestions(
-      @RequestParam(value = "language", required = true) final String planguage,
-      @RequestParam(value = "search", required = true) final String psearch,
-      @RequestParam(value = "limit", required = true) final int plimit) {
+      @RequestParam(value = Parameters.LANGUAGE, required = true) final String planguage,
+      @RequestParam(value = Parameters.SEARCH, required = true) final String psearch,
+      @RequestParam(value = Parameters.LIMIT, required = true) final int plimit) {
     return this.phoneNumberUtil.getSuggstions(psearch, plimit,
         LocaleUtil.convertLanguageToLocale(planguage));
   }
@@ -372,13 +375,14 @@ public class PhoneNumberServiceController {
    */
   @RequestMapping(value = PhoneNumber.VALIDATE, method = RequestMethod.GET)
   @PermitAll
-  public Boolean validate(@RequestParam(value = "country", required = true) final String pcountry,
-      @RequestParam(value = "phonenumber", required = true) final String pphoneNumber,
-      @RequestParam(value = "din5008", required = false) final Boolean pdin5008,
-      @RequestParam(value = "e123", required = false) final Boolean pe123,
-      @RequestParam(value = "uri", required = false) final Boolean puri,
-      @RequestParam(value = "ms", required = false) final Boolean pms,
-      @RequestParam(value = "common", required = false) final Boolean pcommon) {
+  public Boolean validate(
+      @RequestParam(value = Parameters.COUNTRY, required = true) final String pcountry,
+      @RequestParam(value = Parameters.PHONE_NUMBER, required = true) final String pphoneNumber,
+      @RequestParam(value = Parameters.DIN_5008, required = false) final Boolean pdin5008,
+      @RequestParam(value = Parameters.E123, required = false) final Boolean pe123,
+      @RequestParam(value = Parameters.URI, required = false) final Boolean puri,
+      @RequestParam(value = Parameters.MS, required = false) final Boolean pms,
+      @RequestParam(value = Parameters.COMMON, required = false) final Boolean pcommon) {
     final PhoneNumberData parsedNumber =
         this.phoneNumberUtil.parsePhoneNumber(pphoneNumber, pcountry);
     if (parsedNumber.isValid()) {

@@ -202,7 +202,6 @@
 			<groupId>org.tuckey</groupId>
 			<artifactId>urlrewritefilter</artifactId>
 			<version>${urlrewritefilter.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Spring boot dependencies -->

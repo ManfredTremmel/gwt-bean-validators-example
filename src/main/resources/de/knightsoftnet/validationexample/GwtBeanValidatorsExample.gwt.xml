@@ -43,8 +43,8 @@
   <!-- gwtp rest support -->
   <inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
 
-  <!-- html 5 push state support
-  <inherits name="com.wallissoftware.pushstate.PushState" /> -->
+  <!-- html 5 push state support -->
+  <inherits name="com.wallissoftware.pushstate.PushState" />
 
   <!-- German and English language with English as fallback       -->
   <extend-property name="locale" values="en" />
@@ -52,8 +52,8 @@
   <set-property name="locale" value="en,de" />
   <set-property-fallback name="locale" value="en" />
 
-  <!-- limit browsers for shorter compile time -->
-  <set-property name="user.agent" value="gecko1_8,safari"/>
+  <!-- limit browsers for shorter compile time
+  <set-property name="user.agent" value="gecko1_8,safari"/> -->
 
   <set-configuration-property name="locale.useragent" value="Y" />
   <set-configuration-property name="locale.cookie" value="LOCALE" />

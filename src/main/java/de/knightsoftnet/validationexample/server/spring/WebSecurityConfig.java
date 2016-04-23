@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.spring;
 
+import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.server.security.AuthFailureHandler;
 import de.knightsoftnet.validationexample.server.security.AuthSuccessHandler;
 import de.knightsoftnet.validationexample.server.security.HttpAuthenticationEntryPoint;
@@ -50,6 +51,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @ComponentScan(value = "de.knightsoftnet.**.security")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
   private static final String LOGIN_PATH = ResourcePaths.User.ROOT + ResourcePaths.User.LOGIN;
 
   @Autowired
@@ -108,17 +110,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(final HttpSecurity phttp) throws Exception { // NOPMD
     phttp.csrf().disable() //
         .authorizeRequests() //
-        .antMatchers("/").permitAll() //
-        .antMatchers("/gwtBeanValidatorsExample/**").permitAll() //
-        .antMatchers("/favicon.ico").permitAll() //
-        .antMatchers("/index.html").permitAll() //
-        .antMatchers("/validationexample/gwtBeanValidatorsExample/**").permitAll() //
-        .antMatchers("/validationexample/favicon.ico").permitAll() //
-        .antMatchers("/validationexample/index.html").permitAll() //
-        .antMatchers(PhoneNumber.ROOT + "/**").permitAll() //
-        .antMatchers(ResourcePaths.PHONE_NUMBER).permitAll() //
-        .antMatchers(ResourcePaths.POSTAL_ADDRESS).permitAll() //
-        .antMatchers(ResourcePaths.SEPA).permitAll() //
+        .antMatchers("/", //
+            "/index.html", //
+            "/favicon.ico", //
+            "/" + NameTokens.LOGIN, //
+            "/**/" + NameTokens.LOGIN, //
+            "/" + NameTokens.LOGOUT, //
+            "/" + NameTokens.SEPA, //
+            "/" + NameTokens.ADDRESS, //
+            "/" + NameTokens.PHONE_NUMBER, //
+            "/" + NameTokens.SECRET, //
+            "/" + NameTokens.SETTINGS, //
+            "/" + NameTokens.ABOUT, //
+            "/gwtBeanValidatorsExample/**") //
+        .permitAll() //
+        .antMatchers(PhoneNumber.ROOT + "/**", //
+            ResourcePaths.PHONE_NUMBER, //
+            ResourcePaths.POSTAL_ADDRESS, //
+            ResourcePaths.SEPA) //
+        .permitAll() //
         .anyRequest().authenticated() //
         .and().authenticationProvider(this.authenticationProvider()) //
         .exceptionHandling() //
