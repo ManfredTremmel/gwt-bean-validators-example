@@ -102,6 +102,16 @@ public class LoginData {
     this.newPasswordRepeat = pnewPasswordRepeat;
   }
 
+  /**
+   * clear all data.
+   */
+  public void clear() {
+    this.userName = null;
+    this.password = null;
+    this.newPassword = null;
+    this.newPasswordRepeat = null;
+  }
+
   @Override
   public final int hashCode() {
     return ObjectUtils.hashCode(this.userName);

@@ -121,6 +121,8 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
   @Override
   protected void onReveal() {
     super.onReveal();
+    this.loginData.clear();
+    this.getView().fillForm(this.loginData);
     Scheduler.get().scheduleDeferred(new ScheduledCommand() {
       @Override
       public void execute() {
@@ -136,15 +138,16 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
     this.dispatcher.execute(
         this.userService.login(this.loginData.getUserName(), this.loginData.getPassword()),
         new AsyncCallback<UserData>() {
-          @Override
-          public void onSuccess(final UserData presult) {
-            LoginPresenter.this.session.setUser(presult);
-          }
 
           @Override
           public void onFailure(final Throwable caught) {
             LoginPresenter.this.getView()
                 .showMessage(LoginPresenter.this.constants.messageLoginError());
+          }
+
+          @Override
+          public void onSuccess(final UserData presult) {
+            LoginPresenter.this.session.setUser(presult);
           }
         });
   }

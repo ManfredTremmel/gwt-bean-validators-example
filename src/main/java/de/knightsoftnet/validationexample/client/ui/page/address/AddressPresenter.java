@@ -16,30 +16,24 @@
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
-import de.knightsoftnet.validationexample.client.converter.ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
+import de.knightsoftnet.validationexample.client.ui.page.AsyncCallbackImpl;
+import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.editor.client.Editor;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
-import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * Presenter of the address, implementation.
@@ -49,39 +43,7 @@ import javax.validation.ConstraintViolation;
  */
 public class AddressPresenter extends Presenter<AddressPresenter.MyView, AddressPresenter.MyProxy> {
 
-  public interface MyView extends View, Editor<PostalAddressData> {
-    /**
-     * set a reference to the presenter/activity.
-     *
-     * @param ppresenter reference to set
-     */
-    void setPresenter(AddressPresenter ppresenter);
-
-    /**
-     * fill the form with data.
-     *
-     * @param psepData data to fill into the form
-     */
-    void fillForm(PostalAddressData psepData);
-
-    /**
-     * display a message on the screen.
-     *
-     * @param pmessage the message to display
-     */
-    void showMessage(String pmessage);
-
-    /**
-     * set focus on first widget.
-     */
-    void setFocusOnFirstWidget();
-
-    /**
-     * display validation errors.
-     *
-     * @param pvalidationErrorSet list of violations
-     */
-    void setConstraintViolations(ArrayList<ConstraintViolation<?>> pvalidationErrorSet);
+  public interface MyView extends EditorWithErrorHandling<AddressPresenter, PostalAddressData> {
   }
 
   @ProxyCodeSplit
@@ -96,8 +58,6 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
   private final RestDispatch dispatcher;
   private final PostalAddressRestService postalAddressService;
 
-  private final ValidationResultDataConverter<PostalAddressData> validationConverter;
-
   /**
    * constructor injecting parameters.
    */
@@ -109,7 +69,6 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
     this.dispatcher = pdispatcher;
     this.postalAddressService = ppostalAddressService;
     this.constants = pconstants;
-    this.validationConverter = new ValidationResultDataConverter<>();
     this.addressData = new PostalAddressData();
     this.addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -132,26 +91,8 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
-        new AsyncCallback<ValidationResultData>() {
-
-          @Override
-          public void onFailure(final Throwable pcaught) {
-            AddressPresenter.this.getView()
-                .showMessage(AddressPresenter.this.constants.messageAddressDataError());
-          }
-
-          @Override
-          public void onSuccess(final ValidationResultData presult) {
-            if (presult == null || presult.getValidationErrorSet() == null
-                || presult.getValidationErrorSet().isEmpty()) {
-              AddressPresenter.this.getView()
-                  .showMessage(AddressPresenter.this.constants.messageAddressDataOk());
-            } else {
-              AddressPresenter.this.getView()
-                  .setConstraintViolations(AddressPresenter.this.validationConverter
-                      .convert(presult, AddressPresenter.this.addressData));
-            }
-          }
-        });
+        new AsyncCallbackImpl<AddressPresenter, PostalAddressData, MyView>(this.getView(),
+            this.addressData, this.constants.messageAddressDataError(),
+            this.constants.messageAddressDataOk()));
   }
 }

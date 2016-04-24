@@ -16,30 +16,24 @@
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
-import de.knightsoftnet.validationexample.client.converter.ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.client.services.SepaRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
+import de.knightsoftnet.validationexample.client.ui.page.AsyncCallbackImpl;
+import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.editor.client.Editor;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
-import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * Presenter of the Sepa, implementation.
@@ -49,39 +43,7 @@ import javax.validation.ConstraintViolation;
  */
 public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter.MyProxy> {
 
-  public interface MyView extends View, Editor<SepaData> {
-    /**
-     * set a reference to the presenter/activity.
-     *
-     * @param ppresenter reference to set
-     */
-    void setPresenter(SepaPresenter ppresenter);
-
-    /**
-     * fill the form with data.
-     *
-     * @param psepData data to fill into the form
-     */
-    void fillForm(SepaData psepData);
-
-    /**
-     * display a message on the screen.
-     *
-     * @param pmessage the message to display
-     */
-    void showMessage(String pmessage);
-
-    /**
-     * set focus on first widget.
-     */
-    void setFocusOnFirstWidget();
-
-    /**
-     * display validation errors.
-     *
-     * @param pvalidationErrorSet list of violations
-     */
-    void setConstraintViolations(ArrayList<ConstraintViolation<?>> pvalidationErrorSet);
+  public interface MyView extends EditorWithErrorHandling<SepaPresenter, SepaData> {
   }
 
   @ProxyCodeSplit
@@ -96,8 +58,6 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
   private final RestDispatch dispatcher;
   private final SepaRestService sepaService;
 
-  private final ValidationResultDataConverter<SepaData> validationConverter;
-
   /**
    * constructor injecting parameters.
    */
@@ -109,7 +69,6 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.sepaService = psepaService;
-    this.validationConverter = new ValidationResultDataConverter<>();
     this.sepaData = new SepaData();
     this.sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -132,26 +91,7 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
-        new AsyncCallback<ValidationResultData>() {
-
-          @Override
-          public void onFailure(final Throwable pcaught) {
-            SepaPresenter.this.getView()
-                .showMessage(SepaPresenter.this.constants.messageSepaError());
-          }
-
-          @Override
-          public void onSuccess(final ValidationResultData presult) {
-            if (presult == null || presult.getValidationErrorSet() == null
-                || presult.getValidationErrorSet().isEmpty()) {
-              SepaPresenter.this.getView()
-                  .showMessage(SepaPresenter.this.constants.messageSepaOk());
-            } else {
-              SepaPresenter.this.getView()
-                  .setConstraintViolations(SepaPresenter.this.validationConverter.convert(presult,
-                      SepaPresenter.this.sepaData));
-            }
-          }
-        });
+        new AsyncCallbackImpl<SepaPresenter, SepaData, MyView>(this.getView(), this.sepaData,
+            this.constants.messageSepaError(), this.constants.messageSepaOk()));
   }
 }

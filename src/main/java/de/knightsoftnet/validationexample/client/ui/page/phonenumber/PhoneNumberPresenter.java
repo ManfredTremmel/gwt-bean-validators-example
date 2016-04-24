@@ -16,30 +16,24 @@
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
-import de.knightsoftnet.validationexample.client.converter.ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.client.services.PhoneNumberRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
+import de.knightsoftnet.validationexample.client.ui.page.AsyncCallbackImpl;
+import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.editor.client.Editor;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
-import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * Presenter of the Sepa, implementation.
@@ -50,39 +44,7 @@ import javax.validation.ConstraintViolation;
 public class PhoneNumberPresenter
     extends Presenter<PhoneNumberPresenter.MyView, PhoneNumberPresenter.MyProxy> {
 
-  public interface MyView extends View, Editor<PhoneNumberData> {
-    /**
-     * set a reference to the presenter/activity.
-     *
-     * @param ppresenter reference to set
-     */
-    void setPresenter(PhoneNumberPresenter ppresenter);
-
-    /**
-     * fill the form with data.
-     *
-     * @param pphoneNumberData data to fill into the form
-     */
-    void fillForm(PhoneNumberData pphoneNumberData);
-
-    /**
-     * display a message on the screen.
-     *
-     * @param pmessage the message to display
-     */
-    void showMessage(String pmessage);
-
-    /**
-     * set focus on first widget.
-     */
-    void setFocusOnFirstWidget();
-
-    /**
-     * display validation errors.
-     *
-     * @param pvalidationErrorSet list of violations
-     */
-    void setConstraintViolations(ArrayList<ConstraintViolation<?>> pvalidationErrorSet);
+  public interface MyView extends EditorWithErrorHandling<PhoneNumberPresenter, PhoneNumberData> {
   }
 
   @ProxyCodeSplit
@@ -97,8 +59,6 @@ public class PhoneNumberPresenter
   private final RestDispatch dispatcher;
   private final PhoneNumberRestService phoneNumberService;
 
-  private final ValidationResultDataConverter<PhoneNumberData> validationConverter;
-
   /**
    * constructor injecting parameters.
    */
@@ -110,7 +70,6 @@ public class PhoneNumberPresenter
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.phoneNumberService = pphoneNumberService;
-    this.validationConverter = new ValidationResultDataConverter<>();
     this.phoneNumberData = new PhoneNumberData();
     this.phoneNumberData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -133,26 +92,8 @@ public class PhoneNumberPresenter
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.phoneNumberService.checkPhoneNumber(this.phoneNumberData),
-        new AsyncCallback<ValidationResultData>() {
-
-          @Override
-          public void onFailure(final Throwable pcaught) {
-            PhoneNumberPresenter.this.getView()
-                .showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberError());
-          }
-
-          @Override
-          public void onSuccess(final ValidationResultData presult) {
-            if (presult == null || presult.getValidationErrorSet() == null
-                || presult.getValidationErrorSet().isEmpty()) {
-              PhoneNumberPresenter.this.getView()
-                  .showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberOk());
-            } else {
-              PhoneNumberPresenter.this.getView()
-                  .setConstraintViolations(PhoneNumberPresenter.this.validationConverter
-                      .convert(presult, PhoneNumberPresenter.this.phoneNumberData));
-            }
-          }
-        });
+        new AsyncCallbackImpl<PhoneNumberPresenter, PhoneNumberData, MyView>(this.getView(),
+            this.phoneNumberData, this.constants.messagePhoneNumberError(),
+            this.constants.messagePhoneNumberOk()));
   }
 }
