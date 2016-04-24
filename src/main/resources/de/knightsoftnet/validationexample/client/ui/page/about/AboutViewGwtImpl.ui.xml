@@ -30,7 +30,7 @@
         </p>
         <p>
           <ui:msg description="copyrightp1">
-            This Software is provided under the Apache 2.0 license.
+            This Software is provided under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 license</a>.
           </ui:msg>
         </p>
         <p>
@@ -42,12 +42,12 @@
             <ui:msg description="useropenjdk">Programinglanguage</ui:msg>
           </li>
           <li>
-            <a href="http://www.gwtproject.org">Google Web Toolkit</a>
+            <a href="http://www.gwtproject.org">GWT</a>
             <ui:msg description="usedgwt">AJAX-GUI</ui:msg>
           </li>
           <li>
             <a href="http://dev.arcbees.com/gwtp/index.html">GWTP</a>
-            <ui:msg description="usedgwtp">MVP-Framework</ui:msg>
+            <ui:msg description="usedgwtp">MVP-Framework and REST client</ui:msg>
           </li>
           <li>
             <a href="https://github.com/ManfredTremmel/gwt-bean-validators">gwt-bean-validators</a>
@@ -60,6 +60,26 @@
           <li>
             <a href="https://github.com/ManfredTremmel/gwtp-dynamic-navigation">gwtp-dynamic-navigation</a>
             <ui:msg description="usedgwtpdynamicnavigation">Dynamic navigation for gwtp projects</ui:msg>
+          </li>
+          <li>
+            <a href="https://github.com/ManfredTremmel/gwt-pushstate">gwt-pushstate</a>
+            <ui:msg description="usedgwtpushstate">Readable URLs without hash tag</ui:msg>
+          </li>
+          <li>
+            <a href="https://github.com/ManfredTremmel/gwt-commons-lang3">gwt-commons-lang3</a>
+            <ui:msg description="usedgwtcommonslang3">Port of apache commons lang3 for gwt</ui:msg>
+          </li>
+          <li>
+            <a href="https://github.com/ManfredTremmel/gwt-commons-validator">gwt-commons-validator</a>
+            <ui:msg description="usedgwtcommons-validator">Port of apache commons validator for gwt</ui:msg>
+          </li>
+          <li>
+            <a href="https://spring.io/">Spring</a>
+            <ui:msg description="usedspring">Server side: Authentication and RESTfull web services</ui:msg>
+          </li>
+          <li>
+            <a href="http://tuckey.org/urlrewrite/">UrlRewriteFilter</a>
+            <ui:msg description="usedurlrewrite">Server side redirect with pushstate generated urls to real files</ui:msg>
           </li>
         </ul>
       </g:HTML>
