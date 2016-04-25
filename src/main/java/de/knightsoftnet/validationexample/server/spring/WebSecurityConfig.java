@@ -20,25 +20,19 @@ import de.knightsoftnet.validationexample.server.security.AuthFailureHandler;
 import de.knightsoftnet.validationexample.server.security.AuthSuccessHandler;
 import de.knightsoftnet.validationexample.server.security.HttpAuthenticationEntryPoint;
 import de.knightsoftnet.validationexample.server.security.HttpLogoutSuccessHandler;
-import de.knightsoftnet.validationexample.server.security.UserDetailsServiceImpl;
 import de.knightsoftnet.validationexample.shared.Parameters;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.ResourcePaths.PhoneNumber;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -55,8 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private static final String LOGIN_PATH = ResourcePaths.User.ROOT + ResourcePaths.User.LOGIN;
 
   @Autowired
-  private UserDetailsServiceImpl userDetailsService;
-  @Autowired
   private HttpAuthenticationEntryPoint authenticationEntryPoint;
   @Autowired
   private AuthSuccessHandler authSuccessHandler;
@@ -64,42 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private AuthFailureHandler authFailureHandler;
   @Autowired
   private HttpLogoutSuccessHandler logoutSuccessHandler;
-
-  @Bean
-  @Override
-  public AuthenticationManager authenticationManagerBean() throws Exception { // NOPMD
-    return super.authenticationManagerBean();
-  }
-
-  @Bean
-  @Override
-  public UserDetailsService userDetailsServiceBean() throws Exception { // NOPMD
-    return super.userDetailsServiceBean();
-  }
-
-  /**
-   * authentication provider.
-   *
-   * @return the authentication provider
-   */
-  @Bean
-  public AuthenticationProvider authenticationProvider() {
-    final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-    authenticationProvider.setUserDetailsService(this.userDetailsService);
-    authenticationProvider.setPasswordEncoder(new ShaPasswordEncoder());
-
-    return authenticationProvider;
-  }
-
-  @Override
-  protected AuthenticationManager authenticationManager() throws Exception { // NOPMD
-    return super.authenticationManager();
-  }
-
-  @Override
-  protected void configure(final AuthenticationManagerBuilder auth) throws Exception { // NOPMD
-    auth.authenticationProvider(this.authenticationProvider());
-  }
 
   /**
    * configure security settings.
@@ -130,7 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             ResourcePaths.SEPA) //
         .permitAll() //
         .anyRequest().authenticated() //
-        .and().authenticationProvider(this.authenticationProvider()) //
+        .and() //
         .exceptionHandling() //
         .authenticationEntryPoint(this.authenticationEntryPoint) //
         .and().formLogin() //
@@ -146,5 +102,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .maximumSessions(1);
 
     phttp.authorizeRequests().anyRequest().authenticated();
+  }
+
+  @Configuration
+  protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
+
+    @Override
+    public void init(final AuthenticationManagerBuilder auth) throws Exception { // NOPMD
+      auth.ldapAuthentication().userDnPatterns("uid={0},ou=people").groupSearchBase("ou=groups")
+          .contextSource().ldif("classpath:test-server.ldif");
+    }
   }
 }

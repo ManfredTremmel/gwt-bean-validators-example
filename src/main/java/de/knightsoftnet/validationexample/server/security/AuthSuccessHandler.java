@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -58,11 +59,12 @@ public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHa
       throws IOException, ServletException {
     response.setStatus(HttpServletResponse.SC_OK);
 
-    final UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-    final UserData user = userDetails.getUser();
-    userDetails.setUser(user);
-
-    LOGGER.info(userDetails.getUsername() + " got is connected ");
+    if (authentication.isAuthenticated()) {
+      LOGGER.info("User is authenticated!");
+      LOGGER.debug(authentication.toString());
+    }
+    final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    final UserData user = new UserData(userDetails.getUsername(), userDetails.getPassword());
 
     final PrintWriter writer = response.getWriter();
     this.mapper.writeValue(writer, user);

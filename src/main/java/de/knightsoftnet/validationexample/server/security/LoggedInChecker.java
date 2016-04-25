@@ -19,6 +19,7 @@ import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 /**
@@ -41,9 +42,9 @@ public class LoggedInChecker {
       final Object principal = authentication.getPrincipal();
 
       // principal can be "anonymousUser" (String)
-      if (principal instanceof UserDetailsImpl) {
-        final UserDetailsImpl userDetails = (UserDetailsImpl) principal;
-        user = userDetails.getUser();
+      if (principal instanceof UserDetails) {
+        final UserDetails userDetails = (UserDetails) principal;
+        user = new UserData(userDetails.getUsername(), userDetails.getPassword());
       }
     }
     return user;

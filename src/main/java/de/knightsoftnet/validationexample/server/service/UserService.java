@@ -17,17 +17,12 @@ package de.knightsoftnet.validationexample.server.service;
 
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
-import java.util.List;
-
 /**
  * user service interface. based on the work of https://github.com/imrabti/gwtp-spring-security
  *
  * @author Manfred Tremmel
  */
 public interface UserService {
-  UserData getUserByUsername(String pusername);
-
-  List<String> getPermissions(String pusername);
 
   UserData getCurrentUser();
 

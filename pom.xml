@@ -21,8 +21,8 @@
 	<name>GWT Bean Validators - Example</name>
 	<inceptionYear>2015</inceptionYear>
 	<description>
-     Little example how to use bean validators in a GWT application (client and server side validation).
-    </description>
+		Little example how to use bean validators in a GWT application (client and server side validation).
+	</description>
 	<url>https://github.com/ManfredTremmel/gwt-bean-validators-example</url>
 
 	<licenses>
@@ -55,6 +55,7 @@
 		<gwtp-dynamic-navigation.version>0.9.7</gwtp-dynamic-navigation.version>
 		<gwt-commons-lang3.version>3.4-1</gwt-commons-lang3.version>
 		<gwt-commons-validator.version>1.5.0-1</gwt-commons-validator.version>
+		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
@@ -207,16 +208,25 @@
 		<!-- Spring boot dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-ldap</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.server</groupId>
+			<artifactId>apacheds-server-jndi</artifactId>
+			<version>${apacheds-server-jndi.version}</version>
 		</dependency>
 
 	</dependencies>

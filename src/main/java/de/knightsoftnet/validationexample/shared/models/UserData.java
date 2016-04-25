@@ -37,21 +37,6 @@ public class UserData implements User {
   private String password;
 
   /**
-   * first name of the user.
-   */
-  private String firstName;
-
-  /**
-   * last name of the user.
-   */
-  private String lastName;
-
-  /**
-   * gender of the person.
-   */
-  private GenderEnum gender;
-
-  /**
    * default constructor.
    */
   public UserData() {
@@ -64,7 +49,7 @@ public class UserData implements User {
    * @param puserName user to set
    */
   public UserData(final String puserName) {
-    this(puserName, null, null, null, null);
+    this(puserName, null);
   }
 
   /**
@@ -72,18 +57,11 @@ public class UserData implements User {
    *
    * @param puserName user to set
    * @param ppassword password to set
-   * @param pfirstName first name of the user
-   * @param plastName last name of the user
-   * @param pgender gender of the user
    */
-  public UserData(final String puserName, final String ppassword, final String pfirstName,
-      final String plastName, final GenderEnum pgender) {
+  public UserData(final String puserName, final String ppassword) {
     super();
     this.userName = puserName;
     this.password = ppassword;
-    this.firstName = pfirstName;
-    this.lastName = plastName;
-    this.gender = pgender;
   }
 
   @Override
@@ -107,30 +85,6 @@ public class UserData implements User {
 
   public void setPassword(final String ppassword) {
     this.password = ppassword;
-  }
-
-  public final String getFirstName() {
-    return this.firstName;
-  }
-
-  public final void setFirstName(final String pfirstName) {
-    this.firstName = pfirstName;
-  }
-
-  public final String getLastName() {
-    return this.lastName;
-  }
-
-  public final void setLastName(final String plastName) {
-    this.lastName = plastName;
-  }
-
-  public final GenderEnum getGender() {
-    return this.gender;
-  }
-
-  public final void setGender(final GenderEnum pgender) {
-    this.gender = pgender;
   }
 
   @Override
