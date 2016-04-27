@@ -16,11 +16,12 @@
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.AsyncCallbackImpl;
 import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
+import de.knightsoftnet.validationexample.client.ui.page.RestCallbackImpl;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 
 import com.google.gwt.core.client.Scheduler;
@@ -57,6 +58,7 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
 
   private final RestDispatch dispatcher;
   private final PostalAddressRestService postalAddressService;
+  private final Session session;
 
   /**
    * constructor injecting parameters.
@@ -64,11 +66,12 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
   @Inject
   public AddressPresenter(final EventBus peventBus, final AddressPresenter.MyView pview,
       final MyProxy pproxy, final AddressConstants pconstants, final RestDispatch pdispatcher,
-      final PostalAddressRestService ppostalAddressService) {
+      final PostalAddressRestService ppostalAddressService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.postalAddressService = ppostalAddressService;
     this.constants = pconstants;
+    this.session = psession;
     this.addressData = new PostalAddressData();
     this.addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -91,8 +94,7 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
-        new AsyncCallbackImpl<AddressPresenter, PostalAddressData, MyView>(this.getView(),
-            this.addressData, this.constants.messageAddressDataError(),
-            this.constants.messageAddressDataOk()));
+        new RestCallbackImpl<AddressPresenter, PostalAddressData, MyView>(this.getView(),
+            this.addressData, this.constants.messageAddressDataOk(), this.session));
   }
 }

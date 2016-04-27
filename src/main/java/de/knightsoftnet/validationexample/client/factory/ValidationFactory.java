@@ -13,19 +13,16 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.services;
+package de.knightsoftnet.validationexample.client.factory;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
-import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
+import de.knightsoftnet.validationexample.shared.models.ValidationInterface;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultInterface;
 
-import com.gwtplatform.dispatch.rest.shared.RestAction;
+import com.google.web.bindery.autobean.shared.AutoBean;
+import com.google.web.bindery.autobean.shared.AutoBeanFactory;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+public interface ValidationFactory extends AutoBeanFactory {
+  AutoBean<ValidationResultInterface> validationResult(ValidationResultInterface pvalidation);
 
-@Path(ResourcePaths.POSTAL_ADDRESS)
-public interface PostalAddressRestService {
-
-  @POST
-  RestAction<Boolean> checkPostalAddress(final PostalAddressData ppostalAddressData);
+  AutoBean<ValidationInterface> validation(ValidationInterface pvalidation);
 }

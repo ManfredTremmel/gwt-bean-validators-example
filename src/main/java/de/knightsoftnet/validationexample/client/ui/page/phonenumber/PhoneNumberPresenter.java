@@ -16,11 +16,12 @@
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.services.PhoneNumberRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.AsyncCallbackImpl;
 import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
+import de.knightsoftnet.validationexample.client.ui.page.RestCallbackImpl;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 
 import com.google.gwt.core.client.Scheduler;
@@ -58,6 +59,7 @@ public class PhoneNumberPresenter
   private final PhoneNumberConstants constants;
   private final RestDispatch dispatcher;
   private final PhoneNumberRestService phoneNumberService;
+  private final Session session;
 
   /**
    * constructor injecting parameters.
@@ -65,10 +67,11 @@ public class PhoneNumberPresenter
   @Inject
   public PhoneNumberPresenter(final EventBus peventBus, final PhoneNumberPresenter.MyView pview,
       final MyProxy pproxy, final PhoneNumberConstants pconstants, final RestDispatch pdispatcher,
-      final PhoneNumberRestService pphoneNumberService) {
+      final PhoneNumberRestService pphoneNumberService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
+    this.session = psession;
     this.phoneNumberService = pphoneNumberService;
     this.phoneNumberData = new PhoneNumberData();
     this.phoneNumberData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
@@ -92,8 +95,7 @@ public class PhoneNumberPresenter
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.phoneNumberService.checkPhoneNumber(this.phoneNumberData),
-        new AsyncCallbackImpl<PhoneNumberPresenter, PhoneNumberData, MyView>(this.getView(),
-            this.phoneNumberData, this.constants.messagePhoneNumberError(),
-            this.constants.messagePhoneNumberOk()));
+        new RestCallbackImpl<PhoneNumberPresenter, PhoneNumberData, MyView>(this.getView(),
+            this.phoneNumberData, this.constants.messagePhoneNumberOk(), this.session));
   }
 }

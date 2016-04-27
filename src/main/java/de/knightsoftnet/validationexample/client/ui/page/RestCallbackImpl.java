@@ -13,27 +13,37 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.shared.models;
+package de.knightsoftnet.validationexample.client.ui.page;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import de.knightsoftnet.navigation.client.session.Session;
 
-import java.util.ArrayList;
-import java.util.List;
+/**
+ * Async callback implementation with error handling.
+ *
+ * @author Manfred Tremmel
+ *
+ */
+public class RestCallbackImpl<P, D, V extends EditorWithErrorHandling<P, D>>
+    extends AbstractRestCallback<P, D, V, Boolean> {
 
-@JsonFormat
-public class ValidationResultData implements ValidationResultInterface {
+  private final String okMessage;
+
   /**
-   * validation result, should be empty if validation is ok.
+   * constructor.
+   *
+   * @param pview view
+   * @param pdata date to handle
+   * @param pokMessage message to display when everything is ok
+   * @param psession session data
    */
-  private List<ValidationInterface> validationErrorSet = new ArrayList<>();
-
-  @Override
-  public final List<ValidationInterface> getValidationErrorSet() {
-    return this.validationErrorSet;
+  public RestCallbackImpl(final V pview, final D pdata, final String pokMessage,
+      final Session psession) {
+    super(pview, pdata, psession);
+    this.okMessage = pokMessage;
   }
 
   @Override
-  public final void setValidationErrorSet(final List<ValidationInterface> pvalidationErrorSet) {
-    this.validationErrorSet = pvalidationErrorSet;
+  public void onSuccess(final Boolean presult) {
+    this.view.showMessage(this.okMessage);
   }
 }

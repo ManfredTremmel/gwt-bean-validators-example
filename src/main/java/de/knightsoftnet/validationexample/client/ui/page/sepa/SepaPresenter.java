@@ -16,11 +16,12 @@
 package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.services.SepaRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.AsyncCallbackImpl;
 import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
+import de.knightsoftnet.validationexample.client.ui.page.RestCallbackImpl;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 
 import com.google.gwt.core.client.Scheduler;
@@ -57,6 +58,7 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
   private final SepaConstants constants;
   private final RestDispatch dispatcher;
   private final SepaRestService sepaService;
+  private final Session session;
 
   /**
    * constructor injecting parameters.
@@ -64,11 +66,12 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
   @Inject
   public SepaPresenter(final EventBus peventBus, final SepaPresenter.MyView pview,
       final MyProxy pproxy, final SepaConstants pconstants, final RestDispatch pdispatcher,
-      final SepaRestService psepaService) {
+      final SepaRestService psepaService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.sepaService = psepaService;
+    this.session = psession;
     this.sepaData = new SepaData();
     this.sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
@@ -91,7 +94,7 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
-        new AsyncCallbackImpl<SepaPresenter, SepaData, MyView>(this.getView(), this.sepaData,
-            this.constants.messageSepaError(), this.constants.messageSepaOk()));
+        new RestCallbackImpl<SepaPresenter, SepaData, MyView>(this.getView(), this.sepaData,
+            this.constants.messageSepaOk(), this.session));
   }
 }

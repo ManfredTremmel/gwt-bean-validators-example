@@ -13,19 +13,15 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.services;
+package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
-import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
+import java.util.List;
 
-import com.gwtplatform.dispatch.rest.shared.RestAction;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+public interface ValidationResultInterface {
 
-@Path(ResourcePaths.POSTAL_ADDRESS)
-public interface PostalAddressRestService {
+  List<ValidationInterface> getValidationErrorSet();
 
-  @POST
-  RestAction<Boolean> checkPostalAddress(final PostalAddressData ppostalAddressData);
+  void setValidationErrorSet(List<ValidationInterface> pvalidationErrorSet);
+
 }

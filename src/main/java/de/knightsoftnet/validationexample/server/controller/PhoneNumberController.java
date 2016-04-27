@@ -15,15 +15,11 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
-import de.knightsoftnet.validationexample.server.converter.custom.BindingResult2ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,28 +39,20 @@ public class PhoneNumberController {
 
   private static final Logger LOG = Logger.getLogger(PhoneNumberController.class);
 
-  @Autowired
-  private BindingResult2ValidationResultDataConverter bindingResult2ValidationResultDataConverter;
-
   /**
    * web service takes data, logs it and validates it, validation result is returned to caller.
    *
    * @param pphoneNumberData data from client
-   * @param pbindingResult validation result
-   * @return validation result for client, should contain a empty list if
+   * @return true if ok
    */
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  public ValidationResultData checkPhoneNumber(
-      @Valid @RequestBody final PhoneNumberData pphoneNumberData,
-      final BindingResult pbindingResult) {
+  public Boolean checkPhoneNumber(@Valid @RequestBody final PhoneNumberData pphoneNumberData) {
 
     LOG.info(pphoneNumberData);
 
-    if (!pbindingResult.hasErrors()) {
-      // do something usefull
-    }
+    // in real world, do something useful with the data
 
-    return this.bindingResult2ValidationResultDataConverter.convert(pbindingResult);
+    return Boolean.TRUE;
   }
 }

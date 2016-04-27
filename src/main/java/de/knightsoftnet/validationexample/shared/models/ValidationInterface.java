@@ -13,19 +13,16 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.services;
+package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
-import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
+public interface ValidationInterface {
 
-import com.gwtplatform.dispatch.rest.shared.RestAction;
+  String getMessage();
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+  void setMessage(String pmessage);
 
-@Path(ResourcePaths.POSTAL_ADDRESS)
-public interface PostalAddressRestService {
+  String getPropertyPath();
 
-  @POST
-  RestAction<Boolean> checkPostalAddress(final PostalAddressData ppostalAddressData);
+  void setPropertyPath(String ppropertyPath);
+
 }

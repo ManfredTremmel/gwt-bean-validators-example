@@ -15,15 +15,11 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
-import de.knightsoftnet.validationexample.server.converter.custom.BindingResult2ValidationResultDataConverter;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,27 +39,20 @@ public class SepaController {
 
   private static final Logger LOG = Logger.getLogger(SepaController.class);
 
-  @Autowired
-  private BindingResult2ValidationResultDataConverter bindingResult2ValidationResultDataConverter;
-
   /**
    * web service takes data, logs it and validates it, validation result is returned to caller.
    *
    * @param psepaData data from client
-   * @param pbindingResult validation result
-   * @return validation result for client, should contain a empty list if
+   * @return true if ok
    */
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  public ValidationResultData checkSepa(@Valid @RequestBody final SepaData psepaData,
-      final BindingResult pbindingResult) {
+  public Boolean checkSepa(@Valid @RequestBody final SepaData psepaData) {
 
     LOG.info(psepaData);
 
-    if (!pbindingResult.hasErrors()) {
-      // do something usefull
-    }
+    // in real world, do something useful with the data
 
-    return this.bindingResult2ValidationResultDataConverter.convert(pbindingResult);
+    return Boolean.TRUE;
   }
 }

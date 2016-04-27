@@ -11,6 +11,8 @@
 
   <inherits name='com.google.gwt.user.theme.clean.Clean' />
 
+  <inherits name="com.google.web.bindery.autobean.AutoBean"/>
+  
   <!-- Other module inherits -->
 
   <!-- resources for css bundle -->

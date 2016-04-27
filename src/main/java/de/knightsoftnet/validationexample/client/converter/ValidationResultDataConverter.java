@@ -15,8 +15,8 @@
 
 package de.knightsoftnet.validationexample.client.converter;
 
-import de.knightsoftnet.validationexample.shared.models.ValidationDto;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
+import de.knightsoftnet.validationexample.shared.models.ValidationInterface;
+import de.knightsoftnet.validationexample.shared.models.ValidationResultInterface;
 
 import org.hibernate.validator.engine.ConstraintViolationImpl;
 import org.hibernate.validator.engine.PathImpl;
@@ -43,14 +43,14 @@ public class ValidationResultDataConverter<E> {
    * @param pbean the validated bean (which is not transfered back to client)
    * @return ArrayList&lt;ConstraintViolation&lt;?&gt;&gt;
    */
-  public ArrayList<ConstraintViolation<?>> convert(final ValidationResultData psource,
+  public ArrayList<ConstraintViolation<?>> convert(final ValidationResultInterface psource,
       final E pbean) {
     if (psource == null) {
       return null;
     }
     final ArrayList<ConstraintViolation<?>> violations =
         new ArrayList<ConstraintViolation<?>>(psource.getValidationErrorSet().size());
-    for (final ValidationDto violation : psource.getValidationErrorSet()) {
+    for (final ValidationInterface violation : psource.getValidationErrorSet()) {
       violations.add(new ConstraintViolationImpl<E>(null, violation.getMessage(), null, pbean, null,
           null, PathImpl.createPathFromString(violation.getPropertyPath()), null, null));
     }

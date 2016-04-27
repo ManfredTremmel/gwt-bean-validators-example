@@ -17,7 +17,6 @@ package de.knightsoftnet.validationexample.client.services;
 
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validationexample.shared.models.ValidationResultData;
 
 import com.gwtplatform.dispatch.rest.shared.RestAction;
 
@@ -28,5 +27,5 @@ import javax.ws.rs.Path;
 public interface PhoneNumberRestService {
 
   @POST
-  RestAction<ValidationResultData> checkPhoneNumber(final PhoneNumberData pphoneNumberData);
+  RestAction<Boolean> checkPhoneNumber(final PhoneNumberData pphoneNumberData);
 }
