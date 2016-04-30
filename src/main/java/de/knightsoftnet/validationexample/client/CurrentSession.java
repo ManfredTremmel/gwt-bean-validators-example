@@ -73,6 +73,8 @@ public class CurrentSession extends AbstractSession {
                   CurrentSession.this.setUser(presult);
                 }
               });
+        } else {
+          CurrentSession.this.setUser(null);
         }
       }
 

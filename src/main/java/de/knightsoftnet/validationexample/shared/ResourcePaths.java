@@ -18,6 +18,9 @@ package de.knightsoftnet.validationexample.shared;
 public class ResourcePaths {
   public static final String BASE_DIR = "/validationexample";
 
+  public static final String XSRF_COOKIE = "XSRF-TOKEN";
+  public static final String XSRF_HEADER = "X-XSRF-TOKEN";
+
   public static final String API_BASE_DIR = "/api/rest";
 
   public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";

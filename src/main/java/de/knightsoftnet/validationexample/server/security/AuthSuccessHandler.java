@@ -46,27 +46,31 @@ public class AuthSuccessHandler extends SavedRequestAwareAuthenticationSuccessHa
   private static final Logger LOGGER = LoggerFactory.getLogger(AuthSuccessHandler.class);
 
   private final ObjectMapper mapper;
+  private final CsrfCookieHandler csrfCookieHandler;
 
   @Autowired
-  AuthSuccessHandler(final MappingJackson2HttpMessageConverter messageConverter) {
+  AuthSuccessHandler(final MappingJackson2HttpMessageConverter pmessageConverter,
+      final CsrfCookieHandler pcsrfCookieHandler) {
     super();
-    this.mapper = messageConverter.getObjectMapper();
+    this.mapper = pmessageConverter.getObjectMapper();
+    this.csrfCookieHandler = pcsrfCookieHandler;
   }
 
   @Override
-  public void onAuthenticationSuccess(final HttpServletRequest request,
-      final HttpServletResponse response, final Authentication authentication)
+  public void onAuthenticationSuccess(final HttpServletRequest prequest,
+      final HttpServletResponse presponse, final Authentication pauthentication)
       throws IOException, ServletException {
-    response.setStatus(HttpServletResponse.SC_OK);
+    presponse.setStatus(HttpServletResponse.SC_OK);
+    this.csrfCookieHandler.setCookie(prequest, presponse);
 
-    if (authentication.isAuthenticated()) {
+    if (pauthentication.isAuthenticated()) {
       LOGGER.info("User is authenticated!");
-      LOGGER.debug(authentication.toString());
+      LOGGER.debug(pauthentication.toString());
     }
-    final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+    final UserDetails userDetails = (UserDetails) pauthentication.getPrincipal();
     final UserData user = new UserData(userDetails.getUsername(), userDetails.getPassword());
 
-    final PrintWriter writer = response.getWriter();
+    final PrintWriter writer = presponse.getWriter();
     this.mapper.writeValue(writer, user);
     writer.flush();
   }

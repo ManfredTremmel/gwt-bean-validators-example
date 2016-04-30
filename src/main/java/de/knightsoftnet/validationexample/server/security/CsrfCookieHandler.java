@@ -15,38 +15,40 @@
 
 package de.knightsoftnet.validationexample.server.security;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import de.knightsoftnet.validationexample.shared.ResourcePaths;
+
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.WebUtils;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * http logout success handler for gwt applications. based on the work of
- * https://github.com/imrabti/gwtp-spring-security
+ * set csrf/xsrf cookie.
  *
  * @author Manfred Tremmel
  */
 @Component
-public class HttpLogoutSuccessHandler implements LogoutSuccessHandler {
+public class CsrfCookieHandler {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AuthSuccessHandler.class);
-
-  @Autowired
-  private CsrfCookieHandler csrfCookieHandler;
-
-  @Override
-  public void onLogoutSuccess(final HttpServletRequest prequest,
-      final HttpServletResponse presponse, final Authentication pauthentication)
+  /**
+   * set csrf/xsrf cookie.
+   */
+  public void setCookie(final HttpServletRequest prequest, final HttpServletResponse presponse)
       throws IOException {
-    LOGGER.info("User logged out!");
-    presponse.setStatus(HttpServletResponse.SC_OK);
-    this.csrfCookieHandler.setCookie(prequest, presponse);
+    final CsrfToken csrf = (CsrfToken) prequest.getAttribute(CsrfToken.class.getName());
+    if (csrf != null) {
+      Cookie cookie = WebUtils.getCookie(prequest, ResourcePaths.XSRF_COOKIE);
+      final String token = csrf.getToken();
+      if (cookie == null || token != null && !token.equals(cookie.getValue())) {
+        cookie = new Cookie(ResourcePaths.XSRF_COOKIE, token);
+        cookie.setPath(ResourcePaths.BASE_DIR);
+        presponse.addCookie(cookie);
+      }
+    }
   }
 }

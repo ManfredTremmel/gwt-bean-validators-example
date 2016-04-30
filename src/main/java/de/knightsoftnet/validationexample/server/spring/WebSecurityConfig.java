@@ -18,6 +18,7 @@ package de.knightsoftnet.validationexample.server.spring;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.server.security.AuthFailureHandler;
 import de.knightsoftnet.validationexample.server.security.AuthSuccessHandler;
+import de.knightsoftnet.validationexample.server.security.CsrfCookieHandler;
 import de.knightsoftnet.validationexample.server.security.HttpAuthenticationEntryPoint;
 import de.knightsoftnet.validationexample.server.security.HttpLogoutSuccessHandler;
 import de.knightsoftnet.validationexample.shared.Parameters;
@@ -25,15 +26,29 @@ import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.ResourcePaths.PhoneNumber;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * configuration for spring security.
@@ -56,6 +71,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   private AuthFailureHandler authFailureHandler;
   @Autowired
   private HttpLogoutSuccessHandler logoutSuccessHandler;
+  @Autowired
+  private CsrfCookieHandler csrfCookieHandler;
+
+  /**
+   * configure urls which are ignored by security.
+   *
+   * @param pweb web security config
+   */
+  @Override
+  public void configure(final WebSecurity pweb) throws Exception { // NOPMD
+    pweb.ignoring() //
+        .antMatchers("/", //
+            "/index.html", //
+            "/favicon.ico", //
+            "/" + NameTokens.LOGIN, //
+            "/" + NameTokens.SECRET + "/" + NameTokens.LOGIN, //
+            "/" + NameTokens.LOGOUT, //
+            "/" + NameTokens.SEPA, //
+            "/" + NameTokens.ADDRESS, //
+            "/" + NameTokens.PHONE_NUMBER, //
+            "/" + NameTokens.SECRET, //
+            "/" + NameTokens.SETTINGS, //
+            "/" + NameTokens.ABOUT, //
+            "/gwtBeanValidatorsExample/**", //
+            PhoneNumber.ROOT + "/**");
+  }
 
   /**
    * configure security settings.
@@ -64,44 +105,41 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Override
   protected void configure(final HttpSecurity phttp) throws Exception { // NOPMD
-    phttp.csrf().disable() //
+
+    // csrf/xsrf protection
+    phttp.csrf().csrfTokenRepository(this.csrfTokenRepository()) //
+        .and().addFilterAfter(this.csrfHeaderFilter(), CsrfFilter.class) //
         .authorizeRequests() //
-        .antMatchers("/", //
-            "/index.html", //
-            "/favicon.ico", //
-            "/" + NameTokens.LOGIN, //
-            "/**/" + NameTokens.LOGIN, //
-            "/" + NameTokens.LOGOUT, //
-            "/" + NameTokens.SEPA, //
-            "/" + NameTokens.ADDRESS, //
-            "/" + NameTokens.PHONE_NUMBER, //
-            "/" + NameTokens.SECRET, //
-            "/" + NameTokens.SETTINGS, //
-            "/" + NameTokens.ABOUT, //
-            "/gwtBeanValidatorsExample/**") //
-        .permitAll() //
-        .antMatchers(PhoneNumber.ROOT + "/**", //
-            ResourcePaths.PHONE_NUMBER, //
+
+        // services without authentication
+        .antMatchers(ResourcePaths.PHONE_NUMBER, //
             ResourcePaths.POSTAL_ADDRESS, //
             ResourcePaths.SEPA) //
         .permitAll() //
+
+        // all other requests need authentication
         .anyRequest().authenticated() //
+
+        // handle not allowed access, delegate to authentication entry poing
         .and() //
         .exceptionHandling() //
         .authenticationEntryPoint(this.authenticationEntryPoint) //
-        .and().formLogin() //
+
+        // login form handling
+        .and() //
+        .formLogin() //
         .permitAll().loginProcessingUrl(LOGIN_PATH) //
         .usernameParameter(Parameters.USERNAME) //
         .passwordParameter(Parameters.PASSWORD) //
         .successHandler(this.authSuccessHandler) //
         .failureHandler(this.authFailureHandler) //
+
         .and().logout().permitAll() //
         .logoutRequestMatcher(new AntPathRequestMatcher(LOGIN_PATH, "DELETE")) //
         .logoutSuccessHandler(this.logoutSuccessHandler) //
-        .and().sessionManagement() //
-        .maximumSessions(1);
 
-    phttp.authorizeRequests().anyRequest().authenticated();
+        .and() //
+        .sessionManagement().maximumSessions(1);
   }
 
   @Configuration
@@ -112,5 +150,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       auth.ldapAuthentication().userDnPatterns("uid={0},ou=people").groupSearchBase("ou=groups")
           .contextSource().ldif("classpath:test-server.ldif");
     }
+  }
+
+  private Filter csrfHeaderFilter() {
+    return new OncePerRequestFilter() {
+      @Override
+      protected void doFilterInternal(final HttpServletRequest prequest,
+          final HttpServletResponse presponse, final FilterChain pfilterChain)
+          throws ServletException, IOException {
+        WebSecurityConfig.this.csrfCookieHandler.setCookie(prequest, presponse);
+        pfilterChain.doFilter(prequest, presponse);
+      }
+    };
+  }
+
+  /**
+   * define csrf header entry.
+   *
+   * @return csrf header entry
+   */
+  @Bean
+  public CsrfTokenRepository csrfTokenRepository() {
+    final HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+    repository.setHeaderName(ResourcePaths.XSRF_HEADER);
+    return repository;
   }
 }

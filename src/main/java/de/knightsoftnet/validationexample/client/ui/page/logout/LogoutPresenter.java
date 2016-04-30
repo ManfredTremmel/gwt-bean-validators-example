@@ -72,14 +72,13 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
 
       @Override
       public void onFailure(final Throwable pcaught) {
-        // we've logged out, it doesn't matter!
+        LogoutPresenter.this.session.readSessionData();
       }
 
       @Override
       public void onSuccess(final Void presult) {
-        // we've logged out, it doesn't matter!
+        LogoutPresenter.this.session.readSessionData();
       }
     });
-    this.session.setUser(null);
   }
 }
