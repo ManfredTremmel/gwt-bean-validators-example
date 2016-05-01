@@ -52,7 +52,7 @@
 		<gwt-pushstate.version>2.0.0.3</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
 		<gwt-mt-widgets.version>0.9.13</gwt-mt-widgets.version>
-		<gwtp-dynamic-navigation.version>0.9.7</gwtp-dynamic-navigation.version>
+		<gwtp-dynamic-navigation.version>0.9.8-SNAPSHOT</gwtp-dynamic-navigation.version>
 		<gwt-commons-lang3.version>3.4-1</gwt-commons-lang3.version>
 		<gwt-commons-validator.version>1.5.0-1</gwt-commons-validator.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
@@ -66,7 +66,7 @@
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 		<maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
 
-		<!-- <webappDirectory>${project.build.directory}/gwtBeanValidatorsExample</webappDirectory> -->
+		<war.name>validationexample</war.name>
 		<staticResourcesDirectory>${project.build.outputDirectory}/static</staticResourcesDirectory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
@@ -232,8 +232,7 @@
 	</dependencies>
 
 	<build>
-		<!-- Generate compiled stuff in the folder used for developing mode
-		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory> -->
+		<finalName>${war.name}</finalName>
 
 		<plugins>
 
@@ -268,24 +267,6 @@
 					<sourceLevel>${jdk.version}</sourceLevel>
 				</configuration>
 			</plugin>
-
-			<!-- Copy static web files before executing gwt:run
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>exploded</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<webappDirectory>${project.build.outputDirectory}</webappDirectory>
-					<warSourceExcludes>**/Version.properties</warSourceExcludes>
-				</configuration>
-			</plugin> -->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

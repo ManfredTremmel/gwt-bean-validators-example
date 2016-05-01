@@ -3,4 +3,4 @@ application:
   name-formated: @project.name@
   version: @project.version@
 server:
-  contextPath: /validationexample
+  contextPath: /@war.name@

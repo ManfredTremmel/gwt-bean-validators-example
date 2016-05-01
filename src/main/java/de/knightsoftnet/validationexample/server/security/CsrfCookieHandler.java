@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,17 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class CsrfCookieHandler {
 
+  private final String baseDir;
+
+  /**
+   * default constructor.
+   */
+  public CsrfCookieHandler() {
+    super();
+    final ResourceBundle bundle = ResourceBundle.getBundle("Version");
+    this.baseDir = bundle.getString("context.root");
+  }
+
   /**
    * set csrf/xsrf cookie.
    */
@@ -46,7 +58,7 @@ public class CsrfCookieHandler {
       final String token = csrf.getToken();
       if (cookie == null || token != null && !token.equals(cookie.getValue())) {
         cookie = new Cookie(ResourcePaths.XSRF_COOKIE, token);
-        cookie.setPath(ResourcePaths.BASE_DIR);
+        cookie.setPath("/" + this.baseDir + "/");
         presponse.addCookie(cookie);
       }
     }
