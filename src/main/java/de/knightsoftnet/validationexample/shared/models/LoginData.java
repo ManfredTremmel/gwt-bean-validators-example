@@ -19,9 +19,10 @@ import de.knightsoftnet.validators.shared.LevenshteinDistance;
 import de.knightsoftnet.validators.shared.MustBeEqual;
 import de.knightsoftnet.validators.shared.Password;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import java.util.Objects;
 
 import javax.validation.constraints.Size;
 
@@ -114,7 +115,7 @@ public class LoginData {
 
   @Override
   public final int hashCode() {
-    return ObjectUtils.hashCode(this.userName);
+    return Objects.hashCode(this.userName);
   }
 
   @Override
