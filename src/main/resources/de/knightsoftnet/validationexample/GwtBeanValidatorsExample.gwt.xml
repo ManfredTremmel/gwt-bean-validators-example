@@ -34,7 +34,7 @@
   <inherits name="de.knightsoftnet.navigation.GwtpDynamicNavigation" />
 
   <!-- gwt mt widgets -->
-  <inherits name="de.knightsoftnet.mtwidgets.GwtMtWidgetsResty" />
+  <inherits name="de.knightsoftnet.mtwidgets.GwtMtWidgetsSpringGwtp" />
 
   <!-- gwt injection support -->
   <inherits name="com.google.gwt.inject.Inject"/>

@@ -23,7 +23,7 @@ import de.knightsoftnet.validationexample.server.security.HttpAuthenticationEntr
 import de.knightsoftnet.validationexample.server.security.HttpLogoutSuccessHandler;
 import de.knightsoftnet.validationexample.shared.Parameters;
 import de.knightsoftnet.validationexample.shared.ResourcePaths;
-import de.knightsoftnet.validationexample.shared.ResourcePaths.PhoneNumber;
+import de.knightsoftnet.validators.shared.ResourcePaths.PhoneNumber;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -58,7 +58,8 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-@ComponentScan(value = "de.knightsoftnet.**.security")
+@ComponentScan(basePackages = {"de.knightsoftnet.validationexample.server",
+    "de.knightsoftnet.validators.server"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private static final String LOGIN_PATH = ResourcePaths.User.ROOT + ResourcePaths.User.LOGIN;
@@ -94,8 +95,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/" + NameTokens.SECRET, //
             "/" + NameTokens.SETTINGS, //
             "/" + NameTokens.ABOUT, //
-            "/gwtBeanValidatorsExample/**", //
-            PhoneNumber.ROOT + "/**");
+            "/gwtBeanValidatorsExample/**");
   }
 
   /**
@@ -114,7 +114,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // services without authentication
         .antMatchers(ResourcePaths.PHONE_NUMBER, //
             ResourcePaths.POSTAL_ADDRESS, //
-            ResourcePaths.SEPA) //
+            ResourcePaths.SEPA, //
+            PhoneNumber.ROOT + "/**") //
         .permitAll() //
 
         // all other requests need authentication

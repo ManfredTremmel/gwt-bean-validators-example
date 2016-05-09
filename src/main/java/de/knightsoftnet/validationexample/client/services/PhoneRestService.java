@@ -24,7 +24,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 @Path(ResourcePaths.PHONE_NUMBER)
-public interface PhoneNumberRestService {
+public interface PhoneRestService {
 
   @POST
   RestAction<Boolean> checkPhoneNumber(final PhoneNumberData pphoneNumberData);

@@ -17,7 +17,7 @@ package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.navigation.client.session.Session;
-import de.knightsoftnet.validationexample.client.services.PhoneNumberRestService;
+import de.knightsoftnet.validationexample.client.services.PhoneRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
@@ -58,7 +58,7 @@ public class PhoneNumberPresenter
 
   private final PhoneNumberConstants constants;
   private final RestDispatch dispatcher;
-  private final PhoneNumberRestService phoneNumberService;
+  private final PhoneRestService phoneNumberService;
   private final Session session;
 
   /**
@@ -67,7 +67,7 @@ public class PhoneNumberPresenter
   @Inject
   public PhoneNumberPresenter(final EventBus peventBus, final PhoneNumberPresenter.MyView pview,
       final MyProxy pproxy, final PhoneNumberConstants pconstants, final RestDispatch pdispatcher,
-      final PhoneNumberRestService pphoneNumberService, final Session psession) {
+      final PhoneRestService pphoneNumberService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.constants = pconstants;
     this.dispatcher = pdispatcher;

@@ -24,10 +24,12 @@ import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Provider;
 import com.gwtplatform.mvp.client.ViewImpl;
 
 import java.util.ArrayList;
@@ -64,6 +66,8 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
 
   private final Driver driver;
 
+  private final Provider<PhoneNumberMsRestSuggestBox> phoneNumberWidgetProvider;
+
   private PhoneNumberPresenter presenter;
 
   /**
@@ -73,8 +77,10 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
    * @param puiBinder ui binder
    */
   @Inject
-  public PhoneNumberViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
+  public PhoneNumberViewGwtImpl(final Driver pdriver, final Binder puiBinder,
+      final Provider<PhoneNumberMsRestSuggestBox> pphoneNumberWidgetProvider) {
     super();
+    this.phoneNumberWidgetProvider = pphoneNumberWidgetProvider;
     this.initWidget(puiBinder.createAndBindUi(this));
     this.driver = pdriver;
     this.driver.initialize(this);
@@ -112,5 +118,11 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
   @Override
   public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
     this.driver.setConstraintViolations(pvalidationErrorSet);
+  }
+
+  @Ignore
+  @UiFactory
+  public PhoneNumberMsRestSuggestBox buildPhoneNumberMsRestSuggestBox() {
+    return this.phoneNumberWidgetProvider.get();
   }
 }
