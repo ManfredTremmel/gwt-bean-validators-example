@@ -63,9 +63,6 @@
 
   <!-- <set-property name="history.pushStateSupported" value="no" /> -->
 
-  <set-configuration-property name="gwtp.prebootstrapper"
-        value="de.knightsoftnet.validationexample.client.MyPreBootstrapper"/>
-
   <!-- Reduce compiled size by using striped code -->
   <set-property name="compiler.stackMode" value="strip" />
 

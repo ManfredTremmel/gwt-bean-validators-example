@@ -80,7 +80,7 @@ public class MyNavigationStructure extends AbstractNavigationStructure {
 
     navigationEntries
         .add(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuLogin()),
-            NameTokens.LOGIN, this.loggedOutGatekeeper));
+            NameTokens.SECRET + "/" + NameTokens.LOGIN, this.loggedOutGatekeeper));
     navigationEntries
         .add(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuLogout()),
             NameTokens.LOGOUT, this.loggedInGatekeeper));
