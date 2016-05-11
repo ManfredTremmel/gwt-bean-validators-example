@@ -20,9 +20,9 @@ import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
-import de.knightsoftnet.validationexample.client.ui.page.RestCallbackImpl;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
+import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
+import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
@@ -33,6 +33,8 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+
+import org.apache.commons.lang3.BooleanUtils;
 
 import javax.inject.Inject;
 
@@ -94,7 +96,18 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
-        new RestCallbackImpl<AddressPresenter, PostalAddressData, MyView>(this.getView(),
-            this.addressData, this.constants.messageAddressDataOk(), this.session));
+        new AbstractRestCallback<AddressPresenter, PostalAddressData, MyView, Boolean>(
+            this.getView(), this.addressData, this.session) {
+
+          @Override
+          public void onSuccess(final Boolean presult) {
+            if (BooleanUtils.isTrue(presult)) {
+              this.view.showMessage(AddressPresenter.this.constants.messageAddressDataOk());
+            } else {
+              this.view.showMessage(AddressPresenter.this.constants.messageAddressDataError());
+            }
+          }
+
+        });
   }
 }

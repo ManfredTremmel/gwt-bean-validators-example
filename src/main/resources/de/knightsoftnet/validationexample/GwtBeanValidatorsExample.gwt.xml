@@ -11,8 +11,6 @@
 
   <inherits name='com.google.gwt.user.theme.clean.Clean' />
 
-  <inherits name="com.google.web.bindery.autobean.AutoBean"/>
-  
   <!-- Other module inherits -->
 
   <!-- resources for css bundle -->
@@ -20,18 +18,6 @@
 
   <!-- localization support -->
   <inherits name="com.google.gwt.i18n.I18N" />
-
-  <!-- apache commons lang3 -->
-  <inherits name="org.apache.commons.GWTCommonsLang3" />
-
-  <!-- apache commons validator -->
-  <inherits name="org.apache.commons.GWTCommonsValidator" />
-
-  <!-- gwt bean validators -->
-  <inherits name="de.knightsoftnet.validators.GwtBeanValidators" />
-
-  <!-- gwtp dynamic navigation -->
-  <inherits name="de.knightsoftnet.navigation.GwtpDynamicNavigation" />
 
   <!-- gwt mt widgets -->
   <inherits name="de.knightsoftnet.mtwidgets.GwtMtWidgetsSpringGwtp" />
@@ -41,9 +27,6 @@
 
   <!-- gwtp mvp support -->
   <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
-
-  <!-- gwtp rest support -->
-  <inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
 
   <!-- html 5 push state support -->
   <inherits name="com.wallissoftware.pushstate.PushState" />

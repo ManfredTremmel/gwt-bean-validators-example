@@ -20,9 +20,9 @@ import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.validationexample.client.services.SepaRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.client.ui.page.EditorWithErrorHandling;
-import de.knightsoftnet.validationexample.client.ui.page.RestCallbackImpl;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
+import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
+import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
@@ -33,6 +33,8 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+
+import org.apache.commons.lang3.BooleanUtils;
 
 import javax.inject.Inject;
 
@@ -94,7 +96,18 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
-        new RestCallbackImpl<SepaPresenter, SepaData, MyView>(this.getView(), this.sepaData,
-            this.constants.messageSepaOk(), this.session));
+        new AbstractRestCallback<SepaPresenter, SepaData, MyView, Boolean>(this.getView(),
+            this.sepaData, this.session) {
+
+          @Override
+          public void onSuccess(final Boolean presult) {
+            if (BooleanUtils.isTrue(presult)) {
+              this.view.showMessage(SepaPresenter.this.constants.messageSepaOk());
+            } else {
+              this.view.showMessage(SepaPresenter.this.constants.messageSepaError());
+            }
+          }
+
+        });
   }
 }

@@ -45,7 +45,6 @@
 		<!-- Convenience property to set the GWT version -->
 		<gwt.version>2.7.0</gwt.version>
 		<gwtp.version>1.5.3</gwtp.version>
-		<gwtp-dynamic-navigation.version>0.9.8-SNAPSHOT</gwtp-dynamic-navigation.version>
 		<hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
 		<gwt-pushstate.version>2.0.0.5</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
@@ -82,13 +81,6 @@
 			<groupId>org.tuckey</groupId>
 			<artifactId>urlrewritefilter</artifactId>
 			<version>${urlrewritefilter.version}</version>
-		</dependency>
-
-		<!-- dynamic navigation support -->
-		<dependency>
-			<groupId>de.knightsoft-net</groupId>
-			<artifactId>gwtp-dynamic-navigation</artifactId>
-			<version>${gwtp-dynamic-navigation.version}</version>
 		</dependency>
 
 		<!-- set of gwt widgets, also include validation support -->
