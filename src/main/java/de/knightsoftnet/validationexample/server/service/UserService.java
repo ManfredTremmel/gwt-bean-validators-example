@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.service;
 
-import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.navigation.shared.models.User;
 
 /**
  * user service interface. based on the work of https://github.com/imrabti/gwtp-spring-security
@@ -24,7 +24,7 @@ import de.knightsoftnet.validationexample.shared.models.UserData;
  */
 public interface UserService {
 
-  UserData getCurrentUser();
+  User getCurrentUser();
 
   Boolean isCurrentUserLoggedIn();
 }

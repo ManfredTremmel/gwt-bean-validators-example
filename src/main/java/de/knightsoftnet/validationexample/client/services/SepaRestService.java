@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.services;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 
 import com.gwtplatform.dispatch.rest.shared.RestAction;
@@ -23,7 +23,7 @@ import com.gwtplatform.dispatch.rest.shared.RestAction;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-@Path(ResourcePaths.SEPA)
+@Path(AppResourcePaths.SEPA)
 public interface SepaRestService {
 
   @POST

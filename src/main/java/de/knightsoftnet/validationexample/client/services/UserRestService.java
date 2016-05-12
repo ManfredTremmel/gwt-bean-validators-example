@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.services;
 
-import de.knightsoftnet.validationexample.shared.Parameters;
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.shared.Parameters;
+import de.knightsoftnet.validators.shared.ResourcePaths;
 
 import com.gwtplatform.dispatch.rest.shared.RestAction;
 

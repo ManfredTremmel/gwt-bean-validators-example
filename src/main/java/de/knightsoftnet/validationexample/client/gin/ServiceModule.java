@@ -1,6 +1,6 @@
 package de.knightsoftnet.validationexample.client.gin;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.inject.client.AbstractGinModule;
@@ -13,9 +13,9 @@ public class ServiceModule extends AbstractGinModule {
   @Override
   protected void configure() {
     this.install(new RestDispatchAsyncModule.Builder()
-        .xsrfTokenHeaderName(ResourcePaths.XSRF_HEADER).build());
+        .xsrfTokenHeaderName(AppResourcePaths.XSRF_HEADER).build());
 
-    this.bindConstant().annotatedWith(SecurityCookie.class).to(ResourcePaths.XSRF_COOKIE);
+    this.bindConstant().annotatedWith(SecurityCookie.class).to(AppResourcePaths.XSRF_COOKIE);
   }
 
   @Provides

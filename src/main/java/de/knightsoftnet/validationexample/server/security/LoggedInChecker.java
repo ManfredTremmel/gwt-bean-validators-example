@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.security;
 
+import de.knightsoftnet.navigation.shared.models.User;
 import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import org.springframework.security.core.Authentication;
@@ -34,8 +35,8 @@ public class LoggedInChecker {
    *
    * @return UserData or null if no one is logged in
    */
-  public UserData getLoggedInUser() {
-    UserData user = null;
+  public User getLoggedInUser() {
+    User user = null;
 
     final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     if (authentication != null) {

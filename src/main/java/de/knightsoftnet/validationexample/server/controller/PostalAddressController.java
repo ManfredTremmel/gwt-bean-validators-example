@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 
 import org.apache.log4j.Logger;
@@ -34,7 +34,8 @@ import javax.validation.Valid;
  * @author Manfred Tremmel
  */
 @RestController
-@RequestMapping(value = ResourcePaths.POSTAL_ADDRESS, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AppResourcePaths.POSTAL_ADDRESS,
+    produces = MediaType.APPLICATION_JSON_VALUE)
 public class PostalAddressController {
 
   private static final Logger LOG = Logger.getLogger(PostalAddressController.class);

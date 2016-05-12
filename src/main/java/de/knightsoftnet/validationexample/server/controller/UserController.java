@@ -18,8 +18,8 @@ package de.knightsoftnet.validationexample.server.controller;
 import static org.springframework.http.ResponseEntity.ok;
 
 import de.knightsoftnet.validationexample.server.service.UserService;
-import de.knightsoftnet.validationexample.shared.ResourcePaths.User;
 import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.shared.ResourcePaths;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +37,7 @@ import javax.annotation.security.PermitAll;
  * @author Manfred Tremmel
  */
 @RestController
-@RequestMapping(value = User.ROOT, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = ResourcePaths.User.ROOT, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
   private final UserService userService;
 
@@ -46,7 +46,7 @@ public class UserController {
     this.userService = puserService;
   }
 
-  @RequestMapping(value = User.LOGIN, method = RequestMethod.GET)
+  @RequestMapping(value = ResourcePaths.User.LOGIN, method = RequestMethod.GET)
   @PermitAll
   ResponseEntity<Boolean> isCurrentUserLoggedIn() {
     return new ResponseEntity<>(this.userService.isCurrentUserLoggedIn(), HttpStatus.OK);
@@ -54,6 +54,6 @@ public class UserController {
 
   @RequestMapping(method = RequestMethod.GET)
   ResponseEntity<UserData> getCurrentUser() {
-    return ok(this.userService.getCurrentUser());
+    return ok((UserData) this.userService.getCurrentUser());
   }
 }

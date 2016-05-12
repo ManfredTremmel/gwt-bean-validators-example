@@ -15,18 +15,10 @@
 
 package de.knightsoftnet.validationexample.shared;
 
-public class ResourcePaths {
-  public static final String XSRF_COOKIE = "XSRF-TOKEN";
-  public static final String XSRF_HEADER = "X-XSRF-TOKEN";
+import de.knightsoftnet.validators.shared.ResourcePaths;
 
-  public static final String API_BASE_DIR = "/api/rest";
-
+public class AppResourcePaths extends ResourcePaths {
   public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
   public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
   public static final String SEPA = API_BASE_DIR + "/sepa";
-
-  public class User {
-    public static final String ROOT = API_BASE_DIR + "/user";
-    public static final String LOGIN = "/login";
-  }
 }

@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.server.service.impl;
 
+import de.knightsoftnet.navigation.shared.models.User;
 import de.knightsoftnet.validationexample.server.security.LoggedInChecker;
 import de.knightsoftnet.validationexample.server.service.UserService;
-import de.knightsoftnet.validationexample.shared.models.UserData;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public UserData getCurrentUser() {
+  public User getCurrentUser() {
     return this.loggedInChecker.getLoggedInUser();
   }
 

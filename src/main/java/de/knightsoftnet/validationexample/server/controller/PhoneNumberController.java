@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 
 import org.apache.log4j.Logger;
@@ -34,7 +34,7 @@ import javax.validation.Valid;
  * @author Manfred Tremmel
  */
 @RestController
-@RequestMapping(value = ResourcePaths.PHONE_NUMBER, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AppResourcePaths.PHONE_NUMBER, produces = MediaType.APPLICATION_JSON_VALUE)
 public class PhoneNumberController {
 
   private static final Logger LOG = Logger.getLogger(PhoneNumberController.class);

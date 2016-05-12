@@ -16,6 +16,7 @@
 package de.knightsoftnet.validationexample.server.security;
 
 import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.server.security.CsrfCookieHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

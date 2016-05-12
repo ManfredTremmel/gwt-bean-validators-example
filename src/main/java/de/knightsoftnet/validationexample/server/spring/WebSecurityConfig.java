@@ -16,14 +16,16 @@
 package de.knightsoftnet.validationexample.server.spring;
 
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.server.security.AuthFailureHandler;
 import de.knightsoftnet.validationexample.server.security.AuthSuccessHandler;
-import de.knightsoftnet.validationexample.server.security.CsrfCookieHandler;
-import de.knightsoftnet.validationexample.server.security.HttpAuthenticationEntryPoint;
-import de.knightsoftnet.validationexample.server.security.HttpLogoutSuccessHandler;
-import de.knightsoftnet.validationexample.shared.Parameters;
-import de.knightsoftnet.validationexample.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
+import de.knightsoftnet.validators.server.security.AuthFailureHandler;
+import de.knightsoftnet.validators.server.security.CsrfCookieHandler;
+import de.knightsoftnet.validators.server.security.HttpAuthenticationEntryPoint;
+import de.knightsoftnet.validators.server.security.HttpLogoutSuccessHandler;
+import de.knightsoftnet.validators.shared.Parameters;
+import de.knightsoftnet.validators.shared.ResourcePaths;
 import de.knightsoftnet.validators.shared.ResourcePaths.PhoneNumber;
+import de.knightsoftnet.validators.shared.ResourcePaths.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -62,7 +64,7 @@ import javax.servlet.http.HttpServletResponse;
     "de.knightsoftnet.validators.server"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private static final String LOGIN_PATH = ResourcePaths.User.ROOT + ResourcePaths.User.LOGIN;
+  private static final String LOGIN_PATH = User.ROOT + User.LOGIN;
 
   @Autowired
   private HttpAuthenticationEntryPoint authenticationEntryPoint;
@@ -112,9 +114,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests() //
 
         // services without authentication
-        .antMatchers(ResourcePaths.PHONE_NUMBER, //
-            ResourcePaths.POSTAL_ADDRESS, //
-            ResourcePaths.SEPA, //
+        .antMatchers(AppResourcePaths.PHONE_NUMBER, //
+            AppResourcePaths.POSTAL_ADDRESS, //
+            AppResourcePaths.SEPA, //
             PhoneNumber.ROOT + "/**") //
         .permitAll() //
 
