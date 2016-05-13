@@ -19,6 +19,8 @@ import de.knightsoftnet.navigation.shared.models.User;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Objects;
+
 /**
  * The <code>UserData</code> class implements contains the data of a user.
  *
@@ -89,10 +91,7 @@ public class UserData implements User {
 
   @Override
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + (this.userName == null ? 0 : this.userName.hashCode());
-    return result;
+    return Objects.hashCode(this.userName);
   }
 
   @Override

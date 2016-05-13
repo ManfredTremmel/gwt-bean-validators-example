@@ -23,8 +23,6 @@ import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
-import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -90,13 +88,14 @@ public class SepaViewGwtImpl extends ViewImpl
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
     ((BicSuggestBox) this.bic.getWidget()).setBankNameWidget(this.bankName);
-    // limit possible countries to sepa countries
-    ((CountryListBox) this.countryCode.getWidget()).fillCountryEntries(this.getSepaCountries());
   }
 
   @Override
   public final void setPresenter(final SepaPresenter ppresenter) {
     this.presenter = ppresenter;
+    // limit possible countries to sepa countries
+    ((CountryListBox) this.countryCode.getWidget())
+        .fillCountryEntries(this.presenter.getSepaCountries());
   }
 
   @Override
@@ -122,15 +121,5 @@ public class SepaViewGwtImpl extends ViewImpl
   @Override
   public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
     this.driver.setConstraintViolations(pvalidationErrorSet);
-  }
-
-  private CountryEnum[] getSepaCountries() {
-    final IbanLengthMapSharedConstants ibanMap = CreateIbanLengthMapConstantsClass.create();
-    final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
-    int pos = 0;
-    for (final String entry : ibanMap.ibanLengths().keySet()) {
-      countryList[pos++] = CountryEnum.valueOf(entry);
-    }
-    return countryList;
   }
 }

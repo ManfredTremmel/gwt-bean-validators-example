@@ -23,6 +23,8 @@ import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
+import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
@@ -109,5 +111,20 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
           }
 
         });
+  }
+
+  /**
+   * get a list of countries which take part on sepa.
+   * 
+   * @return array of countries
+   */
+  public CountryEnum[] getSepaCountries() {
+    final IbanLengthMapSharedConstants ibanMap = CreateIbanLengthMapConstantsClass.create();
+    final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
+    int pos = 0;
+    for (final String entry : ibanMap.ibanLengths().keySet()) {
+      countryList[pos++] = CountryEnum.valueOf(entry);
+    }
+    return countryList;
   }
 }

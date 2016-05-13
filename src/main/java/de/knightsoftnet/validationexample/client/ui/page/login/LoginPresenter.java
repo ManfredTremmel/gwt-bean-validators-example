@@ -21,24 +21,20 @@ import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
-import com.google.gwt.editor.client.Editor;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
-import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * Presenter of the login, implementation.
@@ -48,39 +44,7 @@ import javax.validation.ConstraintViolation;
  */
 public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresenter.MyProxy> {
 
-  public interface MyView extends View, Editor<LoginData> {
-    /**
-     * set a reference to the presenter/activity.
-     *
-     * @param ppresenter reference to set
-     */
-    void setPresenter(LoginPresenter ppresenter);
-
-    /**
-     * fill the form with data.
-     *
-     * @param puser data to fill into the form
-     */
-    void fillForm(LoginData puser);
-
-    /**
-     * display a message on the screen.
-     *
-     * @param pmessage the message to display
-     */
-    void showMessage(String pmessage);
-
-    /**
-     * set focus on first widget.
-     */
-    void setFocusOnFirstWidget();
-
-    /**
-     * display validation errors.
-     *
-     * @param pvalidationErrorSet list of violations
-     */
-    void setConstraintViolations(ArrayList<ConstraintViolation<?>> pvalidationErrorSet);
+  public interface MyView extends EditorWithErrorHandling<LoginPresenter, LoginData> {
   }
 
   @ProxyCodeSplit
