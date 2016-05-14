@@ -4,5 +4,5 @@
  * @author Manfred Tremmel
  *
  */
-package de.knightsoftnet.validationexample.client.ui.page.about;
+package de.knightsoftnet.validationexample.client.ui.basepage.about;
 

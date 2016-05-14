@@ -39,7 +39,7 @@ public interface PhoneNumberConstants extends Constants {
   String messagePhoneNumberOk();
 
   /**
-   * default country.
+   * default country for preselecting country widget.
    *
    * @return defaultCountry
    */

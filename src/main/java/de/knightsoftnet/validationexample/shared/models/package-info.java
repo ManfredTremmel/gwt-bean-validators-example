@@ -1,5 +1,5 @@
 /**
- * this package contains the models to exchange between server and client.
+ * this package contains the models to exchange data between server and client.
  *
  * @author Manfred Tremmel
  *

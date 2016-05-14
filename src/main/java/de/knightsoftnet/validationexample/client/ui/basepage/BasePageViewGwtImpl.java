@@ -46,7 +46,7 @@ public class BasePageViewGwtImpl extends ViewImpl implements BasePagePresenter.M
   SimplePanel container;
 
   /**
-   * navigation.
+   * navigation container.
    */
   @UiField
   SimplePanel navigation;

@@ -56,9 +56,8 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
    * constructor injecting parameters.
    */
   @Inject
-  public LogoutPresenter(final EventBus peventBus, final LogoutPresenter.MyView pview,
-      final MyProxy pproxy, final RestDispatch pdispatcher, final UserRestService puserService,
-      final Session psession) {
+  public LogoutPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
+      final RestDispatch pdispatcher, final UserRestService puserService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.userService = puserService;

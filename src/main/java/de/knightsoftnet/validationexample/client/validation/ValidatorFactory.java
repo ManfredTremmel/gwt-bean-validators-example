@@ -28,7 +28,9 @@ import com.google.gwt.validation.client.impl.AbstractGwtValidator;
 import javax.validation.Validator;
 
 /**
- * The <code>ValidatorFactory</code> class is used for client side validation by annotation.
+ * The <code>ValidatorFactory</code> class is used for client side validation by annotation. All
+ * beans which should be client side validated, have to be added to {@link GwtValidation}
+ * annotation.
  *
  * @author Manfred Tremmel
  */

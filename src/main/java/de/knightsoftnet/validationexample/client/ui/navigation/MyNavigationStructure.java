@@ -33,7 +33,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * place for displaying validationexample.
+ * definition of the navigation structure of this application, entries are secured by gatekeepers
+ * and only entries where user has access are displayed, all other are hidden.
  *
  * @author Manfred Tremmel
  *

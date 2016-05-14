@@ -21,7 +21,8 @@ import org.springframework.context.annotation.Configuration;
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
 
 /**
- * configuration of the url filter.
+ * configuration of the url filter, it's used to redirect all pushstate urls (which don't realy
+ * exists) to the index.html page.
  *
  * @author Manfred Tremmel
  */

@@ -68,8 +68,8 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
    * constructor injecting parameters.
    */
   @Inject
-  public SepaPresenter(final EventBus peventBus, final SepaPresenter.MyView pview,
-      final MyProxy pproxy, final SepaConstants pconstants, final RestDispatch pdispatcher,
+  public SepaPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
+      final SepaConstants pconstants, final RestDispatch pdispatcher,
       final SepaRestService psepaService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.constants = pconstants;
@@ -109,13 +109,12 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
               this.view.showMessage(SepaPresenter.this.constants.messageSepaError());
             }
           }
-
         });
   }
 
   /**
-   * get a list of countries which take part on sepa.
-   * 
+   * get a list of countries which take part on sepa procedure.
+   *
    * @return array of countries
    */
   public CountryEnum[] getSepaCountries() {

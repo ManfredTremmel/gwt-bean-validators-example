@@ -17,6 +17,12 @@ package de.knightsoftnet.validationexample.shared;
 
 import de.knightsoftnet.validators.shared.ResourcePaths;
 
+/**
+ * definition of rest url pathes.
+ *
+ * @author Manfred Tremmel
+ *
+ */
 public class AppResourcePaths extends ResourcePaths {
   public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
   public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";

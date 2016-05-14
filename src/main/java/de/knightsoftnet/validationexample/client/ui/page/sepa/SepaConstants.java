@@ -39,7 +39,7 @@ public interface SepaConstants extends Constants {
   String messageSepaOk();
 
   /**
-   * default country.
+   * default country for preselecting country widget.
    *
    * @return defaultCountry
    */

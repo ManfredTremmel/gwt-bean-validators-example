@@ -107,7 +107,6 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
               this.view.showMessage(AddressPresenter.this.constants.messageAddressDataError());
             }
           }
-
         });
   }
 }

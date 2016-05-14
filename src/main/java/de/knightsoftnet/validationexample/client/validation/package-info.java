@@ -1,5 +1,5 @@
 /**
- * this package contains client side validation classes.
+ * this package contains client side validation configurations.
  *
  * @author Manfred Tremmel
  *

@@ -67,8 +67,8 @@ public class PhoneNumberPresenter
    * constructor injecting parameters.
    */
   @Inject
-  public PhoneNumberPresenter(final EventBus peventBus, final PhoneNumberPresenter.MyView pview,
-      final MyProxy pproxy, final PhoneNumberConstants pconstants, final RestDispatch pdispatcher,
+  public PhoneNumberPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
+      final PhoneNumberConstants pconstants, final RestDispatch pdispatcher,
       final PhoneRestService pphoneNumberService, final Session psession) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.constants = pconstants;
@@ -108,7 +108,6 @@ public class PhoneNumberPresenter
               this.view.showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberError());
             }
           }
-
         });
   }
 }

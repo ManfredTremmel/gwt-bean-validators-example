@@ -13,18 +13,18 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.server.service;
+package de.knightsoftnet.validationexample.server.converter.impl;
 
 import de.knightsoftnet.navigation.shared.models.User;
+import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.server.converter.UserDetailsConverter;
 
-/**
- * user service interface. based on the work of https://github.com/imrabti/gwtp-spring-security
- *
- * @author Manfred Tremmel
- */
-public interface UserService {
+import org.springframework.security.core.userdetails.UserDetails;
 
-  User getCurrentUser();
+public class UserDetailsConverterImpl implements UserDetailsConverter {
 
-  Boolean isCurrentUserLoggedIn();
+  @Override
+  public User convert(final UserDetails psource) {
+    return new UserData(psource.getUsername(), psource.getPassword());
+  }
 }

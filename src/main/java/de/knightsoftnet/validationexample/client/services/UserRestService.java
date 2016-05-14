@@ -16,18 +16,10 @@
 package de.knightsoftnet.validationexample.client.services;
 
 import de.knightsoftnet.validationexample.shared.models.UserData;
-import de.knightsoftnet.validators.shared.Parameters;
+import de.knightsoftnet.validators.client.services.UserRestServiceTemplate;
 import de.knightsoftnet.validators.shared.ResourcePaths;
 
-import com.gwtplatform.dispatch.rest.shared.RestAction;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Definition of the login/logout remote services.
@@ -35,22 +27,5 @@ import javax.ws.rs.core.MediaType;
  * @author Manfred Tremmel
  */
 @Path(ResourcePaths.User.ROOT)
-public interface UserRestService {
-
-  @POST
-  @Path(ResourcePaths.User.LOGIN)
-  @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-  RestAction<UserData> login(@FormParam(Parameters.USERNAME) String username,
-      @FormParam(Parameters.PASSWORD) String password);
-
-  @DELETE
-  @Path(ResourcePaths.User.LOGIN)
-  RestAction<Void> logout();
-
-  @GET
-  @Path(ResourcePaths.User.LOGIN)
-  RestAction<Boolean> isCurrentUserLoggedIn();
-
-  @GET
-  RestAction<UserData> getCurrentUser();
+public interface UserRestService extends UserRestServiceTemplate<UserData> {
 }

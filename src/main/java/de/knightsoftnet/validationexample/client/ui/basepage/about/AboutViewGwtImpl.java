@@ -13,7 +13,7 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.about;
+package de.knightsoftnet.validationexample.client.ui.basepage.about;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;

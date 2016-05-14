@@ -22,8 +22,6 @@ import de.knightsoftnet.validators.shared.IbanFormated;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import java.io.Serializable;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -32,11 +30,7 @@ import javax.validation.constraints.NotNull;
  * @author Manfred Tremmel
  */
 @BankCountry
-public class SepaData implements Serializable {
-  /**
-   * serial version uid.
-   */
-  private static final long serialVersionUID = 3006706955505446367L;
+public class SepaData {
 
   @NotEmpty
   private String bankName;

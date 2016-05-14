@@ -15,22 +15,22 @@
 
 package de.knightsoftnet.validationexample.client;
 
-import de.knightsoftnet.navigation.client.session.AbstractSession;
 import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.client.GwtpSpringSession;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 
-import org.apache.commons.lang3.BooleanUtils;
-
 import javax.inject.Inject;
 
-public class CurrentSession extends AbstractSession {
-  private final RestDispatch dispatcher;
-  private final UserRestService userService;
+/**
+ * session implementation based on GwtpSpringSession.
+ * 
+ * @author Manfred Tremmel
+ *
+ */
+public class CurrentSession extends GwtpSpringSession<UserData> {
 
   /**
    * constructor with injected parameters.
@@ -40,44 +40,6 @@ public class CurrentSession extends AbstractSession {
   @Inject
   public CurrentSession(final EventBus peventBus, final RestDispatch pdispatcher,
       final UserRestService puserService) {
-    super(peventBus);
-    this.dispatcher = pdispatcher;
-    this.userService = puserService;
-  }
-
-  /**
-   * read session data.
-   */
-  @Override
-  public void readSessionData() {
-    this.dispatcher.execute(this.userService.isCurrentUserLoggedIn(), new AsyncCallback<Boolean>() {
-
-      @Override
-      public void onFailure(final Throwable pcaught) {
-        GWT.log("Error checking if user is logged in", pcaught);
-      }
-
-      @Override
-      public void onSuccess(final Boolean presult) {
-        if (BooleanUtils.isTrue(presult)) {
-          // we do have a logged in user, read it
-          CurrentSession.this.dispatcher.execute(CurrentSession.this.userService.getCurrentUser(),
-              new AsyncCallback<UserData>() {
-                @Override
-                public void onFailure(final Throwable pcaught) {
-                  GWT.log("Error reading session user", pcaught);
-                }
-
-                @Override
-                public void onSuccess(final UserData presult) {
-                  CurrentSession.this.setUser(presult);
-                }
-              });
-        } else {
-          CurrentSession.this.setUser(null);
-        }
-      }
-
-    });
+    super(peventBus, pdispatcher, puserService);
   }
 }

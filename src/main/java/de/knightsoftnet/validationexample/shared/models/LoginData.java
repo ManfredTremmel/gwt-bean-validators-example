@@ -134,7 +134,7 @@ public class LoginData {
   }
 
   @Override
-  public final String toString() {
-    return this.userName;
+  public String toString() {
+    return "LoginData [userName=" + this.userName + "]";
   }
 }

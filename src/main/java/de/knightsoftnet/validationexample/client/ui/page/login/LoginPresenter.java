@@ -69,9 +69,9 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
    * presenter with injected parameters.
    */
   @Inject
-  public LoginPresenter(final EventBus peventBus, final LoginPresenter.MyView pview,
-      final MyProxy pproxy, final RestDispatch pdispatcher, final UserRestService puserService,
-      final Session psession, final LoginConstants pconstants) {
+  public LoginPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
+      final RestDispatch pdispatcher, final UserRestService puserService, final Session psession,
+      final LoginConstants pconstants) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.userService = puserService;

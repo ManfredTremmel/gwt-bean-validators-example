@@ -13,35 +13,35 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.address;
+package de.knightsoftnet.validationexample.client.ui.basepage.about;
 
-import com.google.gwt.i18n.client.Constants;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.PopupView;
+import com.gwtplatform.mvp.client.PresenterWidget;
+
+import javax.inject.Inject;
 
 /**
- * Localized values for the address page.
+ * Presenter of the about page, implementation.
  *
  * @author Manfred Tremmel
  *
  */
-public interface AddressConstants extends Constants {
-  /**
-   * text to display when address data are not correct.
-   *
-   * @return messageSepaError
-   */
-  String messageAddressDataError();
+public class AboutPresenter extends PresenterWidget<AboutPresenter.MyView> {
+
+  public interface MyView extends PopupView {
+    void setPresenter(AboutPresenter ppresenter);
+  }
 
   /**
-   * text to display when address data data are correct.
+   * constructor injecting parameters.
    *
-   * @return messageSepaOk
+   * @param peventBus event bus
+   * @param pview view of the page
    */
-  String messageAddressDataOk();
-
-  /**
-   * default country for preselecting country widget.
-   *
-   * @return defaultCountry
-   */
-  String defaultCountry();
+  @Inject
+  public AboutPresenter(final EventBus peventBus, final AboutPresenter.MyView pview) {
+    super(peventBus, pview);
+    this.getView().setPresenter(this);
+  }
 }

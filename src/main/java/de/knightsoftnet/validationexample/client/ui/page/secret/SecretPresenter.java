@@ -51,8 +51,7 @@ public class SecretPresenter extends Presenter<SecretPresenter.MyView, SecretPre
    * @param pproxy proxy to handle page
    */
   @Inject
-  public SecretPresenter(final EventBus peventBus, final SecretPresenter.MyView pview,
-      final MyProxy pproxy) {
+  public SecretPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy) {
     super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
   }
 }

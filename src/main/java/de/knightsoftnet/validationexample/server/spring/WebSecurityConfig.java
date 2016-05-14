@@ -16,9 +16,9 @@
 package de.knightsoftnet.validationexample.server.spring;
 
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
-import de.knightsoftnet.validationexample.server.security.AuthSuccessHandler;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validators.server.security.AuthFailureHandler;
+import de.knightsoftnet.validators.server.security.AuthSuccessHandler;
 import de.knightsoftnet.validators.server.security.CsrfCookieHandler;
 import de.knightsoftnet.validators.server.security.HttpAuthenticationEntryPoint;
 import de.knightsoftnet.validators.server.security.HttpLogoutSuccessHandler;
@@ -96,7 +96,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/" + NameTokens.PHONE_NUMBER, //
             "/" + NameTokens.SECRET, //
             "/" + NameTokens.SETTINGS, //
-            "/" + NameTokens.ABOUT, //
             "/gwtBeanValidatorsExample/**");
   }
 

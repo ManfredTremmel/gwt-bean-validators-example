@@ -13,35 +13,24 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.page.about;
+package de.knightsoftnet.validationexample.server.spring;
 
-import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.PopupView;
-import com.gwtplatform.mvp.client.PresenterWidget;
+import de.knightsoftnet.validationexample.server.converter.impl.UserDetailsConverterImpl;
+import de.knightsoftnet.validators.server.converter.UserDetailsConverter;
 
-import javax.inject.Inject;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * Presenter of the about page, implementation.
+ * configuration for converter.
  *
  * @author Manfred Tremmel
- *
  */
-public class AboutPresenter extends PresenterWidget<AboutPresenter.MyView> {
+@Configuration
+public class ConverterConfig {
 
-  public interface MyView extends PopupView {
-    void setPresenter(AboutPresenter ppresenter);
-  }
-
-  /**
-   * constructor injecting parameters.
-   *
-   * @param peventBus event bus
-   * @param pview view of the page
-   */
-  @Inject
-  public AboutPresenter(final EventBus peventBus, final AboutPresenter.MyView pview) {
-    super(peventBus, pview);
-    this.getView().setPresenter(this);
+  @Bean
+  public UserDetailsConverter bindingUserDetailsConverter() {
+    return new UserDetailsConverterImpl();
   }
 }
