@@ -17,7 +17,7 @@
 	<groupId>de.knightsoft-net</groupId>
 	<artifactId>gwt-bean-validators-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.9.13-SNAPSHOT</version>
+	<version>0.10.0</version>
 	<name>GWT Bean Validators - Example</name>
 	<inceptionYear>2015</inceptionYear>
 	<description>
@@ -46,15 +46,15 @@
 		<gwt.version>2.7.0</gwt.version>
 		<gwtp.version>1.5.3</gwtp.version>
 		<hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
-		<gwt-pushstate.version>2.0.0.5</gwt-pushstate.version>
+		<gwt-pushstate.version>2.0.0.6</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
-		<gwt-mt-widgets.version>0.9.14-SNAPSHOT</gwt-mt-widgets.version>
+		<gwt-mt-widgets.version>0.10.0</gwt-mt-widgets.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
 		<maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-		<checkstyle.version>6.17</checkstyle.version>
+		<checkstyle.version>6.18</checkstyle.version>
 		<maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
 		<findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>

@@ -9,11 +9,13 @@ Checkout or download sources, go into the directory and compile it with
 mvn clean package
 ```
 
-The next step is to use the Spring Boot maven plugin to run the project :
+The next step is to use the Spring Boot maven plugin to run the project:
 
 ```bash
 mvn spring-boot:run
 ```
+
+Alternate you can deploy the created war file to a java application server like tomcat. 
 
 When the project is build successfully and running, you can access it at the URL : **[http://localhost:8080/validationexample/](http://localhost:8080/validationexample/)**
 
