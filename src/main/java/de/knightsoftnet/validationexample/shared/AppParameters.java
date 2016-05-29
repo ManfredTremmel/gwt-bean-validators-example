@@ -15,18 +15,8 @@
 
 package de.knightsoftnet.validationexample.shared;
 
-import de.knightsoftnet.validators.shared.ResourcePaths;
+import de.knightsoftnet.validators.shared.Parameters;
 
-/**
- * definition of rest url pathes.
- *
- * @author Manfred Tremmel
- *
- */
-public class AppResourcePaths extends ResourcePaths {
-  public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
-  public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
-  public static final String SEPA = API_BASE_DIR + "/sepa";
-
-  public static final String PERSON = "person";
+public class AppParameters extends Parameters {
+  public static final String LAST_NAME = "lastname";
 }

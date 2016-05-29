@@ -4,3 +4,9 @@ application:
   version: @project.version@
 server:
   contextPath: /validationexample
+spring:
+  data:
+    rest:
+      basePath: /api/rest
+entitymanager:
+  packagesToScan: de.knightsoftnet.validationexample.shared.models
