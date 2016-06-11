@@ -41,7 +41,7 @@
 	</parent>
 
 	<properties>
-		<jdk.version>1.7</jdk.version>
+		<jdk.version>1.8</jdk.version>
 		<!-- Convenience property to set the GWT version -->
 		<gwt.version>2.7.0</gwt.version>
 		<gwtp.version>1.5.3</gwtp.version>
@@ -195,21 +195,21 @@
 		</dependency>
 
 		<!-- Spring Querydsl dependencies -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mysema.querydsl</groupId> -->
-<!-- 			<artifactId>querydsl-core</artifactId> -->
-<!-- 			<version>${querydsl.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mysema.querydsl</groupId> -->
-<!-- 			<artifactId>querydsl-apt</artifactId> -->
-<!-- 			<version>${querydsl.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.mysema.querydsl</groupId> -->
-<!-- 			<artifactId>querydsl-jpa</artifactId> -->
-<!-- 			<version>${querydsl.version}</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-core</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
 
 	</dependencies>
 
@@ -218,22 +218,22 @@
 
 		<plugins>
 
-<!-- 			<plugin> -->
-<!-- 				<groupId>com.mysema.maven</groupId> -->
-<!-- 				<artifactId>apt-maven-plugin</artifactId> -->
-<!-- 				<version>${apt-maven-plugin.version}</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<goals> -->
-<!-- 							<goal>process</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<outputDirectory>target/generated-sources/java</outputDirectory> -->
-<!-- 							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
+			<plugin>
+				<groupId>com.mysema.maven</groupId>
+				<artifactId>apt-maven-plugin</artifactId>
+				<version>${apt-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/generated-sources/java</outputDirectory>
+							<processor>com.mysema.query.apt.jpa.JPAAnnotationProcessor</processor>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<!-- GWT Maven Plugin -->
 			<plugin>
@@ -263,7 +263,7 @@
 					<localWorkers>-1</localWorkers>
 					<extraJvmArgs>-Xms512m -Xmx1g</extraJvmArgs>
 					<outputDirectory>${staticResourcesDirectory}</outputDirectory>
-					<sourceLevel>${jdk.version}</sourceLevel>
+					<sourceLevel>1.7</sourceLevel>
 				</configuration>
 			</plugin>
 

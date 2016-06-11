@@ -15,23 +15,20 @@
 
 package de.knightsoftnet.validationexample.server.repository;
 
-import de.knightsoftnet.validationexample.shared.AppParameters;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.Person;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-import java.util.List;
 
 /**
  * person repository, used by spring data to create rest service for person data.
  *
  * @author Manfred Tremmel
  */
-@RepositoryRestResource(collectionResourceRel = AppResourcePaths.PERSON,
-    path = AppResourcePaths.PERSON)
-public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
-  List<Person> findByLastName(@Param(AppParameters.LAST_NAME) String plastName);
+@RepositoryRestResource(collectionResourceRel = AppResourcePaths.PERSON_SUFFIX,
+    path = AppResourcePaths.PERSON_SUFFIX)
+public interface PersonRepository
+    extends PagingAndSortingRepository<Person, Long>, JpaSpecificationExecutor<Person> {
 }

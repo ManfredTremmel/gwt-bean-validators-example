@@ -24,9 +24,13 @@ import de.knightsoftnet.validators.shared.ResourcePaths;
  *
  */
 public class AppResourcePaths extends ResourcePaths {
+
+  public static final String PERSON_SUFFIX = "person";
+  public static final String SEARCH_SUFFIX = "search";
+
   public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
   public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
   public static final String SEPA = API_BASE_DIR + "/sepa";
-
-  public static final String PERSON = "person";
+  public static final String PERSON = API_BASE_DIR + "/" + PERSON_SUFFIX;
+  public static final String PERSON_SEARCH = PERSON + "/" + SEARCH_SUFFIX;
 }

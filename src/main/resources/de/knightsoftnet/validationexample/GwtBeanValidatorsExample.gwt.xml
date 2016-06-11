@@ -65,7 +65,9 @@
 
   <!-- Specify the paths for translatable code -->
   <source path="client" />
-  <source path="shared" />
+  <source path="shared">
+    <exclude name="**/models/Q*.java" />
+  </source>
 
   <set-configuration-property name="gin.ginjector.modules"
                               value="de.knightsoftnet.validationexample.client.gin.ClientModule"/>

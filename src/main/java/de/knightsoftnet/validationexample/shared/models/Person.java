@@ -47,6 +47,14 @@ public class Person {
   @Past
   private Date birthday;
 
+  public final Long getId() {
+    return this.id;
+  }
+
+  public final void setId(final Long pid) {
+    this.id = pid;
+  }
+
   public final String getFirstName() {
     return this.firstName;
   }
