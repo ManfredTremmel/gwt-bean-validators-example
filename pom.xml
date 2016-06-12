@@ -41,7 +41,7 @@
 	</parent>
 
 	<properties>
-		<jdk.version>1.8</jdk.version>
+		<jdk.version>1.7</jdk.version>
 		<!-- Convenience property to set the GWT version -->
 		<gwt.version>2.7.0</gwt.version>
 		<gwtp.version>1.5.3</gwtp.version>
@@ -263,7 +263,8 @@
 					<localWorkers>-1</localWorkers>
 					<extraJvmArgs>-Xms512m -Xmx1g</extraJvmArgs>
 					<outputDirectory>${staticResourcesDirectory}</outputDirectory>
-					<sourceLevel>1.7</sourceLevel>
+					<sourceLevel>${jdk.version}</sourceLevel>
+					<extra>/tmp</extra>
 				</configuration>
 			</plugin>
 
