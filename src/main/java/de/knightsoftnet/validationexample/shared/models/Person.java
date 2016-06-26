@@ -17,6 +17,9 @@ package de.knightsoftnet.validationexample.shared.models;
 
 import de.knightsoftnet.validators.shared.Email;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.gwt.editor.client.Editor.Ignore;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import java.util.Date;
@@ -33,9 +36,11 @@ import javax.validation.constraints.Past;
  * @author Manfred Tremmel
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Ignore
   private Long id;
 
   @NotEmpty

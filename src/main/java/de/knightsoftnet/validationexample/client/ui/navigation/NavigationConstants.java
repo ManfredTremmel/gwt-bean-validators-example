@@ -107,4 +107,11 @@ public interface NavigationConstants extends Constants {
    * @return phoneNumber
    */
   String menuPhoneNumber();
+
+  /**
+   * text of the person menu entry.
+   *
+   * @return person
+   */
+  String menuPerson();
 }

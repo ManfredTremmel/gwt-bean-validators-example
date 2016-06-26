@@ -13,23 +13,18 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.navigation;
+package de.knightsoftnet.validationexample.client.services;
+
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
+import de.knightsoftnet.validationexample.shared.models.Person;
+
+import javax.ws.rs.Path;
 
 /**
- * Here are all tokens (url path) defined which are used in this application.
+ * Definition of the person remote services.
  *
  * @author Manfred Tremmel
- *
  */
-public class NameTokens {
-  public static final String LOGIN =
-      de.knightsoftnet.navigation.client.ui.navigation.NameTokens.LOGIN;
-  public static final String LOGOUT =
-      de.knightsoftnet.navigation.client.ui.navigation.NameTokens.LOGOUT;
-  public static final String SEPA = "sepa";
-  public static final String ADDRESS = "address";
-  public static final String PHONE_NUMBER = "phonenumber";
-  public static final String SECRET = "secret";
-  public static final String SETTINGS = "settings";
-  public static final String PERSON = "person";
+@Path(AppResourcePaths.PERSON)
+public interface PersonRestService extends DataBaseRestServiceTemplate<Person, Integer> {
 }

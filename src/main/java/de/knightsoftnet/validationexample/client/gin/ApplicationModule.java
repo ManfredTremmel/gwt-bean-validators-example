@@ -33,6 +33,8 @@ import de.knightsoftnet.validationexample.client.ui.page.login.LoginPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.logout.LogoutPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.logout.LogoutViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.person.PersonPresenter;
+import de.knightsoftnet.validationexample.client.ui.page.person.PersonViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.phonenumber.PhoneNumberPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.phonenumber.PhoneNumberViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.secret.SecretPresenter;
@@ -72,6 +74,8 @@ public class ApplicationModule extends AbstractPresenterModule {
         PhoneNumberViewGwtImpl.class, PhoneNumberPresenter.MyProxy.class);
     this.bindPresenter(SettingsPresenter.class, SettingsPresenter.MyView.class,
         SettingsViewGwtImpl.class, SettingsPresenter.MyProxy.class);
+    this.bindPresenter(PersonPresenter.class, PersonPresenter.MyView.class, PersonViewGwtImpl.class,
+        PersonPresenter.MyProxy.class);
 
     this.bind(User.class).to(UserData.class).in(Singleton.class);
     this.bind(Session.class).to(CurrentSession.class).in(Singleton.class);

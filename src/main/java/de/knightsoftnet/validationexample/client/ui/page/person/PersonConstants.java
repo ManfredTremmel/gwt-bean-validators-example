@@ -13,23 +13,35 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.client.ui.navigation;
+package de.knightsoftnet.validationexample.client.ui.page.person;
+
+import com.google.gwt.i18n.client.Constants;
 
 /**
- * Here are all tokens (url path) defined which are used in this application.
+ * Localized values for the form.
  *
  * @author Manfred Tremmel
  *
  */
-public class NameTokens {
-  public static final String LOGIN =
-      de.knightsoftnet.navigation.client.ui.navigation.NameTokens.LOGIN;
-  public static final String LOGOUT =
-      de.knightsoftnet.navigation.client.ui.navigation.NameTokens.LOGOUT;
-  public static final String SEPA = "sepa";
-  public static final String ADDRESS = "address";
-  public static final String PHONE_NUMBER = "phonenumber";
-  public static final String SECRET = "secret";
-  public static final String SETTINGS = "settings";
-  public static final String PERSON = "person";
+public interface PersonConstants extends Constants {
+  /**
+   * text to display when sepa data is not correct.
+   *
+   * @return messageSepaError
+   */
+  String messageSepaError();
+
+  /**
+   * text to display when sepa data is correct.
+   *
+   * @return messageSepaOk
+   */
+  String messageSepaOk();
+
+  /**
+   * default country for preselecting country widget.
+   *
+   * @return defaultCountry
+   */
+  String defaultCountry();
 }

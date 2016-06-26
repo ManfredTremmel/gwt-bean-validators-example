@@ -91,6 +91,9 @@ public class MyNavigationStructure extends AbstractNavigationStructure {
     testFolder
         .addSubEntry(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuSecret()),
             NameTokens.SECRET, this.loggedInGatekeeper));
+    testFolder
+        .addSubEntry(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuPerson()),
+            NameTokens.PERSON, this.loggedInGatekeeper));
     navigationEntries.add(testFolder);
 
     return navigationEntries;
