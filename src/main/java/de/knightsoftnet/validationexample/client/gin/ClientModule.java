@@ -17,6 +17,7 @@ package de.knightsoftnet.validationexample.client.gin;
 
 import de.knightsoftnet.navigation.client.OwnPlaceManagerImpl;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
+import de.knightsoftnet.validators.client.gin.ServiceModule;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;

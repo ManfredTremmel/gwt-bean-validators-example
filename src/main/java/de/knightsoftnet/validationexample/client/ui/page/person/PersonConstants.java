@@ -25,23 +25,16 @@ import com.google.gwt.i18n.client.Constants;
  */
 public interface PersonConstants extends Constants {
   /**
-   * text to display when sepa data is not correct.
+   * text to display when data is not correct.
    *
-   * @return messageSepaError
+   * @return messageError
    */
-  String messageSepaError();
+  String messageError();
 
   /**
-   * text to display when sepa data is correct.
+   * text to display when data is correct.
    *
    * @return messageSepaOk
    */
-  String messageSepaOk();
-
-  /**
-   * default country for preselecting country widget.
-   *
-   * @return defaultCountry
-   */
-  String defaultCountry();
+  String messageOk();
 }

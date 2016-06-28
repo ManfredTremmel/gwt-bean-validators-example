@@ -100,10 +100,10 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
           @Override
           public void onSuccess(final PersonWithLinks presult) {
             if (presult == null) {
-              this.view.showMessage(PersonPresenter.this.constants.messageSepaError());
+              this.view.showMessage(PersonPresenter.this.constants.messageError());
             } else {
               this.view
-                  .showMessage(PersonPresenter.this.constants.messageSepaOk() + presult.toString());
+                  .showMessage(PersonPresenter.this.constants.messageOk() + presult.toString());
             }
           }
         });

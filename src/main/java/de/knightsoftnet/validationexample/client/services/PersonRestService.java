@@ -18,7 +18,9 @@ package de.knightsoftnet.validationexample.client.services;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.Person;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  * Definition of the person remote services.
@@ -26,5 +28,7 @@ import javax.ws.rs.Path;
  * @author Manfred Tremmel
  */
 @Path(AppResourcePaths.PERSON)
+@Consumes("application/json")
+@Produces("application/json")
 public interface PersonRestService extends DataBaseRestServiceTemplate<Person, Integer> {
 }
