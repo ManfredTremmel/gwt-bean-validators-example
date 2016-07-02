@@ -21,7 +21,6 @@ import de.knightsoftnet.validationexample.client.services.PersonRestService;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.Person;
-import de.knightsoftnet.validationexample.shared.models.PersonWithLinks;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
@@ -54,7 +53,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
   public interface MyProxy extends ProxyPlace<PersonPresenter> {
   }
 
-  private final Person personData;
+  private Person personData;
 
   private final PersonConstants constants;
   private final RestDispatch dispatcher;
@@ -94,16 +93,17 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.personService.save(this.personData),
-        new AbstractRestCallback<PersonPresenter, Person, MyView, PersonWithLinks>(this.getView(),
+        new AbstractRestCallback<PersonPresenter, Person, MyView, Person>(this.getView(),
             this.personData, this.session) {
 
           @Override
-          public void onSuccess(final PersonWithLinks presult) {
+          public void onSuccess(final Person presult) {
             if (presult == null) {
               this.view.showMessage(PersonPresenter.this.constants.messageError());
             } else {
-              this.view
-                  .showMessage(PersonPresenter.this.constants.messageOk() + presult.toString());
+              PersonPresenter.this.personData = presult;
+              this.view.fillForm(PersonPresenter.this.personData);
+              this.view.showMessage(PersonPresenter.this.constants.messageOk());
             }
           }
         });
@@ -122,5 +122,47 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
       countryList[pos++] = CountryEnum.valueOf(entry);
     }
     return countryList;
+  }
+
+  /**
+   * add new empty entry into form.
+   */
+  public void addNewEntry() {
+    this.personData = new Person();
+    this.getView().fillForm(this.personData);
+  }
+
+  /**
+   * read one entry.
+   */
+  public void readEntry(final Long pid) {
+    this.dispatcher.execute(this.personService.findOne(pid),
+        new AbstractRestCallback<PersonPresenter, Person, MyView, Person>(this.getView(),
+            this.personData, this.session) {
+
+          @Override
+          public void onSuccess(final Person presult) {
+            PersonPresenter.this.personData = presult;
+            this.view.fillForm(PersonPresenter.this.personData);
+            this.view.showMessage(null);
+          }
+        });
+  }
+
+  /**
+   * delete entry.
+   */
+  public void deleteEntry(final Long pid) {
+    this.dispatcher.execute(this.personService.delete(pid),
+        new AbstractRestCallback<PersonPresenter, Person, MyView, Void>(this.getView(),
+            this.personData, this.session) {
+
+          @Override
+          public void onSuccess(final Void presult) {
+            PersonPresenter.this.personData = new Person();
+            this.view.fillForm(PersonPresenter.this.personData);
+            this.view.showMessage(null);
+          }
+        });
   }
 }

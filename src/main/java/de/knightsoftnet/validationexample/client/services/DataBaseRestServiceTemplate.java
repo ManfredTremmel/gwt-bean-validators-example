@@ -15,12 +15,11 @@
 
 package de.knightsoftnet.validationexample.client.services;
 
-import de.knightsoftnet.validationexample.shared.models.PersonWithLinks;
-
 import com.gwtplatform.dispatch.rest.shared.RestAction;
 
 import java.io.Serializable;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -42,7 +41,7 @@ public interface DataBaseRestServiceTemplate<T, ID extends Serializable> {
    * @return the saved entity
    */
   @POST
-  RestAction<PersonWithLinks> save(T pentity);
+  RestAction<T> save(T pentity);
 
   /**
    * Saves all given entities.
@@ -79,8 +78,8 @@ public interface DataBaseRestServiceTemplate<T, ID extends Serializable> {
    *
    * @return all entities
    */
-  // @GET
-  // RestAction<Iterable<T>> findAll();
+  @GET
+  RestAction<Iterable<T>> findAll();
 
   /**
    * Returns all instances of the type with the given IDs.
@@ -103,9 +102,9 @@ public interface DataBaseRestServiceTemplate<T, ID extends Serializable> {
    * @param pid must not be {@literal null}.
    * @throws IllegalArgumentException in case the given {@code id} is {@literal null}
    */
-  // @DELETE
-  // @Path("/{id}")
-  // RestAction<Void> delete(@PathParam("id") ID pid);
+  @DELETE
+  @Path("/{id}")
+  RestAction<Void> delete(@PathParam("id") ID pid);
 
   /**
    * Deletes a given entity.
@@ -128,7 +127,7 @@ public interface DataBaseRestServiceTemplate<T, ID extends Serializable> {
   /**
    * Deletes all entities managed by the repository.
    */
-  // @DELETE
-  // RestAction<Void> deleteAll();
+  @DELETE
+  RestAction<Void> deleteAll();
 
 }

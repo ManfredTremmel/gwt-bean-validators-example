@@ -30,5 +30,5 @@ import javax.ws.rs.Produces;
 @Path(AppResourcePaths.PERSON)
 @Consumes("application/json")
 @Produces("application/json")
-public interface PersonRestService extends DataBaseRestServiceTemplate<Person, Integer> {
+public interface PersonRestService extends DataBaseRestServiceTemplate<Person, Long> {
 }

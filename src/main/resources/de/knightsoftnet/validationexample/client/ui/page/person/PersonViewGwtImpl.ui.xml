@@ -5,6 +5,7 @@
   ui:generateLocales="en,de"
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators"
+  xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget"
   xmlns:date="urn:import:com.google.gwt.user.datepicker.client">
 
   <ui:style src="PersonViewGwtImpl.css"/>
@@ -14,8 +15,22 @@
      <h1><ui:msg description="Header Person">Person</ui:msg></h1>
    </div>
    <div class="{style.form}">
+     <g:Button ui:field="newButton"><ui:msg description="New Button">New Entry</ui:msg></g:Button>
+     <w:LongBox ui:field="goToNumber" />
+     <g:Button ui:field="goToButton"><ui:msg description="Go To Button">Go To</ui:msg></g:Button>
+     <g:Button ui:field="deleteButton"><ui:msg description="Delete Button">Delete</ui:msg></g:Button>
+   </div>
+   <div class="{style.form}">
       <div class="{style.panel}">
        <div>
+         <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label Id">Id:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="id">
+             <d:widget>
+               <w:LongBox enabled="false" />
+             </d:widget>
+           </d:UniversalDecoratorWithIcons>
+         </div>
          <div class="{style.inputline}">
            <div class="{style.label}"><ui:msg description="Label Firstname">Firstname:</ui:msg></div>
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="firstName">

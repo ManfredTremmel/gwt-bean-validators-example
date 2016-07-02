@@ -15,14 +15,17 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.person;
 
+import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
@@ -50,6 +53,21 @@ public class PersonViewGwtImpl extends ViewImpl
   interface Driver extends BeanValidationEditorDriver<Person, PersonViewGwtImpl> {
   }
 
+  @Ignore
+  @UiField
+  Button newButton;
+  @Ignore
+  @UiField
+  LongBox goToNumber;
+  @Ignore
+  @UiField
+  Button goToButton;
+  @Ignore
+  @UiField
+  Button deleteButton;
+
+  @UiField
+  UniversalDecoratorWithIcons<Long> id;
   @UiField
   UniversalDecoratorWithIcons<String> firstName;
   @UiField
@@ -115,5 +133,20 @@ public class PersonViewGwtImpl extends ViewImpl
   @Override
   public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
     this.driver.setConstraintViolations(pvalidationErrorSet);
+  }
+
+  @UiHandler("newButton")
+  public void addNewEntry(final ClickEvent pevent) {
+    this.presenter.addNewEntry();
+  }
+
+  @UiHandler("goToButton")
+  public void goToByClick(final ClickEvent pevent) {
+    this.presenter.readEntry(this.goToNumber.getValue());
+  }
+
+  @UiHandler("deleteButton")
+  public void deleteByClick(final ClickEvent pevent) {
+    this.presenter.deleteEntry(this.id.getValue());
   }
 }
