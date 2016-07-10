@@ -36,7 +36,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.3.5.RELEASE</version>
+		<version>1.3.6.RELEASE</version>
 		<relativePath>validationexample</relativePath>
 	</parent>
 
@@ -48,19 +48,18 @@
 		<hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
 		<gwt-pushstate.version>2.0.0.6</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
-		<gwt-bean-validators.version>0.11.0-SNAPSHOT</gwt-bean-validators.version>
-		<gwt-mt-widgets.version>0.10.0</gwt-mt-widgets.version>
+		<gwt-mt-widgets.version>0.10.1</gwt-mt-widgets.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
-		<querydsl.version>3.7.3</querydsl.version>
+		<querydsl.version>3.7.4</querydsl.version>
 		<apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
 		<junit.version>4.12</junit.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
 		<maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-		<checkstyle.version>6.18</checkstyle.version>
+		<checkstyle.version>7.0</checkstyle.version>
 		<maven-pmd-plugin.version>3.6</maven-pmd-plugin.version>
-		<findbugs-maven-plugin.version>3.0.3</findbugs-maven-plugin.version>
+		<findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 		<maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
 
@@ -74,7 +73,6 @@
 	</properties>
 
 	<dependencies>
-
 
 		<!-- Google Web Toolkit dependencies -->
 		<dependency>
@@ -120,21 +118,6 @@
 		<!-- set of gwt widgets, also include validation support -->
 		<dependency>
 			<groupId>de.knightsoft-net</groupId>
-			<artifactId>gwt-bean-validators-spring-gwtp</artifactId>
-			<version>${gwt-bean-validators.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.google.gwt</groupId>
-					<artifactId>gwt-servlet</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-mt-widgets-spring-gwtp</artifactId>
 			<version>${gwt-mt-widgets.version}</version>
 			<scope>provided</scope>
@@ -142,10 +125,6 @@
 				<exclusion>
 					<groupId>org.slf4j</groupId>
 					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.google.gwt</groupId>
-					<artifactId>gwt-servlet</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
