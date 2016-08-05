@@ -21,9 +21,9 @@ import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.AbstractGwtReflectGetterFactory;
 import de.knightsoftnet.validators.client.GwtReflectGetterInterface;
+import de.knightsoftnet.validators.client.GwtValidation;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.validation.client.GwtValidation;
 
 /**
  * The <code>ReflectGetterFactory</code> class is used for client side reflector replacement of the

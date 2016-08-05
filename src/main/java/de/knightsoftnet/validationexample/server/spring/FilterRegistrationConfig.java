@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.server.spring;
 
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;

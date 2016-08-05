@@ -20,11 +20,11 @@ import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
+import de.knightsoftnet.validators.client.AbstractGwtValidatorFactory;
+import de.knightsoftnet.validators.client.GwtValidation;
+import de.knightsoftnet.validators.client.impl.AbstractGwtValidator;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.validation.client.AbstractGwtValidatorFactory;
-import com.google.gwt.validation.client.GwtValidation;
-import com.google.gwt.validation.client.impl.AbstractGwtValidator;
 
 import javax.validation.Validator;
 
