@@ -83,6 +83,7 @@
 			<artifactId>validation-api</artifactId>
 			<version>${validation-api.version}</version>
 			<classifier>sources</classifier>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Google Web Toolkit dependencies -->
@@ -90,7 +91,7 @@
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-user</artifactId>
 			<version>${gwt.version}</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
@@ -131,7 +132,6 @@
 			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-mt-widgets-spring-gwtp</artifactId>
 			<version>${gwt-mt-widgets.version}</version>
-			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -250,7 +250,7 @@
 				<configuration>
 					<logLevel>INFO</logLevel>
 					<inplace>false</inplace>
-					<failOnError>false</failOnError>
+					<failOnError>true</failOnError>
 					<style>OBFUSCATED</style>
 					<disableClassMetadata>true</disableClassMetadata>
 					<disableCastChecking>true</disableCastChecking>
