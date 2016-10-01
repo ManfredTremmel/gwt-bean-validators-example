@@ -24,7 +24,7 @@ import de.knightsoftnet.validators.client.AbstractGwtValidatorFactory;
 import de.knightsoftnet.validators.client.GwtValidation;
 import de.knightsoftnet.validators.client.impl.AbstractGwtValidator;
 
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.shared.GWT;
 
 import javax.validation.Validator;
 

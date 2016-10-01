@@ -23,7 +23,7 @@ import de.knightsoftnet.validators.client.AbstractGwtReflectGetterFactory;
 import de.knightsoftnet.validators.client.GwtReflectGetterInterface;
 import de.knightsoftnet.validators.client.GwtValidation;
 
-import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.shared.GWT;
 
 /**
  * The <code>ReflectGetterFactory</code> class is used for client side reflector replacement of the

@@ -36,7 +36,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.0.RELEASE</version>
+		<version>1.4.1.RELEASE</version>
 		<relativePath>validationexample</relativePath>
 	</parent>
 
@@ -44,7 +44,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<!-- Convenience property to set the GWT version -->
-		<gwt.version>2.8.0-rc2</gwt.version>
+		<gwt.version>2.8.0-rc3</gwt.version>
 		<gwtp.version>1.5.3</gwtp.version>
 		<gwt-jackson.version>0.13.0</gwt-jackson.version>
 		<gwt-pushstate.version>2.0.0.7</gwt-pushstate.version>
