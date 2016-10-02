@@ -51,6 +51,7 @@
 		<guava-gwt.version>20.0-SNAPSHOT</guava-gwt.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
 		<validation-api.version>1.1.0.Final</validation-api.version>
+		<mt-bean-validators.version>0.20.1</mt-bean-validators.version>
 		<gwt-mt-widgets.version>0.20.2</gwt-mt-widgets.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
 		<querydsl.version>3.7.4</querydsl.version>
@@ -153,6 +154,19 @@
 			<groupId>org.tuckey</groupId>
 			<artifactId>urlrewritefilter</artifactId>
 			<version>${urlrewritefilter.version}</version>
+		</dependency>
+
+		<!-- bean validators validation support -->
+		<dependency>
+			<groupId>de.knightsoft-net</groupId>
+			<artifactId>mt-bean-validators</artifactId>
+			<version>${mt-bean-validators.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- set of gwt widgets, also include validation support -->
