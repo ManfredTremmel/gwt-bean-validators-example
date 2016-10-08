@@ -6,7 +6,7 @@
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:nav="urn:import:de.knightsoftnet.validationexample.client.ui.navigation">
 
-  <ui:style src="BasePageViewGwtImpl.css"/>
+  <ui:style src="BasePageViewGwtImpl.gss"/>
   <ui:with field="versionInfo" type="de.knightsoftnet.navigation.client.version.AbstractVersionInfo" />
 
   <g:HTMLPanel styleName="{style.fullSize} {style.parentPanel}">

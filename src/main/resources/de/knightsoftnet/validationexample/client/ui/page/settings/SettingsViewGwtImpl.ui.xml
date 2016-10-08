@@ -6,7 +6,7 @@
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
-  <ui:style src="SettingsViewGwtImpl.css"/>
+  <ui:style src="SettingsViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
    <div class="{style.header}">

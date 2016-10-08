@@ -7,7 +7,7 @@
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators"
   xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
-  <ui:style src="SepaViewGwtImpl.css"/>
+  <ui:style src="SepaViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
    <div class="{style.header}">

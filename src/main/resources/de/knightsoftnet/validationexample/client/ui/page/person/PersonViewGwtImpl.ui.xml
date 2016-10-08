@@ -8,7 +8,7 @@
   xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget"
   xmlns:date="urn:import:com.google.gwt.user.datepicker.client">
 
-  <ui:style src="PersonViewGwtImpl.css"/>
+  <ui:style src="PersonViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
    <div class="{style.header}">

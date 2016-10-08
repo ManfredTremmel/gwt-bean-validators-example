@@ -6,7 +6,7 @@
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators">
 
-  <ui:style src="LoginViewGwtImpl.css"/>
+  <ui:style src="LoginViewGwtImpl.gss"/>
   <ui:with field="localization" type="de.knightsoftnet.validationexample.client.ui.page.login.LoginConstants" />
 
   <g:HTMLPanel styleName="{style.centerPanel}">

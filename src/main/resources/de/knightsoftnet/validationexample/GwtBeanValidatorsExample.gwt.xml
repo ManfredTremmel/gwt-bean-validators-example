@@ -39,6 +39,11 @@
   <set-configuration-property name="locale.cookie" value="LOCALE" />
   <set-configuration-property name="locale.searchorder" value="queryparam,cookie,useragent" />
 
+  <!-- enable gss instead of css -->
+  <set-configuration-property name="CssResource.enableGss" value="true" />
+  <set-configuration-property name="CssResource.gssDefaultInUiBinder" value="true" />
+  <set-configuration-property name="CssResource.conversionMode" value="strict" />
+
   <!-- <set-property name="history.pushStateSupported" value="no" /> -->
 
   <!-- Reduce compiled size by using striped code -->
