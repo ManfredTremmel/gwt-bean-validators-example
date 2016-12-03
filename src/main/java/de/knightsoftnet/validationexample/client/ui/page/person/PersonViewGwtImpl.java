@@ -17,6 +17,7 @@ package de.knightsoftnet.validationexample.client.ui.page.person;
 
 import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
 import de.knightsoftnet.validationexample.shared.models.Person;
+import de.knightsoftnet.validationexample.shared.models.SalutationEnum;
 import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
@@ -68,6 +69,8 @@ public class PersonViewGwtImpl extends ViewImpl
 
   @UiField
   UniversalDecoratorWithIcons<Long> id;
+  @UiField
+  UniversalDecoratorWithIcons<SalutationEnum> salutation;
   @UiField
   UniversalDecoratorWithIcons<String> firstName;
   @UiField

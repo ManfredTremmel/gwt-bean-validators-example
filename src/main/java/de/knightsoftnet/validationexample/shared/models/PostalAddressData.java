@@ -113,6 +113,7 @@ public class PostalAddressData {
   @NotNull
   private CountryEnum countryCode;
 
+
   public String getPostOfficeBox() {
     return this.postOfficeBox;
   }

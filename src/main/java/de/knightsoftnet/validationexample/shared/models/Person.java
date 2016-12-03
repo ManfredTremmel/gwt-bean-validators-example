@@ -27,6 +27,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 /**
@@ -41,6 +42,8 @@ public class Person {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
+  @NotNull
+  private SalutationEnum salutation;
   @NotEmpty
   private String firstName;
   @NotEmpty
@@ -56,6 +59,14 @@ public class Person {
 
   public final void setId(final Long pid) {
     this.id = pid;
+  }
+
+  public final SalutationEnum getSalutation() {
+    return this.salutation;
+  }
+
+  public final void setSalutation(final SalutationEnum psalutation) {
+    this.salutation = psalutation;
   }
 
   public final String getFirstName() {
@@ -92,7 +103,8 @@ public class Person {
 
   @Override
   public String toString() {
-    return "Person [id=" + this.id + ", firstName=" + this.firstName + ", lastName=" + this.lastName
-        + ", email=" + this.email + ", birthday=" + this.birthday + "]";
+    return "Person [id=" + this.id + ", salutation=" + this.salutation + ", firstName="
+        + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", birthday="
+        + this.birthday + "]";
   }
 }

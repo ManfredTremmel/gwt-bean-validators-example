@@ -6,6 +6,7 @@
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators"
   xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget"
+  xmlns:e="urn:import:de.knightsoftnet.validationexample.client.ui.widget"
   xmlns:date="urn:import:com.google.gwt.user.datepicker.client">
 
   <ui:style src="PersonViewGwtImpl.gss"/>
@@ -28,6 +29,14 @@
            <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="id">
              <d:widget>
                <w:LongBox enabled="false" />
+             </d:widget>
+           </d:UniversalDecoratorWithIcons>
+         </div>
+         <div class="{style.inputline}">
+           <div class="{style.label}"><ui:msg description="Label Salutation">Salutation:</ui:msg></div>
+           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="salutation">
+             <d:widget>
+               <e:SalutationRadioButton />
              </d:widget>
            </d:UniversalDecoratorWithIcons>
          </div>

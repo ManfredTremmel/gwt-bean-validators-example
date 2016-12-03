@@ -38,6 +38,10 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
 import org.apache.commons.lang3.BooleanUtils;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.inject.Inject;
 
 /**
@@ -117,12 +121,11 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
    *
    * @return array of countries
    */
-  public CountryEnum[] getSepaCountries() {
+  public Collection<CountryEnum> getSepaCountries() {
     final IbanLengthMapSharedConstants ibanMap = CreateIbanLengthMapConstantsClass.create();
-    final CountryEnum[] countryList = new CountryEnum[ibanMap.ibanLengths().size()];
-    int pos = 0;
+    final List<CountryEnum> countryList = new ArrayList<>(ibanMap.ibanLengths().size());
     for (final String entry : ibanMap.ibanLengths().keySet()) {
-      countryList[pos++] = CountryEnum.valueOf(entry);
+      countryList.add(CountryEnum.valueOf(entry));
     }
     return countryList;
   }

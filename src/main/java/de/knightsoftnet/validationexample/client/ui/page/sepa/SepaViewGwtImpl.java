@@ -94,8 +94,7 @@ public class SepaViewGwtImpl extends ViewImpl
   public final void setPresenter(final SepaPresenter ppresenter) {
     this.presenter = ppresenter;
     // limit possible countries to sepa countries
-    ((CountryListBox) this.countryCode.getWidget())
-        .fillCountryEntries(this.presenter.getSepaCountries());
+    ((CountryListBox) this.countryCode.getWidget()).fillEntries(this.presenter.getSepaCountries());
   }
 
   @Override
