@@ -2,7 +2,7 @@
 Little example how to use bean validators in a GWT application (client and server side validation).
 See live Demo on [https://www.knightsoft-net.de/validationexample/](https://www.knightsoft-net.de/validationexample/)
 
-To run it local, you need **JDK >= 7** and **Maven >= 3.0.5**.
+To run it local, you need **JDK >= 8** and **Maven >= 3.0.5**.
 Checkout or download sources, go into the directory and compile it with
 
 ```bash
