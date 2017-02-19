@@ -1,7 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
   ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
-  ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+  ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
   ui:generateLocales="en,de"
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:nav="urn:import:de.knightsoftnet.validationexample.client.ui.navigation">
