@@ -6,70 +6,87 @@
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators">
 
+  <ui:with field="resources"
+    type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
   <ui:style src="LoginViewGwtImpl.gss"/>
   <ui:with field="localization" type="de.knightsoftnet.validationexample.client.ui.page.login.LoginConstants" />
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-   <div class="{style.header}">
-     <h1><ui:msg description="Header Login" meaning="header">Login</ui:msg></h1>
-   </div>
-   <div class="{style.form}">
-      <div class="{style.panel}">
-       <div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label User">User:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="userName">
-             <d:widget>
-               <g:TextBox visibleLength="20" maxLength="50"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Password">Password:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="password">
-             <d:widget>
-               <g:PasswordTextBox visibleLength="20" maxLength="50" />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <g:DisclosurePanel styleName="{style.disclosure}">
-           <g:header><ui:text from='{localization.changePassword}' /></g:header>
-           <!--  <g:header>
-             <ui:text from="">
-               <ui:attribute ui:name="from" ui:description="Disclosure Change Password">Change Password:</ui:attribute>
-             </ui:text>
-           </g:header>  -->
-           <g:HTMLPanel>
-             <div class="{style.inputlinedisclosure}">
-               <div class="{style.labeldisclosure}">
-                 <ui:msg description="Label New Password">New Password:</ui:msg>
-               </div>
-               <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="newPassword">
-                 <d:widget>
-                   <g:PasswordTextBox visibleLength="20" maxLength="50" />
-                 </d:widget>
-               </d:UniversalDecoratorWithIcons>
-             </div>
-             <div class="{style.inputlinedisclosure}">
-               <div class="{style.labeldisclosure}">
-                 <ui:msg description="Label New Password repeat">New Password repeat:</ui:msg>
-               </div>
-               <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="newPasswordRepeat">
-                 <d:widget>
-                   <g:PasswordTextBox visibleLength="20" maxLength="50" />
-                 </d:widget>
-               </d:UniversalDecoratorWithIcons>
-             </div>
-           </g:HTMLPanel>
-         </g:DisclosurePanel>
-         <div class="{style.message}">
-           <g:Label ui:field="logMessages"/>
-         </div>
-       </div>   
-     </div>
-   </div>
-   <div class="{style.button}">
-     <g:Button ui:field="loginButton"><ui:msg description="Login Button" meaning="button">Login</ui:msg></g:Button>
-   </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
+        <h1>
+          <ui:msg description="Header Login" meaning="header">Login</ui:msg>
+        </h1>
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label User">User:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="userName">
+        <d:widget>
+          <g:TextBox visibleLength="20" maxLength="50"/>
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Password">Password:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="password">
+        <d:widget>
+          <g:PasswordTextBox visibleLength="20" maxLength="50" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12}">
+        <g:DisclosurePanel styleName="{style.disclosure}">
+          <g:header>
+            <ui:text from='{localization.changePassword}' />
+          </g:header>
+          <g:HTMLPanel>
+            <div class="{style.inputlinedisclosure} {resources.grid.row}">
+              <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+                <ui:msg description="Label New Password">New Password:</ui:msg>
+              </div>
+              <d:UniversalDecoratorWithIcons
+                errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+                ui:field="newPassword">
+                <d:widget>
+                  <g:PasswordTextBox visibleLength="20" maxLength="50" />
+                </d:widget>
+              </d:UniversalDecoratorWithIcons>
+            </div>
+            <div class="{style.inputlinedisclosure} {resources.grid.row}">
+              <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+                <ui:msg description="Label New Password repeat">New Password repeat:</ui:msg>
+              </div>
+              <d:UniversalDecoratorWithIcons
+                errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+                ui:field="newPasswordRepeat">
+                <d:widget>
+                  <g:PasswordTextBox visibleLength="20" maxLength="50" />
+                </d:widget>
+              </d:UniversalDecoratorWithIcons>
+            </div>
+          </g:HTMLPanel>
+        </g:DisclosurePanel>
+      </div>   
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{style.message} {resources.grid.col} {resources.grid.col_12}">
+        <g:Label ui:field="logMessages"/>
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{style.button} {resources.grid.col} {resources.grid.col_12}">
+        <g:Button ui:field="loginButton"><ui:msg description="Login Button" meaning="button">Login</ui:msg></g:Button>
+      </div>
+    </div>
   </g:HTMLPanel>
 </ui:UiBinder>

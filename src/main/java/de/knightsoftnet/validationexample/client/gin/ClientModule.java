@@ -16,6 +16,7 @@
 package de.knightsoftnet.validationexample.client.gin;
 
 import de.knightsoftnet.navigation.client.OwnPlaceManagerImpl;
+import de.knightsoftnet.validationexample.client.resources.ResourceLoader;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validators.client.gin.ServiceModule;
 
@@ -32,5 +33,7 @@ public class ClientModule extends AbstractPresenterModule {
 
     this.install(new ApplicationModule());
     this.install(new ServiceModule());
+
+    this.bind(ResourceLoader.class).asEagerSingleton();
   }
 }

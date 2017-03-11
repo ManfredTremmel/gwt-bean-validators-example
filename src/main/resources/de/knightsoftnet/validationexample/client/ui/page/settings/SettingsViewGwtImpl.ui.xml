@@ -6,15 +6,25 @@
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
+  <ui:with field="resources"
+    type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
   <ui:style src="SettingsViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-   <div class="{style.header}">
-     <h1><ui:msg parameter="Settings">Settings</ui:msg></h1>
-   </div>
-   <div class="{style.form}">
-     <div class="{style.labelLanguages}"><ui:msg parameter="Language">Language:</ui:msg></div>
-     <w:UiLanguageListBox styleName="{style.inputLanguages}" ui:field="language" />
-   </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
+        <h1>
+          <ui:msg parameter="Settings">Settings</ui:msg>
+        </h1>
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg parameter="Language">Language:</ui:msg>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+        <w:UiLanguageListBox ui:field="language" />
+      </div>
+    </div>
   </g:HTMLPanel>
 </ui:UiBinder>

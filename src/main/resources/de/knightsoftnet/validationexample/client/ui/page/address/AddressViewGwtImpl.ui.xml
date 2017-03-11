@@ -2,100 +2,141 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
   ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
   ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
-  ui:generateLocales="en,de"
-  xmlns:g="urn:import:com.google.gwt.user.client.ui"
+  ui:generateLocales="en,de" xmlns:g="urn:import:com.google.gwt.user.client.ui"
   xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators"
   xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
-  <ui:style src="AddressViewGwtImpl.gss"/>
-
+  <ui:with field="resources"
+    type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
+  <ui:style src="AddressViewGwtImpl.gss" />
+  
   <g:HTMLPanel styleName="{style.centerPanel}">
-   <div class="{style.header}">
-     <h1><ui:msg description="Header Postal Address">Postal Address</ui:msg></h1>
-   </div>
-   <div class="{style.form}">
-      <div class="{style.panel}">
-       <div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Country">Country:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="countryCode">
-             <d:widget>
-               <w:CountryListBox sort="NAME_ASC" />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Post Office Box">Post Office Box:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="postOfficeBox">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="255"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Street">Street:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="street">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="255"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Street number">Street number:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="streetNumber">
-             <d:widget>
-               <g:TextBox visibleLength="10" maxLength="10"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Street number additional">Street number additional:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="streetNumberAdditional">
-             <d:widget>
-               <g:TextBox visibleLength="10" maxLength="10"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Address extended">Address extended:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="extended">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="255"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Postal Code">Postal Code:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="postalCode">
-             <d:widget>
-               <w:PostalCodeTextBox />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Locality">Locality/City/Town:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="locality">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="255"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Region">Region:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="region">
-             <d:widget>
-               <g:TextBox visibleLength="30" maxLength="255"/>
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.message}">
-           <g:Label ui:field="logMessages"/>
-         </div>
-       </div>   
-     </div>
-   </div>
-   <div class="{style.button}">
-     <g:Button ui:field="addressButton"><ui:msg description="Send Button">Send</ui:msg></g:Button>
-   </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
+        <h1>
+          <ui:msg description="Header Postal Address">Postal Address</ui:msg>
+        </h1>
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Country">Country:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="countryCode">
+        <d:widget>
+          <w:CountryListBox sort="NAME_ASC" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Post Office Box">Post Office Box:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="postOfficeBox">
+        <d:widget>
+          <g:TextBox visibleLength="30" maxLength="255" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Street">Street:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="street">
+        <d:widget>
+          <g:TextBox visibleLength="30" maxLength="255" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Street number">Street number:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="streetNumber">
+        <d:widget>
+          <g:TextBox visibleLength="10" maxLength="10" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Street number additional">Street number additional:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="streetNumberAdditional">
+        <d:widget>
+          <g:TextBox visibleLength="10" maxLength="10" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Address extended">Address extended:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="extended">
+        <d:widget>
+          <g:TextBox visibleLength="30" maxLength="255" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Postal Code">Postal Code:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="postalCode">
+        <d:widget>
+          <w:PostalCodeTextBox />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Locality">Locality/City/Town:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="locality">
+        <d:widget>
+          <g:TextBox visibleLength="30" maxLength="255" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Region">Region:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="region">
+        <d:widget>
+          <g:TextBox visibleLength="30" maxLength="255" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row} {style.message}">
+      <div class="{resources.grid.col} {resources.grid.col_12}">
+        <g:Label ui:field="logMessages" />
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12} {style.button}">
+        <g:Button ui:field="addressButton">
+          <ui:msg description="Send Button">Send</ui:msg>
+        </g:Button>
+      </div>
+    </div>
   </g:HTMLPanel>
 </ui:UiBinder>

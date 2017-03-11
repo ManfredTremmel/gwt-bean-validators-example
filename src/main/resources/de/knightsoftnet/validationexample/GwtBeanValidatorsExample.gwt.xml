@@ -26,6 +26,9 @@
   <!-- html 5 push state support -->
   <inherits name="com.wallissoftware.pushstate.PushState" />
 
+  <!-- gss grid integration -->
+  <inherits name="com.arcbees.gsss.grid.Grid" />
+
   <!-- German and English language with English as fallback       -->
   <extend-property name="locale" values="en" />
   <extend-property name="locale" values="de" />

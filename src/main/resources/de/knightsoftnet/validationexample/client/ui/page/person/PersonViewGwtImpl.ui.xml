@@ -9,77 +9,123 @@
   xmlns:e="urn:import:de.knightsoftnet.validationexample.client.ui.widget"
   xmlns:date="urn:import:com.google.gwt.user.datepicker.client">
 
+  <ui:with field="resources"
+    type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
   <ui:style src="PersonViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-   <div class="{style.header}">
-     <h1><ui:msg description="Header Person">Person</ui:msg></h1>
-   </div>
-   <div class="{style.form}">
-     <g:Button ui:field="newButton"><ui:msg description="New Button">New Entry</ui:msg></g:Button>
-     <w:LongBox ui:field="goToNumber" />
-     <g:Button ui:field="goToButton"><ui:msg description="Go To Button">Go To</ui:msg></g:Button>
-     <g:Button ui:field="deleteButton"><ui:msg description="Delete Button">Delete</ui:msg></g:Button>
-   </div>
-   <div class="{style.form}">
-      <div class="{style.panel}">
-       <div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Id">Id:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="id">
-             <d:widget>
-               <w:LongBox enabled="false" />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Salutation">Salutation:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="salutation">
-             <d:widget>
-               <e:SalutationRadioButton />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Firstname">Firstname:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="firstName">
-             <d:widget>
-               <g:TextBox />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Lastname">Lasttname:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="lastName">
-             <d:widget>
-               <g:TextBox />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label E-Mail">E-Mail:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="email">
-             <d:widget>
-               <g:TextBox />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.inputline}">
-           <div class="{style.label}"><ui:msg description="Label Birthday">Birthday:</ui:msg></div>
-           <d:UniversalDecoratorWithIcons errorLocation="RIGHT" stylePrimaryName="{style.input}" ui:field="birthday">
-             <d:widget>
-               <date:DateBox />
-             </d:widget>
-           </d:UniversalDecoratorWithIcons>
-         </div>
-         <div class="{style.message}">
-           <g:Label ui:field="logMessages"/>
-         </div>
-       </div>   
-     </div>
-   </div>
-   <div class="{style.button}">
-     <g:Button ui:field="submitButton"><ui:msg description="Submit Button">Send</ui:msg></g:Button>
-   </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
+        <h1>
+          <ui:msg description="Header Person">Person</ui:msg>
+        </h1>
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1}" />
+      <div class="{resources.grid.col} {resources.grid.col_2}" >
+        <g:Button ui:field="newButton">
+          <ui:msg description="New Button">New Entry</ui:msg>
+        </g:Button>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_3}" >
+        <w:LongBox ui:field="goToNumber" />
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2}" >
+        <g:Button ui:field="goToButton">
+          <ui:msg description="Go To Button">Go To</ui:msg>
+        </g:Button>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_3}" >
+        <g:Button ui:field="deleteButton">
+          <ui:msg description="Delete Button">Delete</ui:msg>
+        </g:Button>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_1}" />
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Id">Id:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="id">
+        <d:widget>
+          <w:LongBox enabled="false" />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Salutation">Salutation:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="salutation">
+        <d:widget>
+          <e:SalutationRadioButton />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Firstname">Firstname:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="firstName">
+        <d:widget>
+          <g:TextBox />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Lastname">Lasttname:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="lastName">
+        <d:widget>
+          <g:TextBox />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label E-Mail">E-Mail:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="email">
+        <d:widget>
+          <g:TextBox />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+        <ui:msg description="Label Birthday">Birthday:</ui:msg>
+      </div>
+      <d:UniversalDecoratorWithIcons
+        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
+        ui:field="birthday">
+        <d:widget>
+          <date:DateBox />
+        </d:widget>
+      </d:UniversalDecoratorWithIcons>
+    </div>
+    <div class="{resources.grid.row} {style.message}">
+      <div class="{resources.grid.col} {resources.grid.col_12}">
+        <g:Label ui:field="logMessages" />
+      </div>
+    </div>
+    <div class="{resources.grid.row}">
+      <div class="{resources.grid.col} {resources.grid.col_12} {style.button}">
+        <g:Button ui:field="submitButton">
+          <ui:msg description="Send Button">Send</ui:msg>
+        </g:Button>
+      </div>
+    </div>
   </g:HTMLPanel>
 </ui:UiBinder>

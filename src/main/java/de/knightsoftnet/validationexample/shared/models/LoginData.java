@@ -36,7 +36,7 @@ import javax.validation.constraints.Size;
         addErrorToField1 = false),
     @LevenshteinDistance(field1 = "password", field2 = "newPassword", minDistance = 3,
         addErrorToField1 = false)})
-@MustBeEqual(field1 = "newPassword", field2 = "newPasswordRepeat")
+@MustBeEqual(field1 = "newPassword", addErrorToField1 = false, field2 = "newPasswordRepeat")
 public class LoginData {
 
   /**
