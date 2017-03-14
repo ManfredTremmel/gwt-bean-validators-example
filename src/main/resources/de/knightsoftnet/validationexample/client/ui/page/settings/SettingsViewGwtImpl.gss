@@ -8,3 +8,7 @@
   margin-right: auto;
   width: 100%;
 }
+
+.row {
+  min-height: 3em;
+}

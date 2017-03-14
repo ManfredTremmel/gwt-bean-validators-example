@@ -1,10 +1,12 @@
 .parentPanel {
   position: fixed;
 }
+
 .fullSize {
   width: 100%;
   height: 100%;
 }
+
 .naviLogo {
   text-align: center;
   padding-top: 1.5em;
@@ -12,7 +14,17 @@
   font-style: inherit;
   font-weight: bold;
 }
+
 .copyright {
   text-align: center;
   vertical-align: bottom;
+}
+
+input {
+  padding: 0.1em 0.2em;
+  border: 0.1em solid #ccc;
+  border-radius: 0.3em;
+  line-height: 1.1;
+  font-family: inherit;
+  font-size: 1.1em;
 }

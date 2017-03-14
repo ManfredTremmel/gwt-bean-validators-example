@@ -11,14 +11,14 @@
   <ui:style src="SettingsViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
         <h1>
           <ui:msg parameter="Settings">Settings</ui:msg>
         </h1>
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg parameter="Language">Language:</ui:msg>
       </div>

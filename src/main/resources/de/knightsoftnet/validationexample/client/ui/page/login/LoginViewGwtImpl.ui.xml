@@ -12,14 +12,14 @@
   <ui:with field="localization" type="de.knightsoftnet.validationexample.client.ui.page.login.LoginConstants" />
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
         <h1>
           <ui:msg description="Header Login" meaning="header">Login</ui:msg>
         </h1>
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label User">User:</ui:msg>
       </div>
@@ -31,7 +31,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Password">Password:</ui:msg>
       </div>
@@ -43,7 +43,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12}">
         <g:DisclosurePanel styleName="{style.disclosure}">
           <g:header>
@@ -78,12 +78,12 @@
         </g:DisclosurePanel>
       </div>   
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{style.message} {resources.grid.col} {resources.grid.col_12}">
         <g:Label ui:field="logMessages"/>
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{style.button} {resources.grid.col} {resources.grid.col_12}">
         <g:Button ui:field="loginButton"><ui:msg description="Login Button" meaning="button">Login</ui:msg></g:Button>
       </div>

@@ -14,14 +14,14 @@
   <ui:style src="PersonViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
         <h1>
           <ui:msg description="Header Person">Person</ui:msg>
         </h1>
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1}" />
       <div class="{resources.grid.col} {resources.grid.col_2}" >
         <g:Button ui:field="newButton">
@@ -43,7 +43,7 @@
       </div>
       <div class="{resources.grid.col} {resources.grid.col_1}" />
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Id">Id:</ui:msg>
       </div>
@@ -55,7 +55,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Salutation">Salutation:</ui:msg>
       </div>
@@ -67,7 +67,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Firstname">Firstname:</ui:msg>
       </div>
@@ -79,7 +79,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Lastname">Lasttname:</ui:msg>
       </div>
@@ -91,7 +91,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label E-Mail">E-Mail:</ui:msg>
       </div>
@@ -103,7 +103,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Birthday">Birthday:</ui:msg>
       </div>
@@ -120,7 +120,7 @@
         <g:Label ui:field="logMessages" />
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.button}">
         <g:Button ui:field="submitButton">
           <ui:msg description="Send Button">Send</ui:msg>

@@ -12,14 +12,14 @@
   <ui:style src="PhoneNumberViewGwtImpl.gss"/>
 
   <g:HTMLPanel styleName="{style.centerPanel}">
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
         <h1>
           <ui:msg description="Header Phone Number">Phone Number</ui:msg>
         </h1>
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Country">Country:</ui:msg>
       </div>
@@ -31,7 +31,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Phone Number">Phone Number:</ui:msg>
       </div>
@@ -48,7 +48,7 @@
         <g:Label ui:field="logMessages" />
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.button}">
         <g:Button ui:field="phoneNumberButton">
           <ui:msg description="Send Button">Send</ui:msg>

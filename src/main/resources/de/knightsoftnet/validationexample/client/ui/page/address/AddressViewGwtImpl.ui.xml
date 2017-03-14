@@ -11,14 +11,14 @@
   <ui:style src="AddressViewGwtImpl.gss" />
   
   <g:HTMLPanel styleName="{style.centerPanel}">
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.header}">
         <h1>
           <ui:msg description="Header Postal Address">Postal Address</ui:msg>
         </h1>
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Country">Country:</ui:msg>
       </div>
@@ -30,7 +30,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Post Office Box">Post Office Box:</ui:msg>
       </div>
@@ -42,7 +42,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Street">Street:</ui:msg>
       </div>
@@ -54,7 +54,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Street number">Street number:</ui:msg>
       </div>
@@ -66,7 +66,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Street number additional">Street number additional:</ui:msg>
       </div>
@@ -78,7 +78,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Address extended">Address extended:</ui:msg>
       </div>
@@ -90,7 +90,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Postal Code">Postal Code:</ui:msg>
       </div>
@@ -102,7 +102,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Locality">Locality/City/Town:</ui:msg>
       </div>
@@ -114,7 +114,7 @@
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
         <ui:msg description="Label Region">Region:</ui:msg>
       </div>
@@ -131,7 +131,7 @@
         <g:Label ui:field="logMessages" />
       </div>
     </div>
-    <div class="{resources.grid.row}">
+    <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_12} {style.button}">
         <g:Button ui:field="addressButton">
           <ui:msg description="Send Button">Send</ui:msg>
