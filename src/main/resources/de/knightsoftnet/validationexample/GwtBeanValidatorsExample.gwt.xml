@@ -11,6 +11,9 @@
   <!-- clean theme for default css -->
   <inherits name='com.google.gwt.user.theme.clean.Clean' />
 
+  <!-- enable setting debug ids -->
+  <inherits name="com.google.gwt.debug.Debug"/>
+
   <!-- resources for css bundle -->
   <inherits name="com.google.gwt.resources.Resources" />
 

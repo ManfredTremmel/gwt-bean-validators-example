@@ -15,7 +15,6 @@
 
 package de.knightsoftnet.validationexample.client.gin;
 
-
 import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.navigation.client.ui.navigation.NavigationPresenter;
 import de.knightsoftnet.navigation.client.ui.navigation.NavigationStructure;

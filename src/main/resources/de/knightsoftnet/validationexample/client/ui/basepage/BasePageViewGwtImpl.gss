@@ -28,3 +28,7 @@ input {
   font-family: inherit;
   font-size: 1.1em;
 }
+
+input:invalid {
+  border: 0.1em solid red;
+}

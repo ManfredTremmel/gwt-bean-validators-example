@@ -21,25 +21,25 @@
     </div>
     <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-        <ui:msg description="Label Country">Country:</ui:msg>
+        <label for="countryCode"><ui:msg description="Label Country">Country:</ui:msg></label>
       </div>
       <d:UniversalDecoratorWithIcons
         errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
         ui:field="countryCode">
         <d:widget>
-          <w:CountryListBox sort="NAME_ASC" />
+          <w:CountryListBox sort="NAME_ASC" debugId="countryCode" />
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>
     <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-        <ui:msg description="Label Phone Number">Phone Number:</ui:msg>
+        <label for="phoneNumber"><ui:msg description="Label Phone Number">Phone Number:</ui:msg></label>
       </div>
       <d:UniversalDecoratorWithIcons
         errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
         ui:field="phoneNumber">
         <d:widget>
-          <w:PhoneNumberMsRestSuggestBox />
+          <w:PhoneNumberMsRestSuggestBox debugId="phoneNumber" />
         </d:widget>
       </d:UniversalDecoratorWithIcons>
     </div>

@@ -20,10 +20,10 @@
     </div>
     <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-        <ui:msg parameter="Language">Language:</ui:msg>
+        <label for="language"><ui:msg parameter="Language">Language:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
-        <w:UiLanguageListBox ui:field="language" />
+        <w:UiLanguageListBox ui:field="language" debugId="language" />
       </div>
     </div>
   </g:HTMLPanel>
