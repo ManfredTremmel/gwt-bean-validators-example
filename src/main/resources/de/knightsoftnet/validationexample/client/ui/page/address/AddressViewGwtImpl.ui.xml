@@ -19,75 +19,78 @@
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="countryCode"><ui:msg description="Label Country">Country:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <w:CountryListBox sort="NAME_ASC" debugId="countryCode" ui:field="countryCode" />
+        <span id="countryCode_validation" class="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="postOfficeBox"><ui:msg description="Label Post Office Box">Post Office Box:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
-        <w:TextBox visibleLength="30" maxLength="255" debugId="postOfficeBox" ui:field="postOfficeBox" />
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox maxLength="255" debugId="postOfficeBox" ui:field="postOfficeBox" styleName="{style.maxWidth}" />
+        <div id="postOfficeBox_validation" class="{style.errorPanel}" />
       </div>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="street"><ui:msg description="Label Street">Street:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
-        <w:TextBox visibleLength="30" maxLength="255" debugId="street" ui:field="street" />
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox maxLength="255" debugId="street" ui:field="street" styleName="{style.maxWidth}" />
+        <div id="street_validation" class="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="streetNumber"><ui:msg description="Label Street number">Street number:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <w:TextBox visibleLength="10" maxLength="10" debugId="streetNumber" ui:field="streetNumber" />
+        <div id="streetNumber_validation" class="{style.errorPanel}" />
       </div>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="streetNumberAdditional"><ui:msg description="Label Street number additional">Street number additional:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <w:TextBox visibleLength="10" maxLength="10" debugId="streetNumberAdditional" ui:field="streetNumberAdditional" />
+        <div id="streetNumberAdditional_validation" class="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="extended"><ui:msg description="Label Address extended">Address extended:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
-        <w:TextBox visibleLength="30" maxLength="255" debugId="extended" ui:field="extended" />
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox maxLength="255" debugId="extended" ui:field="extended" styleName="{style.maxWidth}" />
+        <div id="extended_validation" class="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="postalCode"><ui:msg description="Label Postal Code">Postal Code:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <w:PostalCodeTextBox ui:field="postalCode" debugId="postalCode" required="true" />
+        <div id="postalCode_validation" class="{style.errorPanel}" />
       </div>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="locality"><ui:msg description="Label Locality">Locality/City/Town:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
-        <w:TextBox visibleLength="30" maxLength="255" debugId="locality" ui:field="locality" required="true" />
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox maxLength="255" debugId="locality" ui:field="locality" required="true" styleName="{style.maxWidth}" />
+        <div id="locality_validation" class="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="region"><ui:msg description="Label Region">Region:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
-        <w:TextBox visibleLength="30" maxLength="255" debugId="region" ui:field="region" />
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox maxLength="255" debugId="region" ui:field="region" styleName="{style.maxWidth}" />
+        <div id="region_validation" class="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.message}">

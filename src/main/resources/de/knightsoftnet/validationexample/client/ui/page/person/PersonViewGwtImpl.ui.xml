@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1}" />
+      <div class="{resources.grid.col} {resources.grid.col_1}" >&nbsp;</div>
       <div class="{resources.grid.col} {resources.grid.col_2}" >
         <g:Button ui:field="newButton">
           <ui:msg description="New Button">New Entry</ui:msg>
@@ -41,79 +41,57 @@
           <ui:msg description="Delete Button">Delete</ui:msg>
         </g:Button>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_1}" />
+      <div class="{resources.grid.col} {resources.grid.col_1}" >&nbsp;</div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="id"><ui:msg description="Label Id">Id:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="id">
-        <d:widget>
-          <w:LongBox enabled="false" debugId="id" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
+      <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:LongBox enabled="false" debugId="id" ui:field="id" />
+        <span id="id_validation" class="{style.errorPanel}" />
+      </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="salutation"><ui:msg description="Label Salutation">Salutation:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="salutation">
-        <d:widget>
-          <e:SalutationRadioButton debugId="salutation" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
+      <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <e:SalutationRadioButton debugId="salutation" ui:field="salutation" />
+        <span id="salutation_validation" class="{style.errorPanel}" />
+      </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="firstName"><ui:msg description="Label Firstname">Firstname:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="firstName">
-        <d:widget>
-          <g:TextBox debugId="firstName" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox debugId="firstName" ui:field="firstName" styleName="{style.maxWidth}" required="true" />
+        <div id="firstName_validation" class="{style.errorPanel}" />
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="lastName"><ui:msg description="Label Lastname">Lasttname:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="lastName">
-        <d:widget>
-          <g:TextBox debugId="lastName" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox debugId="lastName" ui:field="lastName" styleName="{style.maxWidth}" required="true" />
+        <div id="lastName_validation" class="{style.errorPanel}" />
+      </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="email"><ui:msg description="Label E-Mail">E-Mail:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="email">
-        <d:widget>
-          <g:TextBox debugId="email" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox debugId="email" ui:field="email" styleName="{style.maxWidth}" />
+        <div id="email_validation" class="{style.errorPanel}" />
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="birthday"><ui:msg description="Label Birthday">Birthday:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="birthday">
-        <d:widget>
-          <date:DateBox debugId="birthday" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <date:DateBox debugId="birthday" ui:field="birthday" />
+        <div id="birthday_validation" class="{style.errorPanel}" />
+      </div>
     </div>
     <div class="{resources.grid.row} {style.message}">
       <div class="{resources.grid.col} {resources.grid.col_12}">

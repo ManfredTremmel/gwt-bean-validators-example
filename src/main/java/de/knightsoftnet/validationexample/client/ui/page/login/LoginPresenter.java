@@ -24,7 +24,6 @@ import de.knightsoftnet.validationexample.shared.models.UserData;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
@@ -87,12 +86,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
     super.onReveal();
     this.loginData.clear();
     this.getView().fillForm(this.loginData);
-    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-      @Override
-      public void execute() {
-        LoginPresenter.this.getView().setFocusOnFirstWidget();
-      }
-    });
+    Scheduler.get().scheduleDeferred(() -> LoginPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

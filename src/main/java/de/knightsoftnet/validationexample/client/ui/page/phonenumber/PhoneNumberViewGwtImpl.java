@@ -15,10 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
+import de.knightsoftnet.mtwidgets.client.ui.widget.CountryListBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.PhoneNumberMsRestSuggestBox;
-import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
-import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
@@ -53,9 +52,9 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
   }
 
   @UiField
-  UniversalDecoratorWithIcons<CountryEnum> countryCode;
+  CountryListBox countryCode;
   @UiField
-  UniversalDecoratorWithIcons<String> phoneNumber;
+  PhoneNumberMsRestSuggestBox phoneNumber;
 
   @Ignore
   @UiField
@@ -86,8 +85,7 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.phoneNumberButton);
     this.driver.addFormSubmitHandler(this);
-    ((PhoneNumberMsRestSuggestBox) this.phoneNumber.getWidget())
-        .setCountryCodeReferenceField(this.countryCode);
+    this.phoneNumber.setCountryCodeReferenceField(this.countryCode);
   }
 
   @Override

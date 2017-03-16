@@ -19,10 +19,10 @@
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="language"><ui:msg parameter="Language">Language:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <w:UiLanguageListBox ui:field="language" debugId="language" />
       </div>
     </div>

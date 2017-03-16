@@ -15,8 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.login;
 
+import de.knightsoftnet.mtwidgets.client.ui.widget.PasswordTextBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
-import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
@@ -55,13 +56,13 @@ public class LoginViewGwtImpl extends ViewImpl
   }
 
   @UiField
-  UniversalDecoratorWithIcons<String> userName;
+  TextBox userName;
   @UiField
-  UniversalDecoratorWithIcons<String> password;
+  PasswordTextBox password;
   @UiField
-  UniversalDecoratorWithIcons<String> newPassword;
+  PasswordTextBox newPassword;
   @UiField
-  UniversalDecoratorWithIcons<String> newPasswordRepeat;
+  PasswordTextBox newPasswordRepeat;
 
   @Ignore
   @UiField

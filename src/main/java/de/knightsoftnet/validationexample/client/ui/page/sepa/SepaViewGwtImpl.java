@@ -17,9 +17,9 @@ package de.knightsoftnet.validationexample.client.ui.page.sepa;
 
 import de.knightsoftnet.mtwidgets.client.ui.widget.BicSuggestBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.CountryListBox;
-import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
+import de.knightsoftnet.mtwidgets.client.ui.widget.IbanTextBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
-import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
@@ -54,13 +54,13 @@ public class SepaViewGwtImpl extends ViewImpl
   @UiField
   Label bankName;
   @UiField
-  UniversalDecoratorWithIcons<String> accountOwner;
+  TextBox accountOwner;
   @UiField
-  UniversalDecoratorWithIcons<CountryEnum> countryCode;
+  CountryListBox countryCode;
   @UiField
-  UniversalDecoratorWithIcons<String> iban;
+  IbanTextBox iban;
   @UiField
-  UniversalDecoratorWithIcons<String> bic;
+  BicSuggestBox bic;
 
   @Ignore
   @UiField
@@ -87,14 +87,14 @@ public class SepaViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
-    ((BicSuggestBox) this.bic.getWidget()).setBankNameWidget(this.bankName);
+    this.bic.setBankNameWidget(this.bankName);
   }
 
   @Override
   public final void setPresenter(final SepaPresenter ppresenter) {
     this.presenter = ppresenter;
     // limit possible countries to sepa countries
-    ((CountryListBox) this.countryCode.getWidget()).fillEntries(this.presenter.getSepaCountries());
+    this.countryCode.fillEntries(this.presenter.getSepaCountries());
   }
 
   @Override

@@ -20,60 +20,44 @@
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="countryCode"><ui:msg description="Label Country">Country:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="countryCode">
-        <d:widget>
-          <w:CountryListBox sort="NAME_ASC" debugId="countryCode" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
+      <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:CountryListBox sort="NAME_ASC" debugId="countryCode" ui:field="countryCode" />
+        <span id="countryCode_validation" class="{style.errorPanel}" />
+      </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="bic"><ui:msg description="Label Bic">Bic:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="bic">
-        <d:widget>
-          <w:BicSuggestBox debugId="bic" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" />
+        <div id="bic_validation" class="{style.errorPanel}" />
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="bankName"><ui:msg description="Label Bank Name">Bank Name:</ui:msg></label>
       </div>
-      <div class="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <g:Label ui:field="bankName" debugId="bankName" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="iban"><ui:msg description="Label Iban">Iban:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="iban">
-        <d:widget>
-          <w:IbanTextBox visibleLength="30" maxLength="42" debugId="iban" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:IbanTextBox maxLength="42" debugId="iban" ui:field="iban" required="true" styleName="{style.maxWidth}" />
+        <div id="iban_validation" class="{style.errorPanel}" />
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="accountOwner"><ui:msg description="Label Account Owner">Account Owner:</ui:msg></label>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="accountOwner">
-        <d:widget>
-          <g:TextBox visibleLength="50" maxLength="50" debugId="accountOwner" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:TextBox maxLength="50" debugId="accountOwner" ui:field="accountOwner" required="true" styleName="{style.maxWidth}" />
+        <div id="accountOwner_validation" class="{style.errorPanel}" />
+      </div>
     </div>
     <div class="{resources.grid.row} {style.message}">
       <div class="{resources.grid.col} {resources.grid.col_12}">

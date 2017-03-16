@@ -27,7 +27,6 @@ import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
@@ -80,12 +79,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
   @Override
   protected void onReveal() {
     super.onReveal();
-    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-      @Override
-      public void execute() {
-        PersonPresenter.this.getView().setFocusOnFirstWidget();
-      }
-    });
+    Scheduler.get().scheduleDeferred(() -> PersonPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

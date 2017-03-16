@@ -27,7 +27,6 @@ import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
@@ -89,12 +88,7 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
   @Override
   protected void onReveal() {
     super.onReveal();
-    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-      @Override
-      public void execute() {
-        SepaPresenter.this.getView().setFocusOnFirstWidget();
-      }
-    });
+    Scheduler.get().scheduleDeferred(() -> SepaPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

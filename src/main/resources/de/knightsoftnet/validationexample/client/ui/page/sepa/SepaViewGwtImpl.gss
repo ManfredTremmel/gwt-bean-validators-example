@@ -26,3 +26,16 @@
 .row {
   min-height: 3em;
 }
+
+.errorPanel {
+  color: red;
+}
+
+.errorPanel ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.maxWidth {
+  width: 95%;
+}

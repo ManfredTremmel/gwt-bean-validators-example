@@ -25,7 +25,6 @@ import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
@@ -84,12 +83,8 @@ public class PhoneNumberPresenter
   @Override
   protected void onReveal() {
     super.onReveal();
-    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-      @Override
-      public void execute() {
-        PhoneNumberPresenter.this.getView().setFocusOnFirstWidget();
-      }
-    });
+    Scheduler.get()
+        .scheduleDeferred(() -> PhoneNumberPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

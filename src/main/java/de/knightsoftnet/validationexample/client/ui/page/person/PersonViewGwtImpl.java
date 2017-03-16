@@ -16,9 +16,9 @@
 package de.knightsoftnet.validationexample.client.ui.page.person;
 
 import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
+import de.knightsoftnet.validationexample.client.ui.widget.SalutationRadioButton;
 import de.knightsoftnet.validationexample.shared.models.Person;
-import de.knightsoftnet.validationexample.shared.models.SalutationEnum;
-import de.knightsoftnet.validators.client.decorators.UniversalDecoratorWithIcons;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
@@ -34,7 +34,6 @@ import com.google.gwt.user.datepicker.client.DateBox;
 import com.gwtplatform.mvp.client.ViewImpl;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
@@ -68,17 +67,17 @@ public class PersonViewGwtImpl extends ViewImpl
   Button deleteButton;
 
   @UiField
-  UniversalDecoratorWithIcons<Long> id;
+  LongBox id;
   @UiField
-  UniversalDecoratorWithIcons<SalutationEnum> salutation;
+  SalutationRadioButton salutation;
   @UiField
-  UniversalDecoratorWithIcons<String> firstName;
+  TextBox firstName;
   @UiField
-  UniversalDecoratorWithIcons<String> lastName;
+  TextBox lastName;
   @UiField
-  UniversalDecoratorWithIcons<String> email;
+  TextBox email;
   @UiField
-  UniversalDecoratorWithIcons<Date> birthday;
+  DateBox birthday;
 
   @Ignore
   @UiField

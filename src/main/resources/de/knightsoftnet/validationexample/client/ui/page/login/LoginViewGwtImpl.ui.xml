@@ -4,7 +4,8 @@
   ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
   ui:generateLocales="en,de"
   xmlns:g="urn:import:com.google.gwt.user.client.ui"
-  xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators">
+  xmlns:d="urn:import:de.knightsoftnet.validators.client.decorators"
+  xmlns:w="urn:import:de.knightsoftnet.mtwidgets.client.ui.widget">
 
   <ui:with field="resources"
     type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
@@ -20,63 +21,57 @@
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-        <label for="userName"><ui:msg description="Label User">User:</ui:msg></label>
+      <div class="{resources.grid.col} {resources.grid.col_3} {resources.grid.col_m_1}">&nbsp;</div>
+      <div class="{resources.grid.col} {resources.grid.col_6} {resources.grid.col_m_10}">
+        <div class="{resources.grid.row} {style.row}">
+          <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_m_12}">
+            <label for="userName"><ui:msg description="Label User">User:</ui:msg></label>
+          </div>
+          <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
+            <w:TextBox maxLength="50" ui:field="userName" debugId="userName" required="true" styleName="{style.maxWidth}" />
+            <div id="userName_validation" class="{style.errorPanel}" />
+          </div>
+        </div>
+        <div class="{resources.grid.row} {style.row}">
+          <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_m_12}">
+            <label for="password"><ui:msg description="Label Password">Password:</ui:msg></label>
+          </div>
+          <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
+            <w:PasswordTextBox maxLength="50" ui:field="password" debugId="password" required="true" styleName="{style.maxWidth}" />
+            <div id="password_validation" class="{style.errorPanel}" />
+          </div>
+        </div>
+        <div class="{resources.grid.row} {style.row}">
+          <div class="{resources.grid.col} {resources.grid.col_12}">
+            <g:DisclosurePanel styleName="{style.disclosure}">
+              <g:header>
+                <ui:text from='{localization.changePassword}' />
+              </g:header>
+              <g:HTMLPanel>
+                <div class="{style.inputlinedisclosure} {resources.grid.row}">
+                  <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_m_12}">
+                    <label for="newPassword"><ui:msg description="Label New Password">New Password:</ui:msg></label>
+                  </div>
+                  <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
+                    <w:PasswordTextBox maxLength="50" ui:field="newPassword" debugId="newPassword" styleName="{style.maxWidth}" />
+                    <div id="newPassword_validation" class="{style.errorPanel}" />
+                  </div>
+                </div>
+                <div class="{style.inputlinedisclosure} {resources.grid.row}">
+                  <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_m_12}">
+                    <label for="newPasswordRepeat"><ui:msg description="Label New Password repeat">New Password repeat:</ui:msg></label>
+                  </div>
+                  <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
+                    <w:PasswordTextBox maxLength="50" ui:field="newPasswordRepeat" debugId="newPasswordRepeat" styleName="{style.maxWidth}" />
+                    <span id="newPasswordRepeat_validation" class="{style.errorPanel}" />
+                  </div>
+                </div>
+              </g:HTMLPanel>
+            </g:DisclosurePanel>
+          </div>   
+        </div>
       </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="userName">
-        <d:widget>
-          <g:TextBox visibleLength="20" maxLength="50" debugId="userName" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-        <label for="password"><ui:msg description="Label Password">Password:</ui:msg></label>
-      </div>
-      <d:UniversalDecoratorWithIcons
-        errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-        ui:field="password">
-        <d:widget>
-          <g:PasswordTextBox visibleLength="20" maxLength="50" debugId="password" />
-        </d:widget>
-      </d:UniversalDecoratorWithIcons>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_12}">
-        <g:DisclosurePanel styleName="{style.disclosure}">
-          <g:header>
-            <ui:text from='{localization.changePassword}' />
-          </g:header>
-          <g:HTMLPanel>
-            <div class="{style.inputlinedisclosure} {resources.grid.row}">
-              <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-                <label for="newPassword"><ui:msg description="Label New Password">New Password:</ui:msg></label>
-              </div>
-              <d:UniversalDecoratorWithIcons
-                errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-                ui:field="newPassword">
-                <d:widget>
-                  <g:PasswordTextBox visibleLength="20" maxLength="50" debugId="newPassword" />
-                </d:widget>
-              </d:UniversalDecoratorWithIcons>
-            </div>
-            <div class="{style.inputlinedisclosure} {resources.grid.row}">
-              <div class="{resources.grid.col} {resources.grid.col_1_3} {resources.grid.col_m_12}">
-                <label for="newPasswordRepeat"><ui:msg description="Label New Password repeat">New Password repeat:</ui:msg></label>
-              </div>
-              <d:UniversalDecoratorWithIcons
-                errorLocation="RIGHT" stylePrimaryName="{resources.grid.col} {resources.grid.col_2_3} {resources.grid.col_m_12}"
-                ui:field="newPasswordRepeat">
-                <d:widget>
-                  <g:PasswordTextBox visibleLength="20" maxLength="50" debugId="newPasswordRepeat" />
-                </d:widget>
-              </d:UniversalDecoratorWithIcons>
-            </div>
-          </g:HTMLPanel>
-        </g:DisclosurePanel>
-      </div>   
+      <div class="{resources.grid.col} {resources.grid.col_3} {resources.grid.col_m_1}">&nbsp;</div>
     </div>
     <div class="{resources.grid.row} {style.row}">
       <div class="{style.message} {resources.grid.col} {resources.grid.col_12}">
