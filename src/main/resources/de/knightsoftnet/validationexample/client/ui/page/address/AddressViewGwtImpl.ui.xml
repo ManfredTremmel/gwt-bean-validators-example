@@ -39,7 +39,7 @@
         <label for="street"><ui:msg description="Label Street">Street:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:TextBox maxLength="255" debugId="street" ui:field="street" styleName="{style.maxWidth}" />
+        <w:TextBox maxLength="255" autofocus="true" debugId="street" ui:field="street" styleName="{style.maxWidth}" />
         <div id="street_validation" class="{style.errorPanel}" />
       </div>
     </div>

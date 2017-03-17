@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.person;
 
+import de.knightsoftnet.mtwidgets.client.ui.widget.EmailTextBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.client.ui.widget.SalutationRadioButton;
@@ -75,7 +76,7 @@ public class PersonViewGwtImpl extends ViewImpl
   @UiField
   TextBox lastName;
   @UiField
-  TextBox email;
+  EmailTextBox email;
   @UiField
   DateBox birthday;
 

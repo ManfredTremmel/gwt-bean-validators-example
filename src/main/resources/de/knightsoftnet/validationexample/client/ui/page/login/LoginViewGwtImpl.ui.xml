@@ -28,7 +28,7 @@
             <label for="userName"><ui:msg description="Label User">User:</ui:msg></label>
           </div>
           <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
-            <w:TextBox maxLength="50" ui:field="userName" debugId="userName" required="true" styleName="{style.maxWidth}" />
+            <w:TextBox maxLength="50" ui:field="userName" debugId="userName" required="true" autofocus="true" styleName="{style.maxWidth}" />
             <div id="userName_validation" class="{style.errorPanel}" />
           </div>
         </div>

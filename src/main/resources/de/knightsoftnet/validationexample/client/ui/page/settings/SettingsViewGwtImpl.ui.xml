@@ -23,7 +23,7 @@
         <label for="language"><ui:msg parameter="Language">Language:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:UiLanguageListBox ui:field="language" debugId="language" />
+        <w:UiLanguageListBox ui:field="language" debugId="language" autofocus="true" />
       </div>
     </div>
   </g:HTMLPanel>

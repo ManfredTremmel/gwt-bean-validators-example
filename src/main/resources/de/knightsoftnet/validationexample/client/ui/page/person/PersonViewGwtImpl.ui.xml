@@ -57,7 +57,7 @@
         <label for="salutation"><ui:msg description="Label Salutation">Salutation:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <e:SalutationRadioButton debugId="salutation" ui:field="salutation" />
+        <e:SalutationRadioButton debugId="salutation" ui:field="salutation" autofocus="true" />
         <span id="salutation_validation" class="{style.errorPanel}" />
       </div>
     </div>
@@ -82,7 +82,7 @@
         <label for="email"><ui:msg description="Label E-Mail">E-Mail:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:TextBox debugId="email" ui:field="email" styleName="{style.maxWidth}" />
+        <w:EmailTextBox debugId="email" ui:field="email" styleName="{style.maxWidth}" />
         <div id="email_validation" class="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">

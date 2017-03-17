@@ -33,7 +33,7 @@
         <label for="bic"><ui:msg description="Label Bic">Bic:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" />
+        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" autofocus="true" />
         <div id="bic_validation" class="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">

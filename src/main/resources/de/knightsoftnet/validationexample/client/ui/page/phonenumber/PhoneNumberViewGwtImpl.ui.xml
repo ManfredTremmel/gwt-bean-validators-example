@@ -33,7 +33,7 @@
         <label for="phoneNumber"><ui:msg description="Label Phone Number">Phone Number:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:PhoneNumberMsRestSuggestBox debugId="phoneNumber" ui:field="phoneNumber" />
+        <w:PhoneNumberMsRestSuggestBox debugId="phoneNumber" ui:field="phoneNumber" autofocus="true" />
         <span id="phoneNumber_validation" class="{style.errorPanel}" />
       </div>
     </div>
