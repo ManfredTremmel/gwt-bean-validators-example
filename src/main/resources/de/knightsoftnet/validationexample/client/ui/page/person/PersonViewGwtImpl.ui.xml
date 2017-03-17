@@ -89,7 +89,7 @@
         <label for="birthday"><ui:msg description="Label Birthday">Birthday:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <date:DateBox debugId="birthday" ui:field="birthday" />
+        <w:UtcDateBox debugId="birthday" ui:field="birthday" />
         <div id="birthday_validation" class="{style.errorPanel}" />
       </div>
     </div>

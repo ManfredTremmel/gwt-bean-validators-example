@@ -18,6 +18,7 @@ package de.knightsoftnet.validationexample.client.ui.page.person;
 import de.knightsoftnet.mtwidgets.client.ui.widget.EmailTextBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.UtcDateBox;
 import de.knightsoftnet.validationexample.client.ui.widget.SalutationRadioButton;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
@@ -31,7 +32,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.datepicker.client.DateBox;
 import com.gwtplatform.mvp.client.ViewImpl;
 
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class PersonViewGwtImpl extends ViewImpl
   @UiField
   EmailTextBox email;
   @UiField
-  DateBox birthday;
+  UtcDateBox birthday;
 
   @Ignore
   @UiField
@@ -100,7 +100,6 @@ public class PersonViewGwtImpl extends ViewImpl
   @Inject
   public PersonViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
     super();
-    new DateBox();
     this.initWidget(puiBinder.createAndBindUi(this));
     this.driver = pdriver;
     this.driver.initialize(this);
