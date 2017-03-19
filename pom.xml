@@ -17,7 +17,7 @@
 	<groupId>de.knightsoft-net</groupId>
 	<artifactId>gwt-bean-validators-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.31.0</version>
+	<version>0.40.0</version>
 	<name>GWT Bean Validators - Example</name>
 	<inceptionYear>2015</inceptionYear>
 	<description>
@@ -50,8 +50,8 @@
 		<gwt-pushstate.version>2.0.0.12</gwt-pushstate.version>
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
 		<validation-api.version>1.1.0.Final</validation-api.version>
-		<hibernate-validator.version>5.4.0.Final</hibernate-validator.version>
-		<gwt-mt-widgets.version>0.31.0</gwt-mt-widgets.version>
+		<hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+		<gwt-mt-widgets.version>0.40.0</gwt-mt-widgets.version>
 		<gsss.version>1.1</gsss.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
 		<apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
