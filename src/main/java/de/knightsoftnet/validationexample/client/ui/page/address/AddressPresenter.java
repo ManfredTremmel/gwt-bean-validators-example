@@ -17,8 +17,8 @@ package de.knightsoftnet.validationexample.client.ui.page.address;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
-import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
@@ -68,7 +68,7 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
   public AddressPresenter(final EventBus peventBus, final AddressPresenter.MyView pview,
       final MyProxy pproxy, final AddressConstants pconstants, final RestDispatch pdispatcher,
       final PostalAddressRestService ppostalAddressService, final Session psession) {
-    super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
+    super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.postalAddressService = ppostalAddressService;
     this.constants = pconstants;

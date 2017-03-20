@@ -15,15 +15,14 @@
 
 package de.knightsoftnet.validationexample.client.ui.basepage;
 
+import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.navigation.client.ui.navigation.NavigationPresenter;
 import de.knightsoftnet.validationexample.client.ui.basepage.about.AboutPresenter;
 
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
-import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
@@ -36,7 +35,7 @@ import javax.inject.Inject;
  *
  */
 public class BasePagePresenter
-    extends Presenter<BasePagePresenter.MyView, BasePagePresenter.MyProxy> {
+    extends AbstractBasePagePresenter<BasePagePresenter.MyView, BasePagePresenter.MyProxy> {
 
   public interface MyView extends View {
     void setPresenter(BasePagePresenter ppresenter);
@@ -47,10 +46,6 @@ public class BasePagePresenter
   public interface MyProxy extends Proxy<BasePagePresenter> {
   }
 
-  /**
-   * Use this in leaf presenters, inside their {@link #revealInParent} method.
-   */
-  public static final NestedSlot SLOT_MAIN_CONTENT = new NestedSlot();
   public static final PermanentSlot<NavigationPresenter> SLOT_NAVIGATION = new PermanentSlot<>();
 
   private final NavigationPresenter navigationPresenter;
@@ -70,7 +65,7 @@ public class BasePagePresenter
   public BasePagePresenter(final EventBus peventBus, final BasePagePresenter.MyView pview,
       final AboutPresenter paboutPresenter, final MyProxy pproxy,
       final NavigationPresenter pnavigationPresenter) {
-    super(peventBus, pview, pproxy, RevealType.Root);
+    super(peventBus, pview, pproxy);
     this.aboutPresenter = paboutPresenter;
     this.navigationPresenter = pnavigationPresenter;
     pview.setPresenter(this);
@@ -78,7 +73,6 @@ public class BasePagePresenter
 
   @Override
   protected void onBind() {
-    super.onBind();
     this.setInSlot(BasePagePresenter.SLOT_NAVIGATION, this.navigationPresenter);
   }
 

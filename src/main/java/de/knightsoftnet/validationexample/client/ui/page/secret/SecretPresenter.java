@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.secret;
 
-import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
+import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 
 import com.google.web.bindery.event.shared.EventBus;
@@ -52,6 +52,6 @@ public class SecretPresenter extends Presenter<SecretPresenter.MyView, SecretPre
    */
   @Inject
   public SecretPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy) {
-    super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
+    super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
   }
 }

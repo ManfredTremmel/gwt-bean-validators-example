@@ -17,8 +17,8 @@ package de.knightsoftnet.validationexample.client.ui.page.person;
 
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PersonRestService;
-import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
@@ -66,7 +66,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
   public PersonPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
       final PersonConstants pconstants, final RestDispatch pdispatcher,
       final PersonRestService ppersonService, final Session psession) {
-    super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
+    super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.personService = ppersonService;

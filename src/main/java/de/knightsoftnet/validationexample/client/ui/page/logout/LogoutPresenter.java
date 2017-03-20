@@ -16,8 +16,8 @@
 package de.knightsoftnet.validationexample.client.ui.page.logout;
 
 import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.UserRestService;
-import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -58,7 +58,7 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
   @Inject
   public LogoutPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
       final RestDispatch pdispatcher, final UserRestService puserService, final Session psession) {
-    super(peventBus, pview, pproxy, BasePagePresenter.SLOT_MAIN_CONTENT);
+    super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.userService = puserService;
     this.session = psession;
