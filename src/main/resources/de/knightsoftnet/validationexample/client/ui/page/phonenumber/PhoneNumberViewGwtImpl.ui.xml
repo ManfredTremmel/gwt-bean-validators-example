@@ -24,8 +24,8 @@
         <label for="countryCode"><ui:msg description="Label Country">Country:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:CountryListBox sort="NAME_ASC" debugId="countryCode" ui:field="countryCode" />
-        <span id="countryCode_validation" class="{style.errorPanel}" />
+        <w:CountryListBox sort="NAME_ASC" debugId="countryCode" ui:field="countryCode" validationMessageElement="{countryCodeValidation}" />
+        <g:HTMLPanel tag="span" ui:field="countryCodeValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
@@ -33,8 +33,8 @@
         <label for="phoneNumber"><ui:msg description="Label Phone Number">Phone Number:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:PhoneNumberMsRestSuggestBox debugId="phoneNumber" ui:field="phoneNumber" autofocus="true" />
-        <span id="phoneNumber_validation" class="{style.errorPanel}" />
+        <w:PhoneNumberMsRestSuggestBox debugId="phoneNumber" ui:field="phoneNumber" autofocus="true" countryCodeReferenceField="{countryCode}" validationMessageElement="{phoneNumberValidation}" />
+        <g:HTMLPanel tag="span" ui:field="phoneNumberValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.message}">

@@ -28,8 +28,8 @@
             <label for="userName"><ui:msg description="Label User">User:</ui:msg></label>
           </div>
           <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
-            <w:TextBox maxLength="50" ui:field="userName" debugId="userName" required="true" autofocus="true" styleName="{style.maxWidth}" />
-            <div id="userName_validation" class="{style.errorPanel}" />
+            <w:TextBox maxLength="50" ui:field="userName" debugId="userName" required="true" autofocus="true" styleName="{style.maxWidth}" validationMessageElement="{userNameValidation}" />
+            <g:HTMLPanel ui:field="userNameValidation" styleName="{style.errorPanel}" />
           </div>
         </div>
         <div class="{resources.grid.row} {style.row}">
@@ -37,8 +37,8 @@
             <label for="password"><ui:msg description="Label Password">Password:</ui:msg></label>
           </div>
           <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
-            <w:PasswordTextBox maxLength="50" ui:field="password" debugId="password" required="true" styleName="{style.maxWidth}" />
-            <div id="password_validation" class="{style.errorPanel}" />
+            <w:PasswordTextBox maxLength="50" ui:field="password" debugId="password" required="true" styleName="{style.maxWidth}" validationMessageElement="{passwordValidation}" />
+            <g:HTMLPanel ui:field="passwordValidation" styleName="{style.errorPanel}" />
           </div>
         </div>
         <div class="{resources.grid.row} {style.row}">
@@ -53,8 +53,8 @@
                     <label for="newPassword"><ui:msg description="Label New Password">New Password:</ui:msg></label>
                   </div>
                   <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
-                    <w:PasswordTextBox maxLength="50" ui:field="newPassword" debugId="newPassword" styleName="{style.maxWidth}" />
-                    <div id="newPassword_validation" class="{style.errorPanel}" />
+                    <w:PasswordTextBox maxLength="50" ui:field="newPassword" debugId="newPassword" styleName="{style.maxWidth}" validationMessageElement="{newPasswordValidation}" />
+                    <g:HTMLPanel ui:field="newPasswordValidation" styleName="{style.errorPanel}" />
                   </div>
                 </div>
                 <div class="{style.inputlinedisclosure} {resources.grid.row}">
@@ -62,8 +62,8 @@
                     <label for="newPasswordRepeat"><ui:msg description="Label New Password repeat">New Password repeat:</ui:msg></label>
                   </div>
                   <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_m_12}">
-                    <w:PasswordTextBox maxLength="50" ui:field="newPasswordRepeat" debugId="newPasswordRepeat" styleName="{style.maxWidth}" />
-                    <span id="newPasswordRepeat_validation" class="{style.errorPanel}" />
+                    <w:PasswordTextBox maxLength="50" ui:field="newPasswordRepeat" debugId="newPasswordRepeat" styleName="{style.maxWidth}" validationMessageElement="{newPasswordRepeatValidation}" />
+                    <g:HTMLPanel ui:field="newPasswordRepeatValidation" styleName="{style.errorPanel}" />
                   </div>
                 </div>
               </g:HTMLPanel>

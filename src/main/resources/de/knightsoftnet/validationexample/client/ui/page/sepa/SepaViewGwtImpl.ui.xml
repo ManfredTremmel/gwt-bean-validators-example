@@ -24,8 +24,8 @@
         <label for="countryCode"><ui:msg description="Label Country">Country:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:CountryListBox sort="NAME_ASC" debugId="countryCode" ui:field="countryCode" />
-        <span id="countryCode_validation" class="{style.errorPanel}" />
+        <w:CountryListBox sort="NAME_ASC" debugId="countryCode" ui:field="countryCode" validationMessageElement="{countryCodeValidation}" />
+        <g:HTMLPanel tag="span" ui:field="countryCodeValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
@@ -33,8 +33,8 @@
         <label for="bic"><ui:msg description="Label Bic">Bic:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" autofocus="true" />
-        <div id="bic_validation" class="{style.errorPanel}" />
+        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" autofocus="true" bankNameWidget="{bankName}" validationMessageElement="{bicValidation}" />
+        <g:HTMLPanel ui:field="bicValidation" styleName="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="bankName"><ui:msg description="Label Bank Name">Bank Name:</ui:msg></label>
@@ -48,15 +48,15 @@
         <label for="iban"><ui:msg description="Label Iban">Iban:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:IbanTextBox maxLength="42" debugId="iban" ui:field="iban" required="true" styleName="{style.maxWidth}" />
-        <div id="iban_validation" class="{style.errorPanel}" />
+        <w:IbanTextBox maxLength="42" debugId="iban" ui:field="iban" required="true" styleName="{style.maxWidth}" validationMessageElement="{ibanValidation}" />
+        <g:HTMLPanel ui:field="ibanValidation" styleName="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="accountOwner"><ui:msg description="Label Account Owner">Account Owner:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:TextBox maxLength="50" debugId="accountOwner" ui:field="accountOwner" required="true" styleName="{style.maxWidth}" />
-        <div id="accountOwner_validation" class="{style.errorPanel}" />
+        <w:TextBox maxLength="50" debugId="accountOwner" ui:field="accountOwner" required="true" styleName="{style.maxWidth}" validationMessageElement="{accountOwnerValidation}" />
+        <g:HTMLPanel ui:field="accountOwnerValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.message}">

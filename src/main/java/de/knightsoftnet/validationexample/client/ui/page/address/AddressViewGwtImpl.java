@@ -94,7 +94,6 @@ public class AddressViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.addressButton);
     this.driver.addFormSubmitHandler(this);
-    this.postalCode.addCountryCodeReference(this.countryCode);
   }
 
   @Override

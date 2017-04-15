@@ -48,8 +48,8 @@
         <label for="id"><ui:msg description="Label Id">Id:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:LongBox enabled="false" debugId="id" ui:field="id" />
-        <span id="id_validation" class="{style.errorPanel}" />
+        <w:LongBox enabled="false" debugId="id" ui:field="id" validationMessageElement="{idValidation}" />
+        <g:HTMLPanel tag="span" ui:field="idValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
@@ -57,8 +57,8 @@
         <label for="salutation"><ui:msg description="Label Salutation">Salutation:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_10} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <e:SalutationRadioButton debugId="salutation" ui:field="salutation" autofocus="true" />
-        <span id="salutation_validation" class="{style.errorPanel}" />
+        <e:SalutationRadioButton debugId="salutation" ui:field="salutation" autofocus="true" validationMessageElement="{salutationValidation}" />
+        <g:HTMLPanel tag="span" ui:field="salutationValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
@@ -66,15 +66,15 @@
         <label for="firstName"><ui:msg description="Label Firstname">Firstname:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:TextBox debugId="firstName" ui:field="firstName" styleName="{style.maxWidth}" required="true" />
-        <div id="firstName_validation" class="{style.errorPanel}" />
+        <w:TextBox debugId="firstName" ui:field="firstName" styleName="{style.maxWidth}" required="true" validationMessageElement="{firstNameValidation}" />
+        <g:HTMLPanel ui:field="firstNameValidation" styleName="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="lastName"><ui:msg description="Label Lastname">Lasttname:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:TextBox debugId="lastName" ui:field="lastName" styleName="{style.maxWidth}" required="true" />
-        <div id="lastName_validation" class="{style.errorPanel}" />
+        <w:TextBox debugId="lastName" ui:field="lastName" styleName="{style.maxWidth}" required="true" validationMessageElement="{lastNameValidation}" />
+        <g:HTMLPanel ui:field="lastNameValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.row}">
@@ -82,15 +82,15 @@
         <label for="email"><ui:msg description="Label E-Mail">E-Mail:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:EmailTextBox debugId="email" ui:field="email" styleName="{style.maxWidth}" />
-        <div id="email_validation" class="{style.errorPanel}" />
+        <w:EmailTextBox debugId="email" ui:field="email" styleName="{style.maxWidth}" validationMessageElement="{emailValidation}" />
+        <g:HTMLPanel ui:field="emailValidation" styleName="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="birthday"><ui:msg description="Label Birthday">Birthday:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:UtcDateBox debugId="birthday" ui:field="birthday" />
-        <div id="birthday_validation" class="{style.errorPanel}" />
+        <w:UtcDateBox debugId="birthday" ui:field="birthday" validationMessageElement="{birthdayValidation}" />
+        <g:HTMLPanel ui:field="birthdayValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.message}">

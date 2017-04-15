@@ -87,7 +87,6 @@ public class SepaViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
-    this.bic.setBankNameWidget(this.bankName);
   }
 
   @Override

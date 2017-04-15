@@ -85,7 +85,6 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.phoneNumberButton);
     this.driver.addFormSubmitHandler(this);
-    this.phoneNumber.setCountryCodeReferenceField(this.countryCode);
   }
 
   @Override
