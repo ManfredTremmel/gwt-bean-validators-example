@@ -196,7 +196,6 @@
 			<groupId>de.knightsoft-net</groupId>
 			<artifactId>gwt-mt-widgets</artifactId>
 			<version>${gwt-mt-widgets.version}</version>
-			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
