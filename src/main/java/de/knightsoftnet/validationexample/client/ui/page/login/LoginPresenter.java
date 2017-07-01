@@ -21,13 +21,13 @@ import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validationexample.shared.models.UserData;
+import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
-import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
-import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
@@ -41,9 +41,11 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresenter.MyProxy> {
+public class LoginPresenter extends
+    AbstractPresenterWithErrorHandling<LoginPresenter.MyProxy, LoginPresenter.MyView, LoginData> {
 
-  public interface MyView extends EditorWithErrorHandling<LoginPresenter, LoginData> {
+  public interface MyView
+      extends EditorWithErrorHandling<LoginPresenter, LoginData>, FormSubmitHandler<LoginData> {
   }
 
   @ProxyCodeSplit
@@ -86,7 +88,6 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
     super.onReveal();
     this.loginData.clear();
     this.getView().fillForm(this.loginData);
-    Scheduler.get().scheduleDeferred(() -> LoginPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

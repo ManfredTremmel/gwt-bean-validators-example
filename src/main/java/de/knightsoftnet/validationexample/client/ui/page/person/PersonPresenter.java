@@ -21,6 +21,7 @@ import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PersonRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.Person;
+import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
@@ -44,7 +45,8 @@ import javax.inject.Inject;
  */
 public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPresenter.MyProxy> {
 
-  public interface MyView extends EditorWithErrorHandling<PersonPresenter, Person> {
+  public interface MyView
+      extends EditorWithErrorHandling<PersonPresenter, Person>, FormSubmitHandler<Person> {
   }
 
   @ProxyCodeSplit

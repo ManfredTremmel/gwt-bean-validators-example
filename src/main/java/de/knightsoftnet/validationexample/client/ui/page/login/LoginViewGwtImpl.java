@@ -20,19 +20,15 @@ import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import com.gwtplatform.mvp.client.ViewImpl;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test login.
@@ -40,18 +36,12 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class LoginViewGwtImpl extends ViewImpl
-    implements LoginPresenter.MyView, FormSubmitHandler<LoginData> {
+public class LoginViewGwtImpl extends AbstractViewWithErrorHandling<LoginPresenter, LoginData>
+    implements LoginPresenter.MyView {
 
-  /**
-   * view interface.
-   */
   interface Binder extends UiBinder<Widget, LoginViewGwtImpl> {
   }
 
-  /**
-   * interface of the driver to combine ui and bean.
-   */
   interface Driver extends BeanValidationEditorDriver<LoginData, LoginViewGwtImpl> {
   }
 
@@ -71,10 +61,6 @@ public class LoginViewGwtImpl extends ViewImpl
   @UiField
   Button loginButton;
 
-  private final Driver driver;
-
-  private LoginPresenter presenter;
-
   /**
    * constructor with injected data.
    *
@@ -83,22 +69,11 @@ public class LoginViewGwtImpl extends ViewImpl
    */
   @Inject
   public LoginViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
-    super();
+    super(pdriver);
     this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.loginButton);
     this.driver.addFormSubmitHandler(this);
-  }
-
-  @Override
-  public final void setPresenter(final LoginPresenter ppresenter) {
-    this.presenter = ppresenter;
-  }
-
-  @Override
-  public final void fillForm(final LoginData puser) {
-    this.driver.edit(puser);
   }
 
   @Override
@@ -114,10 +89,5 @@ public class LoginViewGwtImpl extends ViewImpl
   @Override
   public void onFormSubmit(final FormSubmitEvent<LoginData> pevent) {
     this.presenter.tryToLogin();
-  }
-
-  @Override
-  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 }

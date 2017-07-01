@@ -21,15 +21,15 @@ import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.SepaRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
+import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
-import com.google.gwt.core.client.Scheduler;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
-import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
@@ -49,9 +49,11 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter.MyProxy> {
+public class SepaPresenter extends
+    AbstractPresenterWithErrorHandling<SepaPresenter.MyProxy, SepaPresenter.MyView, SepaData> {
 
-  public interface MyView extends EditorWithErrorHandling<SepaPresenter, SepaData> {
+  public interface MyView
+      extends EditorWithErrorHandling<SepaPresenter, SepaData>, FormSubmitHandler<SepaData> {
   }
 
   @ProxyCodeSplit
@@ -83,12 +85,6 @@ public class SepaPresenter extends Presenter<SepaPresenter.MyView, SepaPresenter
     this.sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
     this.getView().fillForm(this.sepaData);
-  }
-
-  @Override
-  protected void onReveal() {
-    super.onReveal();
-    Scheduler.get().scheduleDeferred(() -> SepaPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

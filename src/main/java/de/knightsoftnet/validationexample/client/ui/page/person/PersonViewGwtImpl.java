@@ -23,7 +23,7 @@ import de.knightsoftnet.validationexample.client.ui.widget.SalutationRadioButton
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -32,12 +32,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import com.gwtplatform.mvp.client.ViewImpl;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test Sepa.
@@ -45,8 +41,8 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class PersonViewGwtImpl extends ViewImpl
-    implements PersonPresenter.MyView, FormSubmitHandler<Person> {
+public class PersonViewGwtImpl extends AbstractViewWithErrorHandling<PersonPresenter, Person>
+    implements PersonPresenter.MyView {
 
   interface Binder extends UiBinder<Widget, PersonViewGwtImpl> {
   }
@@ -87,10 +83,6 @@ public class PersonViewGwtImpl extends ViewImpl
   @UiField
   Button submitButton;
 
-  private final Driver driver;
-
-  private PersonPresenter presenter;
-
   /**
    * constructor with injected parameters.
    *
@@ -99,22 +91,11 @@ public class PersonViewGwtImpl extends ViewImpl
    */
   @Inject
   public PersonViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
-    super();
+    super(pdriver);
     this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.submitButton);
     this.driver.addFormSubmitHandler(this);
-  }
-
-  @Override
-  public final void setPresenter(final PersonPresenter ppresenter) {
-    this.presenter = ppresenter;
-  }
-
-  @Override
-  public final void fillForm(final Person person) {
-    this.driver.edit(person);
   }
 
   @Override
@@ -130,11 +111,6 @@ public class PersonViewGwtImpl extends ViewImpl
   @Override
   public void onFormSubmit(final FormSubmitEvent<Person> pevent) {
     this.presenter.tryToSend();
-  }
-
-  @Override
-  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 
   @UiHandler("newButton")

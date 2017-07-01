@@ -21,13 +21,13 @@ import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
+import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 
-import com.google.gwt.core.client.Scheduler;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
-import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
@@ -43,9 +43,12 @@ import javax.inject.Inject;
  * @author Manfred Tremmel
  *
  */
-public class AddressPresenter extends Presenter<AddressPresenter.MyView, AddressPresenter.MyProxy> {
+public class AddressPresenter //
+    extends AbstractPresenterWithErrorHandling<AddressPresenter.MyProxy, AddressPresenter.MyView, //
+        PostalAddressData> {
 
-  public interface MyView extends EditorWithErrorHandling<AddressPresenter, PostalAddressData> {
+  public interface MyView extends EditorWithErrorHandling<AddressPresenter, PostalAddressData>,
+      FormSubmitHandler<PostalAddressData> {
   }
 
   @ProxyCodeSplit
@@ -77,12 +80,6 @@ public class AddressPresenter extends Presenter<AddressPresenter.MyView, Address
     this.addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
     this.getView().setPresenter(this);
     this.getView().fillForm(this.addressData);
-  }
-
-  @Override
-  protected void onReveal() {
-    super.onReveal();
-    Scheduler.get().scheduleDeferred(() -> AddressPresenter.this.getView().setFocusOnFirstWidget());
   }
 
   /**

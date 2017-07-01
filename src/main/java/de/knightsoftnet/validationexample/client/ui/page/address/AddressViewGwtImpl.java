@@ -21,19 +21,15 @@ import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import com.gwtplatform.mvp.client.ViewImpl;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test - postal address.
@@ -41,8 +37,9 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class AddressViewGwtImpl extends ViewImpl
-    implements AddressPresenter.MyView, FormSubmitHandler<PostalAddressData> {
+public class AddressViewGwtImpl
+    extends AbstractViewWithErrorHandling<AddressPresenter, PostalAddressData>
+    implements AddressPresenter.MyView {
 
   interface Binder extends UiBinder<Widget, AddressViewGwtImpl> {
   }
@@ -76,10 +73,6 @@ public class AddressViewGwtImpl extends ViewImpl
   @UiField
   Button addressButton;
 
-  private final Driver driver;
-
-  private AddressPresenter presenter;
-
   /**
    * constructor with injected parameters.
    *
@@ -88,22 +81,11 @@ public class AddressViewGwtImpl extends ViewImpl
    */
   @Inject
   public AddressViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
-    super();
+    super(pdriver);
     this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.addressButton);
     this.driver.addFormSubmitHandler(this);
-  }
-
-  @Override
-  public final void setPresenter(final AddressPresenter ppresenter) {
-    this.presenter = ppresenter;
-  }
-
-  @Override
-  public final void fillForm(final PostalAddressData puser) {
-    this.driver.edit(puser);
   }
 
   @Override
@@ -119,10 +101,5 @@ public class AddressViewGwtImpl extends ViewImpl
   @Override
   public final void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
     this.presenter.tryToSend();
-  }
-
-  @Override
-  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 }

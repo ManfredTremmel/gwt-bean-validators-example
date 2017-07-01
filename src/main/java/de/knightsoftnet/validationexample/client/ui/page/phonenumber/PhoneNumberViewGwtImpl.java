@@ -20,7 +20,7 @@ import de.knightsoftnet.mtwidgets.client.ui.widget.PhoneNumberMsRestSuggestBox;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
@@ -29,12 +29,8 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Provider;
-import com.gwtplatform.mvp.client.ViewImpl;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test phone number.
@@ -42,8 +38,9 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class PhoneNumberViewGwtImpl extends ViewImpl
-    implements PhoneNumberPresenter.MyView, FormSubmitHandler<PhoneNumberData> {
+public class PhoneNumberViewGwtImpl
+    extends AbstractViewWithErrorHandling<PhoneNumberPresenter, PhoneNumberData>
+    implements PhoneNumberPresenter.MyView {
 
   interface Binder extends UiBinder<Widget, PhoneNumberViewGwtImpl> {
   }
@@ -63,11 +60,7 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
   @UiField
   Button phoneNumberButton;
 
-  private final Driver driver;
-
   private final Provider<PhoneNumberMsRestSuggestBox> phoneNumberWidgetProvider;
-
-  private PhoneNumberPresenter presenter;
 
   /**
    * constructor with injected parameters.
@@ -78,23 +71,12 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
   @Inject
   public PhoneNumberViewGwtImpl(final Driver pdriver, final Binder puiBinder,
       final Provider<PhoneNumberMsRestSuggestBox> pphoneNumberWidgetProvider) {
-    super();
+    super(pdriver);
     this.phoneNumberWidgetProvider = pphoneNumberWidgetProvider;
     this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.phoneNumberButton);
     this.driver.addFormSubmitHandler(this);
-  }
-
-  @Override
-  public final void setPresenter(final PhoneNumberPresenter ppresenter) {
-    this.presenter = ppresenter;
-  }
-
-  @Override
-  public final void fillForm(final PhoneNumberData puser) {
-    this.driver.edit(puser);
   }
 
   @Override
@@ -110,11 +92,6 @@ public class PhoneNumberViewGwtImpl extends ViewImpl
   @Override
   public void onFormSubmit(final FormSubmitEvent<PhoneNumberData> pevent) {
     this.presenter.tryToSend();
-  }
-
-  @Override
-  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 
   @Ignore

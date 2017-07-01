@@ -22,19 +22,15 @@ import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.event.FormSubmitHandler;
+import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-import com.gwtplatform.mvp.client.ViewImpl;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
 
 /**
  * View of the validator test Sepa.
@@ -42,8 +38,8 @@ import javax.validation.ConstraintViolation;
  * @author Manfred Tremmel
  *
  */
-public class SepaViewGwtImpl extends ViewImpl
-    implements SepaPresenter.MyView, FormSubmitHandler<SepaData> {
+public class SepaViewGwtImpl extends AbstractViewWithErrorHandling<SepaPresenter, SepaData>
+    implements SepaPresenter.MyView {
 
   interface Binder extends UiBinder<Widget, SepaViewGwtImpl> {
   }
@@ -69,10 +65,6 @@ public class SepaViewGwtImpl extends ViewImpl
   @UiField
   Button sepaButton;
 
-  private final Driver driver;
-
-  private SepaPresenter presenter;
-
   /**
    * constructor with injected parameters.
    *
@@ -81,9 +73,8 @@ public class SepaViewGwtImpl extends ViewImpl
    */
   @Inject
   public SepaViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
-    super();
+    super(pdriver);
     this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver = pdriver;
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
@@ -91,14 +82,9 @@ public class SepaViewGwtImpl extends ViewImpl
 
   @Override
   public final void setPresenter(final SepaPresenter ppresenter) {
-    this.presenter = ppresenter;
+    super.setPresenter(ppresenter);
     // limit possible countries to sepa countries
     this.countryCode.fillEntries(this.presenter.getSepaCountries());
-  }
-
-  @Override
-  public final void fillForm(final SepaData puser) {
-    this.driver.edit(puser);
   }
 
   @Override
@@ -114,10 +100,5 @@ public class SepaViewGwtImpl extends ViewImpl
   @Override
   public void onFormSubmit(final FormSubmitEvent<SepaData> pevent) {
     this.presenter.tryToSend();
-  }
-
-  @Override
-  public void setConstraintViolations(final ArrayList<ConstraintViolation<?>> pvalidationErrorSet) {
-    this.driver.setConstraintViolations(pvalidationErrorSet);
   }
 }
