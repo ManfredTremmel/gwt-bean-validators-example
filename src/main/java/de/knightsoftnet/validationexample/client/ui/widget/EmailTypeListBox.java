@@ -13,25 +13,26 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.shared;
+package de.knightsoftnet.validationexample.client.ui.widget;
 
-import de.knightsoftnet.validators.shared.ResourcePaths;
+import de.knightsoftnet.mtwidgets.client.ui.widget.SortableIdAndNameListBox;
+import de.knightsoftnet.mtwidgets.client.ui.widget.helper.ListSortEnum;
+import de.knightsoftnet.validationexample.shared.models.EmailTypeEnum;
+
+import com.google.gwt.core.client.GWT;
 
 /**
- * definition of rest url pathes.
+ * email type list box.
  *
  * @author Manfred Tremmel
  *
  */
-public class AppResourcePaths extends ResourcePaths {
+public class EmailTypeListBox extends SortableIdAndNameListBox<EmailTypeEnum> {
 
-  public static final String PERSON_SUFFIX = "person";
-  public static final String SEARCH_SUFFIX = "search";
-
-  public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
-  public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
-  public static final String EMAIL_LIST = API_BASE_DIR + "/emaillist";
-  public static final String SEPA = API_BASE_DIR + "/sepa";
-  public static final String PERSON = API_BASE_DIR + "/" + PERSON_SUFFIX;
-  public static final String PERSON_SEARCH = PERSON + "/" + SEARCH_SUFFIX;
+  /**
+   * widget ui constructor.
+   */
+  public EmailTypeListBox() {
+    super(ListSortEnum.ID_ASC, GWT.create(EmailTypeMessages.class), EmailTypeEnum.values());
+  }
 }

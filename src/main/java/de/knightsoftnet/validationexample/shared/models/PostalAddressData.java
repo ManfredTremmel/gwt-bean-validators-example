@@ -23,6 +23,10 @@ import de.knightsoftnet.validators.shared.PostalCode;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -114,6 +118,15 @@ public class PostalAddressData {
   private CountryEnum countryCode;
 
 
+  @Valid
+  private final List<EmailData> emailList;
+
+
+  public PostalAddressData() {
+    super();
+    this.emailList = new ArrayList<>();
+  }
+
   public String getPostOfficeBox() {
     return this.postOfficeBox;
   }
@@ -184,6 +197,22 @@ public class PostalAddressData {
 
   public void setCountryCode(final CountryEnum pcountryCode) {
     this.countryCode = pcountryCode;
+  }
+
+  public final List<EmailData> getEmailList() {
+    return this.emailList;
+  }
+
+  /**
+   * set email list.
+   * 
+   * @param pemailList email list to set
+   */
+  public final void setEmailList(final List<EmailData> pemailList) {
+    this.emailList.clear();
+    if (pemailList != null && !this.emailList.isEmpty()) {
+      this.emailList.addAll(pemailList);
+    }
   }
 
   @Override

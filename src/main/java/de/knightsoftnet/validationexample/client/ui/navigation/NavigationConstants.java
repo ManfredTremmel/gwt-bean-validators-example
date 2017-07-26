@@ -102,6 +102,13 @@ public interface NavigationConstants extends Constants {
   String menuPostalAddress();
 
   /**
+   * text of the E-Mail list menu entry.
+   *
+   * @return emailList
+   */
+  String menuEmailList();
+
+  /**
    * text of the phone number menu entry.
    *
    * @return phoneNumber

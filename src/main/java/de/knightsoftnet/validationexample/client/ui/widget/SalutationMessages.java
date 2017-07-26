@@ -5,12 +5,12 @@ import de.knightsoftnet.validationexample.shared.models.SalutationEnum;
 
 public interface SalutationMessages extends MessagesForValues<SalutationEnum> {
   /**
-   * get country name for country code.
+   * get salutation name for salutation code.
    *
-   * @param pcountry country enum.
-   * @return country name
+   * @param psalutation salutation enum.
+   * @return salutation name
    */
   @Override
   @DefaultMessage("Please select")
-  String name(@Select SalutationEnum pcountry);
+  String name(@Select SalutationEnum psalutation);
 }

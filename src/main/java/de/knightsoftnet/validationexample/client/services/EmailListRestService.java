@@ -13,25 +13,19 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.shared;
+package de.knightsoftnet.validationexample.client.services;
 
-import de.knightsoftnet.validators.shared.ResourcePaths;
+import de.knightsoftnet.validationexample.shared.AppResourcePaths;
+import de.knightsoftnet.validationexample.shared.models.EmailListData;
 
-/**
- * definition of rest url pathes.
- *
- * @author Manfred Tremmel
- *
- */
-public class AppResourcePaths extends ResourcePaths {
+import com.gwtplatform.dispatch.rest.shared.RestAction;
 
-  public static final String PERSON_SUFFIX = "person";
-  public static final String SEARCH_SUFFIX = "search";
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 
-  public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
-  public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
-  public static final String EMAIL_LIST = API_BASE_DIR + "/emaillist";
-  public static final String SEPA = API_BASE_DIR + "/sepa";
-  public static final String PERSON = API_BASE_DIR + "/" + PERSON_SUFFIX;
-  public static final String PERSON_SEARCH = PERSON + "/" + SEARCH_SUFFIX;
+@Path(AppResourcePaths.EMAIL_LIST)
+public interface EmailListRestService {
+
+  @POST
+  RestAction<Boolean> checkEmailList(final EmailListData pemailListData);
 }

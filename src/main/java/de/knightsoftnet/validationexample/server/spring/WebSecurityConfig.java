@@ -103,6 +103,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/" + NameTokens.LOGOUT, //
             "/" + NameTokens.SEPA, //
             "/" + NameTokens.ADDRESS, //
+            "/" + NameTokens.EMAIL_LIST, //
             "/" + NameTokens.PHONE_NUMBER, //
             "/" + NameTokens.SECRET, //
             "/" + NameTokens.SETTINGS, //
@@ -125,6 +126,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // services without authentication
         .antMatchers(AppResourcePaths.PHONE_NUMBER, //
             AppResourcePaths.POSTAL_ADDRESS, //
+            AppResourcePaths.EMAIL_LIST, //
             AppResourcePaths.SEPA, //
             PhoneNumber.ROOT + "/**") //
         .permitAll() //

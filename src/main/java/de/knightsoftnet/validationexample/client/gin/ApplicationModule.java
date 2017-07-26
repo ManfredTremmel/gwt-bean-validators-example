@@ -28,6 +28,8 @@ import de.knightsoftnet.validationexample.client.ui.basepage.about.AboutViewGwtI
 import de.knightsoftnet.validationexample.client.ui.navigation.MyNavigationStructure;
 import de.knightsoftnet.validationexample.client.ui.page.address.AddressPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.address.AddressViewGwtImpl;
+import de.knightsoftnet.validationexample.client.ui.page.emaillist.EmailPresenter;
+import de.knightsoftnet.validationexample.client.ui.page.emaillist.EmailViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginPresenter;
 import de.knightsoftnet.validationexample.client.ui.page.login.LoginViewGwtImpl;
 import de.knightsoftnet.validationexample.client.ui.page.logout.LogoutPresenter;
@@ -61,6 +63,8 @@ public class ApplicationModule extends AbstractPresenterModule {
         AboutViewGwtImpl.class);
     this.bindPresenter(AddressPresenter.class, AddressPresenter.MyView.class,
         AddressViewGwtImpl.class, AddressPresenter.MyProxy.class);
+    this.bindPresenter(EmailPresenter.class, EmailPresenter.MyView.class, EmailViewGwtImpl.class,
+        EmailPresenter.MyProxy.class);
     this.bindPresenter(LoginPresenter.class, LoginPresenter.MyView.class, LoginViewGwtImpl.class,
         LoginPresenter.MyProxy.class);
     this.bindPresenter(LogoutPresenter.class, LogoutPresenter.MyView.class, LogoutViewGwtImpl.class,

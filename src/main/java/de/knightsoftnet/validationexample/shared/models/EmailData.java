@@ -13,25 +13,41 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.shared;
+package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.validators.shared.ResourcePaths;
+import de.knightsoftnet.validators.shared.Email;
 
-/**
- * definition of rest url pathes.
- *
- * @author Manfred Tremmel
- *
- */
-public class AppResourcePaths extends ResourcePaths {
+import org.hibernate.validator.constraints.NotEmpty;
 
-  public static final String PERSON_SUFFIX = "person";
-  public static final String SEARCH_SUFFIX = "search";
+import javax.validation.constraints.NotNull;
 
-  public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
-  public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
-  public static final String EMAIL_LIST = API_BASE_DIR + "/emaillist";
-  public static final String SEPA = API_BASE_DIR + "/sepa";
-  public static final String PERSON = API_BASE_DIR + "/" + PERSON_SUFFIX;
-  public static final String PERSON_SEARCH = PERSON + "/" + SEARCH_SUFFIX;
+public class EmailData {
+
+  @Email
+  @NotEmpty
+  private String email;
+
+  @NotNull
+  private EmailTypeEnum type;
+
+  public final void setEmail(final String pemail) {
+    this.email = pemail;
+  }
+
+  public String getEmail() {
+    return this.email;
+  }
+
+  public final EmailTypeEnum getType() {
+    return this.type;
+  }
+
+  public final void setType(final EmailTypeEnum ptype) {
+    this.type = ptype;
+  }
+
+  @Override
+  public String toString() {
+    return "EmailData [email=" + this.email + ", type=" + this.type + "]";
+  }
 }

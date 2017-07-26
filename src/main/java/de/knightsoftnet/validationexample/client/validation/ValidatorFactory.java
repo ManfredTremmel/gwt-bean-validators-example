@@ -15,6 +15,8 @@
 
 package de.knightsoftnet.validationexample.client.validation;
 
+import de.knightsoftnet.validationexample.shared.models.EmailData;
+import de.knightsoftnet.validationexample.shared.models.EmailListData;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
@@ -42,7 +44,7 @@ public class ValidatorFactory extends AbstractGwtValidatorFactory {
    * the {@link GwtValidation} annotation can be validated.
    */
   @GwtValidation(value = {LoginData.class, SepaData.class, PostalAddressData.class,
-      PhoneNumberData.class, Person.class})
+      EmailListData.class, EmailData.class, PhoneNumberData.class, Person.class})
   public interface GwtValidator extends Validator {
   }
 

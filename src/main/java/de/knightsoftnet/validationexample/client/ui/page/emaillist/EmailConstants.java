@@ -13,25 +13,28 @@
  * the License.
  */
 
-package de.knightsoftnet.validationexample.shared;
+package de.knightsoftnet.validationexample.client.ui.page.emaillist;
 
-import de.knightsoftnet.validators.shared.ResourcePaths;
+import com.google.gwt.i18n.client.Constants;
 
 /**
- * definition of rest url pathes.
+ * Localized values for the address page.
  *
  * @author Manfred Tremmel
  *
  */
-public class AppResourcePaths extends ResourcePaths {
+public interface EmailConstants extends Constants {
+  /**
+   * text to display when data are not correct.
+   *
+   * @return messageError
+   */
+  String messageError();
 
-  public static final String PERSON_SUFFIX = "person";
-  public static final String SEARCH_SUFFIX = "search";
-
-  public static final String PHONE_NUMBER = API_BASE_DIR + "/phone";
-  public static final String POSTAL_ADDRESS = API_BASE_DIR + "/postaladdress";
-  public static final String EMAIL_LIST = API_BASE_DIR + "/emaillist";
-  public static final String SEPA = API_BASE_DIR + "/sepa";
-  public static final String PERSON = API_BASE_DIR + "/" + PERSON_SUFFIX;
-  public static final String PERSON_SEARCH = PERSON + "/" + SEARCH_SUFFIX;
+  /**
+   * text to display when data data are correct.
+   *
+   * @return messageOk
+   */
+  String messageOk();
 }
