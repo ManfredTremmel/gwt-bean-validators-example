@@ -94,11 +94,6 @@ public class AddressViewGwtImpl
   }
 
   @Override
-  public final void setFocusOnFirstWidget() {
-    this.street.setFocus(true);
-  }
-
-  @Override
   public final void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
     this.presenter.tryToSend();
   }

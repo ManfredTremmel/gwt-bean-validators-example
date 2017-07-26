@@ -93,11 +93,6 @@ public class SepaViewGwtImpl extends AbstractViewWithErrorHandling<SepaPresenter
   }
 
   @Override
-  public final void setFocusOnFirstWidget() {
-    this.bic.setFocus(true);
-  }
-
-  @Override
   public void onFormSubmit(final FormSubmitEvent<SepaData> pevent) {
     this.presenter.tryToSend();
   }

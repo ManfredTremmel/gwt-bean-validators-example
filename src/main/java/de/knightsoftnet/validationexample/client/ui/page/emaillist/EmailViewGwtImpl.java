@@ -83,11 +83,6 @@ public class EmailViewGwtImpl extends AbstractViewWithErrorHandling<EmailPresent
   }
 
   @Override
-  public final void setFocusOnFirstWidget() {
-    this.firstname.setFocus(true);
-  }
-
-  @Override
   public final void onFormSubmit(final FormSubmitEvent<EmailListData> pevent) {
     this.presenter.tryToSend();
   }

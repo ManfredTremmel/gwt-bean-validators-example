@@ -104,11 +104,6 @@ public class PersonViewGwtImpl extends AbstractViewWithErrorHandling<PersonPrese
   }
 
   @Override
-  public final void setFocusOnFirstWidget() {
-    this.firstName.setFocus(true);
-  }
-
-  @Override
   public void onFormSubmit(final FormSubmitEvent<Person> pevent) {
     this.presenter.tryToSend();
   }

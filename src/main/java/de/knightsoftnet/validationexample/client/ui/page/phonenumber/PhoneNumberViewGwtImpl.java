@@ -85,11 +85,6 @@ public class PhoneNumberViewGwtImpl
   }
 
   @Override
-  public final void setFocusOnFirstWidget() {
-    this.phoneNumber.setFocus(true);
-  }
-
-  @Override
   public void onFormSubmit(final FormSubmitEvent<PhoneNumberData> pevent) {
     this.presenter.tryToSend();
   }

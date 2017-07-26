@@ -82,11 +82,6 @@ public class LoginViewGwtImpl extends AbstractViewWithErrorHandling<LoginPresent
   }
 
   @Override
-  public final void setFocusOnFirstWidget() {
-    this.userName.setFocus(true);
-  }
-
-  @Override
   public void onFormSubmit(final FormSubmitEvent<LoginData> pevent) {
     this.presenter.tryToLogin();
   }
