@@ -16,24 +16,16 @@
 package de.knightsoftnet.validationexample.client.ui.page.emaillist;
 
 import de.knightsoftnet.mtwidgets.client.ui.widget.EmailTextBox;
-import de.knightsoftnet.validationexample.client.event.EditorDeleteEvent;
-import de.knightsoftnet.validationexample.client.event.EditorDeleteEvent.EditorDeleteHandler;
+import de.knightsoftnet.mtwidgets.client.ui.widget.helper.AbstractListItemView;
 import de.knightsoftnet.validationexample.client.ui.widget.EmailTypeListBox;
 import de.knightsoftnet.validationexample.shared.models.EmailData;
-import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
-import de.knightsoftnet.validators.client.editor.HasParentDriverSetter;
 
 import com.google.gwt.core.shared.GWT;
-import com.google.gwt.editor.client.EditorDelegate;
-import com.google.gwt.editor.client.HasEditorDelegate;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.web.bindery.event.shared.HandlerRegistration;
-
 
 /**
  * View of the email item, gwt implementation.
@@ -41,8 +33,7 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
  * @author Manfred Tremmel
  * @version $Rev$, $Date$
  */
-public class EmailItemViewImpl extends Composite
-    implements HasEditorDelegate<EmailData>, EditorDeleteEvent.EditorDeleteHandlers<EmailData> {
+public class EmailItemViewImpl extends AbstractListItemView<EmailData> {
 
   interface Binder extends UiBinder<Widget, EmailItemViewImpl> {
   }
@@ -55,34 +46,13 @@ public class EmailItemViewImpl extends Composite
   @UiField
   EmailTypeListBox type;
 
-  private final BeanValidationEditorDriver<?, ?> parentDriver;
-
-  /**
-   * constructor with parent driver.
-   *
-   * @param pparentDriver parent driver to use.
-   */
-  public EmailItemViewImpl(final BeanValidationEditorDriver<?, ?> pparentDriver) {
+  public EmailItemViewImpl() {
     super();
-    this.parentDriver = pparentDriver;
     this.initWidget(EmailItemViewImpl.uiBinder.createAndBindUi(this));
-  }
-
-  @Override
-  public void setDelegate(final EditorDelegate<EmailData> pdelegate) {
-    if (pdelegate instanceof HasParentDriverSetter) {
-      ((HasParentDriverSetter) pdelegate).setParentDriver(this.parentDriver);
-    }
-    pdelegate.subscribe();
   }
 
   @UiHandler("deleteRow")
   public void onDeleteRow(final ClickEvent pevent) {
-    this.fireEvent(new EditorDeleteEvent<>(this));
-  }
-
-  @Override
-  public HandlerRegistration addEditorDeleteHandler(final EditorDeleteHandler<EmailData> phandler) {
-    return this.addHandler(phandler, EditorDeleteEvent.getType());
+    this.removeThisEntry();
   }
 }
