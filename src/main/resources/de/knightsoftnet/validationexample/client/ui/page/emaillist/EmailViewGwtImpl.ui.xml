@@ -9,7 +9,7 @@
 
   <ui:with field="resources"
     type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
-  <ui:style src="EmailViewGwtImpl.gss" />
+  <ui:style src="../../basepage/Global.gss, EmailViewGwtImpl.gss" />
   
   <g:HTMLPanel styleName="{style.centerPanel}">
     <div class="{resources.grid.row} {style.row}">
@@ -35,10 +35,16 @@
         <g:HTMLPanel ui:field="lastnameValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
-    <div class="{resources.grid.row}">
-      <div class="{resources.grid.col} {resources.grid.col_6}"><ui:msg description="Table Header E-Mail">E-Mail</ui:msg></div>
-      <div class="{resources.grid.col} {resources.grid.col_5}"><ui:msg description="Table Header Type">Type</ui:msg></div>
-      <div class="{resources.grid.col} {resources.grid.col_1}"><ui:msg description="Table Header Delete">Delete</ui:msg></div>
+    <div class="{resources.grid.row} {style.tableHeader}">
+      <div class="{resources.grid.col} {resources.grid.col_6} {resources.grid.col_m_10}">
+        <ui:msg description="Table Header E-Mail">E-Mail</ui:msg>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_5} {resources.grid.col_m_10}">
+        <ui:msg description="Table Header Type">Type</ui:msg>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_1} {resources.grid.col_m_2}">
+        <ui:msg description="Table Header Delete">Delete</ui:msg>
+      </div>
     </div>
     <e:EmailListEditor ui:field="emailList" validationMessageElement="{emailListValidation}" />
     <div class="{resources.grid.row} {style.message}">

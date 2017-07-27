@@ -1,39 +1,7 @@
-.header {
-  position: relative;
-  text-align: center;
+.tableHeader {
+  background-color: lightgrey;
 }
 
-.message {
-  position: relative;
-  left: 3em;
-  color: red;
-}
-
-.button {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.centerPanel {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-.row {
-  min-height: 3em;
-}
-
-.errorPanel {
-  color: red;
-}
-
-.errorPanel ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.maxWidth {
-  width: 95%;
+.tableLine:nth-child(even) {
+  background-color: lightcyan;
 }

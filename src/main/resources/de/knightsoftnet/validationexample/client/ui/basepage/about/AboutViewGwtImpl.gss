@@ -1,19 +1,4 @@
-.header {
-  position: relative;
-  text-align: center;
-}
 .output {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-.centerPanel {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-.button {
   position: relative;
   margin-left: auto;
   margin-right: auto;

@@ -1,8 +1,3 @@
-.header {
-  position: relative;
-  text-align: center;
-}
-
 .inputlinedisclosure {
   position: relative;
   width: 100%;
@@ -12,40 +7,4 @@
 .disclosure {
   position: relative;
   width: 100%;
-}
-
-.message {
-  position: relative;
-  color: red;
-}
-
-.button {
-  position: relative;
-  top: 3em;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.centerPanel {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-.row {
-  min-height: 3em;
-}
-
-.errorPanel {
-  color: red;
-}
-
-.errorPanel ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.maxWidth {
-  width: 95%;
 }

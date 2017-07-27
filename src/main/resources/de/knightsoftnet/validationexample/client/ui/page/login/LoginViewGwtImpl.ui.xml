@@ -9,7 +9,7 @@
 
   <ui:with field="resources"
     type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
-  <ui:style src="LoginViewGwtImpl.gss"/>
+  <ui:style src="../../basepage/Global.gss, LoginViewGwtImpl.gss"/>
   <ui:with field="localization" type="de.knightsoftnet.validationexample.client.ui.page.login.LoginConstants" />
 
   <g:HTMLPanel styleName="{style.centerPanel}">

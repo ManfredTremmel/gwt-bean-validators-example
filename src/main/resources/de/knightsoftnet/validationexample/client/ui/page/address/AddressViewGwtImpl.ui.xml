@@ -8,7 +8,7 @@
 
   <ui:with field="resources"
     type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
-  <ui:style src="AddressViewGwtImpl.gss" />
+  <ui:style src="../../basepage/Global.gss" />
   
   <g:HTMLPanel styleName="{style.centerPanel}">
     <div class="{resources.grid.row} {style.row}">

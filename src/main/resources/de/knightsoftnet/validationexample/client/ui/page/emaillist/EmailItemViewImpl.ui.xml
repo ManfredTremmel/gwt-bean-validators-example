@@ -9,24 +9,24 @@
 
   <ui:with field="resources"
     type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
-  <ui:style src="EmailViewGwtImpl.gss" />
+  <ui:style src="../../basepage/Global.gss, EmailViewGwtImpl.gss" />
 
-  <g:HTMLPanel styleName="{resources.grid.row}">
+  <g:HTMLPanel styleName="{resources.grid.row} {style.tableLine}">
 
     <!-- email column -->
-    <div class="{resources.grid.col} {resources.grid.col_6}">
+    <div class="{resources.grid.col} {resources.grid.col_6} {resources.grid.col_m_10}">
       <w:EmailTextBox maxLength="255" ui:field="email" styleName="{style.maxWidth}" validationMessageElement="{emailValidation}" />
       <g:HTMLPanel ui:field="emailValidation" styleName="{style.errorPanel}" />
     </div>
 
     <!-- email type column -->
-    <div class="{resources.grid.col} {resources.grid.col_5}">
+    <div class="{resources.grid.col} {resources.grid.col_5} {resources.grid.col_m_10}">
       <t:EmailTypeListBox ui:field="type" styleName="{style.maxWidth}" validationMessageElement="{typeValidation}" />
       <g:HTMLPanel ui:field="typeValidation" styleName="{style.errorPanel}" />
     </div>
 
     <!-- delete column -->
-    <div class="{resources.grid.col} {resources.grid.col_1}">
+    <div class="{resources.grid.col} {resources.grid.col_1} {resources.grid.col_m_2}">
       <g:Button ui:field="deleteRow">X</g:Button>
     </div>
 
