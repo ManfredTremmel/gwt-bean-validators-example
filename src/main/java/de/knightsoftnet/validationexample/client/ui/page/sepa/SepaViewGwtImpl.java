@@ -78,6 +78,7 @@ public class SepaViewGwtImpl extends AbstractViewWithErrorHandling<SepaPresenter
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.sepaButton);
     this.driver.addFormSubmitHandler(this);
+    this.iban.setBicInput(this.bic);
   }
 
   @Override

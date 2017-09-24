@@ -30,25 +30,10 @@
     </div>
     <div class="{resources.grid.row} {style.row}">
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
-        <label for="bic"><ui:msg description="Label Bic">Bic:</ui:msg></label>
-      </div>
-      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" autofocus="true" bankNameWidget="{bankName}" validationMessageElement="{bicValidation}" />
-        <g:HTMLPanel ui:field="bicValidation" styleName="{style.errorPanel}" />
-      </div>
-      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
-        <label for="bankName"><ui:msg description="Label Bank Name">Bank Name:</ui:msg></label>
-      </div>
-      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <g:Label ui:field="bankName" debugId="bankName" />
-      </div>
-    </div>
-    <div class="{resources.grid.row} {style.row}">
-      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
         <label for="iban"><ui:msg description="Label Iban">Iban:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:IbanTextBox maxLength="42" debugId="iban" ui:field="iban" required="true" styleName="{style.maxWidth}" validationMessageElement="{ibanValidation}" />
+        <w:IbanTextBox maxLength="42" debugId="iban" ui:field="iban" required="true" autofocus="true" styleName="{style.maxWidth}" validationMessageElement="{ibanValidation}" />
         <g:HTMLPanel ui:field="ibanValidation" styleName="{style.errorPanel}" />
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
@@ -57,6 +42,21 @@
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
         <w:TextBox maxLength="50" debugId="accountOwner" ui:field="accountOwner" required="true" styleName="{style.maxWidth}" validationMessageElement="{accountOwnerValidation}" />
         <g:HTMLPanel ui:field="accountOwnerValidation" styleName="{style.errorPanel}" />
+      </div>
+    </div>
+    <div class="{resources.grid.row} {style.row}">
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
+        <label for="bic"><ui:msg description="Label Bic">Bic:</ui:msg></label>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <w:BicSuggestBox debugId="bic" ui:field="bic" required="true" bankNameWidget="{bankName}" validationMessageElement="{bicValidation}" />
+        <g:HTMLPanel ui:field="bicValidation" styleName="{style.errorPanel}" />
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_12}">
+        <label for="bankName"><ui:msg description="Label Bank Name">Bank Name:</ui:msg></label>
+      </div>
+      <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
+        <g:Label ui:field="bankName" debugId="bankName" />
       </div>
     </div>
     <div class="{resources.grid.row} {style.message}">
