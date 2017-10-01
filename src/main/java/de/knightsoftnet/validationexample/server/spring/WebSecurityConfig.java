@@ -98,15 +98,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/", //
             "/index.html", //
             "/favicon.ico", //
-            "/" + NameTokens.LOGIN, //
-            "/" + NameTokens.SECRET + "/" + NameTokens.LOGIN, //
-            "/" + NameTokens.LOGOUT, //
-            "/" + NameTokens.SEPA, //
-            "/" + NameTokens.ADDRESS, //
-            "/" + NameTokens.EMAIL_LIST, //
-            "/" + NameTokens.PHONE_NUMBER, //
-            "/" + NameTokens.SECRET, //
-            "/" + NameTokens.SETTINGS, //
+            NameTokens.LOGIN, //
+            NameTokens.LOGOUT, //
+            NameTokens.SEPA, //
+            NameTokens.ADDRESS, //
+            NameTokens.EMAIL_LIST, //
+            NameTokens.PERSON, //
+            NameTokens.PERSON + "**", //
+            NameTokens.PHONE_NUMBER, //
+            NameTokens.SECRET, //
+            NameTokens.SETTINGS, //
             "/gwtBeanValidatorsExample/**");
   }
 

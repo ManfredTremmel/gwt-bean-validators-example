@@ -13,7 +13,7 @@
 			This rule will rewrite GWT URLs to the GWT application. The path is interpreted by the GWT
 			application as history token.
 		</note>
-		<from>^(?!/index.html)(?!/favicon.ico)(?!/gwtBeanValidatorsExample/.*)(?!/person.*)(?!/api/.*)(?!/dispatch/.*)(?!/RenderPage.*)(.*)$</from>
+		<from>^(?!/index.html)(?!/favicon.ico)(?!/gwtBeanValidatorsExample/.*)(?!/api/.*)(?!/dispatch/.*)(?!/RenderPage.*)(.*)$</from>
 		<to last="true">
 			/index.html
 		</to>

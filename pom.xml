@@ -51,6 +51,7 @@
 		<urlrewritefilter.version>4.0.4</urlrewritefilter.version>
 		<validation-api.version>1.1.0.Final</validation-api.version>
 		<hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+		<gwtp-dynamic-navigation.version>0.12.0</gwtp-dynamic-navigation.version>
 		<gwt-bean-validators.version>0.44.4</gwt-bean-validators.version>
 		<gwt-mt-widgets.version>0.44.4</gwt-mt-widgets.version>
 		<gsss.version>1.1</gsss.version>
@@ -169,6 +170,11 @@
 		</dependency>
 
 		<!-- set of gwt widgets, also include validation support -->
+		<dependency>
+			<groupId>de.knightsoft-net</groupId>
+			<artifactId>gwtp-dynamic-navigation</artifactId>
+			<version>${gwtp-dynamic-navigation.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>de.knightsoft-net</groupId>
 			<artifactId>mt-bean-validators</artifactId>

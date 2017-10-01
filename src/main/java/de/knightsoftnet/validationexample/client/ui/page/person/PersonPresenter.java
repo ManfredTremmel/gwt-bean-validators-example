@@ -20,6 +20,7 @@ import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PersonRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
+import de.knightsoftnet.validationexample.shared.AppParameters;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
@@ -33,7 +34,14 @@ import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest.Builder;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -50,12 +58,13 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
   }
 
   @ProxyCodeSplit
-  @NameToken(NameTokens.PERSON)
+  @NameToken(NameTokens.PERSON_WITH_ID)
   public interface MyProxy extends ProxyPlace<PersonPresenter> {
   }
 
   private Person personData;
 
+  private final PlaceManager placeManager;
   private final PersonConstants constants;
   private final RestDispatch dispatcher;
   private final PersonRestService personService;
@@ -66,16 +75,18 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   @Inject
   public PersonPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
-      final PersonConstants pconstants, final RestDispatch pdispatcher,
-      final PersonRestService ppersonService, final Session psession) {
+      final PlaceManager pplaceManager, final PersonConstants pconstants,
+      final RestDispatch pdispatcher, final PersonRestService ppersonService,
+      final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
+    this.placeManager = pplaceManager;
     this.constants = pconstants;
     this.dispatcher = pdispatcher;
     this.personService = ppersonService;
     this.session = psession;
     this.personData = new Person();
     this.getView().setPresenter(this);
-    this.getView().fillForm(this.personData);
+    this.fillForm(null);
   }
 
   @Override
@@ -98,8 +109,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
               this.view.showMessage(PersonPresenter.this.constants.messageError());
             } else {
               PersonPresenter.this.personData = presult;
-              this.view.fillForm(PersonPresenter.this.personData);
-              this.view.showMessage(PersonPresenter.this.constants.messageOk());
+              PersonPresenter.this.fillForm(PersonPresenter.this.constants.messageOk());
             }
           }
         });
@@ -125,7 +135,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public void addNewEntry() {
     this.personData = new Person();
-    this.getView().fillForm(this.personData);
+    this.fillForm(null);
   }
 
   /**
@@ -139,8 +149,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
           @Override
           public void onSuccess(final Person presult) {
             PersonPresenter.this.personData = presult;
-            this.view.fillForm(PersonPresenter.this.personData);
-            this.view.showMessage(null);
+            PersonPresenter.this.fillForm(null);
           }
         });
   }
@@ -156,9 +165,28 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
           @Override
           public void onSuccess(final Void presult) {
             PersonPresenter.this.personData = new Person();
-            this.view.fillForm(PersonPresenter.this.personData);
-            this.view.showMessage(null);
+            PersonPresenter.this.fillForm(null);
           }
         });
+  }
+
+  @Override
+  public void prepareFromRequest(final PlaceRequest prequest) {
+    super.prepareFromRequest(prequest);
+    final String page = prequest.getParameter(AppParameters.ID, null);
+    if (StringUtils.isNumeric(page)) {
+      this.readEntry(Long.valueOf(page));
+    }
+  }
+
+
+  private void fillForm(final String pmessage) {
+    this.getView().fillForm(this.personData);
+    this.getView().showMessage(pmessage);
+    final Builder placeRequestBuilder =
+        new PlaceRequest.Builder().nameToken(NameTokens.PERSON_WITH_ID);
+    placeRequestBuilder.with(AppParameters.ID,
+        Objects.toString(this.personData.getId(), StringUtils.EMPTY));
+    this.placeManager.updateHistory(placeRequestBuilder.build(), true);
   }
 }

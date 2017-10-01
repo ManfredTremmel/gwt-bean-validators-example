@@ -20,4 +20,5 @@ import de.knightsoftnet.validators.shared.Parameters;
 public class AppParameters extends Parameters {
   public static final String LAST_NAME = "lastname";
   public static final String SEARCH = "search";
+  public static final String ID = "id";
 }

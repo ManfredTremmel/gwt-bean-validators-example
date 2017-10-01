@@ -63,8 +63,7 @@ public class MyNavigationStructure extends AbstractNavigationStructure {
 
   @Override
   protected final List<NavigationEntryInterface> buildNavigation() {
-    final List<NavigationEntryInterface> navigationEntries =
-        new ArrayList<>();
+    final List<NavigationEntryInterface> navigationEntries = new ArrayList<>();
     final NavigationConstants navigationConstants = GWT.create(NavigationConstants.class);
 
     navigationEntries
@@ -84,7 +83,7 @@ public class MyNavigationStructure extends AbstractNavigationStructure {
 
     navigationEntries
         .add(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuLogin()),
-            NameTokens.SECRET + "/" + NameTokens.LOGIN, this.loggedOutGatekeeper));
+            NameTokens.SECRET, this.loggedOutGatekeeper));
     navigationEntries
         .add(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuLogout()),
             NameTokens.LOGOUT, this.loggedInGatekeeper));

@@ -29,7 +29,7 @@
         </g:Button>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_3}" >
-        <w:LongBox ui:field="goToNumber" />
+        <w:LongBox ui:field="goToNumber"/>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2}" >
         <g:Button ui:field="goToButton">

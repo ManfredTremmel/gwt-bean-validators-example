@@ -22,14 +22,19 @@ import de.knightsoftnet.validators.client.gin.ServiceModule;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
+import com.gwtplatform.mvp.shared.proxy.OwnRouteTokenFormatter;
 
 public class ClientModule extends AbstractPresenterModule {
 
   @Override
   protected void configure() {
-    this.install(new DefaultModule.Builder().placeManager(OwnPlaceManagerImpl.class)
-        .defaultPlace(NameTokens.ADDRESS).errorPlace(NameTokens.LOGIN)
-        .unauthorizedPlace(NameTokens.LOGIN).build());
+    this.install(new DefaultModule.Builder() //
+        .tokenFormatter(OwnRouteTokenFormatter.class) //
+        .placeManager(OwnPlaceManagerImpl.class) //
+        .defaultPlace(NameTokens.ADDRESS) //
+        .errorPlace(NameTokens.LOGIN) //
+        .unauthorizedPlace(NameTokens.LOGIN) //
+        .build());
 
     this.install(new ApplicationModule());
     this.install(new ServiceModule());
