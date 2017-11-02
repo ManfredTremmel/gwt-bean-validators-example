@@ -10,7 +10,6 @@
   <ui:with field="resources"
     type="de.knightsoftnet.validationexample.client.resources.ResourcesFile" />
   <ui:style src="../../basepage/Global.gss, LoginViewGwtImpl.gss"/>
-  <ui:with field="localization" type="de.knightsoftnet.validationexample.client.ui.page.login.LoginConstants" />
 
   <g:HTMLPanel styleName="{style.centerPanel}">
     <div class="{resources.grid.row} {style.row}">
@@ -45,7 +44,7 @@
           <div class="{resources.grid.col} {resources.grid.col_12}">
             <g:DisclosurePanel styleName="{style.disclosure}">
               <g:header>
-                <ui:text from='{localization.changePassword}' />
+                <ui:msg description="Header Change Password">Change Password</ui:msg>
               </g:header>
               <g:HTMLPanel>
                 <div class="{style.inputlinedisclosure} {resources.grid.row}">

@@ -24,8 +24,9 @@ import de.knightsoftnet.validationexample.shared.models.UserData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.client.rest.helper.LoginCallback;
+import de.knightsoftnet.validators.client.rest.helper.LoginMessages;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -56,7 +57,7 @@ public class LoginPresenter extends
 
   private final Session session;
 
-  private final LoginConstants constants;
+  private final LoginMessages loginMessages;
 
   private final RestDispatch dispatcher;
   private final UserRestService userService;
@@ -72,12 +73,12 @@ public class LoginPresenter extends
   @Inject
   public LoginPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
       final RestDispatch pdispatcher, final UserRestService puserService, final Session psession,
-      final LoginConstants pconstants) {
+      final LoginMessages ploginMessages) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.userService = puserService;
     this.session = psession;
-    this.constants = pconstants;
+    this.loginMessages = ploginMessages;
     this.loginData = new LoginData();
     this.getView().setPresenter(this);
     this.getView().fillForm(this.loginData);
@@ -96,18 +97,8 @@ public class LoginPresenter extends
   public final void tryToLogin() {
     this.dispatcher.execute(
         this.userService.login(this.loginData.getUserName(), this.loginData.getPassword()),
-        new AsyncCallback<UserData>() {
-
-          @Override
-          public void onFailure(final Throwable caught) {
-            LoginPresenter.this.getView()
-                .showMessage(LoginPresenter.this.constants.messageLoginError());
-          }
-
-          @Override
-          public void onSuccess(final UserData presult) {
-            LoginPresenter.this.session.setUser(presult);
-          }
-        });
+        new LoginCallback<UserData, LoginPresenter.MyView, LoginMessages>(
+            LoginPresenter.this.getView(), LoginPresenter.this.session,
+            LoginPresenter.this.loginMessages));
   }
 }

@@ -15,10 +15,10 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.person;
 
+import de.knightsoftnet.mtwidgets.client.ui.widget.DateBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.EmailTextBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
-import de.knightsoftnet.mtwidgets.client.ui.widget.UtcDateBox;
 import de.knightsoftnet.validationexample.client.ui.widget.SalutationRadioButton;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
@@ -32,6 +32,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -74,7 +79,7 @@ public class PersonViewGwtImpl extends AbstractViewWithErrorHandling<PersonPrese
   @UiField
   EmailTextBox email;
   @UiField
-  UtcDateBox birthday;
+  DateBox birthday;
 
   @Ignore
   @UiField
@@ -96,6 +101,8 @@ public class PersonViewGwtImpl extends AbstractViewWithErrorHandling<PersonPrese
     this.driver.initialize(this);
     this.driver.setSubmitButton(this.submitButton);
     this.driver.addFormSubmitHandler(this);
+    this.birthday
+        .setMax(DateUtils.truncate(DateUtils.addYears(new Date(), -18), Calendar.DAY_OF_MONTH));
   }
 
   @Override

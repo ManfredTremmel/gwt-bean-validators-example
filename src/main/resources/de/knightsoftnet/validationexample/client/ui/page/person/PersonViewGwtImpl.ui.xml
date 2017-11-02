@@ -29,7 +29,7 @@
         </g:Button>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_3}" >
-        <w:LongBox ui:field="goToNumber"/>
+        <w:LongBox min="1" ui:field="goToNumber"/>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_2}" >
         <g:Button ui:field="goToButton">
@@ -89,7 +89,7 @@
         <label for="birthday"><ui:msg description="Label Birthday">Birthday:</ui:msg></label>
       </div>
       <div class="{resources.grid.col} {resources.grid.col_4} {resources.grid.col_t_9} {resources.grid.col_m_12}">
-        <w:UtcDateBox debugId="birthday" ui:field="birthday" validationMessageElement="{birthdayValidation}" />
+        <w:DateBox debugId="birthday" ui:field="birthday" validationMessageElement="{birthdayValidation}" />
         <g:HTMLPanel ui:field="birthdayValidation" styleName="{style.errorPanel}" />
       </div>
     </div>
