@@ -40,7 +40,7 @@ public class AboutPresenter extends PresenterWidget<AboutPresenter.MyView> {
    * @param pview view of the page
    */
   @Inject
-  public AboutPresenter(final EventBus peventBus, final AboutPresenter.MyView pview) {
+  public AboutPresenter(final EventBus peventBus, final MyView pview) {
     super(peventBus, pview);
     this.getView().setPresenter(this);
   }

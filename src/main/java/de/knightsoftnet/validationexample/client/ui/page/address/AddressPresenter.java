@@ -68,8 +68,8 @@ public class AddressPresenter //
    * constructor injecting parameters.
    */
   @Inject
-  public AddressPresenter(final EventBus peventBus, final AddressPresenter.MyView pview,
-      final MyProxy pproxy, final AddressConstants pconstants, final RestDispatch pdispatcher,
+  public AddressPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
+      final AddressConstants pconstants, final RestDispatch pdispatcher,
       final PostalAddressRestService ppostalAddressService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;

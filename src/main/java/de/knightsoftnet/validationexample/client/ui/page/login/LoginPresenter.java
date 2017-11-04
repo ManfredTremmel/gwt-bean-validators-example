@@ -97,8 +97,7 @@ public class LoginPresenter extends
   public final void tryToLogin() {
     this.dispatcher.execute(
         this.userService.login(this.loginData.getUserName(), this.loginData.getPassword()),
-        new LoginCallback<UserData, LoginPresenter.MyView, LoginMessages>(
-            LoginPresenter.this.getView(), LoginPresenter.this.session,
-            LoginPresenter.this.loginMessages));
+        new LoginCallback<UserData, MyView, LoginMessages>(LoginPresenter.this.getView(),
+            LoginPresenter.this.session, LoginPresenter.this.loginMessages));
   }
 }

@@ -62,7 +62,7 @@ public class BasePagePresenter
    * @param pnavigationPresenter navigation presenter
    */
   @Inject
-  public BasePagePresenter(final EventBus peventBus, final BasePagePresenter.MyView pview,
+  public BasePagePresenter(final EventBus peventBus, final MyView pview,
       final AboutPresenter paboutPresenter, final MyProxy pproxy,
       final NavigationPresenter pnavigationPresenter) {
     super(peventBus, pview, pproxy);

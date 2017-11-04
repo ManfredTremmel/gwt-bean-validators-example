@@ -67,8 +67,8 @@ public class EmailPresenter
    * constructor injecting parameters.
    */
   @Inject
-  public EmailPresenter(final EventBus peventBus, final EmailPresenter.MyView pview,
-      final MyProxy pproxy, final EmailConstants pconstants, final RestDispatch pdispatcher,
+  public EmailPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
+      final EmailConstants pconstants, final RestDispatch pdispatcher,
       final EmailListRestService pemailListService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;

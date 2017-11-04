@@ -58,8 +58,7 @@ public class SettingsPresenter
    * @param pproxy proxy to handle pages
    */
   @Inject
-  public SettingsPresenter(final EventBus peventBus, final SettingsPresenter.MyView pview,
-      final MyProxy pproxy) {
+  public SettingsPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.getView().setPresenter(this);
   }
