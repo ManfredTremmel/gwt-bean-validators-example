@@ -23,8 +23,8 @@ import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
@@ -92,18 +92,13 @@ public class SepaPresenter extends
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
-        new AbstractRestCallback<SepaPresenter, SepaData, MyView, Boolean>(this.getView(),
-            this.sepaData, this.session) {
-
-          @Override
-          public void onSuccess(final Boolean presult) {
-            if (BooleanUtils.isTrue(presult)) {
-              this.view.showMessage(SepaPresenter.this.constants.messageSepaOk());
-            } else {
-              this.view.showMessage(SepaPresenter.this.constants.messageSepaError());
-            }
+        RestCallbackBuilder.build(this.getView(), this.sepaData, this.session, presult -> {
+          if (BooleanUtils.isTrue(presult)) {
+            this.getView().showMessage(this.constants.messageSepaOk());
+          } else {
+            this.getView().showMessage(this.constants.messageSepaError());
           }
-        });
+        }));
   }
 
   /**

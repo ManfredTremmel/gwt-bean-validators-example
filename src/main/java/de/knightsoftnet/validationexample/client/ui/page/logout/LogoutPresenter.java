@@ -19,8 +19,8 @@ import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.Presenter;
@@ -67,17 +67,8 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
   @Override
   protected void onReveal() {
     super.onReveal();
-    this.dispatcher.execute(this.userService.logout(), new AsyncCallback<Void>() {
-
-      @Override
-      public void onFailure(final Throwable pcaught) {
-        LogoutPresenter.this.session.readSessionData();
-      }
-
-      @Override
-      public void onSuccess(final Void presult) {
-        LogoutPresenter.this.session.readSessionData();
-      }
-    });
+    this.dispatcher.execute(this.userService.logout(), RestCallbackBuilder.build(//
+        presult -> this.session.readSessionData(), //
+        pfailure -> this.session.readSessionData()));
   }
 }

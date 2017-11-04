@@ -23,8 +23,8 @@ import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.AppParameters;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;
 
@@ -84,9 +84,8 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
     this.dispatcher = pdispatcher;
     this.personService = ppersonService;
     this.session = psession;
-    this.personData = new Person();
     this.getView().setPresenter(this);
-    this.fillForm(null);
+    this.fillForm(new Person(), null);
   }
 
   @Override
@@ -100,19 +99,13 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.personService.save(this.personData),
-        new AbstractRestCallback<PersonPresenter, Person, MyView, Person>(this.getView(),
-            this.personData, this.session) {
-
-          @Override
-          public void onSuccess(final Person presult) {
-            if (presult == null) {
-              this.view.showMessage(PersonPresenter.this.constants.messageError());
-            } else {
-              PersonPresenter.this.personData = presult;
-              PersonPresenter.this.fillForm(PersonPresenter.this.constants.messageOk());
-            }
+        RestCallbackBuilder.build(this.getView(), this.personData, this.session, presult -> {
+          if (presult == null) {
+            this.getView().showMessage(this.constants.messageError());
+          } else {
+            this.fillForm(presult, this.constants.messageOk());
           }
-        });
+        }));
   }
 
   /**
@@ -134,8 +127,7 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    * add new empty entry into form.
    */
   public void addNewEntry() {
-    this.personData = new Person();
-    this.fillForm(null);
+    this.fillForm(new Person(), null);
   }
 
   /**
@@ -143,15 +135,9 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public void readEntry(final Long pid) {
     this.dispatcher.execute(this.personService.findOne(pid),
-        new AbstractRestCallback<PersonPresenter, Person, MyView, Person>(this.getView(),
-            this.personData, this.session) {
-
-          @Override
-          public void onSuccess(final Person presult) {
-            PersonPresenter.this.personData = presult;
-            PersonPresenter.this.fillForm(null);
-          }
-        });
+        RestCallbackBuilder.build(this.getView(), this.personData, this.session, presult -> {
+          this.fillForm(presult, null);
+        }));
   }
 
   /**
@@ -159,15 +145,9 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public void deleteEntry(final Long pid) {
     this.dispatcher.execute(this.personService.delete(pid),
-        new AbstractRestCallback<PersonPresenter, Person, MyView, Void>(this.getView(),
-            this.personData, this.session) {
-
-          @Override
-          public void onSuccess(final Void presult) {
-            PersonPresenter.this.personData = new Person();
-            PersonPresenter.this.fillForm(null);
-          }
-        });
+        RestCallbackBuilder.build(this.getView(), this.personData, this.session, presult -> {
+          this.fillForm(new Person(), null);
+        }));
   }
 
   @Override
@@ -180,7 +160,8 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
   }
 
 
-  private void fillForm(final String pmessage) {
+  private void fillForm(final Person ppersonData, final String pmessage) {
+    this.personData = ppersonData;
     this.getView().fillForm(this.personData);
     this.getView().showMessage(pmessage);
     final Builder placeRequestBuilder =

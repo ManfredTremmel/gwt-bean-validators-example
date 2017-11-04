@@ -22,8 +22,8 @@ import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.EmailListData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
@@ -85,17 +85,12 @@ public class EmailPresenter
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.emailListService.checkEmailList(this.emailListData),
-        new AbstractRestCallback<EmailPresenter, EmailListData, MyView, Boolean>(this.getView(),
-            this.emailListData, this.session) {
-
-          @Override
-          public void onSuccess(final Boolean presult) {
-            if (BooleanUtils.isTrue(presult)) {
-              this.view.showMessage(EmailPresenter.this.constants.messageOk());
-            } else {
-              this.view.showMessage(EmailPresenter.this.constants.messageError());
-            }
+        RestCallbackBuilder.build(this.getView(), this.emailListData, this.session, presult -> {
+          if (BooleanUtils.isTrue(presult)) {
+            this.getView().showMessage(this.constants.messageOk());
+          } else {
+            this.getView().showMessage(this.constants.messageError());
           }
-        });
+        }));
   }
 }

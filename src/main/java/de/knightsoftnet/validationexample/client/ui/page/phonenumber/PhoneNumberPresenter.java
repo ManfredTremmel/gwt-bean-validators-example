@@ -23,8 +23,8 @@ import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
@@ -87,17 +87,12 @@ public class PhoneNumberPresenter extends
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.phoneNumberService.checkPhoneNumber(this.phoneNumberData),
-        new AbstractRestCallback<PhoneNumberPresenter, PhoneNumberData, MyView, Boolean>(
-            this.getView(), this.phoneNumberData, this.session) {
-
-          @Override
-          public void onSuccess(final Boolean presult) {
-            if (BooleanUtils.isTrue(presult)) {
-              this.view.showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberOk());
-            } else {
-              this.view.showMessage(PhoneNumberPresenter.this.constants.messagePhoneNumberError());
-            }
+        RestCallbackBuilder.build(this.getView(), this.phoneNumberData, this.session, presult -> {
+          if (BooleanUtils.isTrue(presult)) {
+            this.getView().showMessage(this.constants.messagePhoneNumberOk());
+          } else {
+            this.getView().showMessage(this.constants.messagePhoneNumberError());
           }
-        });
+        }));
   }
 }

@@ -23,8 +23,8 @@ import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.AbstractRestCallback;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
@@ -87,17 +87,12 @@ public class AddressPresenter //
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
-        new AbstractRestCallback<AddressPresenter, PostalAddressData, MyView, Boolean>(
-            this.getView(), this.addressData, this.session) {
-
-          @Override
-          public void onSuccess(final Boolean presult) {
-            if (BooleanUtils.isTrue(presult)) {
-              this.view.showMessage(AddressPresenter.this.constants.messageAddressDataOk());
-            } else {
-              this.view.showMessage(AddressPresenter.this.constants.messageAddressDataError());
-            }
+        RestCallbackBuilder.build(this.getView(), this.addressData, this.session, presult -> {
+          if (BooleanUtils.isTrue(presult)) {
+            this.getView().showMessage(this.constants.messageAddressDataOk());
+          } else {
+            this.getView().showMessage(this.constants.messageAddressDataError());
           }
-        });
+        }));
   }
 }
