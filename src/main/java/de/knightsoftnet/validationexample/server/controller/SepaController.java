@@ -43,16 +43,13 @@ public class SepaController {
    * web service takes data, logs it and validates it, validation result is returned to caller.
    *
    * @param psepaData data from client
-   * @return true if ok
    */
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  public Boolean checkSepa(@Valid @RequestBody final SepaData psepaData) {
+  public void checkSepa(@Valid @RequestBody final SepaData psepaData) {
 
     LOG.info(psepaData);
 
     // in real world, do something useful with the data
-
-    return Boolean.TRUE;
   }
 }

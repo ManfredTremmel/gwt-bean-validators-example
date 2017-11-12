@@ -33,8 +33,6 @@ import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import org.apache.commons.lang3.BooleanUtils;
-
 import javax.inject.Inject;
 
 /**
@@ -87,12 +85,7 @@ public class PhoneNumberPresenter extends
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.phoneNumberService.checkPhoneNumber(this.phoneNumberData),
-        RestCallbackBuilder.build(this.getView(), this.phoneNumberData, this.session, presult -> {
-          if (BooleanUtils.isTrue(presult)) {
-            this.getView().showMessage(this.constants.messagePhoneNumberOk());
-          } else {
-            this.getView().showMessage(this.constants.messagePhoneNumberError());
-          }
-        }));
+        RestCallbackBuilder.build(this.getView(), this.phoneNumberData, this.session,
+            presult -> this.getView().showMessage(this.constants.messagePhoneNumberOk())));
   }
 }

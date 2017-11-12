@@ -35,8 +35,6 @@ import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import org.apache.commons.lang3.BooleanUtils;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -92,13 +90,8 @@ public class SepaPresenter extends
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
-        RestCallbackBuilder.build(this.getView(), this.sepaData, this.session, presult -> {
-          if (BooleanUtils.isTrue(presult)) {
-            this.getView().showMessage(this.constants.messageSepaOk());
-          } else {
-            this.getView().showMessage(this.constants.messageSepaError());
-          }
-        }));
+        RestCallbackBuilder.build(this.getView(), this.sepaData, this.session,
+            presult -> this.getView().showMessage(this.constants.messageSepaOk())));
   }
 
   /**

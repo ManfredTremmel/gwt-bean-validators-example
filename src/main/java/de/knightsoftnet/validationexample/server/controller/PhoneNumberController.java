@@ -43,16 +43,13 @@ public class PhoneNumberController {
    * web service takes data, logs it and validates it, validation result is returned to caller.
    *
    * @param pphoneNumberData data from client
-   * @return true if ok
    */
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  public Boolean checkPhoneNumber(@Valid @RequestBody final PhoneNumberData pphoneNumberData) {
+  public void checkPhoneNumber(@Valid @RequestBody final PhoneNumberData pphoneNumberData) {
 
     LOG.info(pphoneNumberData);
 
     // in real world, do something useful with the data
-
-    return Boolean.TRUE;
   }
 }

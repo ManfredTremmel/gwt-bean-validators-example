@@ -33,8 +33,6 @@ import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-import org.apache.commons.lang3.BooleanUtils;
-
 import javax.inject.Inject;
 
 /**
@@ -87,12 +85,7 @@ public class AddressPresenter //
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
-        RestCallbackBuilder.build(this.getView(), this.addressData, this.session, presult -> {
-          if (BooleanUtils.isTrue(presult)) {
-            this.getView().showMessage(this.constants.messageAddressDataOk());
-          } else {
-            this.getView().showMessage(this.constants.messageAddressDataError());
-          }
-        }));
+        RestCallbackBuilder.build(this.getView(), this.addressData, this.session,
+            presult -> this.getView().showMessage(this.constants.messageAddressDataOk())));
   }
 }

@@ -43,16 +43,13 @@ public class EmailListController {
    * web service takes data, logs it and validates it, validation result is returned to caller.
    *
    * @param pemailListData data from client
-   * @return true if ok
    */
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  public Boolean checkEmailList(@Valid @RequestBody final EmailListData pemailListData) {
+  public void checkEmailList(@Valid @RequestBody final EmailListData pemailListData) {
 
     LOG.info(pemailListData);
 
     // in real world, do something useful with the data
-
-    return Boolean.TRUE;
   }
 }

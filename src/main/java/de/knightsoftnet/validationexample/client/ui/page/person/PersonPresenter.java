@@ -99,13 +99,8 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public final void tryToSend() {
     this.dispatcher.execute(this.personService.save(this.personData),
-        RestCallbackBuilder.build(this.getView(), this.personData, this.session, presult -> {
-          if (presult == null) {
-            this.getView().showMessage(this.constants.messageError());
-          } else {
-            this.fillForm(presult, this.constants.messageOk());
-          }
-        }));
+        RestCallbackBuilder.build(this.getView(), this.personData, this.session,
+            presult -> this.fillForm(presult, this.constants.messageOk())));
   }
 
   /**
@@ -134,10 +129,8 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    * read one entry.
    */
   public void readEntry(final Long pid) {
-    this.dispatcher.execute(this.personService.findOne(pid),
-        RestCallbackBuilder.build(this.getView(), this.personData, this.session, presult -> {
-          this.fillForm(presult, null);
-        }));
+    this.dispatcher.execute(this.personService.findOne(pid), RestCallbackBuilder.build(
+        this.getView(), this.personData, this.session, presult -> this.fillForm(presult, null)));
   }
 
   /**
@@ -145,9 +138,8 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    */
   public void deleteEntry(final Long pid) {
     this.dispatcher.execute(this.personService.delete(pid),
-        RestCallbackBuilder.build(this.getView(), this.personData, this.session, presult -> {
-          this.fillForm(new Person(), null);
-        }));
+        RestCallbackBuilder.build(this.getView(), this.personData, this.session,
+            presult -> this.fillForm(new Person(), null)));
   }
 
   @Override

@@ -27,5 +27,5 @@ import javax.ws.rs.Path;
 public interface EmailListRestService {
 
   @POST
-  RestAction<Boolean> checkEmailList(final EmailListData pemailListData);
+  RestAction<Void> checkEmailList(final EmailListData pemailListData);
 }

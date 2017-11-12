@@ -27,5 +27,5 @@ import javax.ws.rs.Path;
 public interface PostalAddressRestService {
 
   @POST
-  RestAction<Boolean> checkPostalAddress(final PostalAddressData ppostalAddressData);
+  RestAction<Void> checkPostalAddress(final PostalAddressData ppostalAddressData);
 }

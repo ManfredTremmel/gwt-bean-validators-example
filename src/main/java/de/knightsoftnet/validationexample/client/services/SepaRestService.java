@@ -27,5 +27,5 @@ import javax.ws.rs.Path;
 public interface SepaRestService {
 
   @POST
-  RestAction<Boolean> checkSepa(final SepaData psepaData);
+  RestAction<Void> checkSepa(final SepaData psepaData);
 }

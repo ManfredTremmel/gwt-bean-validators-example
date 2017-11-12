@@ -20,12 +20,10 @@ import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
-import de.knightsoftnet.validationexample.shared.models.UserData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.LoginCallback;
-import de.knightsoftnet.validators.client.rest.helper.LoginMessages;
+import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
@@ -57,8 +55,6 @@ public class LoginPresenter extends
 
   private final Session session;
 
-  private final LoginMessages loginMessages;
-
   private final RestDispatch dispatcher;
   private final UserRestService userService;
 
@@ -72,13 +68,11 @@ public class LoginPresenter extends
    */
   @Inject
   public LoginPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
-      final RestDispatch pdispatcher, final UserRestService puserService, final Session psession,
-      final LoginMessages ploginMessages) {
+      final RestDispatch pdispatcher, final UserRestService puserService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
     this.dispatcher = pdispatcher;
     this.userService = puserService;
     this.session = psession;
-    this.loginMessages = ploginMessages;
     this.loginData = new LoginData();
     this.getView().setPresenter(this);
     this.getView().fillForm(this.loginData);
@@ -97,7 +91,6 @@ public class LoginPresenter extends
   public final void tryToLogin() {
     this.dispatcher.execute(
         this.userService.login(this.loginData.getUserName(), this.loginData.getPassword()),
-        new LoginCallback<UserData, MyView, LoginMessages>(LoginPresenter.this.getView(),
-            LoginPresenter.this.session, LoginPresenter.this.loginMessages));
+        RestCallbackBuilder.buildLoginCallback(this.getView(), this.session));
   }
 }

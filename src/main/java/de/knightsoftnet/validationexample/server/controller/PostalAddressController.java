@@ -44,17 +44,13 @@ public class PostalAddressController {
    * web service takes data, logs it and validates it, validation result is returned to caller.
    *
    * @param ppostalAddressData data from client
-   * @return true if ok
    */
   @RequestMapping(method = RequestMethod.POST)
   @PermitAll
-  public Boolean checkPostalAddress(
-      @Valid @RequestBody final PostalAddressData ppostalAddressData) {
+  public void checkPostalAddress(@Valid @RequestBody final PostalAddressData ppostalAddressData) {
 
     LOG.info(ppostalAddressData);
 
     // in real world, do something useful with the data
-
-    return Boolean.TRUE;
   }
 }
