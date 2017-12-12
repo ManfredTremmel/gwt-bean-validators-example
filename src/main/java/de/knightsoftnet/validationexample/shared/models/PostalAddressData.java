@@ -21,12 +21,11 @@ import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsEmpty;
 import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsNotEmpty;
 import de.knightsoftnet.validators.shared.PostalCode;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -205,7 +204,7 @@ public class PostalAddressData {
 
   /**
    * set email list.
-   * 
+   *
    * @param pemailList email list to set
    */
   public final void setEmailList(final List<EmailData> pemailList) {

@@ -18,8 +18,7 @@ package de.knightsoftnet.validationexample.shared.models;
 import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validators.shared.PhoneNumberValueRest;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**

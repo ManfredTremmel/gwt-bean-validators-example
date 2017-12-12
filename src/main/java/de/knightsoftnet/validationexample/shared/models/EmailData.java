@@ -17,8 +17,7 @@ package de.knightsoftnet.validationexample.shared.models;
 
 import de.knightsoftnet.validators.shared.Email;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class EmailData {

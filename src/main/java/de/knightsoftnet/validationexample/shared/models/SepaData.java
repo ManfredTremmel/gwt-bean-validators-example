@@ -20,8 +20,7 @@ import de.knightsoftnet.validators.shared.BankCountry;
 import de.knightsoftnet.validators.shared.BicValue;
 import de.knightsoftnet.validators.shared.IbanFormated;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
