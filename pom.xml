@@ -92,12 +92,12 @@
 
 		<!-- hibernate validation -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
-			<groupId>org.hibernate</groupId>
+			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate-validator.version}</version><!--$NO-MVN-MAN-VER$-->
 			<classifier>sources</classifier>
@@ -390,7 +390,7 @@
 							<classifier>sources</classifier>
 						</exclude>
 						<exclude>
-							<groupId>org.hibernate</groupId>
+							<groupId>org.hibernate.validator</groupId>
 							<artifactId>hibernate-validator</artifactId>
 							<classifier>sources</classifier>
 						</exclude>
