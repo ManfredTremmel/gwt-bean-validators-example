@@ -15,13 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.validation;
 
-import de.knightsoftnet.validationexample.shared.models.EmailData;
-import de.knightsoftnet.validationexample.shared.models.EmailListData;
-import de.knightsoftnet.validationexample.shared.models.LoginData;
-import de.knightsoftnet.validationexample.shared.models.Person;
-import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
-import de.knightsoftnet.validationexample.shared.models.SepaData;
 import de.knightsoftnet.validators.client.AbstractGwtValidatorFactory;
 import de.knightsoftnet.validators.client.GwtValidation;
 import de.knightsoftnet.validators.client.impl.AbstractGwtValidator;
@@ -43,8 +37,7 @@ public class ValidatorFactory extends AbstractGwtValidatorFactory {
    * Validator marker for the bean validator example project. Only the classes and groups listed in
    * the {@link GwtValidation} annotation can be validated.
    */
-  @GwtValidation(value = {LoginData.class, SepaData.class, PostalAddressData.class,
-      EmailListData.class, EmailData.class, PhoneNumberData.class, Person.class})
+  @GwtValidation(value = {PostalAddressData.class})
   public interface GwtValidator extends Validator {
   }
 

@@ -18,10 +18,10 @@ package de.knightsoftnet.validationexample.client.ui.page.emaillist;
 import de.knightsoftnet.mtwidgets.client.ui.widget.helper.AbstractItemEditorSource;
 import de.knightsoftnet.mtwidgets.client.ui.widget.helper.AbstractListEditor;
 import de.knightsoftnet.validationexample.shared.models.EmailData;
-import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.editor.impl.ListValidationEditor;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.editor.client.SimpleBeanEditorDriver;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class EmailListEditor extends AbstractListEditor<EmailData, EmailItemView
   /**
    * interface of the driver to combine ui and bean.
    */
-  interface Driver extends BeanValidationEditorDriver<List<EmailData>, //
+  interface Driver extends SimpleBeanEditorDriver<List<EmailData>, //
       ListValidationEditor<EmailData, EmailItemViewImpl>> {
   }
 

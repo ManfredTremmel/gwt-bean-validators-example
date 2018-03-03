@@ -17,7 +17,7 @@
 	<groupId>de.knightsoft-net</groupId>
 	<artifactId>gwt-bean-validators-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.51.2</version>
+	<version>0.52.0</version>
 	<name>GWT Bean Validators - Example</name>
 	<inceptionYear>2015</inceptionYear>
 	<description>
@@ -52,8 +52,8 @@
 		<validation-api.version>2.0.1.Final</validation-api.version>
 		<hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
 		<gwtp-dynamic-navigation.version>0.12.2</gwtp-dynamic-navigation.version>
-		<gwt-bean-validators.version>0.51.2</gwt-bean-validators.version>
-		<gwt-mt-widgets.version>0.51.2</gwt-mt-widgets.version>
+		<gwt-bean-validators.version>0.52.0</gwt-bean-validators.version>
+		<gwt-mt-widgets.version>0.52.0</gwt-mt-widgets.version>
 		<gsss.version>1.1</gsss.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
 		<apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
@@ -351,11 +351,14 @@
 					<style>OBFUSCATED</style>
 					<disableClassMetadata>true</disableClassMetadata>
 					<disableCastChecking>true</disableCastChecking>
-					<fragmentCount>2</fragmentCount>
+					<fragmentCount>5</fragmentCount>
 					<localWorkers>-1</localWorkers>
 					<extraJvmArgs>-Xms512m -Xmx1g</extraJvmArgs>
 					<webappDirectory>${staticResourcesDirectory}</webappDirectory>
 					<sourceLevel>${maven.compiler.source}</sourceLevel>
+					<compileReport>true</compileReport>
+					<genParam>true</genParam>
+					<gen>/tmp/gwtBeanValidatorsExample_gensource</gen>
 					<extraParam>true</extraParam>
 					<extra>/tmp</extra>
 					<persistentunitcache>false</persistentunitcache>

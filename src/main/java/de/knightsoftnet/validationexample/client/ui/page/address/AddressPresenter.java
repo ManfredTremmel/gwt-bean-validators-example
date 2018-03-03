@@ -30,7 +30,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
-import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
+import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
 import javax.inject.Inject;
@@ -49,7 +49,7 @@ public class AddressPresenter //
       FormSubmitHandler<PostalAddressData> {
   }
 
-  @ProxyCodeSplit
+  @ProxyStandard
   @NameToken(NameTokens.ADDRESS)
   @NoGatekeeper
   public interface MyProxy extends ProxyPlace<AddressPresenter> {
