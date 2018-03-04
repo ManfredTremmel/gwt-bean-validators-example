@@ -52,51 +52,51 @@ public class Person {
   @Past
   private Date birthday;
 
-  public final Long getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public final void setId(final Long pid) {
+  public void setId(final Long pid) {
     this.id = pid;
   }
 
-  public final SalutationEnum getSalutation() {
+  public SalutationEnum getSalutation() {
     return this.salutation;
   }
 
-  public final void setSalutation(final SalutationEnum psalutation) {
+  public void setSalutation(final SalutationEnum psalutation) {
     this.salutation = psalutation;
   }
 
-  public final String getFirstName() {
+  public String getFirstName() {
     return this.firstName;
   }
 
-  public final void setFirstName(final String pfirstName) {
+  public void setFirstName(final String pfirstName) {
     this.firstName = pfirstName;
   }
 
-  public final String getLastName() {
+  public String getLastName() {
     return this.lastName;
   }
 
-  public final void setLastName(final String plastName) {
+  public void setLastName(final String plastName) {
     this.lastName = plastName;
   }
 
-  public final String getEmail() {
+  public String getEmail() {
     return this.email;
   }
 
-  public final void setEmail(final String pemail) {
+  public void setEmail(final String pemail) {
     this.email = pemail;
   }
 
-  public final Date getBirthday() {
+  public Date getBirthday() {
     return this.birthday;
   }
 
-  public final void setBirthday(final Date pbirthday) {
+  public void setBirthday(final Date pbirthday) {
     this.birthday = pbirthday;
   }
 

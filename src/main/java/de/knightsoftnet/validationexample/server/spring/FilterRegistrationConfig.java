@@ -35,8 +35,9 @@ public class FilterRegistrationConfig {
    * @return FilterRegistrationBean
    */
   @Bean
-  public FilterRegistrationBean filterRegistrationBean() {
-    final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+  public FilterRegistrationBean<UrlRewriteFilter> filterRegistrationBean() {
+    final FilterRegistrationBean<UrlRewriteFilter> registrationBean =
+        new FilterRegistrationBean<>();
 
     registrationBean.setFilter(new UrlRewriteFilter());
     registrationBean.addUrlPatterns("*");

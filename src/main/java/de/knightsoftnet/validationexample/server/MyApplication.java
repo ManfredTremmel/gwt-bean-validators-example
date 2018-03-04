@@ -17,8 +17,9 @@ package de.knightsoftnet.validationexample.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Main method for spring boot start.
@@ -26,12 +27,12 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * @author Manfred Tremmel
  */
 @SpringBootApplication
-public class MyApplication extends SpringBootServletInitializer {
-
-  @Override
-  protected SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
-    return application.sources(MyApplication.class);
-  }
+@EntityScan("de.knightsoftnet.validationexample.shared.models")
+@ComponentScan(basePackages = {"de.knightsoftnet.validationexample.shared.models",
+    "de.knightsoftnet.validationexample.server", "de.knightsoftnet.validators.server"})
+@EnableJpaRepositories(basePackages = {"de.knightsoftnet.validationexample.shared.models",
+    "de.knightsoftnet.validationexample.server.repository"})
+public class MyApplication {
 
   public static void main(final String[] args) {
     SpringApplication.run(MyApplication.class, args);

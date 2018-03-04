@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 
 public class SpecificationTemplate<T> implements Specification<T> {
 
+  private static final long serialVersionUID = 3294221321472911495L;
   private final SearchCriteria criteria;
 
   public SpecificationTemplate(final SearchCriteria pcriteria) {

@@ -32,8 +32,8 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 public class SpringDataConfig {
 
   /**
-   * define classes which should retourn the id's.
-   * 
+   * define classes which should return the id's.
+   *
    * @return RepositoryRestConfigurer
    */
   @Bean

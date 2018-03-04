@@ -28,25 +28,17 @@ import de.knightsoftnet.validators.shared.ResourcePaths.PhoneNumber;
 import de.knightsoftnet.validators.shared.ResourcePaths.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -63,15 +55,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Manfred Tremmel
  */
 @Configuration
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-@EntityScan("de.knightsoftnet.validationexample.shared.models")
-@ComponentScan(basePackages = {"de.knightsoftnet.validationexample.shared.models",
-    "de.knightsoftnet.validationexample.server", "de.knightsoftnet.validators.server"})
-@EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"de.knightsoftnet.validationexample.shared.models",
-    "de.knightsoftnet.validationexample.server.repository"})
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private static final String LOGIN_PATH = User.ROOT + User.LOGIN;

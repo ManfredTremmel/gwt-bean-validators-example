@@ -3,10 +3,24 @@ application:
   name-formated: @project.name@
   version: @project.version@
 server:
-  contextPath: /validationexample
+  servlet:
+    contextPath: /validationexample
 spring:
   data:
     rest:
       basePath: /api/rest
-entitymanager:
-  packagesToScan: de.knightsoftnet.validationexample.shared.models
+  h2:
+    console:
+      enabled: true
+  jpa:
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+    show-sql: true
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace

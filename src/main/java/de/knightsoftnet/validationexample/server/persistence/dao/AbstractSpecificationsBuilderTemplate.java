@@ -5,7 +5,6 @@ import de.knightsoftnet.validationexample.shared.search.SearchOperation;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public abstract class AbstractSpecificationsBuilderTemplate<T> {
   private final List<SearchCriteria> params;
 
   public AbstractSpecificationsBuilderTemplate() {
-    this.params = new ArrayList<SearchCriteria>();
+    this.params = new ArrayList<>();
   }
 
   /**
@@ -60,14 +59,14 @@ public abstract class AbstractSpecificationsBuilderTemplate<T> {
       return null;
     }
 
-    final List<Specification<T>> specs = new ArrayList<Specification<T>>();
+    final List<Specification<T>> specs = new ArrayList<>();
     for (final SearchCriteria param : this.params) {
       specs.add(this.createSpecification(param));
     }
 
     Specification<T> result = specs.get(0);
     for (int i = 1; i < specs.size(); i++) {
-      result = Specifications.where(result).and(specs.get(i));
+      result = Specification.where(result).and(specs.get(i));
     }
     return result;
   }
