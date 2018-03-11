@@ -18,6 +18,8 @@ spring:
         generate_statistics: true
         format_sql: true
     show-sql: true
+  jmx:
+    default-domain: validationexample
 logging:
   level:
     org:
