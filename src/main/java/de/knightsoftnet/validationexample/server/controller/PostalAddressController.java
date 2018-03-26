@@ -18,7 +18,8 @@ package de.knightsoftnet.validationexample.server.controller;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,7 @@ import javax.validation.Valid;
     produces = MediaType.APPLICATION_JSON_VALUE)
 public class PostalAddressController {
 
-  private static final Logger LOG = Logger.getLogger(PostalAddressController.class);
+  private static final Logger LOG = LogManager.getLogger(PostalAddressController.class);
 
   /**
    * web service takes data, logs it and validates it, validation result is returned to caller.

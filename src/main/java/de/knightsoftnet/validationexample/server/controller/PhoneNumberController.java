@@ -18,7 +18,8 @@ package de.knightsoftnet.validationexample.server.controller;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +38,7 @@ import javax.validation.Valid;
 @RequestMapping(value = AppResourcePaths.PHONE_NUMBER, produces = MediaType.APPLICATION_JSON_VALUE)
 public class PhoneNumberController {
 
-  private static final Logger LOG = Logger.getLogger(PhoneNumberController.class);
+  private static final Logger LOG = LogManager.getLogger(PhoneNumberController.class);
 
   /**
    * web service takes data, logs it and validates it, validation result is returned to caller.
