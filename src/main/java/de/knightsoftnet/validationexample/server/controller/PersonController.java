@@ -24,7 +24,6 @@ import de.knightsoftnet.validators.shared.Parameters;
 
 import com.google.common.base.Joiner;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +35,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.inject.Inject;
+
 /**
  * controller implements search functionality.
  *
@@ -44,8 +45,13 @@ import java.util.regex.Pattern;
 @Controller
 public class PersonController {
 
-  @Autowired
-  private PersonRepository dao;
+  private final PersonRepository personalRepository;
+
+  @Inject
+  public PersonController(final PersonRepository ppersonalRepository) {
+    super();
+    this.personalRepository = ppersonalRepository;
+  }
 
   /**
    * search for persons.
@@ -68,6 +74,6 @@ public class PersonController {
     }
 
     final Specification<Person> spec = builder.build();
-    return this.dao.findAll(spec);
+    return this.personalRepository.findAll(spec);
   }
 }

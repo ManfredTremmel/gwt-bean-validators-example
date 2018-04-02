@@ -27,7 +27,6 @@ import de.knightsoftnet.validators.shared.ResourcePaths;
 import de.knightsoftnet.validators.shared.ResourcePaths.PhoneNumber;
 import de.knightsoftnet.validators.shared.ResourcePaths.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -43,6 +42,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -59,16 +59,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private static final String LOGIN_PATH = User.ROOT + User.LOGIN;
 
-  @Autowired
-  private HttpAuthenticationEntryPoint authenticationEntryPoint;
-  @Autowired
-  private AuthSuccessHandler authSuccessHandler;
-  @Autowired
-  private AuthFailureHandler authFailureHandler;
-  @Autowired
-  private HttpLogoutSuccessHandler logoutSuccessHandler;
-  @Autowired
-  private CsrfCookieHandler csrfCookieHandler;
+  private final HttpAuthenticationEntryPoint authenticationEntryPoint;
+  private final AuthSuccessHandler authSuccessHandler;
+  private final AuthFailureHandler authFailureHandler;
+  private final HttpLogoutSuccessHandler logoutSuccessHandler;
+  private final CsrfCookieHandler csrfCookieHandler;
+
+  /**
+   * constructor injecting needed resources.
+   */
+  @Inject
+  public WebSecurityConfig(final HttpAuthenticationEntryPoint pauthenticationEntryPoint,
+      final AuthSuccessHandler pauthSuccessHandler, final AuthFailureHandler pauthFailureHandler,
+      final HttpLogoutSuccessHandler plogoutSuccessHandler,
+      final CsrfCookieHandler pcsrfCookieHandler) {
+    super();
+    this.authenticationEntryPoint = pauthenticationEntryPoint;
+    this.authSuccessHandler = pauthSuccessHandler;
+    this.authFailureHandler = pauthFailureHandler;
+    this.logoutSuccessHandler = plogoutSuccessHandler;
+    this.csrfCookieHandler = pcsrfCookieHandler;
+  }
 
   /**
    * configure urls which are ignored by security.
