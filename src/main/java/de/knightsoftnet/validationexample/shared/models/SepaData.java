@@ -15,10 +15,10 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validators.shared.BankCountry;
 import de.knightsoftnet.validators.shared.BicValue;
 import de.knightsoftnet.validators.shared.IbanFormated;
+import de.knightsoftnet.validators.shared.data.CountryEnum;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

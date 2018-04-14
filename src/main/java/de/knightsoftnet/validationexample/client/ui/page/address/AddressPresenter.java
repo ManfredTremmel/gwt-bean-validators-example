@@ -15,7 +15,6 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
-import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.navigation.client.session.Session;
 import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PostalAddressRestService;
@@ -25,6 +24,7 @@ import de.knightsoftnet.validators.client.event.FormSubmitHandler;
 import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
 import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
+import de.knightsoftnet.validators.shared.data.CountryEnum;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;

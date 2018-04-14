@@ -15,11 +15,11 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.mtwidgets.shared.models.CountryEnum;
 import de.knightsoftnet.validators.shared.EmptyIfOtherIsNotEmpty;
 import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsEmpty;
 import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsNotEmpty;
 import de.knightsoftnet.validators.shared.PostalCode;
+import de.knightsoftnet.validators.shared.data.CountryEnum;
 
 import java.util.ArrayList;
 import java.util.List;
