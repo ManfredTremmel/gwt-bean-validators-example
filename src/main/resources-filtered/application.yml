@@ -1,10 +1,10 @@
 application:
-  name: @project.artifactId@
-  name-formated: @project.name@
-  version: @project.version@
+  name: '@project.artifactId@'
+  name-formated: '@project.name@'
+  version: '@project.version@'
 server:
   servlet:
-    contextPath: @relativePath@
+    contextPath: '@relativePath@'
 spring:
   data:
     rest:
