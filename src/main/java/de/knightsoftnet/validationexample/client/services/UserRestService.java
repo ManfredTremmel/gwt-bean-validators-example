@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.client.services;
 
+import de.knightsoftnet.gwtp.spring.client.services.UserRestServiceTemplate;
+import de.knightsoftnet.gwtp.spring.shared.ResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.UserData;
-import de.knightsoftnet.validators.client.services.UserRestServiceTemplate;
-import de.knightsoftnet.validators.shared.ResourcePaths;
 
 import javax.ws.rs.Path;
 

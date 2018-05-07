@@ -15,8 +15,8 @@
 
 package de.knightsoftnet.validationexample.server.spring;
 
+import de.knightsoftnet.gwtp.spring.server.converter.UserDetailsConverter;
 import de.knightsoftnet.validationexample.server.converter.impl.UserDetailsConverterImpl;
-import de.knightsoftnet.validators.server.converter.UserDetailsConverter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

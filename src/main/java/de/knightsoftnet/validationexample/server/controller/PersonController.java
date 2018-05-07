@@ -15,12 +15,12 @@
 
 package de.knightsoftnet.validationexample.server.controller;
 
+import de.knightsoftnet.gwtp.spring.shared.Parameters;
 import de.knightsoftnet.validationexample.server.persistence.dao.PersonSpecificationsBuilder;
 import de.knightsoftnet.validationexample.server.repository.PersonRepository;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validationexample.shared.search.SearchOperation;
-import de.knightsoftnet.validators.shared.Parameters;
 
 import com.google.common.base.Joiner;
 

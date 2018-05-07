@@ -15,15 +15,15 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.person;
 
-import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.gwtp.spring.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.gwtp.spring.client.rest.helper.RestCallbackBuilder;
+import de.knightsoftnet.gwtp.spring.client.session.Session;
 import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.PersonRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.AppParameters;
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 import de.knightsoftnet.validators.server.data.CreateIbanLengthMapConstantsClass;
 import de.knightsoftnet.validators.shared.data.CountryEnum;
 import de.knightsoftnet.validators.shared.data.IbanLengthMapSharedConstants;

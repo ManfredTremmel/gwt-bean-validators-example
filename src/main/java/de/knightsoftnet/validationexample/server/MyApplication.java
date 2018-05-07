@@ -31,7 +31,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EntityScan("de.knightsoftnet.validationexample.shared.models")
 @ComponentScan(basePackages = {"de.knightsoftnet.validationexample.shared.models",
-    "de.knightsoftnet.validationexample.server", "de.knightsoftnet.validators.server"})
+    "de.knightsoftnet.validationexample.server", "de.knightsoftnet.gwtp.spring.server"})
 @EnableJpaRepositories(basePackages = {"de.knightsoftnet.validationexample.shared.models",
     "de.knightsoftnet.validationexample.server.repository"})
 public class MyApplication extends SpringBootServletInitializer {

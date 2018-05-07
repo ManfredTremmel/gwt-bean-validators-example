@@ -15,11 +15,11 @@
 
 package de.knightsoftnet.validationexample.client.gin;
 
-import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.gwtp.spring.client.session.Session;
+import de.knightsoftnet.gwtp.spring.shared.models.User;
 import de.knightsoftnet.navigation.client.ui.navigation.NavigationPresenter;
 import de.knightsoftnet.navigation.client.ui.navigation.NavigationStructure;
 import de.knightsoftnet.navigation.client.ui.navigation.TreeNavigationView;
-import de.knightsoftnet.navigation.shared.models.User;
 import de.knightsoftnet.validationexample.client.CurrentSession;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePagePresenter;
 import de.knightsoftnet.validationexample.client.ui.basepage.BasePageViewGwtImpl;

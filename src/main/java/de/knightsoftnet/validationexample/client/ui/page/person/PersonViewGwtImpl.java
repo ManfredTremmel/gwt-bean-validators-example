@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.person;
 
+import de.knightsoftnet.gwtp.spring.client.rest.helper.AbstractViewWithErrorHandling;
 import de.knightsoftnet.mtwidgets.client.ui.widget.DateBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.EmailTextBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.LongBox;
@@ -23,7 +24,6 @@ import de.knightsoftnet.validationexample.client.ui.widget.SalutationRadioButton
 import de.knightsoftnet.validationexample.shared.models.Person;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;

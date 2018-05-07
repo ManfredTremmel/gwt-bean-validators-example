@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.shared.models;
 
-import de.knightsoftnet.navigation.shared.models.User;
+import de.knightsoftnet.gwtp.spring.shared.models.User;
 
 import org.apache.commons.lang3.StringUtils;
 

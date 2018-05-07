@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.shared;
 
-import de.knightsoftnet.validators.shared.Parameters;
+import de.knightsoftnet.gwtp.spring.shared.Parameters;
 
 public class AppParameters extends Parameters {
   public static final String LAST_NAME = "lastname";

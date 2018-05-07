@@ -15,15 +15,15 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.login;
 
-import de.knightsoftnet.navigation.client.session.Session;
+import de.knightsoftnet.gwtp.spring.client.rest.helper.AbstractPresenterWithErrorHandling;
+import de.knightsoftnet.gwtp.spring.client.rest.helper.EditorWithErrorHandling;
+import de.knightsoftnet.gwtp.spring.client.rest.helper.RestCallbackBuilder;
+import de.knightsoftnet.gwtp.spring.client.session.Session;
 import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
 import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.models.LoginData;
 import de.knightsoftnet.validators.client.event.FormSubmitHandler;
-import de.knightsoftnet.validators.client.rest.helper.AbstractPresenterWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.EditorWithErrorHandling;
-import de.knightsoftnet.validators.client.rest.helper.RestCallbackBuilder;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;

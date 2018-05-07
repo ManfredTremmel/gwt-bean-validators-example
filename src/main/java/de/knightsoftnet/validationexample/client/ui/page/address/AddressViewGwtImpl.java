@@ -15,13 +15,13 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.address;
 
+import de.knightsoftnet.gwtp.spring.client.rest.helper.AbstractViewWithErrorHandling;
 import de.knightsoftnet.mtwidgets.client.ui.widget.CountryListBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.PostalCodeTextBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.PostalAddressData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

@@ -15,11 +15,11 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.emaillist;
 
+import de.knightsoftnet.gwtp.spring.client.rest.helper.AbstractViewWithErrorHandling;
 import de.knightsoftnet.mtwidgets.client.ui.widget.TextBox;
 import de.knightsoftnet.validationexample.shared.models.EmailListData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;

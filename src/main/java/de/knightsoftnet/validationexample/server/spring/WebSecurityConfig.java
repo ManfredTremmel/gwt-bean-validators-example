@@ -15,17 +15,17 @@
 
 package de.knightsoftnet.validationexample.server.spring;
 
+import de.knightsoftnet.gwtp.spring.server.security.AuthFailureHandler;
+import de.knightsoftnet.gwtp.spring.server.security.AuthSuccessHandler;
+import de.knightsoftnet.gwtp.spring.server.security.CsrfCookieHandler;
+import de.knightsoftnet.gwtp.spring.server.security.HttpAuthenticationEntryPoint;
+import de.knightsoftnet.gwtp.spring.server.security.HttpLogoutSuccessHandler;
+import de.knightsoftnet.gwtp.spring.shared.Parameters;
+import de.knightsoftnet.gwtp.spring.shared.ResourcePaths;
+import de.knightsoftnet.gwtp.spring.shared.ResourcePaths.PhoneNumber;
+import de.knightsoftnet.gwtp.spring.shared.ResourcePaths.User;
 import de.knightsoftnet.validationexample.client.ui.navigation.NameTokens;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
-import de.knightsoftnet.validators.server.security.AuthFailureHandler;
-import de.knightsoftnet.validators.server.security.AuthSuccessHandler;
-import de.knightsoftnet.validators.server.security.CsrfCookieHandler;
-import de.knightsoftnet.validators.server.security.HttpAuthenticationEntryPoint;
-import de.knightsoftnet.validators.server.security.HttpLogoutSuccessHandler;
-import de.knightsoftnet.validators.shared.Parameters;
-import de.knightsoftnet.validators.shared.ResourcePaths;
-import de.knightsoftnet.validators.shared.ResourcePaths.PhoneNumber;
-import de.knightsoftnet.validators.shared.ResourcePaths.User;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

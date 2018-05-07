@@ -15,12 +15,12 @@
 
 package de.knightsoftnet.validationexample.client.ui.page.phonenumber;
 
+import de.knightsoftnet.gwtp.spring.client.rest.helper.AbstractViewWithErrorHandling;
 import de.knightsoftnet.mtwidgets.client.ui.widget.CountryListBox;
 import de.knightsoftnet.mtwidgets.client.ui.widget.PhoneNumberMsRestSuggestBox;
 import de.knightsoftnet.validationexample.shared.models.PhoneNumberData;
 import de.knightsoftnet.validators.client.editor.BeanValidationEditorDriver;
 import de.knightsoftnet.validators.client.event.FormSubmitEvent;
-import de.knightsoftnet.validators.client.rest.helper.AbstractViewWithErrorHandling;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;

@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.client;
 
+import de.knightsoftnet.gwtp.spring.client.GwtpSpringSession;
 import de.knightsoftnet.validationexample.client.services.UserRestService;
 import de.knightsoftnet.validationexample.shared.models.UserData;
-import de.knightsoftnet.validators.client.GwtpSpringSession;
 
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.client.RestDispatch;

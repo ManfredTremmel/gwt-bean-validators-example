@@ -15,9 +15,9 @@
 
 package de.knightsoftnet.validationexample.server.converter.impl;
 
-import de.knightsoftnet.navigation.shared.models.User;
+import de.knightsoftnet.gwtp.spring.server.converter.UserDetailsConverter;
+import de.knightsoftnet.gwtp.spring.shared.models.User;
 import de.knightsoftnet.validationexample.shared.models.UserData;
-import de.knightsoftnet.validators.server.converter.UserDetailsConverter;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

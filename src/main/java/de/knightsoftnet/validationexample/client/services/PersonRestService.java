@@ -15,6 +15,7 @@
 
 package de.knightsoftnet.validationexample.client.services;
 
+import de.knightsoftnet.gwtp.spring.client.services.DataBaseRestServiceTemplate;
 import de.knightsoftnet.validationexample.shared.AppResourcePaths;
 import de.knightsoftnet.validationexample.shared.models.Person;
 

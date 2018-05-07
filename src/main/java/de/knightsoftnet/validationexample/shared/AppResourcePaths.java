@@ -15,7 +15,7 @@
 
 package de.knightsoftnet.validationexample.shared;
 
-import de.knightsoftnet.validators.shared.ResourcePaths;
+import de.knightsoftnet.gwtp.spring.shared.ResourcePaths;
 
 /**
  * definition of rest url pathes.
