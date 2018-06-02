@@ -28,7 +28,7 @@ public class ClientModule extends AbstractPresenterModule {
 
   @Override
   protected void configure() {
-    this.install(new DefaultModule.Builder() //
+    install(new DefaultModule.Builder() //
         .tokenFormatter(OwnRouteTokenFormatter.class) //
         .placeManager(OwnPlaceManagerImpl.class) //
         .defaultPlace(NameTokens.ADDRESS) //
@@ -36,9 +36,9 @@ public class ClientModule extends AbstractPresenterModule {
         .unauthorizedPlace(NameTokens.LOGIN) //
         .build());
 
-    this.install(new ApplicationModule());
-    this.install(new ServiceModule());
+    install(new ApplicationModule());
+    install(new ServiceModule());
 
-    this.bind(ResourceLoader.class).asEagerSingleton();
+    bind(ResourceLoader.class).asEagerSingleton();
   }
 }

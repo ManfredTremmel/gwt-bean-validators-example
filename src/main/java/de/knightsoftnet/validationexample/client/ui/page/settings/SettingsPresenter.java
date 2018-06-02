@@ -60,7 +60,7 @@ public class SettingsPresenter
   @Inject
   public SettingsPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.getView().setPresenter(this);
+    getView().setPresenter(this);
   }
 
   /**

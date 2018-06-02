@@ -66,20 +66,20 @@ public class BasePagePresenter
       final AboutPresenter paboutPresenter, final MyProxy pproxy,
       final NavigationPresenter pnavigationPresenter) {
     super(peventBus, pview, pproxy);
-    this.aboutPresenter = paboutPresenter;
-    this.navigationPresenter = pnavigationPresenter;
+    aboutPresenter = paboutPresenter;
+    navigationPresenter = pnavigationPresenter;
     pview.setPresenter(this);
   }
 
   @Override
   protected void onBind() {
-    this.setInSlot(BasePagePresenter.SLOT_NAVIGATION, this.navigationPresenter);
+    setInSlot(BasePagePresenter.SLOT_NAVIGATION, navigationPresenter);
   }
 
   /**
    * show info dialog.
    */
   public final void showInfo() {
-    this.addToPopupSlot(this.aboutPresenter);
+    addToPopupSlot(aboutPresenter);
   }
 }

@@ -63,12 +63,12 @@ public class EmailListEditor extends AbstractListEditor<EmailData, EmailItemView
    */
   public EmailListEditor() {
     super();
-    EmailListEditor.driver.initialize(this.editor);
+    EmailListEditor.driver.initialize(editor);
   }
 
   @Override
   public ListValidationEditor<EmailData, EmailItemViewImpl> asEditor() {
-    return this.editor;
+    return editor;
   }
 
   @Override

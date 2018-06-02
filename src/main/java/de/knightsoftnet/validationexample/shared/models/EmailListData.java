@@ -52,27 +52,27 @@ public class EmailListData {
 
   public EmailListData() {
     super();
-    this.emailList = new ArrayList<>();
+    emailList = new ArrayList<>();
   }
 
   public final String getFirstname() {
-    return this.firstname;
+    return firstname;
   }
 
   public final void setFirstname(final String pfirstname) {
-    this.firstname = pfirstname;
+    firstname = pfirstname;
   }
 
   public final String getLastname() {
-    return this.lastname;
+    return lastname;
   }
 
   public final void setLastname(final String plastname) {
-    this.lastname = plastname;
+    lastname = plastname;
   }
 
   public final List<EmailData> getEmailList() {
-    return this.emailList;
+    return emailList;
   }
 
   /**
@@ -81,12 +81,12 @@ public class EmailListData {
    * @param pemailList email list to set
    */
   public final void setEmailList(final List<EmailData> pemailList) {
-    this.emailList = pemailList;
+    emailList = pemailList;
   }
 
   @Override
   public String toString() {
-    return "EmailListData [firstname=" + this.firstname + ", lastname=" + this.lastname
-        + ", emailList=" + this.emailList + "]";
+    return "EmailListData [firstname=" + firstname + ", lastname=" + lastname + ", emailList="
+        + emailList + "]";
   }
 }

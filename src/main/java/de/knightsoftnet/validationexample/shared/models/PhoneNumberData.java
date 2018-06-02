@@ -37,24 +37,23 @@ public class PhoneNumberData {
   private String phoneNumber;
 
   public final CountryEnum getCountryCode() {
-    return this.countryCode;
+    return countryCode;
   }
 
   public final void setCountryCode(final CountryEnum pcountryCode) {
-    this.countryCode = pcountryCode;
+    countryCode = pcountryCode;
   }
 
   public final String getPhoneNumber() {
-    return this.phoneNumber;
+    return phoneNumber;
   }
 
   public final void setPhoneNumber(final String pphoneNumber) {
-    this.phoneNumber = pphoneNumber;
+    phoneNumber = pphoneNumber;
   }
 
   @Override
   public String toString() {
-    return "PhoneNumberData [countryCode=" + this.countryCode + ", phoneNumber=" + this.phoneNumber
-        + "]";
+    return "PhoneNumberData [countryCode=" + countryCode + ", phoneNumber=" + phoneNumber + "]";
   }
 }

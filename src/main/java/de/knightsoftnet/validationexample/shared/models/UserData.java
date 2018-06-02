@@ -62,36 +62,36 @@ public class UserData implements User {
    */
   public UserData(final String puserName, final String ppassword) {
     super();
-    this.userName = puserName;
-    this.password = ppassword;
+    userName = puserName;
+    password = ppassword;
   }
 
   @Override
   public final String getUserName() {
-    return this.userName;
+    return userName;
   }
 
   @Override
   public final void setUserName(final String puserName) {
-    this.userName = puserName;
+    userName = puserName;
   }
 
   @Override
   public boolean isLoggedIn() {
-    return StringUtils.isNotEmpty(this.userName);
+    return StringUtils.isNotEmpty(userName);
   }
 
   public String getPassword() {
-    return this.password;
+    return password;
   }
 
   public void setPassword(final String ppassword) {
-    this.password = ppassword;
+    password = ppassword;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(this.userName);
+    return Objects.hashCode(userName);
   }
 
   @Override
@@ -102,10 +102,10 @@ public class UserData implements User {
     if (obj == null) {
       return false;
     }
-    if (this.getClass() != obj.getClass()) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
     final UserData other = (UserData) obj;
-    return StringUtils.equals(this.userName, other.getUserName());
+    return StringUtils.equals(userName, other.getUserName());
   }
 }

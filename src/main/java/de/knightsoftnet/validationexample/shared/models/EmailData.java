@@ -30,23 +30,23 @@ public class EmailData {
   private EmailTypeEnum type;
 
   public final void setEmail(final String pemail) {
-    this.email = pemail;
+    email = pemail;
   }
 
   public String getEmail() {
-    return this.email;
+    return email;
   }
 
   public final EmailTypeEnum getType() {
-    return this.type;
+    return type;
   }
 
   public final void setType(final EmailTypeEnum ptype) {
-    this.type = ptype;
+    type = ptype;
   }
 
   @Override
   public String toString() {
-    return "EmailData [email=" + this.email + ", type=" + this.type + "]";
+    return "EmailData [email=" + email + ", type=" + type + "]";
   }
 }

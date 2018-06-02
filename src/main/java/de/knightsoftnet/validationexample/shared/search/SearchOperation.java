@@ -34,7 +34,7 @@ public enum SearchOperation {
 
   /**
    * get simple search operation from representing character.
-   * 
+   *
    * @param pinput character
    * @return SearchOperation enum or null if non matches
    */

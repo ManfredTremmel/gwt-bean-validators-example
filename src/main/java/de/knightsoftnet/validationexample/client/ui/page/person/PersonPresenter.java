@@ -79,28 +79,27 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
       final RestDispatch pdispatcher, final PersonRestService ppersonService,
       final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.placeManager = pplaceManager;
-    this.constants = pconstants;
-    this.dispatcher = pdispatcher;
-    this.personService = ppersonService;
-    this.session = psession;
-    this.getView().setPresenter(this);
-    this.fillForm(new Person(), null);
+    placeManager = pplaceManager;
+    constants = pconstants;
+    dispatcher = pdispatcher;
+    personService = ppersonService;
+    session = psession;
+    getView().setPresenter(this);
+    fillForm(new Person(), null);
   }
 
   @Override
   protected void onReveal() {
     super.onReveal();
-    Scheduler.get().scheduleDeferred(() -> PersonPresenter.this.getView().setFocusOnFirstWidget());
+    Scheduler.get().scheduleDeferred(() -> getView().setFocusOnFirstWidget());
   }
 
   /**
    * try to send data.
    */
   public final void tryToSend() {
-    this.dispatcher.execute(this.personService.save(this.personData),
-        RestCallbackBuilder.build(this.getView(), this.personData, this.session,
-            presult -> this.fillForm(presult, this.constants.messageOk())));
+    dispatcher.execute(personService.save(personData), RestCallbackBuilder.build(getView(),
+        personData, session, presult -> fillForm(presult, constants.messageOk())));
   }
 
   /**
@@ -122,24 +121,23 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
    * add new empty entry into form.
    */
   public void addNewEntry() {
-    this.fillForm(new Person(), null);
+    fillForm(new Person(), null);
   }
 
   /**
    * read one entry.
    */
   public void readEntry(final Long pid) {
-    this.dispatcher.execute(this.personService.findOne(pid), RestCallbackBuilder.build(
-        this.getView(), this.personData, this.session, presult -> this.fillForm(presult, null)));
+    dispatcher.execute(personService.findOne(pid), RestCallbackBuilder.build(getView(), personData,
+        session, presult -> fillForm(presult, null)));
   }
 
   /**
    * delete entry.
    */
   public void deleteEntry(final Long pid) {
-    this.dispatcher.execute(this.personService.delete(pid),
-        RestCallbackBuilder.build(this.getView(), this.personData, this.session,
-            presult -> this.fillForm(new Person(), null)));
+    dispatcher.execute(personService.delete(pid), RestCallbackBuilder.build(getView(), personData,
+        session, presult -> fillForm(new Person(), null)));
   }
 
   @Override
@@ -147,19 +145,19 @@ public class PersonPresenter extends Presenter<PersonPresenter.MyView, PersonPre
     super.prepareFromRequest(prequest);
     final String page = prequest.getParameter(AppParameters.ID, null);
     if (StringUtils.isNumeric(page)) {
-      this.readEntry(Long.valueOf(page));
+      readEntry(Long.valueOf(page));
     }
   }
 
 
   private void fillForm(final Person ppersonData, final String pmessage) {
-    this.personData = ppersonData;
-    this.getView().fillForm(this.personData);
-    this.getView().showMessage(pmessage);
+    personData = ppersonData;
+    getView().fillForm(personData);
+    getView().showMessage(pmessage);
     final Builder placeRequestBuilder =
         new PlaceRequest.Builder().nameToken(NameTokens.PERSON_WITH_ID);
     placeRequestBuilder.with(AppParameters.ID,
-        Objects.toString(this.personData.getId(), StringUtils.EMPTY));
-    this.placeManager.updateHistory(placeRequestBuilder.build(), true);
+        Objects.toString(personData.getId(), StringUtils.EMPTY));
+    placeManager.updateHistory(placeRequestBuilder.build(), true);
   }
 }

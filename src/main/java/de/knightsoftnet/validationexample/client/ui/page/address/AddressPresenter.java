@@ -70,22 +70,22 @@ public class AddressPresenter //
       final AddressConstants pconstants, final RestDispatch pdispatcher,
       final PostalAddressRestService ppostalAddressService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.dispatcher = pdispatcher;
-    this.postalAddressService = ppostalAddressService;
-    this.constants = pconstants;
-    this.session = psession;
-    this.addressData = new PostalAddressData();
-    this.addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
-    this.getView().setPresenter(this);
-    this.getView().fillForm(this.addressData);
+    dispatcher = pdispatcher;
+    postalAddressService = ppostalAddressService;
+    constants = pconstants;
+    session = psession;
+    addressData = new PostalAddressData();
+    addressData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
+    getView().setPresenter(this);
+    getView().fillForm(addressData);
   }
 
   /**
    * try to send data.
    */
   public final void tryToSend() {
-    this.dispatcher.execute(this.postalAddressService.checkPostalAddress(this.addressData),
-        RestCallbackBuilder.build(this.getView(), this.addressData, this.session,
-            presult -> this.getView().showMessage(this.constants.messageAddressDataOk())));
+    dispatcher.execute(postalAddressService.checkPostalAddress(addressData),
+        RestCallbackBuilder.build(getView(), addressData, session,
+            presult -> getView().showMessage(constants.messageAddressDataOk())));
   }
 }

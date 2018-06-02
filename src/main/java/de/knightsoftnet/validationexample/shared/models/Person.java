@@ -53,57 +53,56 @@ public class Person {
   private Date birthday;
 
   public Long getId() {
-    return this.id;
+    return id;
   }
 
   public void setId(final Long pid) {
-    this.id = pid;
+    id = pid;
   }
 
   public SalutationEnum getSalutation() {
-    return this.salutation;
+    return salutation;
   }
 
   public void setSalutation(final SalutationEnum psalutation) {
-    this.salutation = psalutation;
+    salutation = psalutation;
   }
 
   public String getFirstName() {
-    return this.firstName;
+    return firstName;
   }
 
   public void setFirstName(final String pfirstName) {
-    this.firstName = pfirstName;
+    firstName = pfirstName;
   }
 
   public String getLastName() {
-    return this.lastName;
+    return lastName;
   }
 
   public void setLastName(final String plastName) {
-    this.lastName = plastName;
+    lastName = plastName;
   }
 
   public String getEmail() {
-    return this.email;
+    return email;
   }
 
   public void setEmail(final String pemail) {
-    this.email = pemail;
+    email = pemail;
   }
 
   public Date getBirthday() {
-    return this.birthday;
+    return birthday;
   }
 
   public void setBirthday(final Date pbirthday) {
-    this.birthday = pbirthday;
+    birthday = pbirthday;
   }
 
   @Override
   public String toString() {
-    return "Person [id=" + this.id + ", salutation=" + this.salutation + ", firstName="
-        + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", birthday="
-        + this.birthday + "]";
+    return "Person [id=" + id + ", salutation=" + salutation + ", firstName=" + firstName
+        + ", lastName=" + lastName + ", email=" + email + ", birthday=" + birthday + "]";
   }
 }

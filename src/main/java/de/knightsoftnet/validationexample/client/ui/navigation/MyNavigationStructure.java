@@ -83,19 +83,19 @@ public class MyNavigationStructure extends AbstractNavigationStructure {
 
     navigationEntries
         .add(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuLogin()),
-            NameTokens.SECRET, this.loggedOutGatekeeper));
+            NameTokens.SECRET, loggedOutGatekeeper));
     navigationEntries
         .add(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuLogout()),
-            NameTokens.LOGOUT, this.loggedInGatekeeper));
+            NameTokens.LOGOUT, loggedInGatekeeper));
 
     final NavigationEntryFolder testFolder = new NavigationEntryFolder(
         SafeHtmlUtils.fromString(navigationConstants.menuTestFolder()), true);
     testFolder
         .addSubEntry(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuSecret()),
-            NameTokens.SECRET, this.loggedInGatekeeper));
+            NameTokens.SECRET, loggedInGatekeeper));
     testFolder
         .addSubEntry(new NavigationEntry(SafeHtmlUtils.fromString(navigationConstants.menuPerson()),
-            NameTokens.PERSON, this.loggedInGatekeeper));
+            NameTokens.PERSON, loggedInGatekeeper));
     navigationEntries.add(testFolder);
 
     return navigationEntries;

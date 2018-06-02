@@ -48,11 +48,11 @@ public class EmailItemViewImpl extends AbstractListItemView<EmailData> {
 
   public EmailItemViewImpl() {
     super();
-    this.initWidget(EmailItemViewImpl.uiBinder.createAndBindUi(this));
+    initWidget(EmailItemViewImpl.uiBinder.createAndBindUi(this));
   }
 
   @UiHandler("deleteRow")
   public void onDeleteRow(final ClickEvent pevent) {
-    this.removeThisEntry();
+    removeThisEntry();
   }
 }

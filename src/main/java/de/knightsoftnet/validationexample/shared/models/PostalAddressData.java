@@ -21,6 +21,8 @@ import de.knightsoftnet.validators.shared.NotEmptyIfOtherIsNotEmpty;
 import de.knightsoftnet.validators.shared.PostalCode;
 import de.knightsoftnet.validators.shared.data.CountryEnum;
 
+import org.springframework.util.CollectionUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,83 +125,83 @@ public class PostalAddressData {
 
   public PostalAddressData() {
     super();
-    this.emailList = new ArrayList<>();
+    emailList = new ArrayList<>();
   }
 
   public String getPostOfficeBox() {
-    return this.postOfficeBox;
+    return postOfficeBox;
   }
 
   public void setPostOfficeBox(final String ppostOfficeBox) {
-    this.postOfficeBox = ppostOfficeBox;
+    postOfficeBox = ppostOfficeBox;
   }
 
   public String getExtended() {
-    return this.extended;
+    return extended;
   }
 
   public void setExtended(final String pextended) {
-    this.extended = pextended;
+    extended = pextended;
   }
 
   public String getStreet() {
-    return this.street;
+    return street;
   }
 
   public void setStreet(final String pstreet) {
-    this.street = pstreet;
+    street = pstreet;
   }
 
   public String getStreetNumber() {
-    return this.streetNumber;
+    return streetNumber;
   }
 
   public void setStreetNumber(final String pstreetNumber) {
-    this.streetNumber = pstreetNumber;
+    streetNumber = pstreetNumber;
   }
 
   public String getStreetNumberAdditional() {
-    return this.streetNumberAdditional;
+    return streetNumberAdditional;
   }
 
   public void setStreetNumberAdditional(final String pstreetNumberAdditional) {
-    this.streetNumberAdditional = pstreetNumberAdditional;
+    streetNumberAdditional = pstreetNumberAdditional;
   }
 
   public String getLocality() {
-    return this.locality;
+    return locality;
   }
 
   public void setLocality(final String plocality) {
-    this.locality = plocality;
+    locality = plocality;
   }
 
   public String getRegion() {
-    return this.region;
+    return region;
   }
 
   public void setRegion(final String pregion) {
-    this.region = pregion;
+    region = pregion;
   }
 
   public String getPostalCode() {
-    return this.postalCode;
+    return postalCode;
   }
 
   public void setPostalCode(final String ppostalCode) {
-    this.postalCode = ppostalCode;
+    postalCode = ppostalCode;
   }
 
   public CountryEnum getCountryCode() {
-    return this.countryCode;
+    return countryCode;
   }
 
   public void setCountryCode(final CountryEnum pcountryCode) {
-    this.countryCode = pcountryCode;
+    countryCode = pcountryCode;
   }
 
   public final List<EmailData> getEmailList() {
-    return this.emailList;
+    return emailList;
   }
 
   /**
@@ -208,18 +210,17 @@ public class PostalAddressData {
    * @param pemailList email list to set
    */
   public final void setEmailList(final List<EmailData> pemailList) {
-    this.emailList.clear();
-    if (pemailList != null && !this.emailList.isEmpty()) {
-      this.emailList.addAll(pemailList);
+    emailList.clear();
+    if (!CollectionUtils.isEmpty(pemailList)) {
+      emailList.addAll(pemailList);
     }
   }
 
   @Override
   public String toString() {
-    return "PostalAddressData [postOfficeBox=" + this.postOfficeBox + ", street=" + this.street
-        + ", streetNumber=" + this.streetNumber + ", streetNumberAdditional="
-        + this.streetNumberAdditional + ", extended=" + this.extended + ", postalCode="
-        + this.postalCode + ", locality=" + this.locality + ", region=" + this.region
-        + ", countryCode=" + this.countryCode + "]";
+    return "PostalAddressData [postOfficeBox=" + postOfficeBox + ", street=" + street
+        + ", streetNumber=" + streetNumber + ", streetNumberAdditional=" + streetNumberAdditional
+        + ", extended=" + extended + ", postalCode=" + postalCode + ", locality=" + locality
+        + ", region=" + region + ", countryCode=" + countryCode + "]";
   }
 }

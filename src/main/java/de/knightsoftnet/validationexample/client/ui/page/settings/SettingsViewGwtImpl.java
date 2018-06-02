@@ -42,12 +42,12 @@ public class SettingsViewGwtImpl extends ViewImpl implements SettingsPresenter.M
   @Inject
   public SettingsViewGwtImpl(final Binder puiBinder) {
     super();
-    this.initWidget(puiBinder.createAndBindUi(this));
+    initWidget(puiBinder.createAndBindUi(this));
   }
 
   @Override
   public final void setPresenter(final SettingsPresenter ppresenter) {
-    this.presenter = ppresenter;
+    presenter = ppresenter;
   }
 
   /**
@@ -57,6 +57,6 @@ public class SettingsViewGwtImpl extends ViewImpl implements SettingsPresenter.M
    */
   @UiHandler("language")
   final void onChange(final ValueChangeEvent<String> pchangeEvent) {
-    this.presenter.changeLanguage(pchangeEvent.getValue());
+    presenter.changeLanguage(pchangeEvent.getValue());
   }
 }

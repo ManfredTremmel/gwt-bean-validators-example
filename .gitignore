@@ -3,10 +3,14 @@
 /.classpath
 /.project
 /.checkstyle
-/sample.log*
+/*.log*
 /war/
 /www-test/
 /gwt-unitCache/
 /.gwt/
+.idea/*
+*.iml
 /.directory
 /.fbExcludeFilterFile
+/.pmdruleset.xml
+/.pmd

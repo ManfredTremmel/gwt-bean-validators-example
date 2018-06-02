@@ -82,19 +82,19 @@ public class AddressViewGwtImpl
   @Inject
   public AddressViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
     super(pdriver);
-    this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver.initialize(this);
-    this.driver.setSubmitButton(this.addressButton);
-    this.driver.addFormSubmitHandler(this);
+    initWidget(puiBinder.createAndBindUi(this));
+    driver.initialize(this);
+    driver.setSubmitButton(addressButton);
+    driver.addFormSubmitHandler(this);
   }
 
   @Override
   public final void showMessage(final String pmessage) {
-    this.logMessages.setText(pmessage);
+    logMessages.setText(pmessage);
   }
 
   @Override
   public final void onFormSubmit(final FormSubmitEvent<PostalAddressData> pevent) {
-    this.presenter.tryToSend();
+    presenter.tryToSend();
   }
 }

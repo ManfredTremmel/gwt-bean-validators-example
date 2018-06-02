@@ -11,15 +11,15 @@ public class PersonWithLinks extends Person {
   private Map<String, Map<String, String>> links = new HashMap<>();
 
   public final Map<String, Map<String, String>> getLinks() {
-    return this.links;
+    return links;
   }
 
   public final void setLinks(final Map<String, Map<String, String>> plinks) {
-    this.links = plinks;
+    links = plinks;
   }
 
   @Override
   public String toString() {
-    return super.toString() + " [links=" + this.links + "]";
+    return super.toString() + " [links=" + links + "]";
   }
 }

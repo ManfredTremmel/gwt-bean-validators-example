@@ -74,11 +74,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       final HttpLogoutSuccessHandler plogoutSuccessHandler,
       final CsrfCookieHandler pcsrfCookieHandler) {
     super();
-    this.authenticationEntryPoint = pauthenticationEntryPoint;
-    this.authSuccessHandler = pauthSuccessHandler;
-    this.authFailureHandler = pauthFailureHandler;
-    this.logoutSuccessHandler = plogoutSuccessHandler;
-    this.csrfCookieHandler = pcsrfCookieHandler;
+    authenticationEntryPoint = pauthenticationEntryPoint;
+    authSuccessHandler = pauthSuccessHandler;
+    authFailureHandler = pauthFailureHandler;
+    logoutSuccessHandler = plogoutSuccessHandler;
+    csrfCookieHandler = pcsrfCookieHandler;
   }
 
   /**
@@ -114,8 +114,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(final HttpSecurity phttp) throws Exception { // NOPMD
 
     // csrf/xsrf protection
-    phttp.csrf().csrfTokenRepository(this.csrfTokenRepository()) //
-        .and().addFilterAfter(this.csrfHeaderFilter(), CsrfFilter.class) //
+    phttp.csrf().csrfTokenRepository(csrfTokenRepository()) //
+        .and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class) //
         .authorizeRequests() //
 
         // services without authentication
@@ -132,7 +132,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // handle not allowed access, delegate to authentication entry poing
         .and() //
         .exceptionHandling() //
-        .authenticationEntryPoint(this.authenticationEntryPoint) //
+        .authenticationEntryPoint(authenticationEntryPoint) //
 
         // login form handling
         .and() //
@@ -140,12 +140,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .permitAll().loginProcessingUrl(LOGIN_PATH) //
         .usernameParameter(Parameters.USERNAME) //
         .passwordParameter(Parameters.PASSWORD) //
-        .successHandler(this.authSuccessHandler) //
-        .failureHandler(this.authFailureHandler) //
+        .successHandler(authSuccessHandler) //
+        .failureHandler(authFailureHandler) //
 
         .and().logout().permitAll() //
         .logoutRequestMatcher(new AntPathRequestMatcher(LOGIN_PATH, "DELETE")) //
-        .logoutSuccessHandler(this.logoutSuccessHandler) //
+        .logoutSuccessHandler(logoutSuccessHandler) //
 
         .and() //
         .sessionManagement().maximumSessions(1);
@@ -167,7 +167,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       protected void doFilterInternal(final HttpServletRequest prequest,
           final HttpServletResponse presponse, final FilterChain pfilterChain)
           throws ServletException, IOException {
-        WebSecurityConfig.this.csrfCookieHandler.setCookie(prequest, presponse);
+        csrfCookieHandler.setCookie(prequest, presponse);
         pfilterChain.doFilter(prequest, presponse);
       }
     };

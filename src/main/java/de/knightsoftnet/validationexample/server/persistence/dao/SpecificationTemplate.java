@@ -16,39 +16,35 @@ public class SpecificationTemplate<T> implements Specification<T> {
 
   public SpecificationTemplate(final SearchCriteria pcriteria) {
     super();
-    this.criteria = pcriteria;
+    criteria = pcriteria;
   }
 
   public SearchCriteria getCriteria() {
-    return this.criteria;
+    return criteria;
   }
 
   @Override
   public Predicate toPredicate(final Root<T> proot, final CriteriaQuery<?> pquery,
       final CriteriaBuilder pbuilder) {
-    switch (this.criteria.getOperation()) {
+    switch (criteria.getOperation()) {
       case EQUALITY:
-        return pbuilder.equal(proot.get(this.criteria.getKey()), this.criteria.getValue());
+        return pbuilder.equal(proot.get(criteria.getKey()), criteria.getValue());
       case NEGATION:
-        return pbuilder.notEqual(proot.get(this.criteria.getKey()), this.criteria.getValue());
+        return pbuilder.notEqual(proot.get(criteria.getKey()), criteria.getValue());
       case GREATER_THAN:
-        return pbuilder.greaterThan(proot.<String>get(this.criteria.getKey()),
-            this.criteria.getValue().toString());
+        return pbuilder.greaterThan(proot.<String>get(criteria.getKey()),
+            criteria.getValue().toString());
       case LESS_THAN:
-        return pbuilder.lessThan(proot.<String>get(this.criteria.getKey()),
-            this.criteria.getValue().toString());
+        return pbuilder.lessThan(proot.<String>get(criteria.getKey()),
+            criteria.getValue().toString());
       case LIKE:
-        return pbuilder.like(proot.<String>get(this.criteria.getKey()),
-            this.criteria.getValue().toString());
+        return pbuilder.like(proot.<String>get(criteria.getKey()), criteria.getValue().toString());
       case STARTS_WITH:
-        return pbuilder.like(proot.<String>get(this.criteria.getKey()),
-            this.criteria.getValue() + "%");
+        return pbuilder.like(proot.<String>get(criteria.getKey()), criteria.getValue() + "%");
       case ENDS_WITH:
-        return pbuilder.like(proot.<String>get(this.criteria.getKey()),
-            "%" + this.criteria.getValue());
+        return pbuilder.like(proot.<String>get(criteria.getKey()), "%" + criteria.getValue());
       case CONTAINS:
-        return pbuilder.like(proot.<String>get(this.criteria.getKey()),
-            "%" + this.criteria.getValue() + "%");
+        return pbuilder.like(proot.<String>get(criteria.getKey()), "%" + criteria.getValue() + "%");
       default:
         return null;
     }

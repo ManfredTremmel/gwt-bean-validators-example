@@ -49,48 +49,48 @@ public class SepaData {
   private String bic;
 
   public String getBankName() {
-    return this.bankName;
+    return bankName;
   }
 
   public void setBankName(final String pbankName) {
-    this.bankName = pbankName;
+    bankName = pbankName;
   }
 
   public String getAccountOwner() {
-    return this.accountOwner;
+    return accountOwner;
   }
 
   public void setAccountOwner(final String paccountOwner) {
-    this.accountOwner = paccountOwner;
+    accountOwner = paccountOwner;
   }
 
   public CountryEnum getCountryCode() {
-    return this.countryCode;
+    return countryCode;
   }
 
   public void setCountryCode(final CountryEnum pcountryCode) {
-    this.countryCode = pcountryCode;
+    countryCode = pcountryCode;
   }
 
   public String getIban() {
-    return this.iban;
+    return iban;
   }
 
   public void setIban(final String piban) {
-    this.iban = piban;
+    iban = piban;
   }
 
   public String getBic() {
-    return this.bic;
+    return bic;
   }
 
   public void setBic(final String pbic) {
-    this.bic = pbic;
+    bic = pbic;
   }
 
   @Override
   public String toString() {
-    return "SepaData [bankName=" + this.bankName + ", accountOwner=" + this.accountOwner
-        + ", countryCode=" + this.countryCode + ", iban=" + this.iban + ", bic=" + this.bic + "]";
+    return "SepaData [bankName=" + bankName + ", accountOwner=" + accountOwner + ", countryCode="
+        + countryCode + ", iban=" + iban + ", bic=" + bic + "]";
   }
 }

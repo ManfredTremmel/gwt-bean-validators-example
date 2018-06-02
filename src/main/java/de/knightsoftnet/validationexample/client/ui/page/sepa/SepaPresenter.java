@@ -74,23 +74,22 @@ public class SepaPresenter extends
       final SepaConstants pconstants, final RestDispatch pdispatcher,
       final SepaRestService psepaService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.constants = pconstants;
-    this.dispatcher = pdispatcher;
-    this.sepaService = psepaService;
-    this.session = psession;
-    this.sepaData = new SepaData();
-    this.sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
-    this.getView().setPresenter(this);
-    this.getView().fillForm(this.sepaData);
+    constants = pconstants;
+    dispatcher = pdispatcher;
+    sepaService = psepaService;
+    session = psession;
+    sepaData = new SepaData();
+    sepaData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
+    getView().setPresenter(this);
+    getView().fillForm(sepaData);
   }
 
   /**
    * try to send data.
    */
   public final void tryToSend() {
-    this.dispatcher.execute(this.sepaService.checkSepa(this.sepaData),
-        RestCallbackBuilder.build(this.getView(), this.sepaData, this.session,
-            presult -> this.getView().showMessage(this.constants.messageSepaOk())));
+    dispatcher.execute(sepaService.checkSepa(sepaData), RestCallbackBuilder.build(getView(),
+        sepaData, session, presult -> getView().showMessage(constants.messageSepaOk())));
   }
 
   /**

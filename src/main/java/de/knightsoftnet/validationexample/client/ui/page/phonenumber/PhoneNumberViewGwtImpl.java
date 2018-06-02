@@ -72,26 +72,26 @@ public class PhoneNumberViewGwtImpl
   public PhoneNumberViewGwtImpl(final Driver pdriver, final Binder puiBinder,
       final Provider<PhoneNumberMsRestSuggestBox> pphoneNumberWidgetProvider) {
     super(pdriver);
-    this.phoneNumberWidgetProvider = pphoneNumberWidgetProvider;
-    this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver.initialize(this);
-    this.driver.setSubmitButton(this.phoneNumberButton);
-    this.driver.addFormSubmitHandler(this);
+    phoneNumberWidgetProvider = pphoneNumberWidgetProvider;
+    initWidget(puiBinder.createAndBindUi(this));
+    driver.initialize(this);
+    driver.setSubmitButton(phoneNumberButton);
+    driver.addFormSubmitHandler(this);
   }
 
   @Override
   public final void showMessage(final String pmessage) {
-    this.logMessages.setText(pmessage);
+    logMessages.setText(pmessage);
   }
 
   @Override
   public void onFormSubmit(final FormSubmitEvent<PhoneNumberData> pevent) {
-    this.presenter.tryToSend();
+    presenter.tryToSend();
   }
 
   @Ignore
   @UiFactory
   public PhoneNumberMsRestSuggestBox buildPhoneNumberMsRestSuggestBox() {
-    return this.phoneNumberWidgetProvider.get();
+    return phoneNumberWidgetProvider.get();
   }
 }

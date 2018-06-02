@@ -15,6 +15,8 @@
 
 package de.knightsoftnet.validationexample.client.ui.basepage;
 
+import de.knightsoftnet.navigation.client.ui.basepage.AbstractBasePagePresenter;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -65,10 +67,10 @@ public class BasePageViewGwtImpl extends ViewImpl implements BasePagePresenter.M
   public BasePageViewGwtImpl(final Binder puiBinder) {
     super();
 
-    this.initWidget(puiBinder.createAndBindUi(this));
+    initWidget(puiBinder.createAndBindUi(this));
 
-    this.bindSlot(BasePagePresenter.SLOT_MAIN_CONTENT, this.container);
-    this.bindSlot(BasePagePresenter.SLOT_NAVIGATION, this.navigation);
+    bindSlot(AbstractBasePagePresenter.SLOT_MAIN_CONTENT, container);
+    bindSlot(BasePagePresenter.SLOT_NAVIGATION, navigation);
   }
 
   /**
@@ -78,11 +80,11 @@ public class BasePageViewGwtImpl extends ViewImpl implements BasePagePresenter.M
    */
   @UiHandler("info")
   final void showInfos(final ClickEvent pclickEvent) {
-    this.presenter.showInfo();
+    presenter.showInfo();
   }
 
   @Override
   public final void setPresenter(final BasePagePresenter ppresenter) {
-    this.presenter = ppresenter;
+    presenter = ppresenter;
   }
 }

@@ -50,7 +50,7 @@ public class PersonController {
   @Inject
   public PersonController(final PersonRepository ppersonalRepository) {
     super();
-    this.personalRepository = ppersonalRepository;
+    personalRepository = ppersonalRepository;
   }
 
   /**
@@ -74,6 +74,6 @@ public class PersonController {
     }
 
     final Specification<Person> spec = builder.build();
-    return this.personalRepository.findAll(spec);
+    return personalRepository.findAll(spec);
   }
 }

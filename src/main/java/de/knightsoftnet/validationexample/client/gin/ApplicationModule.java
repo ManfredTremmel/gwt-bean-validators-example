@@ -53,35 +53,34 @@ public class ApplicationModule extends AbstractPresenterModule {
 
   @Override
   protected void configure() {
-    this.bindPresenter(BasePagePresenter.class, BasePagePresenter.MyView.class,
+    bindPresenter(BasePagePresenter.class, BasePagePresenter.MyView.class,
         BasePageViewGwtImpl.class, BasePagePresenter.MyProxy.class);
 
-    this.bindPresenter(NavigationPresenter.class, NavigationPresenter.MyView.class,
+    bindPresenter(NavigationPresenter.class, NavigationPresenter.MyView.class,
         TreeNavigationView.class, NavigationPresenter.MyProxy.class);
 
-    this.bindPresenterWidget(AboutPresenter.class, AboutPresenter.MyView.class,
-        AboutViewGwtImpl.class);
-    this.bindPresenter(AddressPresenter.class, AddressPresenter.MyView.class,
-        AddressViewGwtImpl.class, AddressPresenter.MyProxy.class);
-    this.bindPresenter(EmailPresenter.class, EmailPresenter.MyView.class, EmailViewGwtImpl.class,
+    bindPresenterWidget(AboutPresenter.class, AboutPresenter.MyView.class, AboutViewGwtImpl.class);
+    bindPresenter(AddressPresenter.class, AddressPresenter.MyView.class, AddressViewGwtImpl.class,
+        AddressPresenter.MyProxy.class);
+    bindPresenter(EmailPresenter.class, EmailPresenter.MyView.class, EmailViewGwtImpl.class,
         EmailPresenter.MyProxy.class);
-    this.bindPresenter(LoginPresenter.class, LoginPresenter.MyView.class, LoginViewGwtImpl.class,
+    bindPresenter(LoginPresenter.class, LoginPresenter.MyView.class, LoginViewGwtImpl.class,
         LoginPresenter.MyProxy.class);
-    this.bindPresenter(LogoutPresenter.class, LogoutPresenter.MyView.class, LogoutViewGwtImpl.class,
+    bindPresenter(LogoutPresenter.class, LogoutPresenter.MyView.class, LogoutViewGwtImpl.class,
         LogoutPresenter.MyProxy.class);
-    this.bindPresenter(SecretPresenter.class, SecretPresenter.MyView.class, SecretViewGwtImpl.class,
+    bindPresenter(SecretPresenter.class, SecretPresenter.MyView.class, SecretViewGwtImpl.class,
         SecretPresenter.MyProxy.class);
-    this.bindPresenter(SepaPresenter.class, SepaPresenter.MyView.class, SepaViewGwtImpl.class,
+    bindPresenter(SepaPresenter.class, SepaPresenter.MyView.class, SepaViewGwtImpl.class,
         SepaPresenter.MyProxy.class);
-    this.bindPresenter(PhoneNumberPresenter.class, PhoneNumberPresenter.MyView.class,
+    bindPresenter(PhoneNumberPresenter.class, PhoneNumberPresenter.MyView.class,
         PhoneNumberViewGwtImpl.class, PhoneNumberPresenter.MyProxy.class);
-    this.bindPresenter(SettingsPresenter.class, SettingsPresenter.MyView.class,
+    bindPresenter(SettingsPresenter.class, SettingsPresenter.MyView.class,
         SettingsViewGwtImpl.class, SettingsPresenter.MyProxy.class);
-    this.bindPresenter(PersonPresenter.class, PersonPresenter.MyView.class, PersonViewGwtImpl.class,
+    bindPresenter(PersonPresenter.class, PersonPresenter.MyView.class, PersonViewGwtImpl.class,
         PersonPresenter.MyProxy.class);
 
-    this.bind(User.class).to(UserData.class).in(Singleton.class);
-    this.bind(Session.class).to(CurrentSession.class).in(Singleton.class);
-    this.bind(NavigationStructure.class).to(MyNavigationStructure.class).in(Singleton.class);
+    bind(User.class).to(UserData.class).in(Singleton.class);
+    bind(Session.class).to(CurrentSession.class).in(Singleton.class);
+    bind(NavigationStructure.class).to(MyNavigationStructure.class).in(Singleton.class);
   }
 }

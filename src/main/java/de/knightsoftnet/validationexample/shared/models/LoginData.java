@@ -72,50 +72,50 @@ public class LoginData {
   private String newPasswordRepeat;
 
   public final String getUserName() {
-    return this.userName;
+    return userName;
   }
 
   public final void setUserName(final String puserName) {
-    this.userName = puserName;
+    userName = puserName;
   }
 
   public final void setPassword(final String ppassword) {
-    this.password = ppassword;
+    password = ppassword;
   }
 
   public final String getPassword() {
-    return this.password;
+    return password;
   }
 
   public String getNewPassword() {
-    return this.newPassword;
+    return newPassword;
   }
 
   public void setNewPassword(final String pnewPassword) {
-    this.newPassword = pnewPassword;
+    newPassword = pnewPassword;
   }
 
   public String getNewPasswordRepeat() {
-    return this.newPasswordRepeat;
+    return newPasswordRepeat;
   }
 
   public void setNewPasswordRepeat(final String pnewPasswordRepeat) {
-    this.newPasswordRepeat = pnewPasswordRepeat;
+    newPasswordRepeat = pnewPasswordRepeat;
   }
 
   /**
    * clear all data.
    */
   public void clear() {
-    this.userName = null;
-    this.password = null;
-    this.newPassword = null;
-    this.newPasswordRepeat = null;
+    userName = null;
+    password = null;
+    newPassword = null;
+    newPasswordRepeat = null;
   }
 
   @Override
   public final int hashCode() {
-    return Objects.hashCode(this.userName);
+    return Objects.hashCode(userName);
   }
 
   @Override
@@ -126,15 +126,15 @@ public class LoginData {
     if (obj == null) {
       return false;
     }
-    if (this.getClass() != obj.getClass()) {
+    if (getClass() != obj.getClass()) {
       return false;
     }
     final LoginData other = (LoginData) obj;
-    return StringUtils.equals(this.userName, other.userName);
+    return StringUtils.equals(userName, other.userName);
   }
 
   @Override
   public String toString() {
-    return "LoginData [userName=" + this.userName + "]";
+    return "LoginData [userName=" + userName + "]";
   }
 }

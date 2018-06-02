@@ -32,32 +32,32 @@ public class SearchCriteria {
    */
   public SearchCriteria(final String pkey, final SearchOperation poperation, final Object pvalue) {
     super();
-    this.key = pkey;
-    this.operation = poperation;
-    this.value = pvalue;
+    key = pkey;
+    operation = poperation;
+    value = pvalue;
   }
 
   public final String getKey() {
-    return this.key;
+    return key;
   }
 
   public final void setKey(final String pkey) {
-    this.key = pkey;
+    key = pkey;
   }
 
   public final SearchOperation getOperation() {
-    return this.operation;
+    return operation;
   }
 
   public final void setOperation(final SearchOperation poperation) {
-    this.operation = poperation;
+    operation = poperation;
   }
 
   public final Object getValue() {
-    return this.value;
+    return value;
   }
 
   public final void setValue(final Object pvalue) {
-    this.value = pvalue;
+    value = pvalue;
   }
 }

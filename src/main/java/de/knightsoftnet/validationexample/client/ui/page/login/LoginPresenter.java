@@ -70,27 +70,26 @@ public class LoginPresenter extends
   public LoginPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
       final RestDispatch pdispatcher, final UserRestService puserService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.dispatcher = pdispatcher;
-    this.userService = puserService;
-    this.session = psession;
-    this.loginData = new LoginData();
-    this.getView().setPresenter(this);
-    this.getView().fillForm(this.loginData);
+    dispatcher = pdispatcher;
+    userService = puserService;
+    session = psession;
+    loginData = new LoginData();
+    getView().setPresenter(this);
+    getView().fillForm(loginData);
   }
 
   @Override
   protected void onReveal() {
     super.onReveal();
-    this.loginData.clear();
-    this.getView().fillForm(this.loginData);
+    loginData.clear();
+    getView().fillForm(loginData);
   }
 
   /**
    * try to login.
    */
   public final void tryToLogin() {
-    this.dispatcher.execute(
-        this.userService.login(this.loginData.getUserName(), this.loginData.getPassword()),
-        RestCallbackBuilder.buildLoginCallback(this.getView(), this.session));
+    dispatcher.execute(userService.login(loginData.getUserName(), loginData.getPassword()),
+        RestCallbackBuilder.buildLoginCallback(getView(), session));
   }
 }

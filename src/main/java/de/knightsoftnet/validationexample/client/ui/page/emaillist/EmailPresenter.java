@@ -69,21 +69,21 @@ public class EmailPresenter
       final EmailConstants pconstants, final RestDispatch pdispatcher,
       final EmailListRestService pemailListService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.dispatcher = pdispatcher;
-    this.emailListService = pemailListService;
-    this.constants = pconstants;
-    this.session = psession;
-    this.emailListData = new EmailListData();
-    this.getView().setPresenter(this);
-    this.getView().fillForm(this.emailListData);
+    dispatcher = pdispatcher;
+    emailListService = pemailListService;
+    constants = pconstants;
+    session = psession;
+    emailListData = new EmailListData();
+    getView().setPresenter(this);
+    getView().fillForm(emailListData);
   }
 
   /**
    * try to send data.
    */
   public final void tryToSend() {
-    this.dispatcher.execute(this.emailListService.checkEmailList(this.emailListData),
-        RestCallbackBuilder.build(this.getView(), this.emailListData, this.session,
-            presult -> this.getView().showMessage(this.constants.messageOk())));
+    dispatcher.execute(emailListService.checkEmailList(emailListData),
+        RestCallbackBuilder.build(getView(), emailListData, session,
+            presult -> getView().showMessage(constants.messageOk())));
   }
 }

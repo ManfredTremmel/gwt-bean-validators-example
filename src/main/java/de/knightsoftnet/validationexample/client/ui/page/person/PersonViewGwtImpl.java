@@ -97,36 +97,35 @@ public class PersonViewGwtImpl extends AbstractViewWithErrorHandling<PersonPrese
   @Inject
   public PersonViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
     super(pdriver);
-    this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver.initialize(this);
-    this.driver.setSubmitButton(this.submitButton);
-    this.driver.addFormSubmitHandler(this);
-    this.birthday
-        .setMax(DateUtils.truncate(DateUtils.addYears(new Date(), -18), Calendar.DAY_OF_MONTH));
+    initWidget(puiBinder.createAndBindUi(this));
+    driver.initialize(this);
+    driver.setSubmitButton(submitButton);
+    driver.addFormSubmitHandler(this);
+    birthday.setMax(DateUtils.truncate(DateUtils.addYears(new Date(), -18), Calendar.DAY_OF_MONTH));
   }
 
   @Override
   public final void showMessage(final String pmessage) {
-    this.logMessages.setText(pmessage);
+    logMessages.setText(pmessage);
   }
 
   @Override
   public void onFormSubmit(final FormSubmitEvent<Person> pevent) {
-    this.presenter.tryToSend();
+    presenter.tryToSend();
   }
 
   @UiHandler("newButton")
   public void addNewEntry(final ClickEvent pevent) {
-    this.presenter.addNewEntry();
+    presenter.addNewEntry();
   }
 
   @UiHandler("goToButton")
   public void goToByClick(final ClickEvent pevent) {
-    this.presenter.readEntry(this.goToNumber.getValue());
+    presenter.readEntry(goToNumber.getValue());
   }
 
   @UiHandler("deleteButton")
   public void deleteByClick(final ClickEvent pevent) {
-    this.presenter.deleteEntry(this.id.getValue());
+    presenter.deleteEntry(id.getValue());
   }
 }

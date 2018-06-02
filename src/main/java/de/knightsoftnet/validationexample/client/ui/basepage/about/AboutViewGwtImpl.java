@@ -46,12 +46,12 @@ public class AboutViewGwtImpl extends PopupViewImpl implements AboutPresenter.My
   @Inject
   public AboutViewGwtImpl(final Binder puiBinder, final EventBus peventBus) {
     super(peventBus);
-    this.initWidget(puiBinder.createAndBindUi(this));
+    initWidget(puiBinder.createAndBindUi(this));
   }
 
   @Override
   public final void setPresenter(final AboutPresenter ppresenter) {
-    this.presenter = ppresenter;
+    presenter = ppresenter;
   }
 
   /**
@@ -61,6 +61,6 @@ public class AboutViewGwtImpl extends PopupViewImpl implements AboutPresenter.My
    */
   @UiHandler("closeButton")
   final void onClick(final ClickEvent pclickEvent) {
-    this.presenter.removeFromParentSlot();
+    presenter.removeFromParentSlot();
   }
 }

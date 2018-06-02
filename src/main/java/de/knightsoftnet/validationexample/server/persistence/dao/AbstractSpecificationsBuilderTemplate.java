@@ -14,7 +14,7 @@ public abstract class AbstractSpecificationsBuilderTemplate<T> {
   private final List<SearchCriteria> params;
 
   public AbstractSpecificationsBuilderTemplate() {
-    this.params = new ArrayList<>();
+    params = new ArrayList<>();
   }
 
   /**
@@ -44,7 +44,7 @@ public abstract class AbstractSpecificationsBuilderTemplate<T> {
           op = SearchOperation.STARTS_WITH;
         }
       }
-      this.params.add(new SearchCriteria(pkey, op, pvalue));
+      params.add(new SearchCriteria(pkey, op, pvalue));
     }
     return this;
   }
@@ -55,13 +55,13 @@ public abstract class AbstractSpecificationsBuilderTemplate<T> {
    * @return Specification
    */
   public Specification<T> build() {
-    if (this.params.size() == 0) {
+    if (params.size() == 0) {
       return null;
     }
 
     final List<Specification<T>> specs = new ArrayList<>();
-    for (final SearchCriteria param : this.params) {
-      specs.add(this.createSpecification(param));
+    for (final SearchCriteria param : params) {
+      specs.add(createSpecification(param));
     }
 
     Specification<T> result = specs.get(0);

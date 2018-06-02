@@ -42,6 +42,6 @@ public class AboutPresenter extends PresenterWidget<AboutPresenter.MyView> {
   @Inject
   public AboutPresenter(final EventBus peventBus, final MyView pview) {
     super(peventBus, pview);
-    this.getView().setPresenter(this);
+    getView().setPresenter(this);
   }
 }

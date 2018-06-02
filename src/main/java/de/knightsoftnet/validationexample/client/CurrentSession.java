@@ -26,7 +26,7 @@ import javax.inject.Inject;
 
 /**
  * session implementation based on GwtpSpringSession.
- * 
+ *
  * @author Manfred Tremmel
  *
  */

@@ -59,16 +59,16 @@ public class LogoutPresenter extends Presenter<LogoutPresenter.MyView, LogoutPre
   public LogoutPresenter(final EventBus peventBus, final MyView pview, final MyProxy pproxy,
       final RestDispatch pdispatcher, final UserRestService puserService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.dispatcher = pdispatcher;
-    this.userService = puserService;
-    this.session = psession;
+    dispatcher = pdispatcher;
+    userService = puserService;
+    session = psession;
   }
 
   @Override
   protected void onReveal() {
     super.onReveal();
-    this.dispatcher.execute(this.userService.logout(), RestCallbackBuilder.build(//
-        presult -> this.session.readSessionData(), //
-        pfailure -> this.session.readSessionData()));
+    dispatcher.execute(userService.logout(), RestCallbackBuilder.build(//
+        presult -> session.readSessionData(), //
+        pfailure -> session.readSessionData()));
   }
 }

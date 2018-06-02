@@ -74,27 +74,27 @@ public class SepaViewGwtImpl extends AbstractViewWithErrorHandling<SepaPresenter
   @Inject
   public SepaViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
     super(pdriver);
-    this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver.initialize(this);
-    this.driver.setSubmitButton(this.sepaButton);
-    this.driver.addFormSubmitHandler(this);
-    this.iban.setBicInput(this.bic);
+    initWidget(puiBinder.createAndBindUi(this));
+    driver.initialize(this);
+    driver.setSubmitButton(sepaButton);
+    driver.addFormSubmitHandler(this);
+    iban.setBicInput(bic);
   }
 
   @Override
   public final void setPresenter(final SepaPresenter ppresenter) {
     super.setPresenter(ppresenter);
     // limit possible countries to sepa countries
-    this.countryCode.fillEntries(this.presenter.getSepaCountries());
+    countryCode.fillEntries(presenter.getSepaCountries());
   }
 
   @Override
   public final void showMessage(final String pmessage) {
-    this.logMessages.setText(pmessage);
+    logMessages.setText(pmessage);
   }
 
   @Override
   public void onFormSubmit(final FormSubmitEvent<SepaData> pevent) {
-    this.presenter.tryToSend();
+    presenter.tryToSend();
   }
 }

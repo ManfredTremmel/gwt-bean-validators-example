@@ -70,22 +70,22 @@ public class PhoneNumberPresenter extends
       final PhoneNumberConstants pconstants, final RestDispatch pdispatcher,
       final PhoneRestService pphoneNumberService, final Session psession) {
     super(peventBus, pview, pproxy, AbstractBasePagePresenter.SLOT_MAIN_CONTENT);
-    this.constants = pconstants;
-    this.dispatcher = pdispatcher;
-    this.session = psession;
-    this.phoneNumberService = pphoneNumberService;
-    this.phoneNumberData = new PhoneNumberData();
-    this.phoneNumberData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
-    this.getView().setPresenter(this);
-    this.getView().fillForm(this.phoneNumberData);
+    constants = pconstants;
+    dispatcher = pdispatcher;
+    session = psession;
+    phoneNumberService = pphoneNumberService;
+    phoneNumberData = new PhoneNumberData();
+    phoneNumberData.setCountryCode(CountryEnum.valueOf(pconstants.defaultCountry()));
+    getView().setPresenter(this);
+    getView().fillForm(phoneNumberData);
   }
 
   /**
    * try to send data.
    */
   public final void tryToSend() {
-    this.dispatcher.execute(this.phoneNumberService.checkPhoneNumber(this.phoneNumberData),
-        RestCallbackBuilder.build(this.getView(), this.phoneNumberData, this.session,
-            presult -> this.getView().showMessage(this.constants.messagePhoneNumberOk())));
+    dispatcher.execute(phoneNumberService.checkPhoneNumber(phoneNumberData),
+        RestCallbackBuilder.build(getView(), phoneNumberData, session,
+            presult -> getView().showMessage(constants.messagePhoneNumberOk())));
   }
 }

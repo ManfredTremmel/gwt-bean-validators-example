@@ -70,19 +70,19 @@ public class LoginViewGwtImpl extends AbstractViewWithErrorHandling<LoginPresent
   @Inject
   public LoginViewGwtImpl(final Driver pdriver, final Binder puiBinder) {
     super(pdriver);
-    this.initWidget(puiBinder.createAndBindUi(this));
-    this.driver.initialize(this);
-    this.driver.setSubmitButton(this.loginButton);
-    this.driver.addFormSubmitHandler(this);
+    initWidget(puiBinder.createAndBindUi(this));
+    driver.initialize(this);
+    driver.setSubmitButton(loginButton);
+    driver.addFormSubmitHandler(this);
   }
 
   @Override
   public final void showMessage(final String pmessage) {
-    this.logMessages.setText(pmessage);
+    logMessages.setText(pmessage);
   }
 
   @Override
   public void onFormSubmit(final FormSubmitEvent<LoginData> pevent) {
-    this.presenter.tryToLogin();
+    presenter.tryToLogin();
   }
 }

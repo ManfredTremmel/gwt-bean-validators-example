@@ -40,6 +40,6 @@ public class SecretViewGwtImpl extends ViewImpl implements SecretPresenter.MyVie
   @Inject
   public SecretViewGwtImpl(final Binder puiBinder) {
     super();
-    this.initWidget(puiBinder.createAndBindUi(this));
+    initWidget(puiBinder.createAndBindUi(this));
   }
 }
