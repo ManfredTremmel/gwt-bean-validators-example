@@ -1,3 +1,5 @@
+# This project is read only and was moved to gitlab: [https://gitlab.com/ManfredTremmel/gwt-bean-validators-example](https://gitlab.com/ManfredTremmel/gwt-bean-validators-example)
+
 # gwt-bean-validators-example
 Little example how to use bean validators in a GWT application (client and server side validation).
 See live Demo on [https://www.knightsoft-net.de/validationexample/](https://www.knightsoft-net.de/validationexample/)
